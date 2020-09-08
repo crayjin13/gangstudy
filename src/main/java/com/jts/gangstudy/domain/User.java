@@ -16,6 +16,24 @@ public class User {
 	private String note;
 	
 	
+	public boolean isMatchPassword(String pw){
+		boolean isMatch=false;
+		if(this.pw.equals(pw)) {
+			isMatch=true;
+		}
+		return isMatch;
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "User [user_no=" + user_no + ", name=" + name + ", phone=" + phone + ", id=" + id + ", pw=" + pw
+				+ ", email=" + email + ", bod=" + bod + ", gender=" + gender + ", rate=" + rate + ", points=" + points
+				+ ", note=" + note + "]";
+	}
+
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}

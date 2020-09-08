@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService {
 		if (result) { // 로그인 성공
 
 			session.setAttribute("admin_id", admin.getAdmin_id());
-			session.setAttribute("admin_pass", admin.getAdmin_pw());
+			session.setAttribute("admin_pw", admin.getAdmin_pw());
 
 		}
 

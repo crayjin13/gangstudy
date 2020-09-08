@@ -1,20 +1,14 @@
-package com.jts.gangstudy.repository;
+package com.jts.gangstudy.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.jts.gangstudy.domain.Admin;
 import com.jts.gangstudy.domain.User;
 
-
-public interface UserDao {
-
-	
+public interface UserService {
 
 	
-	
+	User signIn(String id, String pw) throws Exception;
+
 	// 회원 가입 Create
 	boolean newUser(User user);
 	
@@ -52,10 +46,5 @@ public interface UserDao {
 	//회원들 이름으로 검색
 	List<User> SearchUser(String search);
 
-	
-	
-	
-	
-	
 	
 }

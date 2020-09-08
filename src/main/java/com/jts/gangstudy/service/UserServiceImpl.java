@@ -1,18 +1,33 @@
-package com.jts.gangstudy.repository;
+package com.jts.gangstudy.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.jts.gangstudy.exception.UserNotFoundException;
+import com.jts.gangstudy.repository.UserDao;
+import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.domain.User;
-import com.jts.gangstudy.mapper.UserMapper;
+import com.jts.gangstudy.exception.UserNotFoundException;
 
-@Repository
-public class UserDaoImpl implements UserDao{
+public class UserServiceImpl implements UserService {
+
 	@Autowired
-	UserMapper usermapper;
-
+	UserDao userDao;
+	
+	@Override
+	public User signIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException  {
+		User user= userDao.selectById(id);
+		if(user == null) {
+			throw new UserNotFoundException(id + "는 없는 아이디 입니다.");
+		}
+		if(!user.isMatchPassword(pw)) {
+			throw new PasswordMismatchException("패스워드가 일치하지 않습니다.");
+		}
+		return user;
+	}
+	
+	
 	@Override
 	public boolean newUser(User user) {
 		// TODO Auto-generated method stub
@@ -84,9 +99,11 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
 	
 
-
+	
+	
+	
+	
 }

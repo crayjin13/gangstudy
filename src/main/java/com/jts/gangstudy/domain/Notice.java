@@ -3,7 +3,7 @@ package com.jts.gangstudy.domain;
 public class Notice {
 
 	private Integer notice_no;
-	private Integer nNo;
+	private String admin_id;
 	private String title;
 	private Integer views;
 	private String content;
@@ -16,10 +16,10 @@ public class Notice {
 	}
 
 
-	public Notice(Integer notice_no, Integer nNo, String title, Integer views, String content, String nDate) {
+	public Notice(Integer notice_no, String admin_id, String title, Integer views, String content, String nDate) {
 		super();
 		this.notice_no = notice_no;
-		this.nNo = nNo;
+		this.admin_id = admin_id;
 		this.title = title;
 		this.views = views;
 		this.content = content;
@@ -37,13 +37,13 @@ public class Notice {
 	}
 
 
-	public Integer getnNo() {
-		return nNo;
+	public String getAdmin_id() {
+		return admin_id;
 	}
 
 
-	public void setnNo(Integer nNo) {
-		this.nNo = nNo;
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
 	}
 
 
@@ -85,9 +85,8 @@ public class Notice {
 	public void setnDate(String nDate) {
 		this.nDate = nDate;
 	}
-	
-	
-	
+
+
 	
 	
 	
