@@ -36,15 +36,15 @@
 		location="/vendor/" /> -->
 	<mvc:resources mapping="/**" location="/" />
 
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<beans:bean
 				class="com.jts.gangstudy.controller.UserAuthLoginAnnotationInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
-	<beans:bean id="multipartResolver"
+ -->
+<!-- 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
@@ -54,7 +54,7 @@
 			ref="apacheDataSource" />
 	</beans:bean>
 
-
+ -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
