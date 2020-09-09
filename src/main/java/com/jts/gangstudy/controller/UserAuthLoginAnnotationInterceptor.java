@@ -1,17 +1,17 @@
-
-
-package com.jts.gangstudy.controller;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import com.jts.gangstudy.domain.User;
-
+/*
+ * 
+ * package com.jts.gangstudy.controller;
+ * 
+ * import javax.servlet.http.HttpServletRequest; import
+ * javax.servlet.http.HttpServletResponse; import
+ * javax.servlet.http.HttpSession;
+ * 
+ * import org.springframework.web.method.HandlerMethod; import
+ * org.springframework.web.servlet.ModelAndView; import
+ * org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+ * 
+ * import com.jts.gangstudy.domain.User;
+ */
 /*
 ①HandlerInterceptor 인터페이스
 ②HandlerInterceptorAdapter 추상클래스

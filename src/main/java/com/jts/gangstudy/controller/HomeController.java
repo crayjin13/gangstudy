@@ -1,4 +1,4 @@
-package com.jts.gangstudy;
+package com.jts.gangstudy.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

@@ -12,8 +12,6 @@ import com.jts.gangstudy.domain.User;
 public interface UserDao {
 
 	
-
-	
 	
 	// 회원 가입 Create
 	boolean newUser(User user);
