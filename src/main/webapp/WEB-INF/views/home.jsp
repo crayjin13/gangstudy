@@ -9,6 +9,11 @@
 	Hello world!  
 </h1>
 
+
+<b><a mid='${member.mId}' id="user_signUp"  href="#" title="">${user.sign_up}</a></b>
+
 <P>  The time on the server is ${serverTime}. </P>
+
+<script type="text/javascript" src="js/wUser.js"></script>
 </body>
 </html>

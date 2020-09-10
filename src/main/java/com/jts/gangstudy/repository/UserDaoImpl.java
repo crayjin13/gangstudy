@@ -11,12 +11,11 @@ import com.jts.gangstudy.mapper.UserMapper;
 @Repository
 public class UserDaoImpl implements UserDao{
 	@Autowired
-	UserMapper usermapper;
+	private UserMapper userMapper;
 
 	@Override
 	public boolean insertUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		return userMapper.insertUser(user);
 	}
 
 	@Override
