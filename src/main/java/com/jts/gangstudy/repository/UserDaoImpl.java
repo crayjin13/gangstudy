@@ -7,16 +7,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.mapper.UserMapper;
-
+ 
 @Repository
 public class UserDaoImpl implements UserDao{
 	@Autowired
-	UserMapper usermapper;
+	private UserMapper userMapper;
 
 	@Override
-	public boolean newUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insertUser(User user) {
+		return userMapper.insertUser(user);
 	}
 
 	@Override
@@ -80,13 +79,16 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<User> SearchUser(String search) {
+	public List<User> findUserList(String search) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	
 	}
 	
 	
 	
 
 
-}
+
