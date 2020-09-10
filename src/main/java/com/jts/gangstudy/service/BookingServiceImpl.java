@@ -26,13 +26,14 @@ public class BookingServiceImpl implements BookingService{
 	private Calendar cal = Calendar.getInstance();
 	
 	@Override
-	public void getAvaliableDates() {
+	public String[][] getAvaliableDates() {
 		for(int i = 0; i < avaliablePeriod; i++) {
 			avaliableDates[i][0] = yearFormat.format(cal.getTime());
 			avaliableDates[i][1] = monthFormat.format(cal.getTime());
 			avaliableDates[i][2] = dayFormat.format(cal.getTime());
 	        cal.add(Calendar.DATE, 1);
 		}
+		return avaliableDates;
 	}
 
 	@Override
@@ -40,6 +41,4 @@ public class BookingServiceImpl implements BookingService{
 		getAvaliableDates();
 		return mapper.viewAll();
 	}
-
-
 }

@@ -8,7 +8,7 @@ import com.jts.gangstudy.domain.Booking;
 public interface BookingService {
 	
 	// 예약 가능한 날짜 얻기
-	public void getAvaliableDates();
+	public String[][] getAvaliableDates();
 	public List<Booking> viewAll();
 
 }
