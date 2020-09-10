@@ -1,7 +1,5 @@
 package com.jts.gangstudy.domain;
 
-
-
 public class User {
 	private Integer user_no;
 	private String name;
@@ -14,8 +12,7 @@ public class User {
 	private Integer rate;
 	private double points;
 	private String note;
-	
-	
+		
 	public boolean isMatchPassword(String pw){
 		boolean isMatch=false;
 		if(this.pw.equals(pw)) {
@@ -23,7 +20,6 @@ public class User {
 		}
 		return isMatch;
 	}
-	
 	
 	
 	@Override
@@ -37,6 +33,8 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 
 	public User(Integer user_no, String name, String phone, String id, String pw, String email, String bod, char gender,
@@ -54,6 +52,12 @@ public class User {
 		this.points = points;
 		this.note = note;
 	}
+
+
+	
+
+
+
 
 
 	public Integer getUser_no() {

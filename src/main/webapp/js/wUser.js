@@ -28,4 +28,16 @@ function user_signUp_action_function(){
 		}
 	})
 	e.preventDefault();
+	
+
+	
 }
+
+$(function(){
+	var idArray=$('#selectById').serializeArray();
+	//검색 결과 여부
+	if (mIdArray.length==0) {
+		alert("결과없음");
+		location.href="profiles";
+	}
+	}); 
