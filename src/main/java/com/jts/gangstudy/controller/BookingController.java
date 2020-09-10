@@ -17,7 +17,7 @@ public class BookingController {
 	
 	@RequestMapping("")
 	public String main(Model model) {
-		model.addAttribute("data", bookingService.viewAll());
+		model.addAttribute("data", bookingService.getAvaliableBooking());
 		return "booking";
 	}
 	
