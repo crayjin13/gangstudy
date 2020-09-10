@@ -7,8 +7,11 @@ import com.jts.gangstudy.domain.Booking;
 
 public interface BookingService {
 	
-	// ¿¹¾à °¡´ÉÇÑ ³¯Â¥ ¾ò±â
-	public String[][] getAvaliableDates();
-	public List<Booking> viewAll();
+	// ì˜ˆì•½ ê°€ëŠ¥í•œ ì‹œê°„ í™•ì¸
+	public List<Booking> getAvaliableBooking();
+	
+	// ì˜ˆì•½ ì •ë³´ ìƒì„±
+	public Booking bookingInfo();
+	
 
 }

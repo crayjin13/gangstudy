@@ -9,7 +9,7 @@
 	</select>
 	
 	<!-- 기존 예약 목록 조회 -->
-	<select id="existsBooking" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT * FROM BOOKING_TB WHERE BOOK_DT = #{book_dt}
+	<select id="existsBooking" parameterType="HashMap" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT * FROM BOOKING_TB WHERE BOOK_DT BETWEEN TO_DATE(#{start_dt}) AND TO_DATE(#{end_dt})
 	</select>
 </mapper>
