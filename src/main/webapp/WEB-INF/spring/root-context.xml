@@ -33,10 +33,9 @@
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="apacheDataSource" />
+  		<property value="classpath:/mapper/*Mapper.xml" name="mapperLocations" />
 	</bean>
 
 	<!-- AOP annotation을사용할때 설정(자동프록시 생성) -->
 	<aop:aspectj-autoproxy />
-
-
 </beans>
