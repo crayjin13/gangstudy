@@ -14,7 +14,7 @@ public class UserDaoImpl implements UserDao{
 	UserMapper usermapper;
 
 	@Override
-	public boolean newUser(User user) {
+	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -80,13 +80,16 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<User> SearchUser(String search) {
+	public List<User> findUserList(String search) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	
 	}
 	
 	
 	
 
 
-}
+
