@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.mapper.UserMapper;
-
+ 
 @Repository
 public class UserDaoImpl implements UserDao{
 	@Autowired

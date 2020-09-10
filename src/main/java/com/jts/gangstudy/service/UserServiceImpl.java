@@ -15,7 +15,7 @@ import com.jts.gangstudy.exception.UserNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+ 
 	@Autowired
 	private UserDao userDao;
 	

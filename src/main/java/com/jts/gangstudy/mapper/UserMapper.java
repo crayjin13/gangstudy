@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.jts.gangstudy.domain.User;
-
+ 
 @Mapper
 public interface UserMapper {
 
