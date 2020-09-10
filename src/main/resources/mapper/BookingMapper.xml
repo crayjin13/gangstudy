@@ -1,0 +1,9 @@
+
+	
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jts.gangstudy.mapper.BookingMapper">
+	<!-- 전체 내용 조회 -->
+	<select id="viewAll" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT * FROM BOOKING_TB
+	</select>
+</mapper>
