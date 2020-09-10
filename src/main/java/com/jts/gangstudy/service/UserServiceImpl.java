@@ -3,6 +3,8 @@ package com.jts.gangstudy.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.repository.UserDao;
@@ -10,11 +12,14 @@ import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.UserNotFoundException;
 
-public class UserServiceImpl implements UserService {
 
+@Service
+public class UserServiceImpl implements UserService {
+ 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	
+	//·Î±×ÀÎ
 	@Override
 	public User signIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException  {
 		User user= userDao.selectById(id);
@@ -26,10 +31,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-	
-	
+
 	@Override
-	public boolean newUser(User user) {
+	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -95,11 +99,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> SearchUser(String search) {
+	public List<User> findUserList(String search) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
 	
 
 	

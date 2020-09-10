@@ -6,11 +6,11 @@ import com.jts.gangstudy.domain.User;
 
 public interface UserService {
 
-	
+	// 로그인 
 	User signIn(String id, String pw) throws Exception;
 
 	// 회원 가입 Create
-	boolean newUser(User user);
+	boolean insertUser(User user);
 	
 	// 회원 정보
 	User userInfo(Integer user_no);
@@ -43,8 +43,8 @@ public interface UserService {
 	// 회원 목록
 	List<User> UserList();
 	
-	//회원들 이름으로 검색
-	List<User> SearchUser(String search);
+	//회원들  검색
+	List<User> findUserList(String search);
 
 	
 }

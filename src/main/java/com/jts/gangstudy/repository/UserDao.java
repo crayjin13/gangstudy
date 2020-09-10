@@ -14,7 +14,7 @@ public interface UserDao {
 	
 	
 	// 회원 가입 Create
-	boolean newUser(User user);
+	boolean insertUser(User user);
 	
 	// 회원 정보
 	User userInfo(Integer user_no);
@@ -47,8 +47,8 @@ public interface UserDao {
 	// 회원 목록
 	List<User> UserList();
 	
-	//회원들 이름으로 검색
-	List<User> SearchUser(String search);
+	//회원들 검색
+	List<User> findUserList(String search);
 
 	
 	
