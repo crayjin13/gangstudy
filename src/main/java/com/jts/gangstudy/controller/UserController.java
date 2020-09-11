@@ -32,10 +32,10 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping
+	@RequestMapping(value="/selectById", method=RequestMethod.POST)
 	public ModelAndView selectById(@Param("id")String id) {
 		ModelAndView mv = new ModelAndView();
-		userService.selectById(id);
+		userService.selectById("id");
 		mv.addObject("id",id);
 		mv.setViewName("home");
 		return mv;

@@ -20,7 +20,8 @@ import com.jts.gangstudy.repository.UserDaoImpl;
 @ComponentScan("com.jts.gangstudy.*")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserUnitTestMain {
-	//@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
+//@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
+	
 
 	/*
 	 * public static void main(String[] args) {
@@ -50,16 +51,15 @@ public class UserUnitTestMain {
 	 * System.out.println("새로운회원이 가입했습니다."+user); }
 	 */
 	
-	@Test
-	@Ignore
-	public void selectById() {
+	@Test  //회원한명 아이디로 조회 
+	public void selectById(){
 		User user= userDao.selectById("testId");
 		System.out.println("### 회원 아이디로 검색"+user);
 	}
 	
 	
 	
-	
+	// https://stackoverflow.com/questions/12005993/java-eclipse-how-to-configure-run-configurations-classpath-for-junit-test
 	
 
 }

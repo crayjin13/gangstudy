@@ -26,8 +26,8 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User selectById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userMapper.selectById(id);
 	}
 
 	@Override
