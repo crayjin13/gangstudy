@@ -32,5 +32,5 @@ public interface UserMapper {
 	public  boolean idDuplicateCheck(String id);
 	 
 	
-	
+	 
 }
