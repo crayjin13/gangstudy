@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public boolean insertUser(User user) {
-		return userMapper.insertUser(user);
+		return userMapper.insertUser(user); 
 	}
 
 	@Override
