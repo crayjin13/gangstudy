@@ -16,17 +16,20 @@ public interface UserMapper {
 	public boolean insertUser(User user);
 	
 	
-	  //회원 아이디로 읽기
-	  
+	  //회원 아이디로 읽기 
 	 @Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE id=#{id}"
 	  ) public User selectById(@Param("id") String id);
-	  
+	 
+	 
 	  //회원 정보 수정
+	 @Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender}"
+	  + ",rate=#{rate},points=#{points},note=#{note} WHERE id=#{id}")
+	 public boolean updateUser(User user);
 	 
-	  @Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender}"
-	  + ",rate=#{rate},points=#{points},note=#{note} WHERE id=#{id}") public
-	  boolean updateUser(User user);
 	 
+	 
+	 //아이디 중복체크
+	public  boolean idDuplicateCheck(String id);
 	 
 	
 	
