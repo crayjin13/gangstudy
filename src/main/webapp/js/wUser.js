@@ -19,7 +19,7 @@ function user_signUp_action_function(){
 				user_signup.gender.value = textData.gender;
 				user_signup.rate.value = textData.rate;
 				user_signup.points.value = textData.points;
-				user_signup.note.value = textData.note;
+				user_signup.note.value = textData.note; 
 				
 				location.href = '/gangstudy/sign_up';
 			} else if (textData.trim() == "false"){
@@ -28,4 +28,25 @@ function user_signUp_action_function(){
 		}
 	})
 	e.preventDefault();
+	
+
+	
 }
+
+var id = document.querySelector('#id');
+var selectById = document.querySelector('#selectById');
+document.getElementById('selectById').onclick = checkValue;
+$('#selectById').on('click', function(e){
+	
+})
+
+
+
+
+
+
+
+
+
+
+
