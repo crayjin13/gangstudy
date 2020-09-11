@@ -1,6 +1,6 @@
 package com.jts.gangstudy.repository;
 
-import java.util.List;
+import java.util.List; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +14,7 @@ public class UserDaoImpl implements UserDao{
 	private UserMapper userMapper;
 
 	@Override
-	public boolean insertUser(User user) {
+	public boolean insertUser(User user) { 
 		return userMapper.insertUser(user); 
 	}
 

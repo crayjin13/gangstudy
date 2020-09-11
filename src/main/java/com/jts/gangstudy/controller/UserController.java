@@ -24,7 +24,7 @@ public class UserController {
 			if(newUser) {
 				newUser = true;
 			}else {
-				newUser = false;
+				newUser = false; 
 			}
 		
 			return newUser+"";	

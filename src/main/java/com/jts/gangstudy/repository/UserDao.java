@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jts.gangstudy.domain.Admin;
 import com.jts.gangstudy.domain.User;
 
-
+ 
 public interface UserDao {
 
 	
@@ -21,7 +21,7 @@ public interface UserDao {
 	
 	// 회원 아이디로 검색
 	User selectById(String id);
-	
+	 
 	
 	//회원 수정
 	boolean updateUser(User user);
