@@ -36,10 +36,6 @@ public class BookingController {
 	@RequestMapping(value = "/request", method = RequestMethod.POST)
 	public String request(HttpServletRequest request) {
 		String book_dt = request.getParameter("year") + request.getParameter("month") + request.getParameter("date");
-		System.out.println(request.getParameter("year"));
-		System.out.println(request.getParameter("month"));
-		System.out.println(request.getParameter("date"));
-		System.out.println(book_dt);
 		String ci = request.getParameter("ci");
 		String co = request.getParameter("co");
 		int people = Integer.parseInt(request.getParameter("people"));
