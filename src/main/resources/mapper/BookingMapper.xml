@@ -5,11 +5,19 @@
 
 	<!-- 전체 내용 조회 -->
 	<select id="viewAll" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT * FROM BOOKING_TB
+	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(BOOK_DT, 'YYYY-MM-DD'), TO_CHAR(CI, 'HH24:MI'), TO_CHAR(CO, 'HH24:MI'), PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD') FROM BOOKING_TB
 	</select>
 	
 	<!-- 기존 예약 목록 조회 -->
 	<select id="existsBooking" parameterType="HashMap" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT * FROM BOOKING_TB WHERE BOOK_DT BETWEEN TO_DATE(#{start_dt}) AND TO_DATE(#{end_dt})
 	</select>
+	
+	<!-- 새로운 예약 추가 -->
+	<insert id="addBooking" parameterType="com.jts.gangstudy.domain.Booking">
+	  INSERT INTO BOOKING_TB
+	  (USER_NO, ROOM_NO, BOOK_DT, CI, CO, PEOPLE, STATE, REQUEST_DT) VALUES
+	  (#{user_no}, #{room_no}, TO_DATE(#{book_dt}, 'YYYY-MM-DD'), TO_DATE(#{ci}, 'HH24:MI'), TO_DATE(#{co},'HH24:MI'), #{people}, #{state}, SYSDATE)
+	  
+	</insert>
 </mapper>

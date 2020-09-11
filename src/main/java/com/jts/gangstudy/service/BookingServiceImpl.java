@@ -20,7 +20,7 @@ public class BookingServiceImpl implements BookingService{
 	private int avaliablePeriod = 7;
 	private SimpleDateFormat yearFormat = new SimpleDateFormat ( "yyyy");
 	private SimpleDateFormat monthFormat = new SimpleDateFormat ( "MM");
-	private SimpleDateFormat dayFormat = new SimpleDateFormat ( "dd");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat ( "dd");
 	private Calendar cal = Calendar.getInstance();
 
 	private String[][] avaliableDates = new String[avaliablePeriod][3];
@@ -29,9 +29,10 @@ public class BookingServiceImpl implements BookingService{
 		for(int i = 0; i < avaliablePeriod; i++) {
 			avaliableDates[i][0] = yearFormat.format(cal.getTime());
 			avaliableDates[i][1] = monthFormat.format(cal.getTime());
-			avaliableDates[i][2] = dayFormat.format(cal.getTime());
+			avaliableDates[i][2] = dateFormat.format(cal.getTime());
 	        cal.add(Calendar.DATE, 1);
 		}
+		cal = Calendar.getInstance();
 	}
 	
 	public List<Booking> checkAvaliableBooking() {
@@ -47,6 +48,12 @@ public class BookingServiceImpl implements BookingService{
 		return mapper.existsBooking(val);
 	}
 
+
+	@Override
+	public List<Booking> viewAll() {
+		return mapper.viewAll();
+	}
+	
 	@Override
 	public List<Booking> getAvaliableBooking() {
 		checkAvaliableDates();
@@ -54,8 +61,12 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public Booking bookingInfo() {
-		
-		return null;
+	public Booking bookingInfo(String book_dt, String ci, String co, int people) {
+		return new Booking(22, 1, book_dt, ci, co, people, "wait");
+	}
+
+	@Override
+	public void addBooking(Booking book) {
+		mapper.addBooking(book);
 	}
 }
