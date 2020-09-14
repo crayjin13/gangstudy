@@ -41,7 +41,7 @@
 		<hr>
 		<form action="/gangstudy/booking/request" method="post">
 			<label for="cars">Choose a booking date:</label>
-			<select name="date">
+			<select name="date" onchange="chageDateSelect()">
 				<c:forEach items="${dates}" var="date">
 					<option value="${date}">${date}</option>
 				</c:forEach>
@@ -52,4 +52,5 @@
 			<input type="submit" value="예약 신청">
 		</form>
 	</body>
+	<script type="text/javascript" src="js/wUser.js"></script>
 </html>

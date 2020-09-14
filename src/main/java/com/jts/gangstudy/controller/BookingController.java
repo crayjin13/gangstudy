@@ -1,5 +1,6 @@
 package com.jts.gangstudy.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +29,13 @@ public class BookingController {
 		List<Booking> debug = bookingService.viewAll();
 		List<Booking> books = bookingService.getExistBooking();
 		String[] dates = bookingService.getDateSelectOptions();
+//		ArrayList<String> times = bookingService.get();
 		
 		mav.setViewName("booking");
 		mav.addObject("debug", debug);
 		mav.addObject("data", books);
 		mav.addObject("dates", dates);
+//		mav.addObject("times", times);
 		return mav;
 	}
 
