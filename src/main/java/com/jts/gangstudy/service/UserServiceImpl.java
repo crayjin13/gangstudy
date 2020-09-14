@@ -35,71 +35,78 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.insertUser(user);
 	}
 
 	@Override
 	public User userInfo(Integer user_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.userInfo(user_no);
 	}
 
 	@Override
 	public User selectById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.selectById(id);
 	}
 
 	@Override
 	public boolean updateUser(User user) {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.updateUser(user);
 	}
 
 	@Override
 	public boolean idDuplicateCheck(String id) {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.idDuplicateCheck(id);
 	}
 
 	@Override
 	public boolean pwMatch(String pw) {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.pwMatch(pw);
 	}
 
 	@Override
 	public boolean deleteUser(String id, String pw) {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.deleteUser(id, pw);
 	}
 
 	@Override
 	public User findId(String email, String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.findId(email, name);
 	}
 
 	@Override
 	public User findPw(String id, String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.findPw(id, email);
 	}
 
 	@Override
 	public User temporaryPw(String pw, String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.temporaryPw(pw, id);
 	}
 
 	@Override
 	public List<User> UserList() {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.UserList();
 	}
 
 	@Override
 	public List<User> findUserList(String search) {
+		// TODO Auto-generated method stub
+		return userDao.findUserList(search);
+	}
+
+	@Override
+	public com.jts.gangstudy.domain.User User( String name, String phone, String id, String pw,
+			String email, String bod, String gender, int rate, String points, String note) {
 		// TODO Auto-generated method stub
 		return null;
 	}

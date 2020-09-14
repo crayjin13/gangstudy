@@ -45,15 +45,15 @@ public class UserJunitTestMain {
 	
 	
 	   @Test //회원가입
-	   @Ignore
 	   public void insertMember() {
-	      User newUser = new User();
+	      User newUser = new User(0,"지금", "당장", "해보지","테스트를","제발","들어가라","f",0,"0.1","ss");
 	      boolean user = userDao.insertUser(newUser);
 	      System.out.println("## 회원가입(멤버 추가) :"+user);
 	   }
 	   
 
 	@Test// 회원 아이디로 검색
+	@Ignore
 	   public void selectById() {
 	      User user = userDao.selectById("testId");
 	      System.out.println("유저 아이디로 검색"+user);
