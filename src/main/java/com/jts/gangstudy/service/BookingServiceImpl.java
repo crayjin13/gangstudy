@@ -16,57 +16,71 @@ public class BookingServiceImpl implements BookingService{
 	
 	@Autowired
 	private BookingMapper mapper;
+	private Calendar cal;
+	private SimpleDateFormat calFormat;
 	
-	private int avaliablePeriod = 7;
-	private SimpleDateFormat yearFormat = new SimpleDateFormat ( "yyyy");
-	private SimpleDateFormat monthFormat = new SimpleDateFormat ( "MM");
-	private SimpleDateFormat dateFormat = new SimpleDateFormat ( "dd");
-	private Calendar cal = Calendar.getInstance();
-
-	private String[][] avaliableDates = new String[avaliablePeriod][3];
+	private int dateSize = 7;			// 예약 신청이 가능한 기간
+	private int minuteSize = 30;		// 에약 신청 시간 단위
 	
-	public void checkAvaliableDates() {
-		for(int i = 0; i < avaliablePeriod; i++) {
-			avaliableDates[i][0] = yearFormat.format(cal.getTime());
-			avaliableDates[i][1] = monthFormat.format(cal.getTime());
-			avaliableDates[i][2] = dateFormat.format(cal.getTime());
+	// 예약 가능한 날짜 배열 구하는 함수
+	public String[] getAvaliableDates() {
+		cal = Calendar.getInstance();
+		calFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String[] dates = new String[dateSize];
+		
+		for(int i = 0; i < dateSize; i++) {
+			dates[i] = calFormat.format(cal.getTime());
 	        cal.add(Calendar.DATE, 1);
 		}
-		cal = Calendar.getInstance();
+		return dates;
 	}
 	
-	public List<Booking> checkAvaliableBooking() {
+	// 예약 가능한 날짜의 시작일, 종료일을 구하는 함수
+	public HashMap<String, String> getBookingRange() {
 		String start_dt, end_dt;
-		start_dt = avaliableDates[0][0] + avaliableDates[0][1] + avaliableDates[0][2];
-		end_dt = avaliableDates[avaliablePeriod-1][0] + avaliableDates[avaliablePeriod-1][1] + avaliableDates[avaliablePeriod-1][2];
-		System.out.println(start_dt + ", " + end_dt);
+		String[] avaliableDates = getAvaliableDates();
+		start_dt = avaliableDates[0];
+		end_dt = avaliableDates[dateSize-1];
 
-		HashMap<String, String> val = new HashMap<String, String>(); 
-		val.put("start_dt", start_dt);
-		val.put("end_dt", end_dt);
+		HashMap<String, String> range = new HashMap<String, String>(); 
+		range.put("start_dt", start_dt);
+		range.put("end_dt", end_dt);
 		
-		return mapper.existsBooking(val);
+		return range;
 	}
-
-
+	
+	// 예약 가능한 날짜의 기존 예약 목록을 가져오는 함수
+	@Override
+	public List<Booking> getExistBooking() {
+		return mapper.viewBeteenDate(getBookingRange());
+	}
+	
+	// 해당 날짜의 예약 목록을 통해 그 날짜의 예약 가능한 시간을 구하는 함수
+	public void checkAvaliableTimes(String[][] times) {
+		for(int i = 0; i < times.length; i++) {
+		}
+	}
+	
+	// 전체 예약 목록 (디버깅용)
 	@Override
 	public List<Booking> viewAll() {
 		return mapper.viewAll();
 	}
-	
+	// 예약 정보 생성
 	@Override
-	public List<Booking> getAvaliableBooking() {
-		checkAvaliableDates();
-		return checkAvaliableBooking();
-	}
-
-	@Override
-	public Booking bookingInfo(String book_dt, String ci, String co, int people) {
+	public Booking createBook(String book_dt, String ci, String co, int people) {
 		return new Booking(22, 1, book_dt, ci, co, people, "wait");
 	}
 
 	@Override
-	public void addBooking(Booking book) {
-		mapper.addBooking(book);
+	// 예약 추가
+	public void insertBook(Booking book) {
+		mapper.insertBook(book);
+	}
+
+	@Override
+	// 선택 가능한 날짜 목록
+	public String[] getDateSelectOptions() {
+		return getAvaliableDates();
 	}
 }

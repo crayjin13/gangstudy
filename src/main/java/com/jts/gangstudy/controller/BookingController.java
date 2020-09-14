@@ -25,22 +25,25 @@ public class BookingController {
 	@RequestMapping("")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
-		List<Booking> books = bookingService.viewAll();
+		List<Booking> debug = bookingService.viewAll();
+		List<Booking> books = bookingService.getExistBooking();
+		String[] dates = bookingService.getDateSelectOptions();
 		
 		mav.setViewName("booking");
-		mav.addObject("debug", books);
-		mav.addObject("data", bookingService.getAvaliableBooking());
+		mav.addObject("debug", debug);
+		mav.addObject("data", books);
+		mav.addObject("dates", dates);
 		return mav;
 	}
 
 	@RequestMapping(value = "/request", method = RequestMethod.POST)
 	public String request(HttpServletRequest request) {
-		String book_dt = request.getParameter("year") + request.getParameter("month") + request.getParameter("date");
+		String book_dt = request.getParameter("date");
 		String ci = request.getParameter("ci");
 		String co = request.getParameter("co");
 		int people = Integer.parseInt(request.getParameter("people"));
-		Booking book = bookingService.bookingInfo(book_dt, ci, co, people);
-		bookingService.addBooking(book);
+		Booking book = bookingService.createBook(book_dt, ci, co, people);
+		bookingService.insertBook(book);
 		return "redirect:/booking";
 	}
 
