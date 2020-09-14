@@ -46,5 +46,9 @@ public interface UserService {
 	//회원들  검색
 	List<User> findUserList(String search);
 
+	User User(String name, String phone, String id, String pw, String email, String bod, String gender,
+			int rate, String points, String note);
+
+	
 	
 }

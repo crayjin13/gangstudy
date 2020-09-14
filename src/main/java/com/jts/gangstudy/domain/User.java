@@ -10,9 +10,9 @@ public class User {
 	private String pw;
 	private String email;
 	private String bod;
-	private char gender;
+	private String gender;
 	private Integer rate;
-	private double points;
+	private String points;
 	private String note;
 	
 	
@@ -23,9 +23,9 @@ public class User {
 		}
 		return isMatch;
 	}
+
 	
-	
-	
+
 	@Override
 	public String toString() {
 		return "User [user_no=" + user_no + ", name=" + name + ", phone=" + phone + ", id=" + id + ", pw=" + pw
@@ -34,13 +34,9 @@ public class User {
 	}
 
 
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
 
-
-	public User(Integer user_no, String name, String phone, String id, String pw, String email, String bod, char gender,
-			Integer rate, double points, String note) {
+	public User(Integer user_no, String name, String phone, String id, String pw, String email, String bod,
+			String gender, Integer rate, String points, String note) {
 		super();
 		this.user_no = user_no;
 		this.name = name;
@@ -53,6 +49,30 @@ public class User {
 		this.rate = rate;
 		this.points = points;
 		this.note = note;
+	}
+
+	
+
+	public User(String name, String phone, String id, String pw, String email, String bod, String gender, Integer rate,
+			String points, String note) {
+		super();
+		this.name = name;
+		this.phone = phone;
+		this.id = id;
+		this.pw = pw;
+		this.email = email;
+		this.bod = bod;
+		this.gender = gender;
+		this.rate = rate;
+		this.points = points;
+		this.note = note;
+	}
+
+
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -126,12 +146,12 @@ public class User {
 	}
 
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -146,12 +166,12 @@ public class User {
 	}
 
 
-	public double getPoints() {
+	public String getPoints() {
 		return points;
 	}
 
 
-	public void setPoints(double points) {
+	public void setPoints(String points) {
 		this.points = points;
 	}
 
@@ -165,7 +185,6 @@ public class User {
 		this.note = note;
 	}
 	
-
 	
 	
 	

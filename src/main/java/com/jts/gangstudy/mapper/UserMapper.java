@@ -1,5 +1,7 @@
 package com.jts.gangstudy.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -31,6 +33,10 @@ public interface UserMapper {
 	 //아이디 중복체크
 	public  boolean idDuplicateCheck(String id);
 	 
+	
+	//유저 목록
+	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note from user_tb")
+	public List<User> userList();
 	
 	 
 }
