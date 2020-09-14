@@ -7,10 +7,24 @@
 	<title>Home</title>
 	</head>
 	<body>
-	
-	<form action="/gangstudy/booking/request" method="post">
-		예약 목록 <br>
-		<c:forEach items="${debug}" var="book">
+		전체 예약 목록 <br>
+		<c:forEach items="${debug}" var="debug">
+		    <tr>
+		        <td>예약 번호: <c:out value="${debug.book_no}"/></td>
+		        <td>사용자 번호: <c:out value="${debug.user_no}"/></td>
+		        <td>방 번호: <c:out value="${debug.room_no}"/></td>
+		        <td>예약일: <c:out value="${debug.book_dt}"/></td>
+		        <td>시작시간: <c:out value="${debug.ci}"/></td>
+		        <td>종료시간: <c:out value="${debug.co}"/></td>
+		        <td>인원: <c:out value="${debug.people}"/></td>
+		        <td>예약상태: <c:out value="${debug.state}"/></td>
+		        <td>신청일: <c:out value="${debug.request_dt}"/></td>
+		        <br>
+		    </tr>
+		</c:forEach>
+		<hr>
+		예약 목록<br>
+		<c:forEach items="${data}" var="book">
 		    <tr>
 		        <td>예약 번호: <c:out value="${book.book_no}"/></td>
 		        <td>사용자 번호: <c:out value="${book.user_no}"/></td>
@@ -25,13 +39,17 @@
 		    </tr>
 		</c:forEach>
 		<hr>
-		year : <input type="text" name="year" size="20"><br>
-		month : <input type="text" name="month" size="20"><br>
-		date : <input type="text" name="date" size="20"><br>
-		people : <input type="text" name="people" size="20"><br>
-		start : <input type="text" name="ci" size="20"><br>
-		end : <input type="text" name="co" size="20"><br>
-		<input type="submit" value="예약 신청">
-	</form>
+		<form action="/gangstudy/booking/request" method="post">
+			<label for="cars">Choose a booking date:</label>
+			<select name="date">
+				<c:forEach items="${dates}" var="date">
+					<option value="${date}">${date}</option>
+				</c:forEach>
+			</select><br>
+			people : <input type="text" name="people" size="20"><br>
+			start : <input type="text" name="ci" size="20"><br>
+			end : <input type="text" name="co" size="20"><br>
+			<input type="submit" value="예약 신청">
+		</form>
 	</body>
 </html>
