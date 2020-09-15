@@ -40,16 +40,32 @@
 		</c:forEach>
 		<hr>
 		<form action="/gangstudy/booking/request" method="post">
-			<label for="cars">Choose a booking date:</label>
-			<select name="date">
+			<label>Choose a booking </label><br>
+			date :
+			<select name="book_dt" onchange="chageDateSelect()">
+				<option value="false">날짜를 선택해주세요</option>
 				<c:forEach items="${dates}" var="date">
 					<option value="${date}">${date}</option>
 				</c:forEach>
 			</select><br>
-			people : <input type="text" name="people" size="20"><br>
-			start : <input type="text" name="ci" size="20"><br>
-			end : <input type="text" name="co" size="20"><br>
+			people :
+			<select name="people">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select><br>
+			start :
+			<select name="ci" onchange="chageCiSelect()">
+			</select><br>
+			end :
+			<select name="co">
+			</select><br>
 			<input type="submit" value="예약 신청">
 		</form>
 	</body>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/booking.js"></script>
 </html>
