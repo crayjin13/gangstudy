@@ -1,8 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ page session="false"%>
 <html>
 <head>
@@ -31,18 +29,19 @@
 	</form>
 	<hr>
 	<td>
-		<form action="/gangstudy/signUp" method="post">
-			이름 : <input type="text" id="name" name="name" size="20"><br>
-			번호 : <input type="text" id="phone" name="phone" size="20"><br>
-			아이디 : <input type="text" id="id" name="id" size="20"><br>
-			비번 : <input type="text" id="pw" name="pw" size="20"><br>
-			이메일 : <input type="text" id="email" name="email" size="20"><br>
-			생년월일 : <input type="text" id="bod" name="bod" size="20"><br>
-			성별 : <input type="text" id="gender" name="gender" size="20"><br>
+		<!-- <form action="/gangstudy/signUp" method="post"> -->
+		<form id="sign_up" method="post">
+			이름 : <input type="text" id="name" name="name" class="required" size="20"><br>
+			번호 : <input type="text" id="phone" name="phone" class="required" size="20"><br>
+			아이디 : <input type="text" id="id" name="id" class="required" size="20"><br>
+			비번 : <input type="text" id="pw" name="pw" class="required" size="20"><br>
+			이메일 : <input type="text" id="email" name="email" class="required" size="20"><br>
+			생년월일 : <input type="text" id="bod" name="bod" class="required" size="20"><br>
+			성별 : <input type="text" id="gender" name="gender" class="required" size="20"><br>
 	<!-- 		<input type="submit" value="회원가입"> 
 <input type="submit"  onclick="location.href='signUp.jsp'">회원가입</button>
 	-->
-			<button type="submit" value="sign_up" id="sign_up">회원가입</button> 	
+			<button type="submit" value="submit" >회원가입</button> 	
 
 		</form>
 	</td>
@@ -50,8 +49,9 @@
 	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/wUser.js"></script> --%>
 	<%--  <script type="text/javascript" src="/webapp/js/wUser.js"></script> --%>
 
-
-
 </body>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/wUser.js"></script>
 </html>
 <!-- https://stackoverflow.com/questions/10340392/javascript-with-spring-mvc-doesnt-work  -->

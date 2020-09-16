@@ -38,7 +38,7 @@ public class UserController {
 	}
 	
 	
-	/*
+	
 	//회원가입 
 		@ResponseBody
 		@RequestMapping(value = "/signUp", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
@@ -56,8 +56,9 @@ public class UserController {
 		return newUser+"";
 	}
 	
-	*/
 
+
+	/*
 	//회원가입 
 		@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 		public ModelAndView signUp(HttpServletRequest request) {
@@ -77,7 +78,7 @@ public class UserController {
 			m.setViewName("login");
 			return m ;
 		}
-		
+	*/	
 
 	
 	
