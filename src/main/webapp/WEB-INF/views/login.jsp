@@ -30,7 +30,7 @@
 	<hr>
 	<td>
 		<!-- <form action="/gangstudy/signUp" method="post"> -->
-		<form id="sign_up" method="post">
+		<form name="sign_up" method="post">
 			이름 : <input type="text" id="name" name="name" class="required" size="20"><br>
 			번호 : <input type="text" id="phone" name="phone" class="required" size="20"><br>
 			아이디 : <input type="text" id="id" name="id" class="required" size="20"><br>
@@ -41,7 +41,7 @@
 	<!-- 		<input type="submit" value="회원가입"> 
 <input type="submit"  onclick="location.href='signUp.jsp'">회원가입</button>
 	-->
-			<button type="submit" value="submit" >회원가입</button> 	
+			<button id="sign_up" >회원가입</button> 	
 
 		</form>
 	</td>

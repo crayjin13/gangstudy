@@ -45,13 +45,11 @@ public class UserController {
 		public String signUp(User user) {
 			
 			System.out.println(user);
-			boolean newUser = userService.insertUser(user);
-			if(newUser) {
-				newUser= true;
-			}else{
-				newUser= false;
-				}
-			System.out.println(newUser);
+			String newUser = userService.insertUser(user);
+		/*
+		 * if(newUser) { newUser= true; }else{ newUser= false; }
+		 * System.out.println(newUser);
+		 */
 			
 		return newUser+"";
 	}
