@@ -59,24 +59,25 @@ public class UserController {
 	*/
 
 	//회원가입 
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public boolean signUp(HttpServletRequest request) {
-		
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String email = request.getParameter("email");
-		String bod = request.getParameter("bod");
-		String gender = request.getParameter("gender");
-		
+		@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+		public ModelAndView signUp(HttpServletRequest request) {
+			ModelAndView m = new ModelAndView();
+			String name = request.getParameter("name");
+			String phone = request.getParameter("phone");
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			String email = request.getParameter("email");
+			String bod = request.getParameter("bod");
+			String gender = request.getParameter("gender");
+			
 
-		User user= new User(name, phone, id, pw, email, bod, gender);
-		boolean userList = userService.insertUser(user);
+			User user= new User(name, phone, id, pw, email, bod, gender);
+			boolean signUp = userService.insertUser(user);
+			m.addObject("signUp", signUp);
+			m.setViewName("login");
+			return m ;
+		}
 		
-		return userList ;
-	}
-	
 
 	
 	

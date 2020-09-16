@@ -39,9 +39,11 @@
 			이메일 : <input type="text" id="email" name="email" size="20"><br>
 			생년월일 : <input type="text" id="bod" name="bod" size="20"><br>
 			성별 : <input type="text" id="gender" name="gender" size="20"><br>
-	<!-- 		<input type="submit" value="회원가입"> -->
+	<!-- 		<input type="submit" value="회원가입"> 
+<input type="submit"  onclick="location.href='signUp.jsp'">회원가입</button>
+	-->
+			<button type="submit" value="sign_up" id="sign_up">회원가입</button> 	
 
-			<button type="submit" value="sign_up" id="sign_up">회원가입</button> 
 		</form>
 	</td>
 
