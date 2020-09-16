@@ -14,7 +14,7 @@ import com.jts.gangstudy.domain.User;
 public interface UserMapper {
 
 	//회원가입 
-	@Insert("INSERT INTO USER_TB(name, phone, id, pw, email, bod, gender) VALUES (#{name},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
+	@Insert("INSERT INTO USER_TB(name, phone, id, pw, email, bod, gender) VALUES (#{name, jdbcType=VARCHAR},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
 	public String insertUser(User user);
 	
 	

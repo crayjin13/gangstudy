@@ -5,7 +5,39 @@
 <html>
 <head>
 <title>Home</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script>
+$(document).ready(function(){
+    var userArray = $('#sign_up').text($("form").serialize());
+    $.ajax({
+		url : 'signUp',
+		data : userArray,
+		method : 'POST',
+		dataType : 'text',
+		success : function(textData) {
+			console.log(textData);
+			if (textData.trim() == "true"){
+				sign_up.name.value = textData.name;
+				sign_up.phone.value = textData.phone;
+				sign_up.id.value = textData.id;
+				sign_up.pw.value = textData.pw;
+				sign_up.email.value = textData.email;
+				sign_up.bod.value = textData.bod;
+				sign_up.gender.value = textData.gender;
+						
+				location.href = '/gangstudy/login';
+			} else if (textData.trim() == "false"){
+				
+			}
+		}
+	
+	})
+    
+  });
+
+</script> -->
 </head>
+
 <body>
 
 	<form action="/gangstudy/login" method="post">
@@ -30,7 +62,7 @@
 	<hr>
 	<td>
 		<!-- <form action="/gangstudy/signUp" method="post"> -->
-		<form name="sign_up" method="post">
+		<form action="" method="post">
 			이름 : <input type="text" id="name" name="name" class="required" size="20"><br>
 			번호 : <input type="text" id="phone" name="phone" class="required" size="20"><br>
 			아이디 : <input type="text" id="id" name="id" class="required" size="20"><br>
@@ -50,8 +82,7 @@
 	<%--  <script type="text/javascript" src="/webapp/js/wUser.js"></script> --%>
 
 </body>
-
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/wUser.js"></script>
+<script type="text/javascript" src="js/wUser.js"></script>
 </html>
 <!-- https://stackoverflow.com/questions/10340392/javascript-with-spring-mvc-doesnt-work  -->

@@ -8,7 +8,11 @@ $(document).ready(function(){
 
 
 function signUp_function(){
-	var userArray = $('#sign_up').serialize();
+	$("button").click(function(){
+		$("form").serialize();
+	  });
+
+/*	var userArray = $('#sign_up').serialize();*/
 	console.log("#값이 오는지 확인 ---"+userArray);
 	
 	$.ajax({
@@ -33,9 +37,7 @@ function signUp_function(){
 			}
 		}
 	
-	})
-	
-
+	});
 	
 
 	
