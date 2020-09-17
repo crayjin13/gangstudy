@@ -10,7 +10,7 @@ public interface UserService {
 	User signIn(String id, String pw) throws Exception;
 
 	// 회원 가입 Create
-	String insertUser(User user);
+	boolean insertUser(User user);
 	
 	
 	

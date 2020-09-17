@@ -3,16 +3,9 @@ $(document).ready(function(){
 	signUp_function();
 
 });
-
-
-
-
 function signUp_function(){
-	$("button").click(function(){
-		$("form").serialize();
-	  });
-
-/*	var userArray = $('#sign_up').serialize();*/
+	var userArray = $('#sign_up').serialize();
+	
 	console.log("#값이 오는지 확인 ---"+userArray);
 	
 	$.ajax({
@@ -33,14 +26,12 @@ function signUp_function(){
 						
 				location.href = '/gangstudy/login';
 			} else if (textData.trim() == "false"){
-				
-			}
-		}
-	
-	});
-	
 
-	
+			}
+
+		}
+	});
+	//e.preventDefault();
 }
 
 

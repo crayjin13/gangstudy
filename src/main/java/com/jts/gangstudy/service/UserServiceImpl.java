@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String insertUser(User user) {
+	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
 		return userDao.insertUser(user);
 	}
