@@ -7,10 +7,13 @@
 <title>Home</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <script>
 $(document).ready(function(){
-	
-var userArray = $('#sign_up').serialize();
-	
-	console.log("#값이 오는지 확인 ---"+userArray);
+	signUp_function();
+
+});
+function signUp_function(){
+	$("#btn").click(function(){
+	var userArray = $('#sign_up').serialize();
+console.log("#값이 오는지 확인 ---"+userArray);
 	
 	$.ajax({
 		url : 'signUp',
@@ -35,9 +38,9 @@ var userArray = $('#sign_up').serialize();
 
 		}
 	});
-    
-  });
-  
+	// e.preventDefault();
+}
+)};
 
 </script>
 </head>
@@ -66,7 +69,7 @@ var userArray = $('#sign_up').serialize();
 	<hr>
 	<td>
 		
-		<form name="sign_up" method="post">
+		<form id="sign_up" method="post">
 			이름 :   <input type="text" id="name" name="name" class="required" size="20"><br>
 			번호 :   <input type="text" id="phone" name="phone" class="required" size="20"><br>
 			아이디 : <input type="text" id="id" name="id" class="required" size="20"><br>
@@ -74,10 +77,8 @@ var userArray = $('#sign_up').serialize();
 			이메일 : <input type="text" id="email" name="email" class="required" size="20"><br>
 			생년월일:<input type="text" id="bod" name="bod" class="required" size="20"><br>
 			성별 :   <input type="text" id="gender" name="gender" class="required" size="20"><br>
-	<!-- 		<input type="submit" value="회원가입"> 
-<input type="submit"  onclick="location.href='signUp.jsp'">회원가입</button>
-	-->
-			<button  id="sign_up" >회원가입</button> 	
+
+			<input type="button" id="btn" onclick="signUp_function();" value="회원가입">
 
 		</form>
 	</td>
@@ -86,8 +87,8 @@ var userArray = $('#sign_up').serialize();
 
 </body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<!--  
-<script type="text/javascript" src="js/wUser.js"></script>
--->
+ 
+ <!--  <script type="text/javascript" src="js/wUser.js"></script>
+ -->
 </html>
 <!-- https://stackoverflow.com/questions/10340392/javascript-with-spring-mvc-doesnt-work  -->

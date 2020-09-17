@@ -4,9 +4,9 @@ $(document).ready(function(){
 
 });
 function signUp_function(){
+	$("btn").click(function(){
 	var userArray = $('#sign_up').serialize();
-	
-	console.log("#값이 오는지 확인 ---"+userArray);
+console.log("#값이 오는지 확인 ---"+userArray);
 	
 	$.ajax({
 		url : 'signUp',
@@ -31,8 +31,9 @@ function signUp_function(){
 
 		}
 	});
-	//e.preventDefault();
+	// e.preventDefault();
 }
+)};
 
 
 
