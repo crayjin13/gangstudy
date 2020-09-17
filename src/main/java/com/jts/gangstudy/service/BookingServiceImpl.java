@@ -21,7 +21,7 @@ public class BookingServiceImpl implements BookingService{
 	private Calendar cal;
 	
 	private int dateSize = 7;			// 예약 신청이 가능한 기간
-	private int minuteSize = 30;		// 에약 신청 시간 단위
+	private int minuteSize = 30;			// 에약 신청 시간 단위
 	private int startHour = 9;			// 예약 가능한 시작 시간
 	private int endHour = 23;			// 예약 가능한 종료 시간
 
@@ -57,7 +57,6 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	// 시작시간 기준의 종료시간 목록
-	// 시작시간 기준의 종료시간 목록
 	@Override
 	public List<String> getCOTimes(String ci, String[] ciArray) {
 		String time;
@@ -79,14 +78,12 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	// 예약 추가
-	// 예약 추가
 	@Override
 	public void insertBook(Booking book) {
 		mapper.insertBook(book);
 	}
 
-	// date 목록 반환
-	// 예약 가능한 날짜 배열 구하는 함수
+	// date 목록 반
 	public List<String> getDates(int dateSize) {
 		SimpleDateFormat calFormat = new SimpleDateFormat("yyyy-MM-dd");
 		List<String> dates = new ArrayList<String>();
@@ -100,7 +97,6 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	// time 목록 반환
-	// 예약 가능한 시간을 구하는 함수
 	public List<String> getTimes(int start, int end, int minuteSize) {
 		List<String> times = new ArrayList<>();
 		String time;
