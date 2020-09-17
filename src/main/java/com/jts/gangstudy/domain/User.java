@@ -14,6 +14,7 @@ public class User {
 	private Integer rate;
 	private String points;
 	private String note;
+	private String retired;
 	
 	
 	public boolean isMatchPassword(String pw){
@@ -220,6 +221,20 @@ public class User {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+
+
+
+	public String getRetired() {
+		return retired;
+	}
+
+
+
+
+	public void setRetired(String retired) {
+		this.retired = retired;
 	}
 
 

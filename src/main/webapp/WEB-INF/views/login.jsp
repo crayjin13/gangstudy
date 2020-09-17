@@ -6,6 +6,7 @@
 <head>
 <title>Home</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <script>
+//회원가입 
 $(document).ready(function(){
 	signUp_function();
 
@@ -41,6 +42,61 @@ console.log("#값이 오는지 확인 ---"+userArray);
 	// e.preventDefault();
 }
 )};
+
+
+//로그인 form 처리
+
+function user_login_action_function() {
+	$("#loginbtn").click(function(){
+	var mlafArray = $('#user_login_action').serialize();
+	console.log("---- 로그인 값이 들어오는가  ---"+mlafArray);
+	$.ajax({
+		url : 'sign_in_action',
+		method : 'POST',
+		data : mlafArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				location.href = '/gangstudy/logOn';
+			} else if (textData.trim() == "false1") {
+				alert('아이디를 다시 확인해주세요');
+				id_check();
+			} else if (textData.trim() == "false2") {
+				alert('비밀번호를 다시 확인해주세요');
+				password_check();
+			} else if (textData.trim() == "false3"){
+				alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.');
+				location.href='/gangstudy/login';
+			}
+		}
+	})
+}
+)};
+
+/*
+ * 2) Id, Password 체크
+ */
+function id_check() {
+	var mlafArray = $('#user_login_action').serialize();
+	for (var i = 0; i < mlafArray.length; i++) {
+		if (mlafArray[i].name != 'id' && mlafArray[i].name == 'pw') {
+			$('#i-error').text('아이디를 다시 확인해주세요.').show();
+			// validate 활용
+			$('#i').focus();
+		}
+	}
+}
+function password_check() {
+	var mlafArray = $('#member_login_action').serialize();
+	for (var i = 0; i < mlafArray.length; i++) {
+		if (mlafArray[i].name != 'pw' && mlafArray[i].name == 'id') {
+			$('#p-error').text('비밀번호가 틀렸습니다.').show();
+			$('#p').focus();
+		}
+	}
+}
+
+
 
 </script>
 </head>
@@ -82,8 +138,17 @@ console.log("#값이 오는지 확인 ---"+userArray);
 
 		</form>
 	</td>
+		
+		<h2>Login</h2>
 
-	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/wUser.js"></script> --%>
+<form id="user_login_action" method=POST>
+  <label for="fname">ID:</label><br>
+  <input type="text" id="id" name="id" value=""><br>
+  <label for="lname">PW:</label><br>
+  <input type="text" id="pw" name="pw" value=""><br><br>
+  <input type="button" id="loginbtn" onclick="user_login_action_function();" value="로그인">
+</form> 
+	
 
 </body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>

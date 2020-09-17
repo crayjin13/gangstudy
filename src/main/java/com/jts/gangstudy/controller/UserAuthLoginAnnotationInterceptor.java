@@ -1,78 +1,73 @@
+package com.jts.gangstudy.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.jts.gangstudy.domain.User;;
+
 /*
- * 
- * package com.jts.gangstudy.controller;
- * 
- * import javax.servlet.http.HttpServletRequest; import
- * javax.servlet.http.HttpServletResponse; import
- * javax.servlet.http.HttpSession;
- * 
- * import org.springframework.web.method.HandlerMethod; import
- * org.springframework.web.servlet.ModelAndView; import
- * org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
- * 
- * import com.jts.gangstudy.domain.User;
- */
-/*
-â‘ HandlerInterceptor ì¸í„°í˜ì´ìŠ¤
-â‘¡HandlerInterceptorAdapter ì¶”ìƒí´ë˜ìŠ¤
+¨çHandlerInterceptor ÀÎÅÍÆäÀÌ½º
+¨èHandlerInterceptorAdapter Ãß»óÅ¬·¡½º
 	- public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler)
-     	Controller ìš”ì²­ ì „ ì‹¤í–‰
+     	Controller ¿äÃ» Àü ½ÇÇà
 	- public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler, ModelAndVeiw modelAndVeiw)
-     	Controller ì²˜ë¦¬ê°€ ëë‚˜ê³  í™”ë©´ì— ë„ì–´ì£¼ëŠ” ì²˜ë¦¬ ì§ì „ì— ìˆ˜í–‰
-	- afterCompletion() : ëª¨ë“  ì²˜ë¦¬ê°€ ëë‚œ í›„ í˜¸ì¶œ
+     	Controller Ã³¸®°¡ ³¡³ª°í È­¸é¿¡ ¶ç¾îÁÖ´Â Ã³¸® Á÷Àü¿¡ ¼öÇà
+	- afterCompletion() : ¸ğµç Ã³¸®°¡ ³¡³­ ÈÄ È£Ãâ
  */
 
-
-
-/*
 public class UserAuthLoginAnnotationInterceptor extends HandlerInterceptorAdapter {
 	public UserAuthLoginAnnotationInterceptor() {
-		System.out.println("### MemberAuthLoginAnnotationInterceptor()ìƒì„±ì");
+		System.out.println("### UserAuthLoginAnnotationInterceptor()»ı¼ºÀÚ");
 	}
 
-	// preHandle() : ì»¨íŠ¸ë¡¤ëŸ¬ë³´ë‹¤ ë¨¼ì € ìˆ˜í–‰ë˜ëŠ” ë©”ì„œë“œ
+	// preHandle() : ÄÁÆ®·Ñ·¯º¸´Ù ¸ÕÀú ¼öÇàµÇ´Â ¸Ş¼­µå
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("### MemberAuthLoginAnnotationInterceptor.preHandle()ë©”ì¨ë“œ");
-		// 1. handler ì¢…ë¥˜ í™•ì¸
-		// ìš°ë¦¬ê°€ ê´€ì‹¬ ìˆëŠ” ê²ƒì€ Controllerì— ìˆëŠ” ë©”ì„œë“œì´ë¯€ë¡œ HandlerMethod íƒ€ì…ì¸ì§€ ì²´í¬
+		System.out.println("### UserAuthLoginAnnotationInterceptor.preHandle()¸Ş½áµå");
+		// 1. handler Á¾·ù È®ÀÎ
+		// ¿ì¸®°¡ °ü½É ÀÖ´Â °ÍÀº Controller¿¡ ÀÖ´Â ¸Ş¼­µåÀÌ¹Ç·Î HandlerMethod Å¸ÀÔÀÎÁö Ã¼Å©
 		if (handler instanceof HandlerMethod == false) {
-			// return trueì´ë©´ Controllerì— ìˆëŠ” ë©”ì„œë“œê°€ ì•„ë‹ˆë¯€ë¡œ, ê·¸ëŒ€ë¡œ ì»¨íŠ¸ë¡¤ëŸ¬ë¡œ ì§„í–‰
+			// return trueÀÌ¸é Controller¿¡ ÀÖ´Â ¸Ş¼­µå°¡ ¾Æ´Ï¹Ç·Î, ±×´ë·Î ÄÁÆ®·Ñ·¯·Î ÁøÇà
 			return true;
 		}
-		// 2.í˜• ë³€í™˜
+		// 2.Çü º¯È¯
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		// 3. @MemberLoginCheck ë°›ì•„ì˜¤ê¸°
-		MemberLoginCheck loginCheck = handlerMethod.getMethodAnnotation(MemberLoginCheck.class);
+		// 3. @MemberLoginCheck ¹Ş¾Æ¿À±â
+		UserLoginCheck loginCheck = handlerMethod.getMethodAnnotation(UserLoginCheck.class);
 
-		// 4. methodì— @MemberLoginCheckê°€ ì—†ëŠ” ê²½ìš°, ì¦‰ ì¸ì¦ì´ í•„ìš” ì—†ëŠ” ìš”ì²­
+		// 4. method¿¡ @MemberLoginCheck°¡ ¾ø´Â °æ¿ì, Áï ÀÎÁõÀÌ ÇÊ¿ä ¾ø´Â ¿äÃ»
 		if (loginCheck == null) {
-			System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @MemberLoginCheck ì—†ëŠ” ê²½ìš°");
+			System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck ¾ø´Â °æ¿ì");
 			return true;
 		}
-		// 5. @MemberLoginCheckê°€ ìˆëŠ” ê²½ìš°ì´ë¯€ë¡œ, ì„¸ì…˜ì´ ìˆëŠ”ì§€ ì²´í¬
-		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @MemberLoginCheck ìˆëŠ” ê²½ìš°");
+		// 5. @MemberLoginCheck°¡ ÀÖ´Â °æ¿ìÀÌ¹Ç·Î, ¼¼¼ÇÀÌ ÀÖ´ÂÁö Ã¼Å©
+		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck ÀÖ´Â °æ¿ì");
 		
-		// session ê°ì²´ë¥¼ ê°€ì ¸ì˜´
+		// session °´Ã¼¸¦ °¡Á®¿È
 		HttpSession session = request.getSession();
-		// loginì²˜ë¦¬ë¥¼ ë‹´ë‹¹í•˜ëŠ” ì‚¬ìš©ì ì •ë³´ë¥¼ ë‹´ê³  ìˆëŠ” ê°ì²´ë¥¼ ê°€ì ¸ì˜´
+		// loginÃ³¸®¸¦ ´ã´çÇÏ´Â »ç¿ëÀÚ Á¤º¸¸¦ ´ã°í ÀÖ´Â °´Ã¼¸¦ °¡Á®¿È
 
 		session.setMaxInactiveInterval(31536000); // 1day ms
 		
-		Member sMemberId = (Member) session.getAttribute("sMemberId");
-		if (sMemberId == null) {
-			// ë¡œê·¸ì¸ì´ ì•ˆë˜ì–´ ìˆëŠ” ìƒíƒœì„ìœ¼ë¡œ ë¡œê·¸ì¸ í¼ìœ¼ë¡œ ë‹¤ì‹œ ëŒë ¤ë³´ëƒ„(redirect)
+		User sUserId = (User) session.getAttribute("sUserId");
+		if (sUserId == null) {
+			// ·Î±×ÀÎÀÌ ¾ÈµÇ¾î ÀÖ´Â »óÅÂÀÓÀ¸·Î ·Î±×ÀÎ ÆûÀ¸·Î ´Ù½Ã µ¹·Áº¸³¿(redirect)
 			response.sendRedirect("sign_in");
-			return false; // ë”ì´ìƒ ì»¨íŠ¸ë¡¤ëŸ¬ ìš”ì²­ìœ¼ë¡œ ê°€ì§€ ì•Šë„ë¡ falseë¡œ ë°˜í™˜í•¨
+			return false; // ´õÀÌ»ó ÄÁÆ®·Ñ·¯ ¿äÃ»À¸·Î °¡Áö ¾Êµµ·Ï false·Î ¹İÈ¯ÇÔ
 		}
 
-		// preHandleì˜ returnì€ ì»¨íŠ¸ë¡¤ëŸ¬ ìš”ì²­ urië¡œ ê°€ë„ ë˜ëƒ ì•ˆë˜ëƒë¥¼ í—ˆê°€í•˜ëŠ” ì˜ë¯¸ì„
-		// ë”°ë¼ì„œ trueë¡œí•˜ë©´ ì»¨íŠ¸ë¡¤ëŸ¬ urië¡œ ê°€ê²Œ ë¨.
+		// preHandleÀÇ returnÀº ÄÁÆ®·Ñ·¯ ¿äÃ» uri·Î °¡µµ µÇ³Ä ¾ÈµÇ³Ä¸¦ Çã°¡ÇÏ´Â ÀÇ¹ÌÀÓ
+		// µû¶ó¼­ true·ÎÇÏ¸é ÄÁÆ®·Ñ·¯ uri·Î °¡°Ô µÊ.
 		return true;
 	}
 
-	// ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ìˆ˜í–‰ë˜ê³  í™”ë©´ì´ ë³´ì—¬ì§€ê¸° ì§ì „ì— ìˆ˜í–‰ë˜ëŠ” ë©”ì„œë“œ
+	// ÄÁÆ®·Ñ·¯°¡ ¼öÇàµÇ°í È­¸éÀÌ º¸¿©Áö±â Á÷Àü¿¡ ¼öÇàµÇ´Â ¸Ş¼­µå
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -87,5 +82,3 @@ public class UserAuthLoginAnnotationInterceptor extends HandlerInterceptorAdapte
 		super.afterCompletion(request, response, handler, ex);
 	}
 }
-
-*/
