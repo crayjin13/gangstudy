@@ -1,7 +1,12 @@
 // 회원가입 
+$(document).ready(function(){
+	signUp_function();
 
+});
 function signUp_function(){
-	var userArray = $('#sign_up').serializeArray();
+	$("btn").click(function(){
+	var userArray = $('#sign_up').serialize();
+console.log("#값이 오는지 확인 ---"+userArray);
 	
 	$.ajax({
 		url : 'signUp',
@@ -9,6 +14,7 @@ function signUp_function(){
 		method : 'POST',
 		dataType : 'text',
 		success : function(textData) {
+			console.log(textData);
 			if (textData.trim() == "true"){
 				sign_up.name.value = textData.name;
 				sign_up.phone.value = textData.phone;
@@ -18,23 +24,16 @@ function signUp_function(){
 				sign_up.bod.value = textData.bod;
 				sign_up.gender.value = textData.gender;
 						
-				//location.href = '/gangstudy/signUp';
+				location.href = '/gangstudy/login';
 			} else if (textData.trim() == "false"){
-				
+
 			}
+
 		}
-	})
-	e.preventDefault();
-	
-
-	
+	});
+	// e.preventDefault();
 }
-
-
-
-
-
-
+)};
 
 
 
