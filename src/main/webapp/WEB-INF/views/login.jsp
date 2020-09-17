@@ -57,7 +57,7 @@ function user_login_action_function() {
 		dataType : 'text',
 		success : function(textData) {
 			if (textData.trim() == "true") {
-				location.href = '/gangstudy/logOn';
+				location.href = '/gangstudy/login';
 			} else if (textData.trim() == "false1") {
 				alert('아이디를 다시 확인해주세요');
 				id_check();
@@ -141,7 +141,7 @@ function password_check() {
 		
 		<h2>Login</h2>
 
-<form id="user_login_action" method=POST>
+<form id="user_login_action" action="/gangstudy/logOn">
   <label for="fname">ID:</label><br>
   <input type="text" id="id" name="id" value=""><br>
   <label for="lname">PW:</label><br>
