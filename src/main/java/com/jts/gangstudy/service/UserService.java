@@ -12,6 +12,8 @@ public interface UserService {
 	// 회원 가입 Create
 	boolean insertUser(User user);
 	
+	
+	
 	// 회원 정보
 	User userInfo(Integer user_no);
 	

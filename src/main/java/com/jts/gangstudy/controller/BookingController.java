@@ -27,13 +27,11 @@ public class BookingController {
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		List<Booking> debug = bookingService.viewAll();
-		String[] dates = bookingService.getDateSelectOptions();
-//		ArrayList<String> times = bookingService.get();
+		List<String> dates = bookingService.getDateSelectOptions();
 		
 		mav.setViewName("booking");
 		mav.addObject("debug", debug);
 		mav.addObject("dates", dates);
-//		mav.addObject("times", times);
 		return mav;
 	}
 
@@ -43,7 +41,7 @@ public class BookingController {
 		String ci = request.getParameter("ci");
 		String co = request.getParameter("co");
 		int people = Integer.parseInt(request.getParameter("people"));
-		Booking book = bookingService.createBook(book_dt, ci, co, people);
+		Booking book = new Booking(1, 1, book_dt, ci, co, people, "wait");
 		bookingService.insertBook(book);
 		return "redirect:/booking";
 	}
