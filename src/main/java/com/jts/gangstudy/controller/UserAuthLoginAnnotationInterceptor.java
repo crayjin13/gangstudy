@@ -38,15 +38,15 @@ public class UserAuthLoginAnnotationInterceptor extends HandlerInterceptorAdapte
 		}
 		// 2.형 변환
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		// 3. @MemberLoginCheck 받아오기
+		// 3. @UserLoginCheck 받아오기
 		UserLoginCheck loginCheck = handlerMethod.getMethodAnnotation(UserLoginCheck.class);
 
-		// 4. method에 @MemberLoginCheck가 없는 경우, 즉 인증이 필요 없는 요청
+		// 4. method에 @UserLoginCheck가 없는 경우, 즉 인증이 필요 없는 요청
 		if (loginCheck == null) {
 			System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck 없는 경우");
 			return true;
 		}
-		// 5. @MemberLoginCheck가 있는 경우이므로, 세션이 있는지 체크
+		// 5. @UserLoginCheck가 있는 경우이므로, 세션이 있는지 체크
 		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck 있는 경우");
 		
 		// session 객체를 가져옴

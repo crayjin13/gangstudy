@@ -6,11 +6,11 @@
 </head>
 <body>
 <h1>
-	SIGN UP PAGE 
+	로그인 성공 ! 
 </h1>
 
 
-<b><a mid='${member.mId}' id="user_signUp"  href="#" title="">${user.sign_up}</a></b>
+
 
 <P>  The time on the server is ${serverTime}. </P>
 

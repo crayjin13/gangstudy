@@ -49,15 +49,15 @@ public class UserController {
 		try {
 			User signInuser = userService.signIn(id, pw);
 			System.out.println();
-			if (user.getRetired().trim().equals("on")) {
-				System.out.println("############계정 활성화 여부:" + user.getRetired());
+			if (signInuser != null) {
+				
 				session.setAttribute("id", id);
 				session.setAttribute("name", user.getName());
 				
 				session.setAttribute("sUserId", signInuser);
 				forwardPath = "true";
 			} else {
-				System.out.println("### 계정 활성화 상태:" + user.getRetired());
+				
 				forwardPath = "false3";
 			}
 		} catch (UserNotFoundException e) {
