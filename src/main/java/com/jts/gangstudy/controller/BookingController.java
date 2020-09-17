@@ -41,7 +41,7 @@ public class BookingController {
 		String ci = request.getParameter("ci");
 		String co = request.getParameter("co");
 		int people = Integer.parseInt(request.getParameter("people"));
-		Booking book = bookingService.createBook(book_dt, ci, co, people);
+		Booking book = new Booking(1, 1, book_dt, ci, co, people, "wait");
 		bookingService.insertBook(book);
 		return "redirect:/booking";
 	}

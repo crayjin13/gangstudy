@@ -1,6 +1,7 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 public class Booking {
 	private int book_no;
@@ -87,4 +88,28 @@ public class Booking {
 	public String getRequest_dt() {
 		return request_dt;
 	}
+	
+	// format(%02d:%02d)의 시 반환
+	public static int getHour(String time) {
+		return Integer.parseInt(time.substring(0, 2));
+	}
+	// format(%02d:%02d)의 분 반환
+	public static int getMinute(String time) {
+		return Integer.parseInt(time.substring(3, 5));
+	}
+	// calendar format(%02d:%02d)의 반환
+	public static String getTime(Calendar cal) {
+		String time;
+		int hour = cal.get(Calendar.HOUR_OF_DAY);
+		int min = cal.get(Calendar.MINUTE);
+		time = String.format("%02d:%02d", hour, min);
+		return time;
+	}
+	// calendar의 시간을 설정하는 함수
+	public static void setTime(Calendar cal, int hour, int minute) {
+		cal.set(Calendar.HOUR_OF_DAY, hour);
+		cal.set(Calendar.MINUTE, minute);
+	}
+
+
 }

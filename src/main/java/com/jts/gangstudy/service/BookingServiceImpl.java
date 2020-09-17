@@ -64,25 +64,18 @@ public class BookingServiceImpl implements BookingService{
 		List<String> coList = new ArrayList<>();
 		List<String> ciList = Arrays.asList(ciArray);
 
-		int hour = getHour(ci);
-		int min = getMinute(ci);
+		int hour = Booking.getHour(ci);
+		int min = Booking.getMinute(ci);
 		cal = Calendar.getInstance();
-		setTime(cal, hour, min);
+		Booking.setTime(cal, hour, min);
 		
 		// 종료 시간 추가
 		do {
 			cal.add(Calendar.MINUTE, minuteSize);
-			time = getTime(cal);
+			time = Booking.getTime(cal);
 			coList.add(time);
 		} while(ciList.contains(time));
 		return coList;
-	}
-
-	// 예약 정보 생성
-	// 예약 정보 생성
-	@Override
-	public Booking createBook(String book_dt, String ci, String co, int people) {
-		return new Booking(1, 1, book_dt, ci, co, people, "wait");
 	}
 
 	// 예약 추가
@@ -90,36 +83,6 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public void insertBook(Booking book) {
 		mapper.insertBook(book);
-	}
-
-	// 현재 시간 반환
-	// calendar의 시간을 구하는 함수
-	public String getTime(Calendar cal) {
-		String time;
-		int hour = cal.get(Calendar.HOUR_OF_DAY);
-		int min = cal.get(Calendar.MINUTE);
-		time = String.format("%02d:%02d", hour, min);
-		return time;
-	}
-
-	// 현재 시간 지정
-	// calendar의 시간을 설정하는 함수
-	public void setTime(Calendar cal, int hour, int minute) {
-		cal.set(Calendar.HOUR_OF_DAY, hour);
-		cal.set(Calendar.MINUTE, minute);
-		return;
-	}
-
-	// format(%02d:%02d)의 시 반환
-	// time format(%02d:%02d) 에서 hour를 얻는 함수
-	public int getHour(String time) {
-		return Integer.parseInt(time.substring(0, 2));
-	}
-
-	// format(%02d:%02d)의 분 반환
-	// time format(%02d:%02d) 에서 minute를 얻는 함수
-	public int getMinute(String time) {
-		return Integer.parseInt(time.substring(3, 5));
 	}
 
 	// date 목록 반환
@@ -143,8 +106,8 @@ public class BookingServiceImpl implements BookingService{
 		String time;
 		Calendar cal = Calendar.getInstance();
 		
-		for(setTime(cal, start, 0); cal.get(Calendar.HOUR_OF_DAY) != end; cal.add(Calendar.MINUTE, minuteSize)) {
-			time = getTime(cal);
+		for(Booking.setTime(cal, start, 0); cal.get(Calendar.HOUR_OF_DAY) != end; cal.add(Calendar.MINUTE, minuteSize)) {
+			time = Booking.getTime(cal);
 			times.add(time);
 		}
 		return times;
@@ -155,11 +118,11 @@ public class BookingServiceImpl implements BookingService{
 		int hour, min;
 		Calendar cal = Calendar.getInstance();
 		
-		hour = getHour(start);
-		min = getMinute(start);
-		setTime(cal, hour, min);
+		hour = Booking.getHour(start);
+		min = Booking.getMinute(start);
+		Booking.setTime(cal, hour, min);
 			
-		for(String time = getTime(cal); !time.equals(end); cal.add(Calendar.MINUTE, minuteSize), time = getTime(cal)) {
+		for(String time = Booking.getTime(cal); !time.equals(end); cal.add(Calendar.MINUTE, minuteSize), time = Booking.getTime(cal)) {
 			times.remove(time);
 		}
 	}
