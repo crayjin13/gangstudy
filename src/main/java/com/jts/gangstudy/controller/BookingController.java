@@ -27,13 +27,11 @@ public class BookingController {
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		List<Booking> debug = bookingService.viewAll();
-		String[] dates = bookingService.getDateSelectOptions();
-//		ArrayList<String> times = bookingService.get();
+		List<String> dates = bookingService.getDateSelectOptions();
 		
 		mav.setViewName("booking");
 		mav.addObject("debug", debug);
 		mav.addObject("dates", dates);
-//		mav.addObject("times", times);
 		return mav;
 	}
 

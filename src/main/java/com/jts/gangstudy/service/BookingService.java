@@ -10,15 +10,15 @@ public interface BookingService {
 	public List<Booking> viewAll();
 
 	// 선택 가능한 날짜 목록
-	public String[] getDateSelectOptions();
+	public List<String> getDateSelectOptions();
 	
 	// 해당 날짜의 예약 목록
 	public List<Booking> getDateBooking(String date);
 
-	// 가능한 예약 시작 시간
+	// 시작일 기준의 시작시간 목록
 	public List<String> getCITimes(List<Booking> books);
 	
-	// 가능한 예약 종료 시간
+	// 시작시간 기준의 종료시간 목록
 	public List<String> getCOTimes(String ci, String[] options);
 	
 	// 예약 정보 생성

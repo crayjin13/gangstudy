@@ -13,19 +13,6 @@ public class Booking {
 	private String state;
 	private String request_dt;
 	
-	public Booking(int book_no, int user_no, int room_no, String book_dt, String ci, String co, int people,
-			String state, String request_dt) {
-		super();
-		this.book_no = book_no;
-		this.user_no = user_no;
-		this.room_no = room_no;
-		this.book_dt = book_dt;
-		this.ci = ci;
-		this.co = co;
-		this.people = people;
-		this.state = state;
-		this.request_dt = request_dt;
-	}
 	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, String book_dt, String ci, String co, BigDecimal people,
 			String state, String request_dt) {
 		super();
@@ -36,6 +23,20 @@ public class Booking {
 		this.ci = ci;
 		this.co = co;
 		this.people = people.intValue();
+		this.state = state;
+		this.request_dt = request_dt;
+	}
+	
+	public Booking(int book_no, int user_no, int room_no, String book_dt, String ci, String co, int people,
+			String state, String request_dt) {
+		super();
+		this.book_no = book_no;
+		this.user_no = user_no;
+		this.room_no = room_no;
+		this.book_dt = book_dt;
+		this.ci = ci;
+		this.co = co;
+		this.people = people;
 		this.state = state;
 		this.request_dt = request_dt;
 	}
