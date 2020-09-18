@@ -16,11 +16,10 @@
 			<h1>로그인 성공 ! ${sUserId.name}님, 반갑습니다.</h1>
 			<input type="button" onclick="location.href='./logout'" value="로그아웃">
 		</c:if>
-	</form>
-	<c:if test="${sUserId = null }">
-			<h1> 로그아웃 되었습니다.</h1>
-			
+		<c:if test="${sUserId = null }">
+			<h1>로그아웃 되었습니다.</h1>
 		</c:if>
+	</form>
 
 
 

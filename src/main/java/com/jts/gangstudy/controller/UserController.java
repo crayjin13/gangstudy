@@ -45,7 +45,7 @@ public class UserController {
 	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw,
 			HttpSession session, Model model, HttpServletRequest request) {
-		System.out.println("################로그인 컨트롤러 테스트" + "id:" + id + " pw:" + pw);
+		System.out.println(" 로그인 아이디 비번 값 받기  " + "id:" + id + " pw:" + pw);
 		String forwardPath = "";
 		// String a= request.getSession().getServletContext().getRealPath("/");
 		User user = userService.selectById(id);
@@ -55,7 +55,7 @@ public class UserController {
 			User signInuser = userService.signIn(id, pw);
 			System.out.println();
 			if (signInuser != null) {
-				
+				System.out.println(" 로 그 인 성 공");
 				session.setAttribute("id", id);
 				session.setAttribute("name", user.getName());
 				
@@ -88,7 +88,7 @@ public class UserController {
 	/*로그아웃*/
 	@RequestMapping(value="/logout")
 	public String sign_out_action(HttpSession session) {
-		System.out.println("sign_out_action 컨트롤러 테스트");
+		System.out.println(" 로 그 아 웃 됨.");
 		session.invalidate();
 		return "logOn";
 	}
