@@ -86,12 +86,11 @@ public class UserController {
 	
 	
 	/*로그아웃*/
-	@ResponseBody
-	@RequestMapping(value="/sign_out_action")
+	@RequestMapping(value="/logout")
 	public String sign_out_action(HttpSession session) {
 		System.out.println("sign_out_action 컨트롤러 테스트");
 		session.invalidate();
-		return "sign_in";
+		return "logOn";
 	}
 	
 	
@@ -128,21 +127,5 @@ public class UserController {
 		return newUser + "";
 	}
 
-	/*
-	 * //회원가입
-	 * 
-	 * @RequestMapping(value = "/signUp", method = RequestMethod.POST) public
-	 * ModelAndView signUp(HttpServletRequest request) { ModelAndView m = new
-	 * ModelAndView(); String name = request.getParameter("name"); String phone =
-	 * request.getParameter("phone"); String id = request.getParameter("id"); String
-	 * pw = request.getParameter("pw"); String email =
-	 * request.getParameter("email"); String bod = request.getParameter("bod");
-	 * String gender = request.getParameter("gender");
-	 * 
-	 * 
-	 * User user= new User(name, phone, id, pw, email, bod, gender); boolean signUp
-	 * = userService.insertUser(user); m.addObject("signUp", signUp);
-	 * m.setViewName("login"); return m ; }
-	 */
-
+	
 }

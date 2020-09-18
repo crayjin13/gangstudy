@@ -141,12 +141,13 @@ function password_check() {
 		
 		<h2>Login</h2>
 
-<form id="user_login_action" action="/gangstudy/logOn">
+<form id="user_login_action" action="/gangstudy/logOn" method="post">
   <label for="fname">ID:</label><br>
   <input type="text" id="id" name="id" value=""><br>
   <label for="lname">PW:</label><br>
   <input type="text" id="pw" name="pw" value=""><br><br>
   <input type="button" id="loginbtn" onclick="user_login_action_function();" value="로그인">
+
 </form> 
 	
 
