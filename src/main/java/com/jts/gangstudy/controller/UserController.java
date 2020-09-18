@@ -30,7 +30,11 @@ public class UserController {
 	public String index() {
 		return "";
 	}
-
+	
+	@RequestMapping(value ="/logOn")
+	public String logOn() {
+		return "logOn";
+	}
 	
 	
 
@@ -57,6 +61,7 @@ public class UserController {
 				
 				session.setAttribute("sUserId", signInuser);
 				forwardPath = "true";
+				
 			} else {
 				
 				forwardPath = "false3";
