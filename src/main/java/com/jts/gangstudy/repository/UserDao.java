@@ -21,7 +21,14 @@ public interface UserDao {
 	
 	// 회원 아이디로 검색
 	User selectById(String id);
-	 
+	
+	
+	/* 계정 비활성화 (mRetire ON --> OFF)*/
+	boolean deleteMember(String pw, String email, String retire);
+	
+	/* 계정 활성화 (mRetire OFF --> ON)*/
+	boolean accountOn(String mRetire, String mEmail);
+	
 	
 	//회원 수정
 	boolean updateUser(User user);

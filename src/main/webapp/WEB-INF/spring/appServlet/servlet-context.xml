@@ -37,13 +37,13 @@
 		location="/vendor/" /> -->
 	<mvc:resources mapping="/**" location="/" />
 
-<!-- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<beans:bean
 				class="com.jts.gangstudy.controller.UserAuthLoginAnnotationInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors> 
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
