@@ -21,6 +21,14 @@
 	  INSERT INTO BOOKING_TB
 	  (USER_NO, ROOM_NO, BOOK_DT, CI, CO, PEOPLE, STATE, REQUEST_DT) VALUES
 	  (#{user_no}, #{room_no}, TO_DATE(#{book_dt}, 'YYYY-MM-DD'), TO_DATE(#{ci}, 'HH24:MI'), TO_DATE(#{co},'HH24:MI'), #{people}, #{state}, SYSDATE)
-	  
 	</insert>
+	
+	<!-- 예약시간 중복 확인-->
+	<select id="checkDuplicate" parameterType="hashmap" resultType="int">
+	  SELECT count(*) cnt
+	  FROM BOOKING_TB
+	  <![CDATA[
+	  WHERE BOOK_DT = TO_DATE(#{book_dt}, 'YYYY-MM-DD') AND CI < TO_DATE(#{co}, 'HH24:MI') AND CO > TO_DATE(#{ci}, 'HH24:MI')
+	  ]]>
+	</select>
 </mapper>

@@ -18,7 +18,6 @@
 	<!-- RequestMappingHandlerMapping -->
 	<mvc:annotation-driven />
 
-
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -29,14 +28,10 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-
-	<!-- <mvc:resources mapping="/css/**" location="/css/" /> <mvc:resources 
-		mapping="/fonts/**" location="/fonts/" /> <mvc:resources mapping="/images/**" 
-		location="/images/" /> <mvc:resources mapping="/js/**" location="/js/" /> 
-		<mvc:resources mapping="/lib/**" location="/lib/" /> <mvc:resources mapping="/vendor/**" 
-		location="/vendor/" /> -->
-	<mvc:resources mapping="/**" location="/" />
-
+<!--	<resources location="/js/" mapping="/js/**"/>
+	<resources location="/css/" mapping="/css/**"/>
+	<resources location="/img/" mapping="/img/**"/> -->
+	
 <!-- 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
@@ -64,9 +59,5 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
-	
-
-
 
 </beans:beans>

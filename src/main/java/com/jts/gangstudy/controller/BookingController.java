@@ -23,8 +23,8 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 	
-	@RequestMapping("")
-	public ModelAndView main() {
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ModelAndView booking() {
 		ModelAndView mav = new ModelAndView();
 		List<Booking> debug = bookingService.viewAll();
 		List<String> dates = bookingService.getDateSelectOptions();
@@ -35,15 +35,41 @@ public class BookingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/request", method = RequestMethod.POST)
-	public String request(HttpServletRequest request) {
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	public ModelAndView bookCheck(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
 		String book_dt = request.getParameter("book_dt");
 		String ci = request.getParameter("ci");
 		String co = request.getParameter("co");
 		int people = Integer.parseInt(request.getParameter("people"));
 		Booking book = new Booking(1, 1, book_dt, ci, co, people, "wait");
-		bookingService.insertBook(book);
-		return "redirect:/booking";
+		int charge = bookingService.getCharge(ci, co, people);
+		
+		mav.setViewName("bookCheck");
+		mav.addObject("book", book);
+		mav.addObject("userID", "userid");
+		mav.addObject("charge", charge);
+		return mav;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/check", method = RequestMethod.POST)
+	public synchronized String insertBook(HttpServletRequest request) {
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		int room_no = Integer.parseInt(request.getParameter("room_no"));
+		String book_dt = request.getParameter("book_dt");
+		String ci = request.getParameter("ci");
+		String co = request.getParameter("co");
+		int people = Integer.parseInt(request.getParameter("people"));
+		Booking book = new Booking(user_id, room_no, book_dt, ci, co, people, "uncharge");
+		
+		// 중복체크
+		int result = bookingService.duplicateCheck(book);
+		if(result == 0) { // 성공 시 데이터 추가, 결재 페이지로 넘기기
+			bookingService.insertBook(book);
+			return "true";
+		} else { // 실패시 실패 이유 보내기
+			return "duplicate";
+		}
 	}
 	
 	@ResponseBody

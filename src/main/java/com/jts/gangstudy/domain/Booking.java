@@ -110,6 +110,4 @@ public class Booking {
 		cal.set(Calendar.HOUR_OF_DAY, hour);
 		cal.set(Calendar.MINUTE, minute);
 	}
-
-
 }

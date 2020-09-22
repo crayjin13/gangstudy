@@ -23,5 +23,11 @@ public interface BookingService {
 
 	// 예약 추가
 	public void insertBook(Booking book);
+	
+	// 시간 중복 체크
+	public int duplicateCheck(Booking book);
+
+	// 예약 요금
+	public int getCharge(String ci, String co, int people);
 
 }
