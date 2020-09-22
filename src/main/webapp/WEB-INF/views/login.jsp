@@ -6,7 +6,7 @@
 <head>
 <title>Home</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <script>
-//회원가입 
+/* //회원가입 
 $(document).ready(function(){
 	signUp_function();
 
@@ -32,7 +32,7 @@ console.log("#값이 오는지 확인 ---"+userArray);
 				sign_up.bod.value = textData.bod;
 				sign_up.gender.value = textData.gender;
 						
-				location.href = '/gangstudy/login';
+				location.href = '/login';
 			} else if (textData.trim() == "false"){
 
 			}
@@ -75,7 +75,7 @@ function user_login_action_function() {
 
 /*
  * 2) Id, Password 체크
- */
+
 function id_check() {
 	var mlafArray = $('#user_login_action').serialize();
 	for (var i = 0; i < mlafArray.length; i++) {
@@ -95,7 +95,7 @@ function password_check() {
 		}
 	}
 }
-
+ */
 
 
 </script>
@@ -130,6 +130,7 @@ function password_check() {
 			번호 :   <input type="text" id="phone" name="phone" class="required" size="20"><br>
 			아이디 : <input type="text" id="id" name="id" class="required" size="20"><br>
 			비번 :   <input type="text" id="pw" name="pw" class="required" size="20"><br>
+			비번 재확인  :   <input type="text" id="pw2" name="pw2" class="required" size="20"><br>
 			이메일 : <input type="text" id="email" name="email" class="required" size="20"><br>
 			생년월일:<input type="text" id="bod" name="bod" class="required" size="20"><br>
 			성별 :   <input type="text" id="gender" name="gender" class="required" size="20"><br>
@@ -141,11 +142,11 @@ function password_check() {
 		
 		<h2>Login</h2>
 
-<form id="user_login_action" action="/gangstudy/logOn" method="post">
+<form id="user_login_action" action="/logOn" method="post">
   <label for="fname">ID:</label><br>
-  <input type="text" id="id" name="id" value=""><br>
+  <input type="text" id="i" class="required" name="id" value=""><br>
   <label for="lname">PW:</label><br>
-  <input type="text" id="pw" name="pw" value=""><br><br>
+  <input type="text" id="p" class="required" name="pw" value=""><br>
   <input type="button" id="loginbtn" onclick="user_login_action_function();" value="로그인">
 
 </form> 
@@ -153,8 +154,8 @@ function password_check() {
 
 </body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="js/jquery.validate.min.js"></script>
+ <script type="text/javascript" src="js/wUser.js"></script>
  
- <!--  <script type="text/javascript" src="js/wUser.js"></script>
- -->
 </html>
 <!-- https://stackoverflow.com/questions/10340392/javascript-with-spring-mvc-doesnt-work  -->

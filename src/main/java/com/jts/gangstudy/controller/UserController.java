@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
@@ -25,17 +26,43 @@ import com.jts.gangstudy.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-
-	@RequestMapping(value = "/")
-	public String index() {
-		return "";
-	}
+	/*
+	 * @RequestMapping(value = "/") public String index() { return ""; }
+	 */
 	
 	@RequestMapping(value ="/logOn")
 	public String logOn() {
 		return "logOn";
 	}
 	
+	/*아이디 중복 체크*/
+	@ResponseBody
+	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
+	public String existeduser(@RequestParam(value = "id") String id) {
+		boolean newId = userService.idDuplicateCheck(id);
+		if(newId) {
+			System.out.println("중복된 아이디 입니다.");
+			newId = false;
+		}else {
+			newId = true;
+		}
+		return newId+"";
+	}
+	
+	/*비밀번호 일치 여부 체크 유저 정보 수정할때 */
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value="/pw_Check",method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String retirePwCheck(@RequestParam(value="pw")String pw) {
+		boolean truePw = userService.pwMatch(pw);
+		if(truePw) {
+			System.out.println("## 비밀번호 일치 여부:"+truePw);
+			truePw = true;
+		}else {
+			System.out.println("## 비밀번호 일치 여부:"+truePw);
+		}
+		return truePw+"";
+	}
 	
 
 	Logger logger;

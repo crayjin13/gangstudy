@@ -32,7 +32,7 @@ public interface UserMapper {
 	 
 	 
 	 //아이디 중복체크
-	 @Select("SELECT count(*) cnt FROM USR_TB WHERE id=#{id}")
+	 @Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
 	public  boolean idDuplicateCheck(String id);
 	 
 	 //비번일치 여부 

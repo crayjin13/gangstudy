@@ -14,6 +14,6 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-<script type="text/javascript" src="js/wUser.js"></script>
+
 </body>
 </html>
