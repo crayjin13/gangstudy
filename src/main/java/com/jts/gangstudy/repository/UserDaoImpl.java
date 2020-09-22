@@ -38,14 +38,14 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public boolean idDuplicateCheck(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return userMapper.idDuplicateCheck(id);
 	}
 
 	@Override
 	public boolean pwMatch(String pw) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return userMapper.pwMatch(pw);
 	}
 
 	@Override
@@ -82,6 +82,18 @@ public class UserDaoImpl implements UserDao{
 	public List<User> findUserList(String search) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean deleteMember(String pw, String email, String retire) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean accountOn(String mRetire, String mEmail) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	
