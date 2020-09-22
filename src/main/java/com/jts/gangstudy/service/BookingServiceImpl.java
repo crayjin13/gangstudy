@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,13 @@ public class BookingServiceImpl implements BookingService{
 	
 	@Autowired
 	private BookingMapper mapper;
-	private Calendar cal;
 	
-	private int dateSize = 7;			// 예약 신청이 가능한 기간
-	private int minuteSize = 30;			// 에약 신청 시간 단위
-	private int startHour = 9;			// 예약 가능한 시작 시간
-	private int endHour = 23;			// 예약 가능한 종료 시간
-
+	private final int dateSize = 7;			// 예약 신청이 가능한 기간
+	private final int minuteSize = 30;		// 에약 신청 시간 단위
+	private final int amount = 500;			// 예약 신청 시간 당 필요 요금
+	private final int startHour = 9;		// 예약 가능한 시작 시간
+	private final int endHour = 23;			// 예약 가능한 종료 시간
+	
 	// 전체 예약 목록 (디버깅용)
 	@Override
 	public List<Booking> viewAll() {
@@ -64,7 +65,7 @@ public class BookingServiceImpl implements BookingService{
 
 		int hour = Booking.getHour(ci);
 		int min = Booking.getMinute(ci);
-		cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance();
 		Booking.setTime(cal, hour, min);
 		
 		// 종료 시간 추가
@@ -81,7 +82,35 @@ public class BookingServiceImpl implements BookingService{
 	public void insertBook(Booking book) {
 		mapper.insertBook(book);
 	}
+	
+	// 시간 중복 체크
+	@Override
+	public int duplicateCheck(Booking book) {
+		String bood_dt = book.getBook_dt();
+		String ci = book.getCi();
+		String co = book.getCo();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("book_dt", bood_dt);
+		map.put("ci", ci);
+		map.put("co", co);
+		return mapper.checkDuplicate(map);
+	}
 
+	// 예약 요금
+	@Override
+	public int getCharge(String ci, String co, int people) {
+		int charge = 0;
+		int hour, min;
+		Calendar cal = Calendar.getInstance();
+		hour = Booking.getHour(ci);
+		min = Booking.getMinute(ci);
+		
+		for(Booking.setTime(cal, hour, min); !co.equals(Booking.getTime(cal)); cal.add(Calendar.MINUTE, minuteSize)) {
+			charge += people * amount;
+		}
+		return charge;
+	}
+	
 	// date 목록 반
 	public List<String> getDates(int dateSize) {
 		SimpleDateFormat calFormat = new SimpleDateFormat("yyyy-MM-dd");
