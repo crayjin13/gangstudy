@@ -25,14 +25,13 @@ public interface UserMapper {
 	 
 	 
 	  //회원 정보 수정
-	 @Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender}"
-	  + ",rate=#{rate},points=#{points},note=#{note} WHERE id=#{id}")
+	 @Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender} WHERE id=#{id}")
 	 public boolean updateUser(User user);
 	 
 	 
 	 
 	 //아이디 중복체크
-	 @Select("SELECT count(*) cnt FROM USR_TB WHERE id=#{id}")
+	 @Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
 	public  boolean idDuplicateCheck(String id);
 	 
 	 //비번일치 여부 

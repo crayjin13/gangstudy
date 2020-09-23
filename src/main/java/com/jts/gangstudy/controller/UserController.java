@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
@@ -25,17 +26,43 @@ import com.jts.gangstudy.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-
-	@RequestMapping(value = "/")
-	public String index() {
-		return "";
-	}
+	/*
+	 * @RequestMapping(value = "/") public String index() { return ""; }
+	 */
 	
 	@RequestMapping(value ="/logOn")
 	public String logOn() {
 		return "logOn";
 	}
 	
+	/*아이디 중복 체크*/
+	@ResponseBody
+	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
+	public String existeduser(@RequestParam(value = "id") String id) {
+		boolean newId = userService.idDuplicateCheck(id);
+		if(newId) {
+			System.out.println("중복된 아이디 입니다.");
+			newId = false;
+		}else {
+			newId = true;
+		}
+		return newId+"";
+	}
+	
+	/*비밀번호 일치 여부 체크 유저 정보 수정할때 */
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value="/pw_Check",method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String retirePwCheck(@RequestParam(value="pw")String pw) {
+		boolean truePw = userService.pwMatch(pw);
+		if(truePw) {
+			System.out.println("## 비밀번호 일치 여부:"+truePw);
+			truePw = true;
+		}else {
+			System.out.println("## 비밀번호 일치 여부:"+truePw);
+		}
+		return truePw+"";
+	}
 	
 
 	Logger logger;
@@ -45,7 +72,7 @@ public class UserController {
 	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw,
 			HttpSession session, Model model, HttpServletRequest request) {
-		System.out.println("################로그인 컨트롤러 테스트" + "id:" + id + " pw:" + pw);
+		System.out.println(" 로그인 아이디 비번 값 받기  " + "id:" + id + " pw:" + pw);
 		String forwardPath = "";
 		// String a= request.getSession().getServletContext().getRealPath("/");
 		User user = userService.selectById(id);
@@ -55,7 +82,7 @@ public class UserController {
 			User signInuser = userService.signIn(id, pw);
 			System.out.println();
 			if (signInuser != null) {
-				
+				System.out.println(" 로 그 인 성 공");
 				session.setAttribute("id", id);
 				session.setAttribute("name", user.getName());
 				
@@ -86,12 +113,11 @@ public class UserController {
 	
 	
 	/*로그아웃*/
-	@ResponseBody
-	@RequestMapping(value="/sign_out_action")
+	@RequestMapping(value="/logout")
 	public String sign_out_action(HttpSession session) {
-		System.out.println("sign_out_action 컨트롤러 테스트");
+		System.out.println(" 로 그 아 웃 됨.");
 		session.invalidate();
-		return "sign_in";
+		return "logOn";
 	}
 	
 	
@@ -128,21 +154,5 @@ public class UserController {
 		return newUser + "";
 	}
 
-	/*
-	 * //회원가입
-	 * 
-	 * @RequestMapping(value = "/signUp", method = RequestMethod.POST) public
-	 * ModelAndView signUp(HttpServletRequest request) { ModelAndView m = new
-	 * ModelAndView(); String name = request.getParameter("name"); String phone =
-	 * request.getParameter("phone"); String id = request.getParameter("id"); String
-	 * pw = request.getParameter("pw"); String email =
-	 * request.getParameter("email"); String bod = request.getParameter("bod");
-	 * String gender = request.getParameter("gender");
-	 * 
-	 * 
-	 * User user= new User(name, phone, id, pw, email, bod, gender); boolean signUp
-	 * = userService.insertUser(user); m.addObject("signUp", signUp);
-	 * m.setViewName("login"); return m ; }
-	 */
-
+	
 }
