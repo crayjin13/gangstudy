@@ -18,8 +18,9 @@ public class UserDaoImpl implements UserDao{
 		return userMapper.insertUser(user); 
 	}
 
+	//유저 자신의 정보
 	@Override
-	public User userInfo(Integer user_no) {
+	public User userInfo(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

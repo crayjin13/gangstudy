@@ -1,5 +1,6 @@
 package com.jts.gangstudy.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
@@ -48,6 +51,10 @@ public class UserController {
 		}
 		return newId+"";
 	}
+	
+	
+	
+	
 	
 	/*비밀번호 일치 여부 체크 유저 정보 수정할때 */
 	@UserLoginCheck
@@ -133,8 +140,35 @@ public class UserController {
 		m.setViewName("login");
 		System.out.println(userList);
 		return m;
-
 	}
+	
+	
+	//유저 자신의 정보 가져오기 
+	@UserLoginCheck
+	@RequestMapping(value="/userInfo")
+	public ModelAndView userInfo(String id,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = userService.userInfo(id);
+		
+		mv.addObject("userInfo", user);
+		mv.setViewName("userInfo");
+		System.out.println(user);
+		return mv;
+	}
+	
+	//회원상세정보조희 목록에서 클릭했을떄 
+	public String myInfo(String id, Model model) {
+		model.addAttribute("user",userService.userInfo(id));
+		
+		logger.info("클릭한 아이디:"+id);
+		
+		return "userinfo";
+	}
+		
+	
+		
+		
 
 	// 회원가입
 	@ResponseBody
