@@ -7,7 +7,9 @@ function signUp_function() {
 	$("#btn").click(function() {
 		var userArray = $('#sign_up').serialize();
 		console.log("#값이 오는지 확인 ---" + userArray);
-
+		//select option 으로 가져올때 이 문법으로 보내려면 
+		// select name="" 네임 인지 확인하기
+		// https://java119.tistory.com/27 
 		$.ajax({
 			url : 'signUp',
 			data : userArray,
@@ -23,7 +25,7 @@ function signUp_function() {
 					sign_up.email.value = textData.email;
 					sign_up.bod.value = textData.bod;
 					sign_up.gender.value = textData.gender;
-
+					
 					location.href = '/login';
 				} else if (textData.trim() == "false") {
 
@@ -71,17 +73,21 @@ $(function() {
 
 			pw : {
 				required : true,
-				rangelength : [ 3, 12 ],
+				rangelength : [ 4, 12 ],
 
 			},
 			pw2 : {
 				required : true,
-				rangelength : [ 3, 12 ],
+				rangelength : [ 4, 12 ],
 
 			},
 			email : {
 				required : true,
 				email : true
+			},
+			gender :{
+				required : true,
+				rangelength :[1,1],
 			}
 		},
 		messages : {
@@ -93,7 +99,7 @@ $(function() {
 			},
 			pw : {
 				required : "비밀번호를 입력해주세요",
-				rangelength : "비밀번호는 1글자 이상 10글자 이내 입니다"
+				rangelength : "비밀번호는 4글자 이상 10글자 이내 입니다"
 			},
 			name : {
 				required : "이름을 입력해주세요",
@@ -101,13 +107,17 @@ $(function() {
 			},
 			email : {
 				required : "이메일을 입력해주세요",
-				email : "올바른 형식이 아닙니다 - bluepk2034@naver.com"
+				email : "올바른 형식이 아닙니다 ex) corona2020@naver.com"
 			},
 			phone : {
 				required : "휴대폰 번호를 입력해주세요",
 				digits : "-을 제외한 숫자만 입력해주세요",
 				minlength : "전화번호는 최소 9자리 이상입니다."
 			},
+			gender : {
+				required : "남성이면 M, 여성이면 F 를 입력해 주세요",
+				rangelength : "M 이나 F 만 입력해 주세요."
+			}
 
 		},
 		submitHandler : function() {
@@ -118,6 +128,63 @@ $(function() {
 	});
 
 })
+
+/*/ 비밀번호 유효성체크, 비밀번호 두개 같은지 체크  /*/
+
+var pw = document.querySelector('#pw');
+var pw2 = document.querySelector('#pw2');
+pw.addEventListener("change", checkPw);
+pw2.addEventListener("change", comparePw);
+
+function checkPw() {
+    var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
+    if(pw.value === "") {
+        error[1].innerHTML = "필수 정보입니다.";
+       // pwMsg.style.display = "block";
+       // pwImg1.src = "public/images/m_icon_pass.png";
+        error[1].style.display = "block";
+    } else if(!pwPattern.test(pw.value)) {
+        error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+        pwMsg.innerHTML = "사용불가";
+        pwMsgArea.style.paddingRight = "93px";
+        error[1].style.display = "block";
+        
+        pwMsg.style.display = "block";
+        pwImg1.src = "public/images/m_icon_not_use.png";
+    } else {
+        error[1].style.display = "none";
+        pwMsg.innerHTML = "안전";
+        pwMsg.style.display = "block";
+        pwMsg.style.color = "#03c75a";
+        pwImg1.src = "public/images/m_icon_safe.png";
+    }
+}
+
+
+function comparePw() {
+    if(pw2.value === pw.value) {
+        pwImg2.src = "public/images/m_icon_check_enable.png";
+        error[2].style.display = "none";
+    } else if(pw2.value !== pw.value) {
+        pwImg2.src = "public/images/m_icon_check_disable.png";
+        error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
+        error[2].style.display = "block";
+    } 
+
+    if(pw2.value === "") {
+        error[2].innerHTML = "필수 정보입니다.";
+        error[2].style.display = "block";
+    }
+}
+
+
+
+
+
+
+
+
+
 
 // 로그인 form 처리
 

@@ -133,8 +133,12 @@ function password_check() {
 			비번 재확인  :   <input type="text" id="pw2" name="pw2" class="required" size="20"><br>
 			이메일 : <input type="text" id="email" name="email" class="required" size="20"><br>
 			생년월일:<input type="text" id="bod" name="bod" class="required" size="20"><br>
-			성별 :   <input type="text" id="gender" name="gender" class="required" size="20"><br>
-
+			성별 : <select name="gender">
+							<option>성별</option>
+							<option value="M">M</option>
+							<option value="F">F</option>
+					</select>
+<br><br>
 			<input type="button" id="btn" onclick="signUp_function();" value="회원가입">
 
 		</form>
