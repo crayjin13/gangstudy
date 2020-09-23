@@ -73,12 +73,12 @@ $(function() {
 
 			pw : {
 				required : true,
-				rangelength : [ 4, 12 ],
+				rangelength : [ 6, 20 ],
 
 			},
 			pw2 : {
 				required : true,
-				rangelength : [ 4, 12 ],
+				rangelength : [ 6, 20 ],
 
 			},
 			email : {
@@ -93,13 +93,13 @@ $(function() {
 		messages : {
 			id : {
 				required : "아이디를 입력해주세요",
-				rangelength : "아이디는 3글자 이상 10글자 이내 입니다",
+				rangelength : "아이디는 3글자 이상 12글자 이내 입니다",
 
 				remote : "{0}는 이미 존재하는 아이디입니다.",
 			},
 			pw : {
 				required : "비밀번호를 입력해주세요",
-				rangelength : "비밀번호는 4글자 이상 10글자 이내 입니다"
+				rangelength : "6~20글자 내외 영어 대소문자, 특수문자, 숫자 사용가능합니다."
 			},
 			name : {
 				required : "이름을 입력해주세요",
@@ -133,15 +133,48 @@ $(function() {
 
 var pw = document.querySelector('#pw');
 var pw2 = document.querySelector('#pw2');
-pw.addEventListener("change", checkPw);
+var error = document.querySelectorAll('.error');
+//pw.addEventListener("change", checkPw);
 pw2.addEventListener("change", comparePw);
+// 비밀번호 재확인 
+function comparePw() {
+    if(pw2.value === pw.value) {
+       
+        error[0].style.display = "none";
+    } else if(pw2.value !== pw.value) {
+       
+        error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
+        error[0].style.display = "block";
+    } 
+
+    if(pw2.value === "") {
+        error[0].innerHTML = "필수 정보입니다.";
+        error[0].style.display = "block";
+    }
+}
+/*
+function checkId() {
+    var idPattern = /[a-zA-Z0-9_-]{5,20}/;
+    if(id.value === "") {
+        error[0].innerHTML = "필수 정보입니다.";
+        error[0].style.display = "block";
+    } else if(!idPattern.test(id.value)) {
+        error[0].innerHTML = "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
+        error[0].style.display = "block";
+        
+    } else {
+        error[0].innerHTML = "가능한 아이디입니다!";
+        error[0].style.color = "#08A600";
+        error[0].style.display = "block";
+    }
+    
+}
+
 
 function checkPw() {
     var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
     if(pw.value === "") {
         error[1].innerHTML = "필수 정보입니다.";
-       // pwMsg.style.display = "block";
-       // pwImg1.src = "public/images/m_icon_pass.png";
         error[1].style.display = "block";
     } else if(!pwPattern.test(pw.value)) {
         error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
@@ -150,32 +183,18 @@ function checkPw() {
         error[1].style.display = "block";
         
         pwMsg.style.display = "block";
-        pwImg1.src = "public/images/m_icon_not_use.png";
+      //  pwImg1.src = "public/images/m_icon_not_use.png";
     } else {
         error[1].style.display = "none";
         pwMsg.innerHTML = "안전";
         pwMsg.style.display = "block";
         pwMsg.style.color = "#03c75a";
-        pwImg1.src = "public/images/m_icon_safe.png";
+      //  pwImg1.src = "public/images/m_icon_safe.png";
     }
 }
+*/
 
 
-function comparePw() {
-    if(pw2.value === pw.value) {
-        pwImg2.src = "public/images/m_icon_check_enable.png";
-        error[2].style.display = "none";
-    } else if(pw2.value !== pw.value) {
-        pwImg2.src = "public/images/m_icon_check_disable.png";
-        error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
-        error[2].style.display = "block";
-    } 
-
-    if(pw2.value === "") {
-        error[2].innerHTML = "필수 정보입니다.";
-        error[2].style.display = "block";
-    }
-}
 
 
 

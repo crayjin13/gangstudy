@@ -182,6 +182,6 @@
 </form>
 </body>
 
-<script type="text/javascript" src="js/signUp.js"></script>
+<script type="text/javascript" src="resources/js/signUp.js"></script>
 
 </html>
