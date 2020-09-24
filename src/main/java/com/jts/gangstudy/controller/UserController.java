@@ -1,5 +1,6 @@
 package com.jts.gangstudy.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -7,14 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
@@ -35,6 +39,47 @@ public class UserController {
 		return "logOn";
 	}
 	
+	Logger logger;
+	
+	
+	
+	
+	
+	
+	//유저 정보 수정
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String modifyInfo(@RequestParam("name")String name,
+							@RequestParam("phone")String phone,
+							 @RequestParam(value="id")String id,
+							 @RequestParam("pw")String pw,
+							 @RequestParam("email")String email,
+							 @RequestParam("bod")String bod,
+							 @RequestParam("gender")String gender,
+							 HttpServletRequest request) {
+		
+		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
+		System.out.println(updateUser);
+		if(updateUser) {
+			System.out.println("유저 정보 수정 성공.");
+			updateUser=true;
+		}else {
+			System.out.println("유저 정보 수정 안됨.");
+			updateUser=false;
+		}
+		return updateUser+"";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*아이디 중복 체크*/
 	@ResponseBody
 	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
@@ -48,6 +93,10 @@ public class UserController {
 		}
 		return newId+"";
 	}
+	
+	
+	
+	
 	
 	/*비밀번호 일치 여부 체크 유저 정보 수정할때 */
 	@UserLoginCheck
@@ -65,7 +114,7 @@ public class UserController {
 	}
 	
 
-	Logger logger;
+	
 
 	/* 로그인 */
 	@ResponseBody
@@ -133,8 +182,41 @@ public class UserController {
 		m.setViewName("login");
 		System.out.println(userList);
 		return m;
-
 	}
+	
+	
+	//유저 자신의 정보 가져오기 
+	@UserLoginCheck
+	@RequestMapping(value="/userInfo")
+	public ModelAndView userInfo(String id,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = userService.userInfo(id);
+		
+		mv.addObject("userInfo", user);
+		mv.setViewName("userInfo");
+		System.out.println(user);
+		return mv;
+	}
+	
+	
+
+	
+	
+	
+	
+	//회원상세정보조희 목록에서 클릭했을떄 
+	public String myInfo(String id, Model model) {
+		model.addAttribute("user",userService.userInfo(id));
+		
+		logger.info("클릭한 아이디:"+id);
+		
+		return "userinfo";
+	}
+		
+	
+		
+		
 
 	// 회원가입
 	@ResponseBody

@@ -1,8 +1,46 @@
-//회원가입 
-$(document).ready(function() {
+
+
+// *******  회원 정보 수정  *********
+function modify_action() {
+	$("#modifybtn").click(function(){
+	var asArray = $('#modify_action').serializeArray();
+	console.log("*****회원정보수정 값 "+asArray);
+	$.ajax({
+		url : 'modifyInfo',
+		method : 'POST',
+		data : asArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+
+		
+				modify_action.name.value = textData.name;
+				modify_action.phone.value = textData.phone;
+				modify_action.id.value = textData.id;
+				modify_action.pw.value = textData.pw;
+				modify_action.email.value = textData.email;
+				modify_action.bod.value = textData.bod;
+				modify_action.gender.value = textData.gender;
+
+				location.href = '/login';
+			} else {
+
+			}
+		}
+	});
+	})
+}
+
+
+
+
+
+
+/*$(document).ready(function() {
 	signUp_function();
 
-});
+});*/
+//***** 회원가입  ************
 function signUp_function() {
 	$("#btn").click(function() {
 		var userArray = $('#sign_up').serialize();
