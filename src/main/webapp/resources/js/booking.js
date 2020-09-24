@@ -1,9 +1,9 @@
 function chageDateSelect() {
-	var date = $("select[name=book_dt]");
-	var ci = $("select[name=ci]");
-	var co = $("select[name=co]");
+	var date = $('select[name=book_dt]');
+	var ci = $('select[name=ci]');
+	var co = $('select[name=co]');
 	$.ajax({
-		url : 'booking/getCI',
+		url : '../booking/getCI',
 		type : 'GET',
 		data : {
 				 "date" : date.val()
@@ -31,7 +31,7 @@ function chageCiSelect() {
 	console.log('options', options);
 	
 	$.ajax({
-		url : 'booking/getCO',
+		url : '../booking/getCO',
 		type : 'GET',
 	    traditional : true,
 		data : {
@@ -49,4 +49,34 @@ function chageCiSelect() {
 			alert("chageCiSelect error");
 		}
 	});
+}
+
+function confirm() {
+	$.ajax({
+		url : '../booking/check',
+		type : 'POST',
+		data : {
+				 "user_id" : $('#user_id').text(),
+				 "room_no" : $('#room_no').text(),
+				 "book_dt" : $('#book_dt').text(),
+				 "ci" : $('#ci').text(),
+				 "co" : $('#co').text(),
+				 "people" : $('#people').text()
+			   },
+		success : function(result) {
+			if(result == "true") {
+				location.replace("/booking");
+			} else {
+				alert(result);
+				location.replace("/booking");
+			}
+		},
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	   }
+	});
+}
+
+window.onbeforeunload = function(e){
+    
 }

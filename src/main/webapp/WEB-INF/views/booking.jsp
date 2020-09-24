@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>GangStudy</title>
 	</head>
 	<body>
 		전체 예약 목록 <br>
@@ -39,7 +39,7 @@
 		    </tr>
 		</c:forEach>
 		<hr>
-		<form action="/gangstudy/booking/request" method="post">
+		<form action="/booking/check" method="GET">
 			<label>Choose a booking </label><br>
 			date :
 			<select name="book_dt" onchange="chageDateSelect()">
@@ -67,5 +67,5 @@
 		</form>
 	</body>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/booking.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/booking.js"></script>
 </html>

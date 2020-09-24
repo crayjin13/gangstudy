@@ -2,6 +2,7 @@ package com.jts.gangstudy.service;
 
 import java.util.List;
 
+
 import com.jts.gangstudy.domain.User;
 
 public interface UserService {
