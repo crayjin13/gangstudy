@@ -12,6 +12,7 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,47 @@ public class UserController {
 	public String logOn() {
 		return "logOn";
 	}
+	
+	Logger logger;
+	
+	
+	
+	
+	
+	
+	//유저 정보 수정
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String modifyInfo(@RequestParam("name")String name,
+							@RequestParam("phone")String phone,
+							 @RequestParam(value="id")String id,
+							 @RequestParam("pw")String pw,
+							 @RequestParam("email")String email,
+							 @RequestParam("bod")String bod,
+							 @RequestParam("gender")String gender,
+							 HttpServletRequest request) {
+		
+		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
+		System.out.println(updateUser);
+		if(updateUser) {
+			System.out.println("유저 정보 수정 성공.");
+			updateUser=true;
+		}else {
+			System.out.println("유저 정보 수정 안됨.");
+			updateUser=false;
+		}
+		return updateUser+"";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*아이디 중복 체크*/
 	@ResponseBody
@@ -72,7 +114,7 @@ public class UserController {
 	}
 	
 
-	Logger logger;
+	
 
 	/* 로그인 */
 	@ResponseBody
@@ -156,6 +198,12 @@ public class UserController {
 		System.out.println(user);
 		return mv;
 	}
+	
+	
+
+	
+	
+	
 	
 	//회원상세정보조희 목록에서 클릭했을떄 
 	public String myInfo(String id, Model model) {
