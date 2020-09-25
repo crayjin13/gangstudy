@@ -16,8 +16,8 @@ public interface UserDao {
 	// 회원 가입 Create
 	boolean insertUser(User user);
 	
-	// 회원 정보
-	User userInfo(Integer user_no);
+	// 유저 자신의 정보
+	User userInfo(String id);
 	
 	// 회원 아이디로 검색
 	User selectById(String id);

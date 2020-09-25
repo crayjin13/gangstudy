@@ -22,7 +22,7 @@
 
 <body>
 <!-- 관리자 입장 유저목록  -->
-	<form action="/gangstudy/login" method="post">
+	<form action="/login" method="post">
 		유저목록 <br>
 		<c:forEach items="${list}" var="userList">
 			<tr>
@@ -41,8 +41,8 @@
 			</tr>
 		</c:forEach>
 		
-		<!-- 회원가입  -->
 	</form>
+		<!-- 회원가입  -->
 	<hr>
 	<td>
 		

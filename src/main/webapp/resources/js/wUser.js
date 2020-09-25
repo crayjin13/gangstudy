@@ -1,8 +1,37 @@
-//회원가입 
-$(document).ready(function() {
+
+
+// *******  회원 정보 수정  *********
+function modify_action() {
+	$("#modifybtn").click(function(){
+	var asArray = $('#modify_action').serializeArray();
+	console.log("*****회원정보수정 값 "+asArray);
+	$.ajax({
+		url : 'modifyInfo',
+		method : 'POST',
+		data : asArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+
+				location.href = '/login';
+			} else {
+
+			}
+		}
+	});
+	})
+}
+
+
+
+
+
+
+/*$(document).ready(function() {
 	signUp_function();
 
-});
+});*/
+//***** 회원가입  ************
 function signUp_function() {
 	$("#btn").click(function() {
 		var userArray = $('#sign_up').serialize();
@@ -18,15 +47,7 @@ function signUp_function() {
 			success : function(textData) {
 				console.log(textData);
 				if (textData.trim() == "true") {
-					sign_up.name.value = textData.name;
-					sign_up.phone.value = textData.phone;
-					sign_up.id.value = textData.id;
-					sign_up.pw.value = textData.pw;
-					sign_up.email.value = textData.email;
-					sign_up.bod.value = textData.bod;
-					sign_up.gender.value = textData.gender;
-					
-					location.href = '/login';
+				location.href = '/login';
 				} else if (textData.trim() == "false") {
 
 				}

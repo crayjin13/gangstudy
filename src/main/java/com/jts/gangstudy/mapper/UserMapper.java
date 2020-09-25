@@ -13,11 +13,9 @@ import com.jts.gangstudy.domain.User;
 @Mapper
 public interface UserMapper {
 
-	//회원가입 
-	@Insert("INSERT INTO USER_TB(name, phone, id, pw, email, bod, gender)"
-	+ " VALUES (#{name, jdbcType=VARCHAR},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
-	public boolean insertUser(User user);
 	
+	@Select("SELECT  name, phone, id, pw, email, bod, gender,points FROM USER_TB WHERE id=#{id}")
+	public User userInfo(String id);
 	
 	  //회원 아이디로 읽기 
 	 @Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE id=#{id}"
@@ -30,18 +28,26 @@ public interface UserMapper {
 	 
 	 
 	 
-	 //아이디 중복체크
+	 
+	 
+	 //아이디 중복체크 @끝
 	 @Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
 	public  boolean idDuplicateCheck(String id);
 	 
-	 //비번일치 여부 
+	 //비번일치 여부(회원정보 수정할 떄) @끝 
 	 @Select("SELECT count(*) cnt FROM USER_TB WHERE pw=#{pw}")
 	 public boolean pwMatch(@Param("pw")String pw);
 	 
 	
-	//유저 목록
+	//유저 목록( 관리자입장) @끝
 	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note from user_tb")
 	public List<User> userList();
 	
+	
+	//회원가입 @끝
+		@Insert("INSERT INTO USER_TB(name, phone, id, pw, email, bod, gender)"
+		+ " VALUES (#{name, jdbcType=VARCHAR},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
+		public boolean insertUser(User user);
+		
 	 
 }

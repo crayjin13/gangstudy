@@ -38,10 +38,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.insertUser(user);
 	}
 
+	//유저 자신의 정보
 	@Override
-	public User userInfo(Integer user_no) {
+	public User userInfo(String id) {
 		// TODO Auto-generated method stub
-		return userDao.userInfo(user_no);
+		return userDao.userInfo(id);
 	}
 
 	@Override
