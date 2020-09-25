@@ -144,7 +144,7 @@ $(function() {
 		submitHandler : function() {
 			signUp_function();
 		},
-		errorClass : "error",
+		errorClass : "error", 
 		validClass : "valid"
 	});
 
@@ -157,6 +157,7 @@ var pw2 = document.querySelector('#pw2');
 var error = document.querySelectorAll('.error');
 //pw.addEventListener("change", checkPw);
 pw2.addEventListener("change", comparePw);
+$("#name").focus();
 // 비밀번호 재확인 
 function comparePw() {
     if(pw2.value === pw.value) {
