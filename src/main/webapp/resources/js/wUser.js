@@ -144,7 +144,7 @@ $(function() {
 		submitHandler : function() {
 			signUp_function();
 		},
-		errorClass : "error",
+		errorClass : "error", 
 		validClass : "valid"
 	});
 
