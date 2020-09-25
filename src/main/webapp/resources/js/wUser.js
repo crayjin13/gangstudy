@@ -13,15 +13,6 @@ function modify_action() {
 		success : function(textData) {
 			if (textData.trim() == "true") {
 
-		
-				modify_action.name.value = textData.name;
-				modify_action.phone.value = textData.phone;
-				modify_action.id.value = textData.id;
-				modify_action.pw.value = textData.pw;
-				modify_action.email.value = textData.email;
-				modify_action.bod.value = textData.bod;
-				modify_action.gender.value = textData.gender;
-
 				location.href = '/login';
 			} else {
 
@@ -56,15 +47,7 @@ function signUp_function() {
 			success : function(textData) {
 				console.log(textData);
 				if (textData.trim() == "true") {
-					sign_up.name.value = textData.name;
-					sign_up.phone.value = textData.phone;
-					sign_up.id.value = textData.id;
-					sign_up.pw.value = textData.pw;
-					sign_up.email.value = textData.email;
-					sign_up.bod.value = textData.bod;
-					sign_up.gender.value = textData.gender;
-					
-					location.href = '/login';
+				location.href = '/login';
 				} else if (textData.trim() == "false") {
 
 				}
