@@ -240,7 +240,7 @@ function user_login_action_function() {
 			dataType : 'text',
 			success : function(textData) {
 				if (textData.trim() == "true") {
-					location.href = '/logOn';
+					location.href = '/';
 				} else if (textData.trim() == "false1") {
 					alert('아이디를 다시 확인해주세요');
 					id_check();

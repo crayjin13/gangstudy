@@ -3,6 +3,7 @@ package com.jts.gangstudy.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
+import com.jts.gangstudy.controller.UserLoginCheck;
 
 
 @Controller
@@ -23,6 +26,8 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 	
+	@UserLoginCheck
+	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView booking() {
 		ModelAndView mav = new ModelAndView();
@@ -36,13 +41,18 @@ public class BookingController {
 	}
 
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
-	public ModelAndView bookCheck(HttpServletRequest request) {
+	public ModelAndView bookCheck(HttpServletRequest request, HttpSession session) {
+		
+		
+		User sUserId = (User) session.getAttribute("sUserId");
+		
+		
 		ModelAndView mav = new ModelAndView();
 		String book_dt = request.getParameter("book_dt");
 		String ci = request.getParameter("ci");
 		String co = request.getParameter("co");
 		int people = Integer.parseInt(request.getParameter("people"));
-		Booking book = new Booking(1, 1, book_dt, ci, co, people, "wait");
+		Booking book = new Booking(sUserId.getUser_no(), 1, book_dt, ci, co, people, "wait");
 		int charge = bookingService.getCharge(ci, co, people);
 		
 		mav.setViewName("bookCheck");

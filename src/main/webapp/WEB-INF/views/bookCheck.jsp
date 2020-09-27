@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		예약 정보 <br>
-	    <div style="visibility:hidden">사용자 번호: <span id='user_id' class = 'book'>1</span><br></div>
+	    <div style="visibility:hidden">사용자 번호: <span id='user_id' class = 'book'>${book.user_no}</span><br></div>
 	        사용자 아이디: <span>${userID}</span><br>
 	        방 번호: <span id='room_no' class = 'book'>${book.room_no}</span><br>
 	        예약일: <span id='book_dt' class = 'book'>${book.book_dt}</span><br>

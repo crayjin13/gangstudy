@@ -166,7 +166,7 @@ public class UserController {
 	public String sign_out_action(HttpSession session) {
 		System.out.println(" ·Î ±× ¾Æ ¿ô µÊ.");
 		session.invalidate();
-		return "logOn";
+		return "/home";
 	}
 	
 	
