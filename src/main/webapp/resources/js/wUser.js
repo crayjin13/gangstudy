@@ -11,12 +11,14 @@ function modify_action() {
 		data : asArray,
 		dataType : 'text',
 		success : function(textData) {
-			if (textData.trim() == "true") {
-
-				location.href = '/login';
+			location.href = '/login';
+			/*if (textData.trim() == "true") {
+				
+				
 			} else {
-
-			}
+				location.href = '/userInfo';
+				
+			}*/
 		}
 	});
 	})

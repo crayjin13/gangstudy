@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -39,6 +40,7 @@ public class UserController {
 		return "logOn";
 	}
 	
+	
 	Logger logger;
 	
 	
@@ -61,6 +63,7 @@ public class UserController {
 		
 		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
 		System.out.println(updateUser);
+		
 		if(updateUser) {
 			System.out.println("유저 정보 수정 성공.");
 			updateUser=true;
@@ -68,7 +71,7 @@ public class UserController {
 			System.out.println("유저 정보 수정 안됨.");
 			updateUser=false;
 		}
-		return updateUser+"";
+		return updateUser+"userInfo";
 	}
 	
 	
@@ -188,14 +191,14 @@ public class UserController {
 	//유저 자신의 정보 가져오기 
 	@UserLoginCheck
 	@RequestMapping(value="/userInfo")
-	public ModelAndView userInfo(String id,HttpServletRequest request) {
+	public ModelAndView userInfo(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		
-		User user = userService.userInfo(id);
 		
-		mv.addObject("userInfo", user);
+		
+		
 		mv.setViewName("userInfo");
-		System.out.println(user);
+		
 		return mv;
 	}
 	
