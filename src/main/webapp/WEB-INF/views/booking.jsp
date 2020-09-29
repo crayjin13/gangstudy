@@ -23,21 +23,7 @@
 		    </tr>
 		</c:forEach>
 		<hr>
-		예약 목록<br>
-		<c:forEach items="${data}" var="book">
-		    <tr>
-		        <td>예약 번호: <c:out value="${book.book_no}"/></td>
-		        <td>사용자 번호: <c:out value="${book.user_no}"/></td>
-		        <td>방 번호: <c:out value="${book.room_no}"/></td>
-		        <td>예약일: <c:out value="${book.book_dt}"/></td>
-		        <td>시작시간: <c:out value="${book.ci}"/></td>
-		        <td>종료시간: <c:out value="${book.co}"/></td>
-		        <td>인원: <c:out value="${book.people}"/></td>
-		        <td>예약상태: <c:out value="${book.state}"/></td>
-		        <td>신청일: <c:out value="${book.request_dt}"/></td>
-		        <br>
-		    </tr>
-		</c:forEach>
+		<button onClick="location.href='/booking/edit'">예약수정</button>
 		<hr>
 		<form action="/booking/check" method="GET">
 			<label>Choose a booking </label><br>

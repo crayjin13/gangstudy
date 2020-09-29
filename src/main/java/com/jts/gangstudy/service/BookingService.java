@@ -30,4 +30,6 @@ public interface BookingService {
 	// 예약 요금
 	public int getCharge(String ci, String co, int people);
 
+	// 대기중인 예약
+	public Booking getUserWaitBooking(Integer user_no);
 }
