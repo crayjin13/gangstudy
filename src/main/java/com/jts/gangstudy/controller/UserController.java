@@ -58,10 +58,10 @@ public class UserController {
 							 @RequestParam("pw")String pw,
 							 @RequestParam("email")String email,
 							 @RequestParam("bod")String bod,
-							 @RequestParam("gender")String gender,
+							 @RequestParam("gender")String gender,HttpSession session,
 							 HttpServletRequest request) {
-		
 		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
+		
 		System.out.println(updateUser);
 		
 		if(updateUser) {
@@ -71,6 +71,8 @@ public class UserController {
 			System.out.println("유저 정보 수정 안됨.");
 			updateUser=false;
 		}
+		session.invalidate();
+		
 		return updateUser+"userInfo";
 	}
 	

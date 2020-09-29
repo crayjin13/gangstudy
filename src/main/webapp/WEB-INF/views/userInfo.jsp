@@ -30,7 +30,7 @@
 						<td><input name="id" value="${sUserId.id}"
 							readonly="readonly"></td>
 					</tr>
-					<%-- <tr>
+					 <tr>
 						<td>폰 번호</td>
 						<td><input name="phone" value="${sUserId.phone}"
 							readonly="readonly"></td>
@@ -54,7 +54,7 @@
 						<td>성별</td>
 						<td><input name="gender" value="${sUserId.gender}"
 							readonly="readonly"></td>
-					</tr> --%>
+					</tr> 
 					<tr>
 						<td>포인트</td>
 						<td><input name="points" value="${sUserId.points}"

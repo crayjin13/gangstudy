@@ -12,8 +12,10 @@ function modify_action() {
 		dataType : 'text',
 		success : function(textData) {
 			location.href = '/login';
+			alert('수정 되었습니다. 다시 로그인 해주세요');
 			/*if (textData.trim() == "true") {
 				
+			
 				
 			} else {
 				location.href = '/userInfo';
