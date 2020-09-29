@@ -22,13 +22,19 @@ public interface UserMapper {
 	  ) public User selectById(@Param("id") String id);
 	 
 	 
+	 //회원탈퇴
+	 @Update("UPDATE USER_TB SET name=#{#},phone=#{#}, id=#{#}, pw=#{#}, email=#{#}, bod=#{#} WHERE id=#{id} and pw=#{pw}")
+	 public boolean delete(String id, String pw);
+	 
+	 
+	 
+	 
+	 
 	  //회원 정보 수정 @ 끝
 	 @Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender} WHERE id=#{id}")
 	 public boolean updateUser(User user);
-	 
-	 
-	 
-	 
+	  
+
 	 
 	 //아이디 중복체크 @끝
 	 @Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
@@ -40,7 +46,8 @@ public interface UserMapper {
 	 
 	
 	//유저 목록( 관리자입장) @끝
-	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note from user_tb")
+	 
+	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB ORDER BY user_no")
 	public List<User> userList();
 	
 	

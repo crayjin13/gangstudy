@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public List<User> UserList() {
-		// TODO Auto-generated method stub
+		
 		return userMapper.userList();
 	}
 

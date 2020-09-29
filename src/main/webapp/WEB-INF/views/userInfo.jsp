@@ -69,7 +69,9 @@
 		<button onclick="location.href='logOn'">정보수정</button>
 		<button onclick="location.href='logout'">로그아웃</button>
 		<button onclick="location.href='booking'">예약하기</button>
-
+		
+	 	<input type="button"  >
+	 	
 	</form>
 
 

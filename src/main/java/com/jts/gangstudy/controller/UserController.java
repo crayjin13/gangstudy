@@ -45,6 +45,24 @@ public class UserController {
 	
 	
 	
+	@RequestMapping(value="/deleteUser", method=RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public ModelAndView deleteUser(@RequestParam("id")String id, @RequestParam("pw") String pw, HttpServletRequest request) {
+		
+		
+		ModelAndView mv = new ModelAndView();
+		
+		boolean deleteUser = userService.deleteUser(id, pw);
+		
+			
+		mv.addObject("delete", deleteUser);
+		
+		
+		return  mv;
+		
+		
+		
+	}
+	
 	
 	
 	
