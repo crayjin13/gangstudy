@@ -16,6 +16,20 @@
 	  WHERE BOOK_DT = TO_DATE(#{date})
 	</select>
 	
+	<!-- 유저의 모든 예약 조회 -->
+	<select id="viewUser" parameterType="int" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(BOOK_DT, 'YYYY-MM-DD'), TO_CHAR(CI, 'HH24:MI'), TO_CHAR(CO, 'HH24:MI'), PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
+	  FROM BOOKING_TB
+	  WHERE USER_NO = #{user_no}
+	</select>
+	
+	<!-- 유저의 특정상태의 예약 조회 -->
+	<select id="viewUserState" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(BOOK_DT, 'YYYY-MM-DD'), TO_CHAR(CI, 'HH24:MI'), TO_CHAR(CO, 'HH24:MI'), PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
+	  FROM BOOKING_TB
+	  WHERE USER_NO = TO_NUMBER(#{user_no}) AND STATE = #{state}
+	</select>
+	
 	<!-- 새로운 예약 추가 -->
 	<insert id="insertBook" parameterType="com.jts.gangstudy.domain.Booking">
 	  INSERT INTO BOOKING_TB
@@ -31,4 +45,6 @@
 	  WHERE BOOK_DT = TO_DATE(#{book_dt}, 'YYYY-MM-DD') AND CI < TO_DATE(#{co}, 'HH24:MI') AND CO > TO_DATE(#{ci}, 'HH24:MI')
 	  ]]>
 	</select>
+	
+	
 </mapper>

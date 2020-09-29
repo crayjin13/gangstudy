@@ -77,6 +77,10 @@ public class BookingServiceImpl implements BookingService{
 		return coList;
 	}
 
+	// 동기화 예약 추가
+	public String insertBookSync(Booking book, String option) {
+		return "";
+	}
 	// 예약 추가
 	@Override
 	public void insertBook(Booking book) {
@@ -110,8 +114,23 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return charge;
 	}
-	
-	// date 목록 반
+
+	// 대기중인 예약
+	@Override
+	public Booking getUserWaitBooking(Integer user_no) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("user_no", user_no.toString());
+		map.put("state", "wait");
+		List<Booking> books = mapper.viewUserState(map);
+		Booking book = null;
+		if(books.size() > 1) {
+			System.err.println("BookingController: bookEdit: booking 'wait' state is least one more.");
+		} else if(books.size() == 1) {
+			book = books.get(0);
+		}
+		return book;
+	}
+	// date 목록 반환
 	public List<String> getDates(int dateSize) {
 		SimpleDateFormat calFormat = new SimpleDateFormat("yyyy-MM-dd");
 		List<String> dates = new ArrayList<String>();
