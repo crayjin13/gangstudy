@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -39,9 +40,37 @@ public class UserController {
 		return "logOn";
 	}
 	
+	
 	Logger logger;
 	
 	
+	// 회원 탈퇴
+	@RequestMapping(value="/deleteUser", method=RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public ModelAndView deleteUser(@RequestParam("id")String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session)throws Exception {
+		
+	
+		
+		ModelAndView mv = new ModelAndView();
+		
+		boolean deleteUser = userService.deleteUser(id, pw);
+		if(deleteUser) {
+			System.out.println("유저 탈퇴 성공");
+			deleteUser =true;
+			session.invalidate();
+		}else {
+			System.out.println("탈퇴 실패");
+			deleteUser=false;
+		}
+		
+			
+		mv.setViewName("login");
+		mv.addObject("delete", deleteUser);
+		
+		return  mv;
+		
+		
+		
+	}
 	
 	
 	
@@ -56,11 +85,12 @@ public class UserController {
 							 @RequestParam("pw")String pw,
 							 @RequestParam("email")String email,
 							 @RequestParam("bod")String bod,
-							 @RequestParam("gender")String gender,
+							 @RequestParam("gender")String gender,HttpSession session,
 							 HttpServletRequest request) {
-		
 		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
+		
 		System.out.println(updateUser);
+		
 		if(updateUser) {
 			System.out.println("유저 정보 수정 성공.");
 			updateUser=true;
@@ -68,7 +98,9 @@ public class UserController {
 			System.out.println("유저 정보 수정 안됨.");
 			updateUser=false;
 		}
-		return updateUser+"";
+		session.invalidate();
+		
+		return updateUser+"userInfo";
 	}
 	
 	
@@ -188,14 +220,14 @@ public class UserController {
 	//유저 자신의 정보 가져오기 
 	@UserLoginCheck
 	@RequestMapping(value="/userInfo")
-	public ModelAndView userInfo(String id,HttpServletRequest request) {
+	public ModelAndView userInfo(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		
-		User user = userService.userInfo(id);
 		
-		mv.addObject("userInfo", user);
+		
+		
 		mv.setViewName("userInfo");
-		System.out.println(user);
+		
 		return mv;
 	}
 	

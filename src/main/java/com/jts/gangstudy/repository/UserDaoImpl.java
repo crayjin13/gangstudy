@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public boolean deleteUser(String id, String pw) {
 		// TODO Auto-generated method stub
-		return false;
+		return userMapper.delete(id, pw);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public List<User> UserList() {
-		// TODO Auto-generated method stub
+		
 		return userMapper.userList();
 	}
 
