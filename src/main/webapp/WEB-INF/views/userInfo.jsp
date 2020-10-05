@@ -25,11 +25,6 @@
 						<td><input name="name" value="${sUserId.name}"
 							readonly="readonly"></td>
 					</tr>
-					<tr>
-						<td>아이디</td>
-						<td><input name="id" value="${sUserId.id}"
-							readonly="readonly"></td>
-					</tr>
 					 <tr>
 						<td>폰 번호</td>
 						<td><input name="phone" value="${sUserId.phone}"
@@ -70,7 +65,36 @@
 		<button onclick="location.href='logout'">로그아웃</button>
 		<button onclick="location.href='booking'">예약하기</button>
 		
-	 	<input type="button"  >
+		<br>
+		
+	<form id="delete_User" method="POST">
+
+
+	<h2> 회원 탈퇴   </h2>
+		
+		<!-- 아이디 변경 불가(Hidden) 기존 값 전송 -->
+		<div class="cp-field">
+			<h5> ID </h5>
+			<div class="cpp-fiel">
+				<input type="text" name="id"  class="required"
+					placeholder=" 아이디를 입력하세요 "> <i class="la la-user"></i>
+			</div>
+		</div>
+		<!-- 비밀번호 변경 -->
+		<div class="cp-field">
+			<h5> Password </h5>
+			<div class="cpp-fiel">
+				<input type="password" name="pw" class="required" 
+					placeholder="새로운 패스워드"> <i class="la la-lock"></i>
+			</div>
+		</div>
+		<tr>
+		 <!--  <input type="button" id="deleteUser" onclick="delete_action();" value="회원 탈퇴"> -->
+	 	  <input type="button" id="deleteUser"  value="회원 탈퇴">
+		</tr>
+		</form>
+		
+		
 	 	
 	</form>
 

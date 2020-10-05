@@ -44,18 +44,27 @@ public class UserController {
 	Logger logger;
 	
 	
-	
+	// È¸¿ø Å»Åð
 	@RequestMapping(value="/deleteUser", method=RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public ModelAndView deleteUser(@RequestParam("id")String id, @RequestParam("pw") String pw, HttpServletRequest request) {
+	public ModelAndView deleteUser(@RequestParam("id")String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session)throws Exception {
 		
+	
 		
 		ModelAndView mv = new ModelAndView();
 		
 		boolean deleteUser = userService.deleteUser(id, pw);
+		if(deleteUser) {
+			System.out.println("À¯Àú Å»Åð ¼º°ø");
+			deleteUser =true;
+			session.invalidate();
+		}else {
+			System.out.println("Å»Åð ½ÇÆÐ");
+			deleteUser=false;
+		}
 		
 			
+		mv.setViewName("login");
 		mv.addObject("delete", deleteUser);
-		
 		
 		return  mv;
 		

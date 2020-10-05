@@ -105,7 +105,7 @@
 		<div >
 			
 			
-	<input type="button" id="modifybtn" onclick="modify_action();" value="수정"> 
+	<input type="button" id="modifybtn" value="수정"> 
 			
 		</div>
 	</form>

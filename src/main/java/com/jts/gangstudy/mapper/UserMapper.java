@@ -22,9 +22,9 @@ public interface UserMapper {
 	  ) public User selectById(@Param("id") String id);
 	 
 	 
-	 //회원탈퇴
-	 @Update("UPDATE USER_TB SET name=#{#},phone=#{#}, id=#{#}, pw=#{#}, email=#{#}, bod=#{#} WHERE id=#{id} and pw=#{pw}")
-	 public boolean delete(String id, String pw);
+	 //회원탈퇴 @끝 
+	 @Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#', bod='#' WHERE id=#{id} and pw=#{pw}")
+	 public boolean delete(@Param("id")String id,@Param("pw") String pw);
 	 
 	 
 	 
@@ -47,7 +47,7 @@ public interface UserMapper {
 	
 	//유저 목록( 관리자입장) @끝
 	 
-	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB ORDER BY user_no")
+	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE ID!='#' ORDER BY user_no")
 	public List<User> userList();
 	
 	
