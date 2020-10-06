@@ -22,7 +22,7 @@
 
 <body>
 <!-- 관리자 입장 유저목록  -->
-	<form action="/login" method="post">
+	<form id="/login" method="post">
 		유저목록 <br>
 		<c:forEach items="${list}" var="userList">
 			<tr>
@@ -61,7 +61,7 @@
 							<option value="F">F</option>
 					</select>
 <br><br>
-			<input type="button" id="btn" onclick="signUp_function();" value="회원가입">
+			<input type="button" id="btn"  value="회원가입">
 
 		</form>
 	</td>
@@ -74,7 +74,8 @@
   <input type="text" id="i" class="required" name="id" value=""><br>
   <label for="lname">PW:</label><br>
   <input type="text" id="p" class="required" name="pw" value=""><br>
-  <input type="button" id="loginbtn" onclick="user_login_action_function();" value="로그인">
+  <input type="button" id="loginbtn"  value="로그인">
+<a href="findPw" title=""> 비밀번호를 잊으셨나요 ?</a>
 
 </form> 
 	

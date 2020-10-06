@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
@@ -39,9 +39,61 @@ public class UserController {
 		return "logOn";
 	}
 	
+	
 	Logger logger;
 	
 	
+
+	//비번찾기 페이지 이동 
+	@RequestMapping(value = "/findPw", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
+	public String findPw() throws Exception {
+		return "findPw";
+	}
+	/*비밀번호 찾기 - id , email*/ 
+	@ResponseBody
+	@RequestMapping(value="findPw_action", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String findPw(@RequestParam("id")String id,
+						@RequestParam("email")String email) {
+		User findPw = userService.findPw(id, email);
+		
+		if(findPw!= null) {
+			System.out.println("## 회원의 비밀번호는:"+findPw.getPw()+"입니다.");
+			String pw = findPw.getPw();
+			return pw;
+		}
+		return "";
+	}
+	
+	
+	
+	
+	// 회원 탈퇴
+	@RequestMapping(value="/deleteUser", method=RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public ModelAndView deleteUser(@RequestParam("id")String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session)throws Exception {
+		
+	
+		
+		ModelAndView mv = new ModelAndView();
+		
+		boolean deleteUser = userService.deleteUser(id, pw);
+		if(deleteUser) {
+			System.out.println("유저 탈퇴 성공");
+			deleteUser =true;
+			session.invalidate();
+		}else {
+			System.out.println("탈퇴 실패");
+			deleteUser=false;
+		}
+		
+			
+		mv.setViewName("login");
+		mv.addObject("delete", deleteUser);
+		
+		return  mv;
+		
+		
+		
+	}
 	
 	
 	
@@ -56,11 +108,12 @@ public class UserController {
 							 @RequestParam("pw")String pw,
 							 @RequestParam("email")String email,
 							 @RequestParam("bod")String bod,
-							 @RequestParam("gender")String gender,
+							 @RequestParam("gender")String gender,HttpSession session,
 							 HttpServletRequest request) {
-		
 		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
+		
 		System.out.println(updateUser);
+		
 		if(updateUser) {
 			System.out.println("유저 정보 수정 성공.");
 			updateUser=true;
@@ -68,7 +121,9 @@ public class UserController {
 			System.out.println("유저 정보 수정 안됨.");
 			updateUser=false;
 		}
-		return updateUser+"";
+		session.invalidate();
+		
+		return updateUser+"userInfo";
 	}
 	
 	
@@ -171,7 +226,7 @@ public class UserController {
 	
 	
 
-	// 유저 목록 (
+	//* 유저 목록 *
 	@RequestMapping(value = "/login")
 	public ModelAndView main() {
 		ModelAndView m = new ModelAndView();
@@ -188,14 +243,14 @@ public class UserController {
 	//유저 자신의 정보 가져오기 
 	@UserLoginCheck
 	@RequestMapping(value="/userInfo")
-	public ModelAndView userInfo(String id,HttpServletRequest request) {
+	public ModelAndView userInfo(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		
-		User user = userService.userInfo(id);
 		
-		mv.addObject("userInfo", user);
+		
+		
 		mv.setViewName("userInfo");
-		System.out.println(user);
+		
 		return mv;
 	}
 	
