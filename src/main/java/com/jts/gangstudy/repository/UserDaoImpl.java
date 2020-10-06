@@ -58,13 +58,13 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public User findId(String email, String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.find_id(email, name);
 	}
 
 	@Override
 	public User findPw(String id, String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.findPw(id, email);
 	}
 
 	@Override

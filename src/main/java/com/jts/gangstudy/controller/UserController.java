@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
@@ -42,6 +41,30 @@ public class UserController {
 	
 	
 	Logger logger;
+	
+	
+
+	//비번찾기 페이지 이동 
+	@RequestMapping(value = "/findPw", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
+	public String findPw() throws Exception {
+		return "findPw";
+	}
+	/*비밀번호 찾기 - id , email*/ 
+	@ResponseBody
+	@RequestMapping(value="findPw_action", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String findPw(@RequestParam("id")String id,
+						@RequestParam("email")String email) {
+		User findPw = userService.findPw(id, email);
+		
+		if(findPw!= null) {
+			System.out.println("## 회원의 비밀번호는:"+findPw.getPw()+"입니다.");
+			String pw = findPw.getPw();
+			return pw;
+		}
+		return "";
+	}
+	
+	
 	
 	
 	// 회원 탈퇴
@@ -203,7 +226,7 @@ public class UserController {
 	
 	
 
-	// 유저 목록 (
+	//* 유저 목록 *
 	@RequestMapping(value = "/login")
 	public ModelAndView main() {
 		ModelAndView m = new ModelAndView();

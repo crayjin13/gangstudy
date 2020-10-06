@@ -12,6 +12,20 @@ import com.jts.gangstudy.domain.User;
  
 @Mapper
 public interface UserMapper {
+	
+	//아이디 찾기 
+	@Select("SELECT id FROM USER_TB WHERE email=#{email} and name=#{name}")
+	public User find_id(@Param("email") String email, @Param("name") String name);
+	
+	
+	//비밀번호 변경 
+	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}")
+	public boolean update_pw(@Param("id") String id);
+	
+	
+	//비밀번호 찾기 
+	@Select("SELECT pw FROM USER_TB WHERE id=#{id} and email=#{email}")
+	public User findPw(@Param("id")String id, @Param("email") String email);
 
 	//회원자신 정보읽기 
 	@Select("SELECT  name, phone, id, pw, email, bod, gender,points FROM USER_TB WHERE id=#{id}")

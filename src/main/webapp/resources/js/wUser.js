@@ -2,6 +2,26 @@
 $(function(){
 	///////////////////
 	
+	 /* 비밀번호 찾기 */
+	$("#find_pw_btn").click(function(){
+		location.href='/find_pw';
+	});
+	
+	/* 아이디 찾기 */
+	$("#find_id_btn").click(function(){
+		location.href='/find_id';
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// **************회원 탈퇴 *************
 	$('#deleteUser').on('click', function() {
 		var idpw = $('#delete_User').serialize();

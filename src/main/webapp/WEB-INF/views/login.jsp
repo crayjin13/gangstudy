@@ -75,6 +75,7 @@
   <label for="lname">PW:</label><br>
   <input type="text" id="p" class="required" name="pw" value=""><br>
   <input type="button" id="loginbtn"  value="로그인">
+<a href="findPw" title=""> 비밀번호를 잊으셨나요 ?</a>
 
 </form> 
 	
