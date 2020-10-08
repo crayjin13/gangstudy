@@ -16,7 +16,23 @@ public class User {
 	private String note;
 	private String retired;
 	
+	private Booking booking;
 	
+	
+	
+	
+	
+	
+	public User(String name, Integer rate, Booking booking) {
+		super();
+		this.name = name;
+		this.rate = rate;
+		this.booking = booking;
+	}
+
+
+
+
 	public boolean isMatchPassword(String pw){
 		boolean isMatch=false;
 		if(this.pw.equals(pw)) {
