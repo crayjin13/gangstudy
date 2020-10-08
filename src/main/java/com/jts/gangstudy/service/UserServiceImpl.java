@@ -10,6 +10,7 @@ import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.repository.UserDao;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.exception.UserNotFoundException;
 
 
@@ -18,6 +19,31 @@ public class UserServiceImpl implements UserService {
  
 	@Autowired
 	private UserDao userDao;
+	
+	
+	///////////////////////// 관리자 ////////////////////////////////
+	@Override
+	public List<User> UserList() {
+		// TODO Auto-generated method stub
+		return userDao.UserList();
+	}
+
+	@Override
+	public List<User> findUserList(String search) {
+		// TODO Auto-generated method stub
+		return userDao.findUserList(search);
+	}
+	
+	@Override
+	public List<User> userBookingList() {
+		// TODO Auto-generated method stub
+		return userDao.userBookingList();
+	}
+
+	
+	
+	/////////////////////////*************************////////////////////////////////
+	
 	
 	//로그인
 	@Override
@@ -93,24 +119,15 @@ public class UserServiceImpl implements UserService {
 		return userDao.temporaryPw(pw, id);
 	}
 
-	@Override
-	public List<User> UserList() {
-		// TODO Auto-generated method stub
-		return userDao.UserList();
-	}
-
-	@Override
-	public List<User> findUserList(String search) {
-		// TODO Auto-generated method stub
-		return userDao.findUserList(search);
-	}
-
+	
 	@Override
 	public com.jts.gangstudy.domain.User User( String name, String phone, String id, String pw,
 			String email, String bod, String gender, int rate, String points, String note) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 	
 	

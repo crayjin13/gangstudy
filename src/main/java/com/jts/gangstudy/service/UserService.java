@@ -4,9 +4,23 @@ import java.util.List;
 
 
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.domain.Booking;
 
 public interface UserService {
 
+	/*************** 관리자 입장  *********************/
+	
+	List<User> userBookingList();
+
+	// 회원 목록
+	List<User> UserList();
+	
+	//회원들  검색
+	List<User> findUserList(String search);
+	
+	/*********************************************/
+	
+	
 	// 로그인 
 	User signIn(String id, String pw) throws Exception;
 
@@ -43,11 +57,6 @@ public interface UserService {
 	// 임시비밀번호 발급
 	User temporaryPw(String pw, String id);
 	
-	// 회원 목록
-	List<User> UserList();
-	
-	//회원들  검색
-	List<User> findUserList(String search);
 
 	User User(String name, String phone, String id, String pw, String email, String bod, String gender,
 			int rate, String points, String note);

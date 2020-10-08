@@ -59,10 +59,20 @@ public interface UserMapper {
 	 public boolean pwMatch(@Param("pw")String pw);
 	 
 	
-	//유저 목록( 관리자입장) @끝
+	 //유저 검색
+	 @Select("SELECT A.* FROM(SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE id LIKE '%${search}%' or name LIKE '%${search}%' ORDER BY id ) A WHERE rownum <13")
+	 public List<User> findUserList(@Param("search")String search);
 	 
+	 
+	//유저 목록( 관리자입장) @끝
 	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE ID!='#' ORDER BY user_no")
 	public List<User> userList();
+	
+	
+	//유저 예약목록 (관리자 입장)
+	@Select("SELECT name, b.*, rate FROM BOOKING_TB b, USER_TB u WHERE ID!='#' ORDER BY booking_no")
+	public List<User> userBookingList();
+	
 	
 	
 	//회원가입 @끝
