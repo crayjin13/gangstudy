@@ -9,6 +9,16 @@ public class Admin {
 	private User user;
 	private Booking booking;
 	
+	
+	
+	
+	public Admin(User user, Booking booking) {
+		super();
+		this.user = user;
+		this.booking = booking;
+	}
+
+
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
