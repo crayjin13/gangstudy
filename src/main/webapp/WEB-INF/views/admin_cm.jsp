@@ -24,18 +24,26 @@
 			console.log(url);
 
 		});	
+	  
+	 $(function(){
+		$(".searchUser").focus(function() {
+			$(this).val('');
+			}).blur(function() {
+				if($(this).val() == "") { $(this).val("이름 또는 아이디로 검색");}
+			});
+		});
 	 
 </script>	
 	
-	</head>
+	</head> 
 	<body>
 		
-	<!-- 관리자 입장 유저목록  --> 
+	<!-- 관리자 입장 유저목록  -->  
 	<form id="/admin_cm" method="post">
 		유저목록 <br>
 		<div class="w300" style="padding-right:10px">
-		<input type="text" class="searchUser" name="search" id="search"  >
-		<button class="btnsearch" name="btnSearch" id="btnSearch">아이디 검색</button>
+		<input type="text" class="searchUser" name="search" id="search"  VALUE="이름 또는 아이디로 검색">
+		<button class="btnsearch" name="btnSearch" id="btnSearch">회원 검색</button>
 		</div>
 		<div>
 		</div>
