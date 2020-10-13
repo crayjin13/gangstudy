@@ -30,7 +30,7 @@
 	</head>
 	<body>
 		
-	<!-- 관리자 입장 유저목록  -->
+	<!-- 관리자 입장 유저목록  --> 
 	<form id="/admin_cm" method="post">
 		유저목록 <br>
 		<div class="w300" style="padding-right:10px">
