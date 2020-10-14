@@ -60,7 +60,7 @@ public interface UserMapper {
 	 
 	
 	 //유저 검색
-	 @Select("SELECT A.* FROM(SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE id LIKE '%${search}%' or name LIKE '%${search}%' ORDER BY id ) A WHERE rownum <13")
+	 @Select("SELECT A.* FROM(SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE UPPER(ID) LIKE UPPER('%${search}%') or NAME LIKE '%${search}%' ORDER BY id ) A WHERE rownum <13")
 	 public List<User> findUserList(@Param("search")String search);
 	 
 	 
@@ -70,7 +70,7 @@ public interface UserMapper {
 	
 	
 	//유저 예약목록 (관리자 입장)
-	@Select("SELECT name, b.*, rate FROM BOOKING_TB b, USER_TB u WHERE ID!='#' ORDER BY booking_no")
+	@Select("SELECT name, b.*, rate FROM BOOKING_TB b, USER_TB u WHERE ID!='#'")
 	public List<User> userBookingList();
 	
 	

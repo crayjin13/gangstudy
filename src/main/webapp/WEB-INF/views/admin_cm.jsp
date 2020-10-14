@@ -5,6 +5,28 @@
 	
 	<html>
 	<head>
+	
+	<style type="text/css">
+	table{ 
+           
+            margin-right:auto;
+            border:3px solid skyblue;
+        }
+        
+        td{
+            border:1px solid skyblue
+           
+        }
+        
+        #title{
+            background-color:skyblue
+        }
+
+
+
+	
+	</style>
+	
 		<title>Home</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	 <script>
@@ -24,23 +46,31 @@
 			console.log(url);
 
 		});	
+	  
+	  $(function(){
+		$(".searchUser").focus(function() {
+			$(this).val('');
+			}).blur(function() {
+				if($(this).val() == "") { $(this).val("이름 또는 아이디로 검색");}
+			});
+		}); 
 	 
 </script>	
 	
-	</head>
+	</head> 
 	<body>
-		
-	<!-- 관리자 입장 유저목록  -->
+		 
+	<!-- 관리자 입장 유저목록  -->  
 	<form id="/admin_cm" method="post">
-		유저목록 <br>
-		<div class="w300" style="padding-right:10px">
-		<input type="text" class="searchUser" name="search" id="search"  >
-		<button class="btnsearch" name="btnSearch" id="btnSearch">아이디 검색</button>
-		</div>
-		<div>
-		</div>
-		<c:forEach items="${userList}" var="userList">
-			<tr>
+		<div class="w300" style="padding-left:20px">
+		유저목록 <br> 
+		
+		<input type="text" class="searchUser" name="search" id="search"  VALUE="이름 또는 아이디로 검색">
+		<button class="btnsearch" name="btnSearch" id="btnSearch">회원 검색</button>
+		
+			<table>
+		<c:forEach items="${userList}" var="userList"> 
+			<tr >
 				<td>유저 번호: <c:out value="${userList.user_no}" /></td>
 				<td>이름: <c:out value="${userList.name}" /></td>
 				<td>폰 번호: <c:out value="${userList.phone}" /></td>
@@ -51,10 +81,13 @@
 				<td>평점: <c:out value="${userList.rate}" /></td>
 				<td>포인트: <c:out value="${userList.points}" /></td>
 				<td>노트 : <c:out value="${userList.note}" /></td>
-
-				<br>
 			</tr>
+			
+				
+				<br>
 		</c:forEach>
+</table>
+		</div>
 		
 	</form>
 		

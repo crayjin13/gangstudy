@@ -225,7 +225,7 @@ public class UserController {
 	}
 	
 	
-	/* 관리자 입장 검색,유저 목록 */
+	/* 관리자 입장 검색,유저 목록 */ 
 	
 	@RequestMapping(value = "/admin_cm")
 	public ModelAndView userList(@Param(value = "search") String search) {
@@ -238,7 +238,7 @@ public class UserController {
 			List<User> findUserList = userService.findUserList(search);
 			mv.addObject("userList", findUserList);
 		}
-		mv.setViewName("admin_cm");
+		mv.setViewName("admin_cm"); 
 		return mv;
 		
 	}
@@ -248,11 +248,11 @@ public class UserController {
 	
 	
 
-	//* 관리자 입장 유저 목록 *
+	//* 관리자 입장 회원 예약 목록 *
 	@RequestMapping(value = "/login")
 	public ModelAndView main() {
 		ModelAndView m = new ModelAndView();
-		List<User> userList = userService.UserList();
+		List<User> userList = userService.userBookingList();
 
 		// m.addObject("data", userService.UserList());
 		m.addObject("list", userList);
