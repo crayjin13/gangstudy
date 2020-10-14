@@ -1,68 +1,72 @@
-function chageDateSelect() {
-	var date = $('select[name=book_dt]');
-	var ci = $('select[name=ci]');
-	var co = $('select[name=co]');
+function startDateSelect() {
+	var startDate = $('select[name=startDate]');
+	var startTime = $('select[name=startTime]');
+	var endDate = $('select[name=endDate]');
+	var endTime = $("select[name=endTime]");
+	
+	endDate.empty();
+	endTime.empty();
+	startTime.empty();
+	
+	// end date select option
+	var date = new Date(startDate.val());
+	var format = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+	endDate.append($("<option value="+format+">"+format+"</option>"));
+	format = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate()+1);
+	endDate.append($("<option value="+format+">"+format+"</option>"));
+	
+	// start time select option
 	$.ajax({
-		url : '../booking/getCI',
+		url : '../booking/reqStartTime',
 		type : 'GET',
 		data : {
-				 "date" : date.val()
+				 "startDate" : startDate.val()
 			   },
 		success : function(times) {
-			ci.empty();
-			co.empty();
 			for(var i=0; i<times.length; i++) {
 				var option = $("<option value="+times[i]+">"+times[i]+"</option>");
-				ci.append(option);
+				startTime.append(option);
 			}
 		},
 		error : function(){
-			alert("chageDateSelect error");
+			alert("startDateSelect error");
 		}
 	});
 }
 
-function chageCiSelect() {
-	var ci = $("select[name=ci]");
-	var co = $("select[name=co]");
-	var options = ci.find('option').map(function() {
-		return $(this).val();
-	}).get();
-	console.log('options', options);
+
+function getEndTimeOptions() {
+	var startDate = $("select[name=startDate]");
+	var startTime = $("select[name=startTime]");
+	var endDate = $("select[name=endDate]");
+	var endTime = $("select[name=endTime]");
 	
 	$.ajax({
-		url : '../booking/getCO',
+		url : '../booking/reqEndTime',
 		type : 'GET',
-	    traditional : true,
 		data : {
-				 "ci" : ci.val(),
-				 "options" : options
+				 "startDate" : startDate.val(),
+				 "startTime" : startTime.val(),
+				 "endDate" : endDate.val(),
 			   },
 		success : function(times) {
-			co.empty();
+			endTime.empty();
 			for(var i=0; i<times.length; i++) {
 				var option = $("<option value="+times[i]+">"+times[i]+"</option>");
-				co.append(option);
+				endTime.append(option);
 			}
 		},
 		error : function(){
-			alert("chageCiSelect error");
+			alert("getEndTimeOptions error");
 		}
 	});
 }
 
 function confirm() {
+	var href = $("input[name=href]").val();
 	$.ajax({
-		url : '../booking/check',
+		url : '../booking/'+href,
 		type : 'POST',
-		data : {
-				 "user_id" : $('#user_id').text(),
-				 "room_no" : $('#room_no').text(),
-				 "book_dt" : $('#book_dt').text(),
-				 "ci" : $('#ci').text(),
-				 "co" : $('#co').text(),
-				 "people" : $('#people').text()
-			   },
 		success : function(result) {
 			if(result == "true") {
 				location.replace("/booking");
@@ -71,7 +75,7 @@ function confirm() {
 				location.replace("/booking");
 			}
 		},
-		error:function(request,status,error){
+		error:function(request, error){
 		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	   }
 	});

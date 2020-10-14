@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,90 +27,122 @@ public class BookingController {
 	private BookingService bookingService;
 	
 	@UserLoginCheck
-	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView booking() {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView bookMain() {
+		ModelAndView mav = new ModelAndView("booking/bookMain");
 		List<Booking> debug = bookingService.viewAll();
-		List<String> dates = bookingService.getDateSelectOptions();
 		
 		mav.addObject("debug", debug);
-		mav.addObject("dates", dates);
-		mav.setViewName("booking");
-		return mav;
-	}
-
-	@RequestMapping(value = "/check", method = RequestMethod.GET)
-	public ModelAndView bookCheck(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		User sUserId = (User)session.getAttribute("sUserId");
-		
-		String book_dt = request.getParameter("book_dt");
-		String ci = request.getParameter("ci");
-		String co = request.getParameter("co");
-		int people = Integer.parseInt(request.getParameter("people"));
-		int charge = bookingService.getCharge(ci, co, people);
-		Booking book = new Booking(sUserId.getUser_no(), room_no, book_dt, ci, co, people, "wait");
-
-		session.setAttribute("book", book);
-
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("book", book);
-		mav.addObject("userID", sUserId.getId());
-		mav.addObject("charge", charge);
-		mav.setViewName("bookCheck");
 		return mav;
 	}
 	
+	@UserLoginCheck
+	@RequestMapping(value = "/make", method = RequestMethod.GET)
+	public ModelAndView makeBook(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("booking/makeBook");
+		List<String> dates = bookingService.makeDates();
+		
+		mav.addObject("dates", dates);
+		return mav;
+	}
+
+	
+	// 결제를 진행한 후 wait 상태로 변경해야 함.
+	@ResponseBody
+	@RequestMapping(value = "/make", method = RequestMethod.POST)
+	public String insertBook(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		Booking book = (Booking)session.getAttribute("book");
+		session.removeAttribute("book");
+		return bookingService.insertDB(book);
+	}
+	
+	@UserLoginCheck
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView bookEdit(HttpServletRequest request) {
+	public ModelAndView editBook(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("booking/editBook");
 		HttpSession session = request.getSession();
 		User sUserId = (User)session.getAttribute("sUserId");
 		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
-		int charge = bookingService.getCharge(book.getCi(), book.getCo(), book.getPeople());
 		
-		ModelAndView mav = new ModelAndView();
-		List<String> dates = bookingService.getDateSelectOptions();
-		mav.addObject("book", book);
-		mav.addObject("userID", sUserId.getId());
-		mav.addObject("charge", charge);
-		mav.addObject("dates", dates);
-		mav.setViewName("bookEdit");
+		if(book == null) {	// 수정 불가능한 경우
+			// do nothing.
+		} else {			// 수정 가능한 경우
+			int charge = bookingService.calcCharge(book);
+			List<String> dates = bookingService.makeDates();
+			
+			mav.addObject("dates", dates)
+			.addObject("book", book)
+			.addObject("userID", sUserId.getId())
+			.addObject("charge", charge)
+			.addObject("href", "edit");
+		}
 		return mav;
 	}
 	
+	// 수정 완료 후 차액에 대해 재결제 처리해야함
 	@ResponseBody
-	@RequestMapping(value = "/check", method = RequestMethod.POST)
-	public String insertBook(HttpServletRequest request) {
-		HttpSession session = request.getSession(false); // session이 null 인 경우 login으로 핸들링 필요
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String updateBook(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		User sUserId = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		session.removeAttribute("book");
-		// 중복체크
-		synchronized(this) {
-			int result = bookingService.duplicateCheck(book);
-			if(result == 0) { // 성공 시 데이터 추가, 결재 페이지로 넘기기
-				bookingService.insertBook(book);
-				return "true";
-			} else { // 실패시 실패 이유 보내기
-				return "duplicate";
-			}
-		}
+		Booking preBook = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		bookingService.removeBook(preBook);
+		return bookingService.insertDB(book);
 	}
 	
+	
+	
+	// 예약 신청, 변경 등에 대한 최종 확인
+	@UserLoginCheck
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	public ModelAndView bookCheck(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("booking/checkBook");
+		HttpSession session = request.getSession();
+		User sUserId = (User)session.getAttribute("sUserId");
+		int people = Integer.parseInt(request.getParameter("people"));
+		String href = request.getParameter("href");
+		String startDateTime = request.getParameter("startDate") + " " + request.getParameter("startTime");
+		String endDateTime = request.getParameter("endDate") + " " + request.getParameter("endTime");
+		Booking book = new Booking(sUserId.getUser_no(), room_no, startDateTime, endDateTime, people, "wait");
+		int charge = bookingService.calcCharge(book);
+		session.setAttribute("book", book);
+
+		mav.addObject("book", book)
+			.addObject("userID", sUserId.getId())
+			.addObject("charge", charge)
+			.addObject("href", href);
+		return mav;
+	}
+
+	
 	@ResponseBody
-	@RequestMapping(value = "/getCI", method = RequestMethod.GET)
-	public List<String> getCI(HttpServletRequest request) {
-		String date = request.getParameter("date");
-		List<Booking> books = bookingService.getDateBooking(date);
-		List<String> times = bookingService.getCITimes(books);
+	@RequestMapping(value = "/reqStartTime", method = RequestMethod.GET)
+	public List<String> reqStartTime(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User sUserId = (User)session.getAttribute("sUserId");
+		String date = request.getParameter("startDate");
+		List<Booking> books = bookingService.viewDate(date);
+		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		books.remove(book);
+		List<String> times = bookingService.getUnbookedTimeList(date, books);
 		return times;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/getCO", method = RequestMethod.GET)
-	public List<String> getCO(HttpServletRequest request, String[] options) {
-		String ci = request.getParameter("ci");
-		List<String> times = bookingService.getCOTimes(ci, options);
+	@RequestMapping(value = "/reqEndTime", method = RequestMethod.GET)
+	public List<String> reqEndTime(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User sUserId = (User)session.getAttribute("sUserId");
+		String startTime = request.getParameter("startTime");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		List<Booking> books = bookingService.viewDate(endDate);
+		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		books.remove(book);
+		List<String> times = bookingService.getEndTimes(books, startDate, startTime, endDate);
 		return times;
 	}
 }
