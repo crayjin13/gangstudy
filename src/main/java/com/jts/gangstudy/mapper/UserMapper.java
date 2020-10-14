@@ -70,7 +70,7 @@ public interface UserMapper {
 	
 	
 	//유저 예약목록 (관리자 입장)
-	@Select("SELECT name, b.*, rate FROM BOOKING_TB b, USER_TB u WHERE ID!='#' ORDER BY booking_no")
+	@Select("SELECT name, b.*, rate FROM BOOKING_TB b, USER_TB u WHERE ID!='#'")
 	public List<User> userBookingList();
 	
 	
