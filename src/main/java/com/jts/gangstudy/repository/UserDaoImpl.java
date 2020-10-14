@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.domain.Booking;
+
 import com.jts.gangstudy.mapper.UserMapper;
  
 @Repository
@@ -82,7 +84,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public List<User> findUserList(String search) {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.findUserList(search);
 	}
 
 	@Override
@@ -95,6 +97,12 @@ public class UserDaoImpl implements UserDao{
 	public boolean accountOn(String mRetire, String mEmail) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<User> userBookingList() {
+		// TODO Auto-generated method stub
+		return userMapper.userBookingList();
 	}
 
 	

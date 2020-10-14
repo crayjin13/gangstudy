@@ -4,13 +4,10 @@ $(function(){
 	
 	 /* 비밀번호 찾기 */
 	$("#find_pw_btn").click(function(){
-		location.href='/find_pw';
+		location.href='/findPw';
 	});
 	
-	/* 아이디 찾기 */
-	$("#find_id_btn").click(function(){
-		location.href='/find_id';
-	});
+	
 	
 	
 	

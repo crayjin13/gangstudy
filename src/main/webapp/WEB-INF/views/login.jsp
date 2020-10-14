@@ -22,7 +22,7 @@
 
 <body>
 <!-- 관리자 입장 유저목록  -->
-	<form id="/login" method="post">
+	<%-- <form id="/login" method="post">
 		유저목록 <br>
 		<c:forEach items="${list}" var="userList">
 			<tr>
@@ -41,7 +41,7 @@
 			</tr>
 		</c:forEach>
 		
-	</form>
+	</form> --%>
 		<!-- 회원가입  -->
 	<hr>
 	<td>

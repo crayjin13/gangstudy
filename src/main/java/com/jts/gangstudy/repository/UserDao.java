@@ -1,17 +1,34 @@
 package com.jts.gangstudy.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jts.gangstudy.domain.Admin;
 import com.jts.gangstudy.domain.User;
-
+import com.jts.gangstudy.domain.Booking;
  
 public interface UserDao {
 
+	//***********   관리자 입장  ***************************//
 	
+	// 회원 목록
+	List<User> UserList();
+	
+	// 회원 예약 목록 
+	List<User> userBookingList();
+	
+	//회원들 검색
+	List<User> findUserList(String search);
+
+	
+	
+	
+	
+	
+	/*****************************************************/
 	
 	// 회원 가입 Create
 	boolean insertUser(User user);
@@ -51,11 +68,6 @@ public interface UserDao {
 	// 임시비밀번호 발급
 	User temporaryPw(String pw, String id);
 	
-	// 회원 목록
-	List<User> UserList();
-	
-	//회원들 검색
-	List<User> findUserList(String search);
 
 	
 	
