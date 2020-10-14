@@ -1,54 +1,50 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
+import java.time.*;
 
 public class Booking {
 	private int book_no;
 	private int user_no;
 	private int room_no;
-	private String book_dt;
-	private String ci;
-	private String co;
+	private String check_in;
+	private String check_out;
 	private int people;
 	private String state;
 	private String request_dt;
 	
-	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, String book_dt, String ci, String co, BigDecimal people,
+	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, String check_in, String check_out, BigDecimal people,
 			String state, String request_dt) {
 		super();
 		this.book_no = book_no.intValue();
 		this.user_no = user_no.intValue();
 		this.room_no = room_no.intValue();
-		this.book_dt = book_dt;
-		this.ci = ci;
-		this.co = co;
+		this.check_in = check_in;
+		this.check_out = check_out;
 		this.people = people.intValue();
 		this.state = state;
 		this.request_dt = request_dt;
 	}
 	
-	public Booking(int book_no, int user_no, int room_no, String book_dt, String ci, String co, int people,
+	public Booking(int book_no, int user_no, int room_no, String check_in, String check_out, int people,
 			String state, String request_dt) {
 		super();
 		this.book_no = book_no;
 		this.user_no = user_no;
 		this.room_no = room_no;
-		this.book_dt = book_dt;
-		this.ci = ci;
-		this.co = co;
+		this.check_in = check_in;
+		this.check_out = check_out;
 		this.people = people;
 		this.state = state;
 		this.request_dt = request_dt;
 	}
-	public Booking(int user_no, int room_no, String book_dt, String ci, String co, int people,
+	public Booking(int user_no, int room_no, String check_in, String check_out, int people,
 			String state) {
 		super();
 		this.user_no = user_no;
 		this.room_no = room_no;
-		this.book_dt = book_dt;
-		this.ci = ci;
-		this.co = co;
+		this.check_in = check_in;
+		this.check_out = check_out;
 		this.people = people;
 		this.state = state;
 	}
@@ -65,16 +61,12 @@ public class Booking {
 		return room_no;
 	}
 
-	public String getBook_dt() {
-		return book_dt;
+	public String getCheck_in() {
+		return check_in;
 	}
 
-	public String getCi() {
-		return ci;
-	}
-
-	public String getCo() {
-		return co;
+	public String getCheck_out() {
+		return check_out;
 	}
 
 	public int getPeople() {
@@ -89,25 +81,34 @@ public class Booking {
 		return request_dt;
 	}
 	
-	// format(%02d:%02d)의 시 반환
-	public static int getHour(String time) {
-		return Integer.parseInt(time.substring(0, 2));
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		Booking other = (Booking)obj;
+		if (book_no != other.getBook_no()) return false;
+		return true;
 	}
-	// format(%02d:%02d)의 분 반환
-	public static int getMinute(String time) {
-		return Integer.parseInt(time.substring(3, 5));
+
+	public LocalTime getciTime() {
+		return LocalTime.parse(check_in.substring(11, 16));
 	}
-	// calendar format(%02d:%02d)의 반환
-	public static String getTime(Calendar cal) {
-		String time;
-		int hour = cal.get(Calendar.HOUR_OF_DAY);
-		int min = cal.get(Calendar.MINUTE);
-		time = String.format("%02d:%02d", hour, min);
-		return time;
+	public LocalTime getcoTime() {
+		return LocalTime.parse(check_out.substring(11, 16));
 	}
-	// calendar의 시간을 설정하는 함수
-	public static void setTime(Calendar cal, int hour, int minute) {
-		cal.set(Calendar.HOUR_OF_DAY, hour);
-		cal.set(Calendar.MINUTE, minute);
+	
+	public LocalDate getciDate() {
+		return LocalDate.parse(check_in.substring(0, 10));
+	}
+	public LocalDate getcoDate() {
+		return LocalDate.parse(check_out.substring(0, 10));
+	}
+	
+	public LocalDateTime getciDateTime() {
+		return LocalDateTime.of(getciDate(), getciTime());
+	}
+	public LocalDateTime getcoDateTime() {
+		return LocalDateTime.of(getcoDate(), getcoTime());
 	}
 }

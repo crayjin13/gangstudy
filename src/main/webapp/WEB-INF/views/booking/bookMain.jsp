@@ -13,9 +13,8 @@
 		        <td>예약 번호: <c:out value="${debug.book_no}"/></td>
 		        <td>사용자 번호: <c:out value="${debug.user_no}"/></td>
 		        <td>방 번호: <c:out value="${debug.room_no}"/></td>
-		        <td>예약일: <c:out value="${debug.book_dt}"/></td>
-		        <td>시작시간: <c:out value="${debug.ci}"/></td>
-		        <td>종료시간: <c:out value="${debug.co}"/></td>
+		        <td>시작시간: <c:out value="${debug.check_in}"/></td>
+		        <td>종료시간: <c:out value="${debug.check_out}"/></td>
 		        <td>인원: <c:out value="${debug.people}"/></td>
 		        <td>예약상태: <c:out value="${debug.state}"/></td>
 		        <td>신청일: <c:out value="${debug.request_dt}"/></td>
@@ -23,34 +22,10 @@
 		    </tr>
 		</c:forEach>
 		<hr>
+		<button onClick="location.href='/booking/make'">예약신청</button>
 		<button onClick="location.href='/booking/edit'">예약수정</button>
-		<hr>
-		<form action="/booking/check" method="GET">
-			<label>Choose a booking </label><br>
-			date :
-			<select name="book_dt" onchange="chageDateSelect()">
-				<option value="false">날짜를 선택해주세요</option>
-				<c:forEach items="${dates}" var="date">
-					<option value="${date}">${date}</option>
-				</c:forEach>
-			</select><br>
-			people :
-			<select name="people">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select><br>
-			start :
-			<select name="ci" onchange="chageCiSelect()">
-			</select><br>
-			end :
-			<select name="co">
-			</select><br>
-			<input type="submit" value="예약 신청">
-		</form>
+		<button onClick="location.href='/booking/view'">예약확인</button>
+		<button onClick="location.href='/booking/cancel'">예약취소</button>
 	</body>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/booking.js"></script>

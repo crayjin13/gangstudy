@@ -18,29 +18,16 @@
 		기존 예약<br>
         사용자 아이디: ${userID}<br>
         방 번호: ${book.room_no}<br>
-        예약일: ${book.book_dt}<br>
-        시작시간: ${book.ci}<br>
-        종료시간: ${book.co}<br>
+        시작시간: ${book.check_in}<br>
+        종료시간: ${book.check_out}<br>
         인원: ${book.people}<br>
         금액: ${charge}<br>
+        
 		<hr>
-		<form action="/booking/edit" method="POST">
+		
+		<form action="/booking/check" method="GET">
 			수정사항<br>
-			date :
-			<select name="book_dt" onchange="chageDateSelect()">
-				<option value="false">날짜를 선택해주세요</option>
-				<c:forEach items="${dates}" var="date">
-					<option value="${date}">${date}</option>
-				</c:forEach>
-			</select><br>
-			start :
-			<select name="ci" onchange="chageCiSelect()">
-			</select><br>
-			end :
-			<select name="co">
-			</select><br>
-			
-			people :
+			인원 :
 			<select name="people">
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -49,6 +36,23 @@
 				<option value="5">5</option>
 				<option value="6">6</option>
 			</select><br>
+			시작일 :
+			<select name="startDate" onchange="startDateSelect()">
+				<option value="false">날짜를 선택해주세요</option>
+				<c:forEach items="${dates}" var="date">
+					<option value="${date}">${date}</option>
+				</c:forEach>
+			</select><br>
+			시작시간 :
+			<select name="startTime" onchange="getEndTimeOptions()">
+			</select><br>
+			종료일 :
+			<select name="endDate" onchange="getEndTimeOptions()">
+			</select><br>
+			종료시간 :
+			<select name="endTime">
+			</select><br>
+			<input type="hidden" name="href" value="edit">
 			<input type="submit" value="예약 수정">
 		</form>	
 	</c:if>
