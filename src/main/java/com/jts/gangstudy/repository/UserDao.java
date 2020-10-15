@@ -24,6 +24,9 @@ public interface UserDao {
 	List<User> findUserList(String search);
 
 	/*****************************************************/
+	
+	//유저 얻기 
+	User getUser(int user_no);
 
 	// 회원 가입 Create
 	boolean insertUser(User user);

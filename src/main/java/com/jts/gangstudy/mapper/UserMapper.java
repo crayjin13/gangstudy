@@ -12,6 +12,10 @@ import com.jts.gangstudy.domain.User;
 
 @Mapper
 public interface UserMapper {
+	
+	// 회원 아이디로 읽기
+		@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE user_no=#{user_no}")
+		public User getUser(@Param("user_no") int user_no);
 
 	// 아이디 찾기
 	@Select("SELECT id FROM USER_TB WHERE email=#{email} and name=#{name}")

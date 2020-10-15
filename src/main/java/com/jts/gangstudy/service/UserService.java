@@ -16,6 +16,9 @@ public interface UserService {
 
 	// 회원들 검색
 	List<User> findUserList(String search);
+	
+	
+	User getUser(int user_no);
 
 	/*********************************************/
 

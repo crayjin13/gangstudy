@@ -114,4 +114,10 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public User getUser(int user_no) {
+		// TODO Auto-generated method stub
+		return userDao.getUser(user_no);
+	}
+
 }
