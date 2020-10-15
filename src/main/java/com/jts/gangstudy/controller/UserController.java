@@ -33,149 +33,122 @@ public class UserController {
 	/*
 	 * @RequestMapping(value = "/") public String index() { return ""; }
 	 */
-	
-	@RequestMapping(value ="/logOn")
+
+	@RequestMapping(value = "/logOn")
 	public String logOn() {
 		return "logOn";
 	}
-	
-	
-	Logger logger;
-	
-	
 
-	//비번찾기 페이지 이동 
-	@RequestMapping(value = "/findPw", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+
+	Logger logger;
+
+	// 비번찾기 페이지 이동
+	@RequestMapping(value = "/findPw", method = { RequestMethod.GET,
+			RequestMethod.POST }, produces = "text/plain; charset=UTF-8")
 	public String findPw() throws Exception {
 		return "findPw";
 	}
-	/*비밀번호 찾기 - id , email*/ 
+
+	/* 비밀번호 찾기 - id , email */
 	@ResponseBody
-	@RequestMapping(value="findPw_action", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String findPw(@RequestParam("id")String id,
-						@RequestParam("email")String email) {
+	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) {
 		User findPw = userService.findPw(id, email);
-		
-		if(findPw!= null) {
-			System.out.println("## 회원의 비밀번호는:"+findPw.getPw()+"입니다.");
+
+		if (findPw != null) {
+			System.out.println("## 회원의 비밀번호는:" + findPw.getPw() + "입니다.");
 			String pw = findPw.getPw();
 			return pw;
 		}
 		return "";
 	}
-	
-	
-	
-	
+
 	// 회원 탈퇴
-	@RequestMapping(value="/deleteUser", method=RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public ModelAndView deleteUser(@RequestParam("id")String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session)throws Exception {
-		
-	
-		
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public ModelAndView deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw,
+			HttpServletRequest request, HttpSession session) throws Exception {
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		boolean deleteUser = userService.deleteUser(id, pw);
-		if(deleteUser) {
+		if (deleteUser) {
 			System.out.println("유저 탈퇴 성공");
-			deleteUser =true;
+			deleteUser = true;
 			session.invalidate();
-		}else {
+		} else {
 			System.out.println("탈퇴 실패");
-			deleteUser=false;
+			deleteUser = false;
 		}
-		
-			
+
 		mv.setViewName("login");
 		mv.addObject("delete", deleteUser);
-		
-		return  mv;
-		
-		
-		
+
+		return mv;
+
 	}
-	
-	
-	
-	
-	//유저 정보 수정
+
+	// 유저 정보 수정
 	@UserLoginCheck
 	@ResponseBody
-	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String modifyInfo(@RequestParam("name")String name,
-							@RequestParam("phone")String phone,
-							 @RequestParam(value="id")String id,
-							 @RequestParam("pw")String pw,
-							 @RequestParam("email")String email,
-							 @RequestParam("bod")String bod,
-							 @RequestParam("gender")String gender,HttpSession session,
-							 HttpServletRequest request) {
-		boolean updateUser = userService.updateUser(new User(name, phone, id, pw,email,bod,gender));
-		
+	@RequestMapping(value = "/modifyInfo", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String modifyInfo(@RequestParam("name") String name, @RequestParam("phone") String phone,
+			@RequestParam(value = "id") String id, @RequestParam("pw") String pw, @RequestParam("email") String email,
+			@RequestParam("bod") String bod, @RequestParam("gender") String gender, HttpSession session,
+			HttpServletRequest request) {
+		boolean updateUser = userService.updateUser(new User(name, phone, id, pw, email, bod, gender));
+
 		System.out.println(updateUser);
-		
-		if(updateUser) {
+
+		if (updateUser) {
 			System.out.println("유저 정보 수정 성공.");
-			updateUser=true;
-		}else {
+			updateUser = true;
+		} else {
 			System.out.println("유저 정보 수정 안됨.");
-			updateUser=false;
+			updateUser = false;
 		}
 		session.invalidate();
-		
-		return updateUser+"userInfo";
+
+		return updateUser + "userInfo";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*아이디 중복 체크*/
+
+	/* 아이디 중복 체크 */
 	@ResponseBody
-	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
+	@RequestMapping(value = "/duplicate_check", method = RequestMethod.GET, produces = "text/plain; charset=UTF-8")
 	public String existeduser(@RequestParam(value = "id") String id) {
 		boolean newId = userService.idDuplicateCheck(id);
-		if(newId) {
+		if (newId) {
 			System.out.println("중복된 아이디 입니다.");
 			newId = false;
-		}else {
+		} else {
 			newId = true;
 		}
-		return newId+"";
+		return newId + "";
 	}
-	
-	
-	
-	
-	
-	/*비밀번호 일치 여부 체크 유저 정보 수정할때 */
+
+	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 */
 	@UserLoginCheck
 	@ResponseBody
-	@RequestMapping(value="/pw_Check",method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String retirePwCheck(@RequestParam(value="pw")String pw) {
+	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
 		boolean truePw = userService.pwMatch(pw);
-		if(truePw) {
-			System.out.println("## 비밀번호 일치 여부:"+truePw);
+		if (truePw) {
+			System.out.println("## 비밀번호 일치 여부:" + truePw);
 			truePw = true;
-		}else {
-			System.out.println("## 비밀번호 일치 여부:"+truePw);
+		} else {
+			System.out.println("## 비밀번호 일치 여부:" + truePw);
 		}
-		return truePw+"";
+		return truePw + "";
 	}
-	
-
-	
 
 	/* 로그인 */
 	@ResponseBody
 	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw,
-			HttpSession session, Model model, HttpServletRequest request) {
+	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
+			Model model, HttpServletRequest request) {
 		System.out.println(" 로그인 아이디 비번 값 받기  " + "id:" + id + " pw:" + pw);
 		String forwardPath = "";
 		// String a= request.getSession().getServletContext().getRealPath("/");
@@ -189,12 +162,12 @@ public class UserController {
 				System.out.println(" 로 그 인 성 공");
 				session.setAttribute("id", id);
 				session.setAttribute("name", user.getName());
-				
+
 				session.setAttribute("sUserId", signInuser);
 				forwardPath = "true";
-				
+
 			} else {
-				
+
 				forwardPath = "false3";
 			}
 		} catch (UserNotFoundException e) {
@@ -208,92 +181,68 @@ public class UserController {
 			forwardPath = "false";
 		}
 		/*
-		 * if(user.getmRetire()=="off"){
-		 * System.out.println("## 비활성화된 계정으로 로그인 할 수 없음"); //forwardPath = 계정 활성화 창으로
-		 * 포워딩 }
+		 * if(user.getmRetire()=="off"){ System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
+		 * //forwardPath = 계정 활성화 창으로 포워딩 }
 		 */
 		return forwardPath;
 	}
-	
-	
-	/*로그아웃*/
-	@RequestMapping(value="/logout")
+
+	/* 로그아웃 */
+	@RequestMapping(value = "/logout")
 	public String sign_out_action(HttpSession session) {
 		System.out.println(" 로 그 아 웃 됨.");
 		session.invalidate();
 		return "/home";
 	}
-	
-	
-	/* 관리자 입장 검색,유저 목록 */ 
-	
+
+	/* 관리자 입장 검색,유저 목록 */
+
 	@RequestMapping(value = "/admin_cm")
 	public ModelAndView userList(@Param(value = "search") String search) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("##검색 기능 ->"+search);
-		if(search==null) {
+		System.out.println("##검색 기능 ->" + search);
+		if (search == null) {
 			List<User> userList = userService.UserList();
 			mv.addObject("userList", userList);
-		}else {
+		} else {
 			List<User> findUserList = userService.findUserList(search);
 			mv.addObject("userList", findUserList);
 		}
-		mv.setViewName("admin_cm"); 
+		mv.setViewName("admin_cm");
 		return mv;
-		
-	}
-	
-	
-	
-	
-	
 
-	//* 관리자 입장 회원 예약 목록 *
-	@RequestMapping(value = "/login")
-	public ModelAndView main() {
-		ModelAndView m = new ModelAndView();
-		List<User> userList = userService.userBookingList();
-
-		// m.addObject("data", userService.UserList());
-		m.addObject("list", userList);
-		m.setViewName("login");
-		System.out.println(userList);
-		return m;
 	}
-	
-	
-	//유저 자신의 정보 가져오기 
+
+	/*
+	 * 
+	 * //* 관리자 입장 회원 예약 목록 *
+	 * 
+	 * @RequestMapping(value = "/login") public ModelAndView main() { ModelAndView m
+	 * = new ModelAndView(); List<User> userList = userService.userBookingList();
+	 * 
+	 * // m.addObject("data", userService.UserList()); m.addObject("list",
+	 * userList); m.setViewName("login"); System.out.println(userList); return m; }
+	 * 
+	 */
+	// 유저 자신의 정보 보이는 페이지
 	@UserLoginCheck
-	@RequestMapping(value="/userInfo")
+	@RequestMapping(value = "/userInfo")
 	public ModelAndView userInfo(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		
-		
-		
-		
+
 		mv.setViewName("userInfo");
-		
+
 		return mv;
 	}
-	
-	
 
-	
-	
-	
-	
-	//회원상세정보조희 목록에서 클릭했을떄 
+	// 회원상세정보조희 목록에서 클릭했을떄
 	public String myInfo(String id, Model model) {
-		model.addAttribute("user",userService.userInfo(id));
-		
-		logger.info("클릭한 아이디:"+id);
-		
+		model.addAttribute("user", userService.selectById(id));
+
+		logger.info("클릭한 아이디:" + id);
+
 		return "userinfo";
 	}
-		
-	
-		
-		
 
 	// 회원가입
 	@ResponseBody
@@ -313,5 +262,4 @@ public class UserController {
 		return newUser + "";
 	}
 
-	
 }
