@@ -1,6 +1,6 @@
 package com.jts.gangstudy.repository;
 
-import java.util.List; 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,22 +9,15 @@ import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.domain.Booking;
 
 import com.jts.gangstudy.mapper.UserMapper;
- 
+
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 	@Autowired
 	private UserMapper userMapper;
 
 	@Override
-	public boolean insertUser(User user) { 
-		return userMapper.insertUser(user); 
-	}
-
-	//유저 자신의 정보
-	@Override
-	public User userInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertUser(User user) {
+		return userMapper.insertUser(user);
 	}
 
 	@Override
@@ -41,13 +34,13 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public boolean idDuplicateCheck(String id) {
-		
+
 		return userMapper.idDuplicateCheck(id);
 	}
 
 	@Override
 	public boolean pwMatch(String pw) {
-		
+
 		return userMapper.pwMatch(pw);
 	}
 
@@ -77,7 +70,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public List<User> UserList() {
-		
+
 		return userMapper.userList();
 	}
 
@@ -105,11 +98,10 @@ public class UserDaoImpl implements UserDao{
 		return userMapper.userBookingList();
 	}
 
-	
+	@Override
+	public User getUser(int user_no) {
+		// TODO Auto-generated method stub
+		return userMapper.getUser(user_no);
 	}
-	
-	
-	
 
-
-
+}
