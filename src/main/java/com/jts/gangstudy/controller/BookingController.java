@@ -1,13 +1,12 @@
 package com.jts.gangstudy.controller;
 
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
+import com.jts.gangstudy.service.UserService;
 
 
 @Controller
@@ -25,14 +25,30 @@ public class BookingController {
 	
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private UserService userService;
 	
 	@UserLoginCheck
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView bookMain() {
 		ModelAndView mav = new ModelAndView("booking/bookMain");
-		List<Booking> debug = bookingService.viewAll();
-		
-		mav.addObject("debug", debug);
+		List<Booking> books = bookingService.viewAll();
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<String> costs = new ArrayList<String>();
+		for(Booking book : books) {
+			int user_no = book.getUser_no();
+			User user = userService.getUser(user_no);
+			String user_name = user.getName();
+			names.add(user_name);
+		}
+		for(Booking book : books) {
+			String charge = Integer.toString(bookingService.calcCharge(book));
+			costs.add(charge);
+		}
+				
+		mav.addObject("books", books);
+		mav.addObject("names", names);
+		mav.addObject("costs", costs);
 		return mav;
 	}
 	
@@ -69,7 +85,7 @@ public class BookingController {
 			// do nothing.
 		} else {			// 수정 가능한 경우
 			int charge = bookingService.calcCharge(book);
-			List<String> dates = bookingService.makeDates();
+			ArrayList<String> dates = bookingService.makeDates();
 			
 			mav.addObject("dates", dates)
 			.addObject("book", book)
