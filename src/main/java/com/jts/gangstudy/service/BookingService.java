@@ -1,6 +1,6 @@
 package com.jts.gangstudy.service;
 
-import java.util.List;
+import java.util.*;
 
 import com.jts.gangstudy.domain.Booking;
 
@@ -16,7 +16,7 @@ public interface BookingService {
 	public List<Booking> viewDate(String date);
 	
 	// 선택 가능한 날짜 목록
-	public List<String> makeDates();
+	public ArrayList<String> makeDates();
 	// 예약 요금
 	public int calcCharge(Booking book);
 	

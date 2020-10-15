@@ -58,9 +58,9 @@ public class BookingServiceImpl implements BookingService{
 
 	// 선택 가능한 날짜 목록
 	@Override
-	public List<String> makeDates() {
+	public ArrayList<String> makeDates() {
 		SimpleDateFormat calFormat = new SimpleDateFormat("yyyy-MM-dd");
-		List<String> dates = new ArrayList<String>();
+		ArrayList<String> dates = new ArrayList<String>();
 		Calendar cal = Calendar.getInstance();
 		
 		for(int i = 0; i < dateSize; i++) {

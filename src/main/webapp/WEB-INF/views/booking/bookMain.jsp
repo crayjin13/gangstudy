@@ -8,16 +8,17 @@
 	</head>
 	<body>
 		전체 예약 목록 <br>
-		<c:forEach items="${debug}" var="debug">
+		<c:forEach items="${books}" var="book" varStatus="status">
 		    <tr>
-		        <td>예약 번호: <c:out value="${debug.book_no}"/></td>
-		        <td>사용자 번호: <c:out value="${debug.user_no}"/></td>
-		        <td>방 번호: <c:out value="${debug.room_no}"/></td>
-		        <td>시작시간: <c:out value="${debug.check_in}"/></td>
-		        <td>종료시간: <c:out value="${debug.check_out}"/></td>
-		        <td>인원: <c:out value="${debug.people}"/></td>
-		        <td>예약상태: <c:out value="${debug.state}"/></td>
-		        <td>신청일: <c:out value="${debug.request_dt}"/></td>
+		        <td>예약 번호: <c:out value="${book.book_no}"/></td>
+		        <td>사용자 이름: <c:out value="${names[status.index]}"/></td>
+		        <td>방 번호: <c:out value="${book.room_no}"/></td>
+		        <td>시작시간: <c:out value="${book.check_in}"/></td>
+		        <td>종료시간: <c:out value="${book.check_out}"/></td>
+		        <td>인원: <c:out value="${book.people}"/></td>
+		        <td>비용: <c:out value="${costs[status.index]}"/></td>
+		        <td>예약상태: <c:out value="${book.state}"/></td>
+		        <td>신청일: <c:out value="${book.request_dt}"/></td>
 		        <br>
 		    </tr>
 		</c:forEach>
