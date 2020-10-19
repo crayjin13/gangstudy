@@ -29,7 +29,7 @@ public interface UserMapper {
 	@Select("SELECT pw FROM USER_TB WHERE id=#{id} and email=#{email}")
 	public User findPw(@Param("id") String id, @Param("email") String email);
 
-	// 회원 아이디로 읽기
+	// 회원 아이디로 읽기 관리자입장 
 	@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE id=#{id}")
 	public User selectById(@Param("id") String id);
 

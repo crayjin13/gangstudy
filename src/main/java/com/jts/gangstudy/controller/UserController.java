@@ -10,6 +10,7 @@ import javax.websocket.Session;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,10 @@ import com.jts.gangstudy.service.UserService;
 
 @Controller
 public class UserController {
+	
+//	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
+	
 	@Autowired
 	private UserService userService;
 	/*
@@ -43,7 +48,11 @@ public class UserController {
 	public String login() {
 		return "login";
 	}
+	
+	
 
+	
+	
 	Logger logger;
 
 	// 비번찾기 페이지 이동
@@ -148,7 +157,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
-			Model model, HttpServletRequest request) {
+			Model model, HttpServletRequest request) throws Exception {
 		System.out.println(" 로그인 아이디 비번 값 받기  " + "id:" + id + " pw:" + pw);
 		String forwardPath = "";
 		// String a= request.getSession().getServletContext().getRealPath("/");
@@ -213,6 +222,30 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value = "/click_user", method = RequestMethod.GET)
+	public String userDetail(Model model, @RequestParam(value = "id") String id) throws Exception {
+		logger.info("회원 상세 정보 조회 진입.");
+		// 멤버 객체 생성
+		User user = new User();
+//		 getMember() 값을 memberVO 객체에 저장
+
+		user = userService.selectById(id);
+		// 모델 객체에 값 저장
+		model.addAttribute("user", user);
+
+		return "click_user";
+	}
+
+	// 회원상세정보조희 목록에서 클릭했을떄
+	@RequestMapping("user/view.do")
+	public String clickUser(String id, Model model) throws Exception {
+		model.addAttribute("user", userService.selectById(id));
+
+		logger.info("클릭한 아이디:" + id);
+
+		return "/click_user";
+	}
+
 	/*
 	 * 
 	 * //* 관리자 입장 회원 예약 목록 *
@@ -233,15 +266,6 @@ public class UserController {
 		mv.setViewName("userInfo");
 
 		return mv;
-	}
-
-	// 회원상세정보조희 목록에서 클릭했을떄
-	public String myInfo(String id, Model model) {
-		model.addAttribute("user", userService.selectById(id));
-
-		logger.info("클릭한 아이디:" + id);
-
-		return "userinfo";
 	}
 
 	// 회원가입

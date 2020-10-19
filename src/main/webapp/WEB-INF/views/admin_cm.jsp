@@ -25,6 +25,8 @@ td {
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+// 검색 기능
 	$(document).on('click', '#btnSearch', function(e) {
 		console.log(e);
 		e.preventDefault();
@@ -41,6 +43,7 @@ td {
 
 	});
 
+	// 검색 창에 기본글 적어놓고 클릭시 글 삭제
 	$(function() {
 		$(".searchUser").focus(function() {
 			$(this).val('');
@@ -50,6 +53,23 @@ td {
 			}
 		});
 	});
+	
+	
+	function fn_userView(id){
+
+		var url = "${pageContext.request.contextPath}/click_user";
+ 
+		url = url + "?id="+id;
+
+		location.href = url;
+
+	}
+
+	
+
+	
+	
+
 </script>
 
 </head>
@@ -63,22 +83,43 @@ td {
 			<button class="btnsearch" name="btnSearch" id="btnSearch">회원
 				검색</button>
 
-			<table>
-				<c:forEach items="${userList}" var="userList">
+			<table id="userList">
+				<thead>
 					<tr>
-						<td>유저 번호: <c:out value="${userList.user_no}" /></td>
-						<td>이름: <c:out value="${userList.name}" /></td>
-						<td>폰 번호: <c:out value="${userList.phone}" /></td>
-						<td>아이디: <c:out value="${userList.id}" /></td>
-						<td>이메일: <c:out value="${userList.email}" /></td>
-						<td>생년월일: <c:out value="${userList.bod}" /></td>
-						<td>성별: <c:out value="${userList.gender}" /></td>
-						<td>평점: <c:out value="${userList.rate}" /></td>
-						<td>포인트: <c:out value="${userList.points}" /></td>
-						<td>노트 : <c:out value="${userList.note}" /></td>
+						<th>유저 번호</th>
+						<th>이름</th>
+						<th>폰 번호</th>
+						<th>아이디</th>
+						<th>이메일</th>
+						<th>생년월일</th>
+						<th>성별</th>
+						<th>평점</th>
+						<th>포인트</th>
+						<th>노트</th>
+
 					</tr>
-					<br>
-				</c:forEach>
+
+				</thead>
+
+				<tbody>
+				<c:set var="userList" value="${userList }"/>
+					<c:forEach items="${userList}" varStatus="vs" var="userList">
+						<tr>
+							<td><c:out value="${userList.user_no}" /></td>
+							<td><a href="#" onClick="fn_userView(<c:out value="${userList.id}"/>)">
+							<c:out value="${userList.name}" /></a></td>
+							<td><c:out value="${userList.phone}" /></td>
+							<td><c:out value="${userList.id}" /></td>
+							<td><c:out value="${userList.email}" /></td>
+							<td><c:out value="${userList.bod}" /></td>
+							<td><c:out value="${userList.gender}" /></td>
+							<td><c:out value="${userList.rate}" /></td>
+							<td><c:out value="${userList.points}" /></td>
+							<td><c:out value="${userList.note}" /></td>
+						</tr>
+						<br>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 

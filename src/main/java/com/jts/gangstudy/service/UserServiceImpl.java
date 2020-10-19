@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User selectById(String id) {
+	public User selectById(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return userDao.selectById(id);
 	}
