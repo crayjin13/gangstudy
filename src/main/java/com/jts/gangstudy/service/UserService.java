@@ -29,7 +29,7 @@ public interface UserService {
 	boolean insertUser(User user);
 
 	// 회원 아이디로 검색
-	User selectById(String id);
+	User selectById(String id) throws Exception;
 
 	// 회원 수정
 	boolean updateUser(User user);
