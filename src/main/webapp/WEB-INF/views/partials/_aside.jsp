@@ -110,11 +110,11 @@
 							</li>
 							<!-- 메뉴안에 메뉴  -->
 							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
-							<a href="signin.jsp"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">로그인</span></a> 
+							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">로그인</span></a> 
 							</li>
 							
 							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
-							<a href="signup.jsp"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">회원가입</span></a> 
+							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">회원가입</span></a> 
 							</li>
 							
 							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">

@@ -24,7 +24,7 @@
 														<a href="index.html" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Briefcase.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Briefcase.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -42,7 +42,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Compiling.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -63,7 +63,7 @@
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Code/CMD.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/CMD.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -133,7 +133,7 @@
 														<a href="#" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-box.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Mail-box.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -196,7 +196,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Spam.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Spam.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -233,7 +233,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Briefcase.svg-->
+																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Briefcase.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -251,7 +251,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Crown.svg-->
+																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Crown.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<polygon points="0 0 24 0 24 24 0 24" />
@@ -269,7 +269,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Lock-overturning.svg-->
+																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Lock-overturning.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -287,7 +287,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Thumbtack.svg-->
+																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Thumbtack.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -305,7 +305,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Outgoing-box.svg-->
+																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Outgoing-box.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -496,7 +496,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Safe-chat.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Safe-chat.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -514,7 +514,7 @@
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Send.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Send.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -576,7 +576,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-at.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Mail-at.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -593,7 +593,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Chat-locked.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Chat-locked.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -614,7 +614,7 @@
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -692,7 +692,7 @@
 										<div class="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
 											<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-												<!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+												<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Search.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24" />
@@ -727,7 +727,7 @@
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
 											<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-												<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+												<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Compiling.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24" />
@@ -765,7 +765,7 @@
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
 											<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-												<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+												<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Media/Equalizer.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24" />
@@ -799,7 +799,7 @@
 									<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1" id="kt_quick_cart_toggle">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
+											<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Shopping/Cart3.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -820,7 +820,7 @@
 									<div class="btn btn-icon btn-clean btn-lg mr-1" id="kt_quick_panel_toggle">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+											<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -841,7 +841,7 @@
 									<div class="btn btn-icon btn-clean btn-lg mr-1" data-toggle="modal" data-target="#kt_chat_modal">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+											<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -863,7 +863,7 @@
 									<!--begin::Toggle-->
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-											<img class="h-20px w-20px rounded-sm" src="assets/media/svg/flags/226-united-states.svg" alt="" />
+											<img class="h-20px w-20px rounded-sm" src="resources/assets/media/svg/flags/226-united-states.svg" alt="" />
 										</div>
 									</div>
 

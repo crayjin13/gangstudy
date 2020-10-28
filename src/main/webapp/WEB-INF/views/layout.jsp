@@ -23,7 +23,9 @@
 
 						<jsp:include page="/WEB-INF/views/partials/_subheader/subheader-v1.jsp" flush="true"/> 
 
-						<jsp:include page="/WEB-INF/views/partials/_content.jsp" flush="true"/> 
+						<jsp:include page="/WEB-INF/views/partials/_content.jsp" flush="true"/>  
+						<%--  <jsp:include page="/WEB-INF/views/pages/base.jsp" flush="true"/>  --%>
+					
 					</div>
 
 					<!--end::Content-->
