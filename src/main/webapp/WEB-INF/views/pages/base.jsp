@@ -11,7 +11,7 @@ Purchase: https://1.envato.market/EA4JP
 Renew Support: https://1.envato.market/EA4JP
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-<html lang="en">
+<!--begin::Entry-->						<div class="d-flex flex-column-fluid">							<!--begin::Container-->							<div class="container">														
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
@@ -6216,8 +6216,8 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 				<!--end::Purchase-->
 			</div>
-			<!--end::Content-->
-		</div>
+			<!--end::Content-->			</div>
+		</div>		</div>
 		<!--end::Demo Panel-->
 		<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
 		<!--begin::Global Config(global config for global JS scripts)-->
@@ -6229,5 +6229,5 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="assets/js/scripts.bundle.js"></script>
 		<!--end::Global Theme Bundle-->
 	</body>
-	<!--end::Body-->
+	<!--end::Body-->	
 </html>
