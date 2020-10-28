@@ -36,4 +36,16 @@ public class HomeController {
 		return "index";
 	}
 	
+	
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public String signin() {
+		return "signin";
+	}
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup() {
+		return "signup";
+	}
+	
+	
+	
 }
