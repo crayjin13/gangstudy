@@ -10,7 +10,7 @@
 									<div class="d-flex align-items-baseline flex-wrap mr-5">
 
 										<!--begin::Page Title-->
-										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>
+										<h5 class="text-dark font-weight-bold my-1 mr-5">GangStudy</h5>
 
 										<!--end::Page Title-->
 									</div>

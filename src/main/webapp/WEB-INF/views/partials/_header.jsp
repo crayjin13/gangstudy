@@ -9,9 +9,9 @@
 							<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
 
 								<!--begin::Header Menu-->
-								<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+								<!-- <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
 
-									<!--begin::Header Nav-->
+									begin::Header Nav
 									<ul class="menu-nav">
 										<li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
 											<a href="javascript:;" class="menu-link menu-toggle">
@@ -24,7 +24,7 @@
 														<a href="index.html" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Briefcase.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Briefcase.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -33,7 +33,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">My Account</span>
 														</a>
@@ -42,7 +42,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Compiling.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Compiling.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -51,7 +51,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Task Manager</span>
 															<span class="menu-label">
@@ -63,7 +63,7 @@
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/CMD.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Code/CMD.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -71,7 +71,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Team Manager</span>
 															<i class="menu-arrow"></i>
@@ -133,7 +133,7 @@
 														<a href="#" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Mail-box.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Mail-box.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -142,7 +142,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Projects Manager</span>
 															<i class="menu-arrow"></i>
@@ -196,7 +196,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Spam.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Spam.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -204,7 +204,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Create New Project</span>
 														</a>
@@ -233,7 +233,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Briefcase.svg-->
+																			begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Briefcase.svg
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -242,7 +242,7 @@
 																				</g>
 																			</svg>
 
-																			<!--end::Svg Icon-->
+																			end::Svg Icon
 																		</span>
 																		<span class="menu-text">Latest Tasks</span>
 																	</a>
@@ -251,7 +251,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Crown.svg-->
+																			begin::Svg Icon | path:resources/assets/media/svg/icons/Clothes/Crown.svg
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<polygon points="0 0 24 0 24 24 0 24" />
@@ -260,7 +260,7 @@
 																				</g>
 																			</svg>
 
-																			<!--end::Svg Icon-->
+																			end::Svg Icon
 																		</span>
 																		<span class="menu-text">Pending Tasks</span>
 																	</a>
@@ -269,7 +269,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Lock-overturning.svg-->
+																			begin::Svg Icon | path:resources/assets/media/svg/icons/Code/Lock-overturning.svg
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -278,7 +278,7 @@
 																				</g>
 																			</svg>
 
-																			<!--end::Svg Icon-->
+																			end::Svg Icon
 																		</span>
 																		<span class="menu-text">Urgent Tasks</span>
 																	</a>
@@ -287,7 +287,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Thumbtack.svg-->
+																			begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Thumbtack.svg
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -296,7 +296,7 @@
 																				</g>
 																			</svg>
 
-																			<!--end::Svg Icon-->
+																			end::Svg Icon
 																		</span>
 																		<span class="menu-text">Completed Tasks</span>
 																	</a>
@@ -305,7 +305,7 @@
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
 
-																			<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Outgoing-box.svg-->
+																			begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Outgoing-box.svg
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -315,7 +315,7 @@
 																				</g>
 																			</svg>
 
-																			<!--end::Svg Icon-->
+																			end::Svg Icon
 																		</span>
 																		<span class="menu-text">Failed Tasks</span>
 																	</a>
@@ -496,7 +496,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Safe-chat.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Safe-chat.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -505,7 +505,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Reporting</span>
 														</a>
@@ -514,7 +514,7 @@
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Send.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Send.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -522,7 +522,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Social Presence</span>
 															<i class="menu-arrow"></i>
@@ -576,7 +576,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Mail-at.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Mail-at.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -584,7 +584,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Sales &amp; Marketing</span>
 														</a>
@@ -593,7 +593,7 @@
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Chat-locked.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Chat-locked.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -602,7 +602,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Campaigns</span>
 															<span class="menu-label">
@@ -614,7 +614,7 @@
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Group-chat.svg-->
+																begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Group-chat.svg
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -623,7 +623,7 @@
 																	</g>
 																</svg>
 
-																<!--end::Svg Icon-->
+																end::Svg Icon
 															</span>
 															<span class="menu-text">Deployment Center</span>
 															<i class="menu-arrow"></i>
@@ -673,8 +673,8 @@
 										</li>
 									</ul>
 
-									<!--end::Header Nav-->
-								</div>
+									end::Header Nav
+								</div> -->
 
 								<!--end::Header Menu-->
 							</div>

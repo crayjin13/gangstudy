@@ -11,7 +11,7 @@
 
 		<!--begin::Logo-->
 		<a href="index.jsp" class="brand-logo"> <img alt="Logo"
-			src="resources/images/logo.png" width="70" height="70" />
+			src="resources/images/logo.png" width="60" height="70" />
 		</a>
 
 		<!--end::Logo-->
