@@ -16,6 +16,9 @@
             if(session.getAttribute("sUserId")==null){ 
         %>
 		<button onclick="location.href='login'">로그인</button>
+		<button onclick="location.href='kakao/login'">
+			<img src="/resources/images/kakao_login_medium_narrow.png"></img>
+		</button>
 		<%
             // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
             }else{ 
