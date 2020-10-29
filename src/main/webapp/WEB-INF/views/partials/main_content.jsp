@@ -1,6 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<style>
+
+	</style>
+	
+	
+	
 <!--begin::Entry-->
 						
 
@@ -16,16 +22,17 @@
 				<div class="row">
 					<div class="col-md-8">
 						<!--begin::Card-->
-						<div class="card card-custom gutter-b example example-compact">
+						<div class="card card-custom gutter-b example example-compact"> 
 							<div class="card-header">
-								<h3 class="card-title">Input States</h3>
-								<div class="card-toolbar">
-									<div class="example-tools justify-content-center">
-										<span class="example-toggle" data-toggle="tooltip"
-											title="View code"></span> <span class="example-copy"
-											data-toggle="tooltip" title="Copy code"></span>
-									</div>
-								</div>
+								<h3 class="card-title"> <!-- 글쓰고 싶으면 여기에 --> </h3> 
+							 
+							<div style="text-align : left;"> 
+ 
+     <img src="resources/images/logo.png" width="120" height="140">
+
+</div>
+								
+	
 							</div>
 							<!--begin::Form-->
 							<form class="form">

@@ -24,7 +24,7 @@
 						<%@ include file="/WEB-INF/views/partials/_subheader/subheader-v1.jsp"%>
 
 
-						<%@ include file="/WEB-INF/views/partials/_content2.jsp"%> 
+						<%@ include file="/WEB-INF/views/partials/main_content.jsp"%> 
 					</div>
 
 					<!--end::Content-->
