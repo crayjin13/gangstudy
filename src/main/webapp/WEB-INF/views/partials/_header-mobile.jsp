@@ -4,12 +4,12 @@
 
 			<!--begin::Logo-->
 			<a href="index.html">
-				<img alt="Logo" src="resources/assets/media/logos/logo-dark.png" />
-			</a>
-
-			<!--end::Logo-->
-
-			<!--begin::Toolbar-->
+				<img alt="Logo" src="resources/assets/media/logos/logo-g1.png" /> 
+			</a> 
+ 
+			<!--end::Logo-->    
+ 
+			<!--begin::Toolbar--> 
 			<div class="d-flex align-items-center">
 
 				<!--begin::Aside Mobile Toggle-->

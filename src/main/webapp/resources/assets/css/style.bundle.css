@@ -31143,11 +31143,11 @@ i {
   box-shadow: 0px 0px 30px 0px rgba(82, 63, 105, 0.05);
   border: 0; }
   .card.card-custom > .card-header {
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: wrap;
-    min-height: 70px;
+    min-height: 70px; 
     padding-top: 0;
     padding-bottom: 0;
     background-color: transparent; }

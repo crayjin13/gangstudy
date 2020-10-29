@@ -120,6 +120,9 @@
 							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
 							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">예약정보</span></a> 
 							</li>
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
+							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text"> 공지사항</span></a> 
+							</li>
 							
 							
 						
