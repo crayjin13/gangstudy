@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
-	///////////////////////// °ü¸®ÀÚ ////////////////////////////////
+	///////////////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ////////////////////////////////
 	@Override
 	public List<User> UserList() {
 		// TODO Auto-generated method stub
@@ -40,15 +40,15 @@ public class UserServiceImpl implements UserService {
 
 	///////////////////////// *************************////////////////////////////////
 
-	// ·Î±×ÀÎ
+	// ï¿½Î±ï¿½ï¿½ï¿½
 	@Override
 	public User signIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
 		User user = userDao.selectById(id);
 		if (user == null) {
-			throw new UserNotFoundException(id + "´Â ¾ø´Â ¾ÆÀÌµð ÀÔ´Ï´Ù.");
+			throw new UserNotFoundException(id + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½.");
 		}
 		if (!user.isMatchPassword(pw)) {
-			throw new PasswordMismatchException("ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new PasswordMismatchException("ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 		}
 		return user;
 	}
@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService {
 	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
 		return userDao.insertUser(user);
+	}
+	@Override
+	public boolean insertKakaoUser(User user) {
+		// TODO Auto-generated method stub
+		return userDao.insertKakaoUser(user);
 	}
 
 	@Override

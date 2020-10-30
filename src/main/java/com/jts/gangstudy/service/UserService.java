@@ -7,14 +7,14 @@ import com.jts.gangstudy.domain.Booking;
 
 public interface UserService {
 
-	/*************** °ü¸®ÀÚ ÀÔÀå *********************/
+	/*************** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ *********************/
 
 	List<User> userBookingList();
 
-	// È¸¿ø ¸ñ·Ï
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 	List<User> UserList();
 
-	// È¸¿øµé °Ë»ö
+	// È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	List<User> findUserList(String search);
 	
 	
@@ -22,37 +22,39 @@ public interface UserService {
 
 	/*********************************************/
 
-	// ·Î±×ÀÎ
+	// ï¿½Î±ï¿½ï¿½ï¿½
 	User signIn(String id, String pw) throws Exception;
 
-	// È¸¿ø °¡ÀÔ Create
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Create
 	boolean insertUser(User user);
 
-	// È¸¿ø ¾ÆÀÌµð·Î °Ë»ö
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½Ë»ï¿½
 	User selectById(String id) throws Exception;
 
-	// È¸¿ø ¼öÁ¤
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	boolean updateUser(User user);
 
-	// ¾ÆÀÌµð Áßº¹Ã¼Å©
+	// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½Ã¼Å©
 	boolean idDuplicateCheck(String id);
 
-	// ºñ¹Ð¹øÈ£ ÀÏÄ¡¿©ºÎ Ã¼Å©
+	// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
 	boolean pwMatch(String pw);
 
-	// È¸¿ø Å»Åð
+	// È¸ï¿½ï¿½ Å»ï¿½ï¿½
 	boolean deleteUser(String id, String pw);
 
-	// ¾ÆÀÌµð Ã£±â
+	// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 	User findId(String email, String name);
 
-	// ºñ¹Ð¹øÈ£ Ã£±â
+	// ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 	User findPw(String id, String email);
 
-	// ÀÓ½Ãºñ¹Ð¹øÈ£ ¹ß±Þ
+	// ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ ï¿½ß±ï¿½
 	User temporaryPw(String pw, String id);
 
 	User User(String name, String phone, String id, String pw, String email, String bod, String gender, int rate,
 			String points, String note);
+
+	boolean insertKakaoUser(User kakaoUser);
 
 }

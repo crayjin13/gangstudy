@@ -109,6 +109,15 @@ public class User {
 
 
 
+	public User(String user_id, String pw, String nickname) {
+		this.id = user_id;
+		this.pw = pw;
+		this.name = nickname;
+	}
+
+
+
+
 	public Integer getUser_no() {
 		return user_no;
 	}
