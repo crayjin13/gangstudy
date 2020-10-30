@@ -29,7 +29,13 @@ public class User {
 		this.rate = rate;
 		this.booking = booking;
 	}
-
+	
+	public User(String id, String pw, String name) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.pw = pw;
+	}
 
 
 
