@@ -12,56 +12,53 @@ import com.jts.gangstudy.domain.Booking;
 
 public interface UserDao {
 
-	// *********** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ***************************//
+	// *********** °ü¸®ÀÚ ÀÔÀå ***************************//
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½
+	// È¸¿ø ¸ñ·Ï
 	List<User> UserList();
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	// È¸¿ø ¿¹¾à ¸ñ·Ï
 	List<User> userBookingList();
 
-	// È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	// È¸¿øµé °Ë»ö
 	List<User> findUserList(String search);
 
 	/*****************************************************/
 	
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
+	//À¯Àú ¾ò±â 
 	User getUser(int user_no);
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Create
+	// È¸¿ø °¡ÀÔ Create
 	boolean insertUser(User user);
-	
-	// for kakao signin
-	boolean insertKakaoUser(User user);
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½Ë»ï¿½
+	// È¸¿ø ¾ÆÀÌµð·Î °Ë»ö
 	User selectById(String id);
 
-	/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ (mRetire ON --> OFF) */
+	/* °èÁ¤ ºñÈ°¼ºÈ­ (mRetire ON --> OFF) */
 	boolean deleteMember(String pw, String email, String retire);
 
-	/* ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ (mRetire OFF --> ON) */
+	/* °èÁ¤ È°¼ºÈ­ (mRetire OFF --> ON) */
 	boolean accountOn(String mRetire, String mEmail);
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// È¸¿ø ¼öÁ¤
 	boolean updateUser(User user);
 
-	// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½Ã¼Å©
+	// ¾ÆÀÌµð Áßº¹Ã¼Å©
 	boolean idDuplicateCheck(String id);
 
-	// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+	// ºñ¹Ð¹øÈ£ ÀÏÄ¡¿©ºÎ Ã¼Å©
 	boolean pwMatch(String pw);
 
-	// È¸ï¿½ï¿½ Å»ï¿½ï¿½
+	// È¸¿ø Å»Åð
 	boolean deleteUser(String id, String pw);
 
-	// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
+	// ¾ÆÀÌµð Ã£±â
 	User findId(String email, String name);
 
-	// ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
+	// ºñ¹Ð¹øÈ£ Ã£±â
 	User findPw(String id, String email);
 
-	// ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ ï¿½ß±ï¿½
+	// ÀÓ½Ãºñ¹Ð¹øÈ£ ¹ß±Þ
 	User temporaryPw(String pw, String id);
 
 }

@@ -13,61 +13,57 @@ import com.jts.gangstudy.domain.User;
 @Mapper
 public interface UserMapper {
 	
-	// È¸ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ð±ï¿½
+	// È¸¿ø ¹øÈ£·Î ÀÐ±â
 		@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE user_no=#{user_no}")
 		public User getUser(@Param("user_no") int user_no);
 
-	// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
+	// ¾ÆÀÌµð Ã£±â
 	@Select("SELECT id FROM USER_TB WHERE email=#{email} and name=#{name}")
 	public User find_id(@Param("email") String email, @Param("name") String name);
 
-	// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
+	// ºñ¹Ð¹øÈ£ º¯°æ
 	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}")
 	public boolean update_pw(@Param("id") String id);
 
-	// ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
+	// ºñ¹Ð¹øÈ£ Ã£±â
 	@Select("SELECT pw FROM USER_TB WHERE id=#{id} and email=#{email}")
 	public User findPw(@Param("id") String id, @Param("email") String email);
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	// È¸¿ø ¾ÆÀÌµð·Î ÀÐ±â °ü¸®ÀÚÀÔÀå 
 	@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE id=#{id}")
 	public User selectById(@Param("id") String id);
 
-	// È¸ï¿½ï¿½Å»ï¿½ï¿½ @ï¿½ï¿½
+	// È¸¿øÅ»Åð @³¡
 	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#', bod='#' WHERE id=#{id} and pw=#{pw}")
 	public boolean delete(@Param("id") String id, @Param("pw") String pw);
 
-	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @ ï¿½ï¿½
+	// È¸¿ø Á¤º¸ ¼öÁ¤ @ ³¡
 	@Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender} WHERE id=#{id}")
 	public boolean updateUser(User user);
 
-	// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½Ã¼Å© @ï¿½ï¿½
+	// ¾ÆÀÌµð Áßº¹Ã¼Å© @³¡
 	@Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
 	public boolean idDuplicateCheck(String id);
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½(È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½) @ï¿½ï¿½
+	// ºñ¹øÀÏÄ¡ ¿©ºÎ(È¸¿øÁ¤º¸ ¼öÁ¤ÇÒ ‹š) @³¡
 	@Select("SELECT count(*) cnt FROM USER_TB WHERE pw=#{pw}")
 	public boolean pwMatch(@Param("pw") String pw);
 
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	// À¯Àú °Ë»ö
 	@Select("SELECT A.* FROM(SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE UPPER(ID) LIKE UPPER('%${search}%') or NAME LIKE '%${search}%' ORDER BY id ) A WHERE rownum <13")
 	public List<User> findUserList(@Param("search") String search);
 
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) @ï¿½ï¿½
+	// À¯Àú ¸ñ·Ï( °ü¸®ÀÚÀÔÀå) @³¡
 	@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE ID!='#' ORDER BY user_no")
 	public List<User> userList();
 
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+	// À¯Àú ¿¹¾à¸ñ·Ï (°ü¸®ÀÚ ÀÔÀå)
 	@Select("SELECT name, b.*, rate FROM BOOKING_TB b, USER_TB u WHERE ID!='#'")
 	public List<User> userBookingList();
 
-	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ @ï¿½ï¿½
+	// È¸¿ø°¡ÀÔ @³¡
 	@Insert("INSERT INTO USER_TB(name, phone, id, pw, email, bod, gender)"
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
 	public boolean insertUser(User user);
 
-	// for kakao signin
-	@Insert("INSERT INTO USER_TB(name, id, pw)"
-			+ " VALUES (#{name, jdbcType=VARCHAR},#{id},#{pw})")
-	public boolean insertKakaoUser(User user);
 }

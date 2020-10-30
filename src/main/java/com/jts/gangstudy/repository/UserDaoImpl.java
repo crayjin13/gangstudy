@@ -19,10 +19,6 @@ public class UserDaoImpl implements UserDao {
 	public boolean insertUser(User user) {
 		return userMapper.insertUser(user);
 	}
-	@Override
-	public boolean insertKakaoUser(User user) {
-		return userMapper.insertKakaoUser(user);
-	}
 
 	@Override
 	public User selectById(String id) {

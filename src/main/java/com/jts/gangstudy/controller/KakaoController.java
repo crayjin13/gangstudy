@@ -1,10 +1,22 @@
 package com.jts.gangstudy.controller;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +40,7 @@ public class KakaoController {
 		return mav;
 	}
 	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
-	public String oauth(HttpServletRequest request, HttpSession session) throws Exception {
+	public String oauth(HttpServletRequest request) {
 		String code = request.getParameter("code");
 		String error = request.getParameter("error");
 		
@@ -37,22 +49,23 @@ public class KakaoController {
 		} else {
 			String access_token = kakaoService.getAccessToken(code);
 	        KakaoProfile profile = kakaoService.getProfile(access_token);
-	        String user_id = profile.getId();
-			boolean isdup = userService.idDuplicateCheck(user_id);
+	        
+	        // 유저 정보를 가지고 DB에 일치하는 회원이 있는지 찾는다.
+			boolean isdup = userService.idDuplicateCheck(profile.getId());
+	        
 	       
-			if(isdup == false) {
-				User kakaoUser = new  User(user_id, "#", profile.getNickname());
-				userService.insertKakaoUser(kakaoUser);
+			if(isdup == true) { // 가입된 회원일 경우 로그인 처리함.
+//				userService.getUser(user_no)
+				// login
+		       
+			} else { // 가입되지 않은 회원일 경우 회원가입 페이지로 연결함.
+				// new account
+				// user 게정도 만들고 kakaoUser에도 id와 연동시켜 놓는다.
 		        // 회원가입 페이지는 카카오 계정 정보를 이용하여 데이터를 넣고, 나머지 정보만 입력하도록 해야 함. -> 어떤 정보가 필요한지?
-				// 가입 절차는 어떻게 처리할지? 가입 없이? 가입페이지 추가해서 정보 얻기?
+				// 가입 절차는 어떻게 처리할지?
 			}
-			// login
-			User user = userService.selectById(user_id);
-			session.setAttribute("id", user.getId());
-			session.setAttribute("name", user.getName());
-			session.setAttribute("sUserId", user);
 
-			return "redirect:/";
+			return "home";
 		}
 	}
 }

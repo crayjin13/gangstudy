@@ -105,9 +105,6 @@ public class BookingController {
 		Booking book = (Booking)session.getAttribute("book");
 		session.removeAttribute("book");
 		Booking preBook = bookingService.getUserWaitBooking(sUserId.getUser_no());
-		if(book.getCheck_in().equals(preBook.getCheck_in()) && book.getCheck_out().equals(preBook.getCheck_out())) {
-			return "sameDateTime";
-		}
 		bookingService.removeBook(preBook);
 		return bookingService.insertDB(book);
 	}
