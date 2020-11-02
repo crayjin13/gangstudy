@@ -10,7 +10,7 @@
 	<div class="brand flex-column-auto" id="kt_brand">
 
 		<!--begin::Logo-->
-		<a href="index.jsp" class="brand-logo"> <img alt="Logo"
+		<a href="/" class="brand-logo"> <img alt="Logo"
 			src="resources/images/logo.png" width="60" height="70" />
 		</a>
 
@@ -54,8 +54,8 @@
 			<!--begin::Menu Nav-->
 			<ul class="menu-nav">
 				<li class="menu-item menu-item-active" aria-haspopup="true"><a
-					href="index.jsp" class="menu-link"> <span
-						class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
+					href="/" class="menu-link"> <span class="svg-icon menu-icon">
+							<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
 								xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
 								height="24px" viewBox="0 0 24 24" version="1.1">
@@ -94,56 +94,67 @@
 									fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-					</span> <span class="menu-text"> Gang Students </span> <i class="menu-arrow"></i>
+					</span> <span class="menu-text"> Gang Students </span> <i
+						class="menu-arrow"></i>
 				</a>
 					<div class="menu-submenu">
 						<i class="menu-arrow"></i>
 						<ul class="menu-subnav">
 							<li class="menu-item menu-item-parent" aria-haspopup="true">
-							
-							
-							
-							
-								<span class="menu-link"> <span class="menu-text">로그인</span>
-								
+
+
+
+
+								<span class="menu-link"> <span class="menu-text">
+										Gang Students </span>
+
 							</span>
 							</li>
 							<!-- 메뉴안에 메뉴  -->
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
-							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">로그인</span></a> 
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+								data-menu-toggle="hover"><a href="signin"
+								class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+									<span class="menu-text font-weight-boldest font-size-h3 cafe24">로그인</span></a>
 							</li>
-							
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
-							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">회원가입</span></a> 
+
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+								data-menu-toggle="hover"><a href="javascript:;"
+								class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+									<span
+									class="menu-text  font-weight-boldest font-size-h3 cafe24">회원가입</span></a>
 							</li>
-							
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
-							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text">예약정보</span></a> 
+
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+								data-menu-toggle="hover"><a href="javascript:;"
+								class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+									<span class="menu-text font-weight-boldest font-size-h3 cafe24">예약정보</span></a>
 							</li>
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"data-menu-toggle="hover">
-							<a href="javascript:;"class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i> <span class="menu-text"> 공지사항</span></a> 
-							</li>
-							
-							
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-			<!-------------------------------  이 밑에 건들면 반응형웹 망가짐  ------------------- -->			
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+								data-menu-toggle="hover"><a href="javascript:;"
+								class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+									<span
+									class="menu-text font-weight-boldest  font-size-h3 cafe24">
+										공지사항</span></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<!-------------------------------  이 밑에 건들면 반응형웹 망가짐  ------------------- -->
 						</ul>
-					</div>
-					</li>
+					</div></li>
 			</ul>
 
 

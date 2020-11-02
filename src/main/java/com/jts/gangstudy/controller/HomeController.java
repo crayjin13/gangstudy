@@ -47,11 +47,11 @@ public class HomeController {
 	public String signup() {
 		return "pages/signup";
 	}
-	@RequestMapping(value = "base", method = RequestMethod.GET)
-	public String base() {
-		return "pages/base";
+	
+	
+	@RequestMapping(value = "forgot", method = RequestMethod.GET)
+	public String forgot() {
+		return "pages/forgot";
 	}
-	
-	
 	
 }
