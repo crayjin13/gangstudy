@@ -17,10 +17,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <html>
 
 <!--begin::Head-->
-
+<!-- 
 <head profile="http://www.w3.org/2005/10/profile">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
 
 
 
@@ -72,72 +72,16 @@ License: You must have a valid license purchased only from themeforest(the above
 </head>
 
 <!--end::Head-->
- 
+
 
 
 <!--begin::Body-->
-	<!--begin::Entry-->
-		<div class="d-flex flex-column-fluid">
-			<!--begin::Container-->
-			<div class="container">
-
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize page-loading">
-
-	<!-- 바디 시작  -->
 
 
+<body id="kt_body"
+	class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- 바디 끝  -->
+<script src="/js/cbpHorizontalMenu.min.js"></script>
 
 
 	<jsp:include page="/WEB-INF/views/layout.jsp" flush="true" />

@@ -46,17 +46,17 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "signin", method = RequestMethod.GET)
+	@RequestMapping(value = "gangstudy/signin", method = RequestMethod.GET)
 	public String signin() {
 		return "pages/signin";
 	}
-	@RequestMapping(value = "signup", method = RequestMethod.GET)
+	@RequestMapping(value = "gangstudy/signup", method = RequestMethod.GET)
 	public String signup() {
 		return "pages/signup";
 	}
 	
 	
-	@RequestMapping(value = "forgot", method = RequestMethod.GET)
+	@RequestMapping(value = "gangstudy/forgot", method = RequestMethod.GET)
 	public String forgot() {
 		return "pages/forgot";
 	}
