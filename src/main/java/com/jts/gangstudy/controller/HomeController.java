@@ -40,7 +40,25 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "pages/index";
+		
+	
+	}
+	
+	
+	@RequestMapping(value = "signin", method = RequestMethod.GET)
+	public String signin() {
+		return "pages/signin";
+	}
+	@RequestMapping(value = "signup", method = RequestMethod.GET)
+	public String signup() {
+		return "pages/signup";
+	}
+	
+	
+	@RequestMapping(value = "forgot", method = RequestMethod.GET)
+	public String forgot() {
+		return "pages/forgot";
 	}
 	
 }
