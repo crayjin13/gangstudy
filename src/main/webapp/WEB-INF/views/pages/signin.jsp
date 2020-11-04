@@ -72,7 +72,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="form-group">
 									<div class="d-flex justify-content-between mt-n5">
 										<label class="font-size-h6 font-weight-bolder cafe24 text-dark pt-5">비밀번호</label>
-										<a href="forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">아, 비밀번호 뭐였더라?</a>
+										<a href="gangstudy/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">아, 비밀번호 뭐였더라?</a>
 									</div>
 									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
 								</div>

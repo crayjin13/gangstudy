@@ -205,6 +205,16 @@ var KTLogin = function() {
 		    });
     }
 
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	var _handleFormForgot = function() {
 		var form = KTUtil.getById('kt_login_forgot_form');
 		var formSubmitUrl = KTUtil.attr(form, 'action');
@@ -219,6 +229,13 @@ var KTLogin = function() {
 		        form,
 		        {
 		            fields: {
+		            	id: {
+							validators: {
+								notEmpty: {
+									message: 'ID is required'
+								}
+							}
+						},
 						email: {
 							validators: {
 								notEmpty: {
@@ -265,6 +282,156 @@ var KTLogin = function() {
 		    });
     }
 
+	
+	/*
+	/ 비밀번호 유효성체크, 비밀번호 두개 같은지 체크  /
+
+	var pw = document.querySelector('#pw');
+	var pw2 = document.querySelector('#pw2');
+	var error = document.querySelectorAll('.error');
+	//pw.addEventListener("change", checkPw);
+	pw2.addEventListener("change", comparePw);
+	$("#name").focus(); 
+	// 비밀번호 재확인 
+	function comparePw() { 
+	    if(pw2.value === pw.value) {
+	       
+	        error[0].style.display = "none";
+	    } else if(pw2.value !== pw.value) {
+	       
+	        error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
+	        error[0].style.display = "block";
+	    } 
+
+	    if(pw2.value === "") {
+	        error[0].innerHTML = "필수 정보입니다.";
+	        error[0].style.display = "block";
+	    }     
+	}
+	*/
+///////////// 회원가입 유효성 검증 //////////////	
+	$(function() {
+		var pw = document.querySelector('#pw');
+		var pw2 = document.querySelector('#pw2');
+		var error = document.querySelectorAll('.error');
+		pw2.addEventListener("change", comparePw);
+		$("#name").focus();
+		
+		function comparePw() { 
+		    if(pw2.value === pw.value) {
+		       
+		        error[0].style.display = "none";
+		    } else if(pw2.value !== pw.value) {
+		       
+		        error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
+		        error[0].style.display = "block";
+		    } 
+
+		    if(pw2.value === "") {
+		        error[0].innerHTML = "필수 정보입니다.";
+		        error[0].style.display = "block";
+		    }
+		}
+		
+		$('#kt_login_signup_form').validate({
+			rules : {
+				name : {
+					required : true,
+					rangelength : [ 2, 10 ]
+				},
+
+				phone : {
+					required : true,
+					minlength : 9,
+					digits : true
+				},
+
+				id : {
+					required : true,
+					rangelength : [ 3, 12 ],
+					remote : {
+						url : "duplicate_check",
+						method : "GET",
+						type : "text",
+						data : {
+							id : function() {
+								return $('#id').val();
+							}
+						}
+					}
+				},
+
+				pw : {
+					required : true,
+					rangelength : [ 6, 20 ],
+
+				},
+				pw2 : {
+					required : true,
+					rangelength : [ 6, 20 ],
+
+				},
+				email : {
+					required : true,
+					email : true
+				},
+				gender :{
+					required : true,
+					rangelength :[1,1],
+				}
+			},
+			messages : {
+				id : {
+					required : "아이디를 입력해주세요",
+					rangelength : "아이디는 3글자 이상 12글자 이내 입니다",
+
+					remote : "{0}는 이미 존재하는 아이디입니다.",
+				},
+				pw : {
+					required : "비밀번호를 입력해주세요",
+					rangelength : "6~20글자 내외 영어 대소문자, 특수문자, 숫자 사용가능합니다."
+				},
+				name : {
+					required : "이름을 입력해주세요",
+					rangelength : "이름은 최소 2글자 이상 10글자 이내 입니다",
+				},
+				email : {
+					required : "이메일을 입력해주세요",
+					email : "올바른 형식이 아닙니다 ex) corona2020@naver.com"
+				},
+				phone : {
+					required : "휴대폰 번호를 입력해주세요",
+					digits : "-을 제외한 숫자만 입력해주세요",
+					minlength : "전화번호는 최소 9자리 이상입니다."
+				},
+				gender : {
+					required : "남성이면 M, 여성이면 F 를 입력해 주세요",
+					rangelength : "M 이나 F 만 입력해 주세요."
+				}
+
+			},
+			submitHandler : function() {
+				signUp_function();
+			},
+			errorClass : "error", 
+			validClass : "valid"
+		});
+
+	})
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	var _handleFormSignup = function() {
 		// Base elements
 		var wizardEl = KTUtil.getById('kt_login');
@@ -275,59 +442,11 @@ var KTLogin = function() {
 		if (!form) {
 			return;
 		}
-
-		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		// Step 1
-		validations.push(FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					fname: {
-						validators: {
-							notEmpty: {
-								message: 'First name is required'
-							}
-						}
-					},
-					lname: {
-						validators: {
-							notEmpty: {
-								message: 'Last Name is required'
-							}
-						}
-					},
-					phone: {
-						validators: {
-							notEmpty: {
-								message: 'Phone is required'
-							}
-						}
-					},
-					email: {
-						validators: {
-							notEmpty: {
-								message: 'Email is required'
-							},
-							emailAddress: {
-								message: 'The value is not a valid email address'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-
+		
+		
 		// Step 2
 		validations.push(FormValidation.formValidation(
-			form,
+			form,     
 			{
 				fields: {
 					address1: {
@@ -376,6 +495,73 @@ var KTLogin = function() {
 				}
 			}
 		));
+		
+		       
+		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+		// Step 1
+		validations.push(FormValidation.formValidation(
+			form,
+			{
+				
+				fields: {
+					name: {
+						validators: {
+							notEmpty: {
+								message: 'name is required'
+							}
+						}
+					},
+					pw: {
+						validators: {
+							notEmpty: {
+								message: 'pw is required'
+							}
+						}
+					},
+					pw2: {
+						validators: {
+							notEmpty: {
+								message: 'pw2 is required'
+							}
+						}
+					},
+					id: {
+						validators: {
+							notEmpty: {
+								message: 'ID is required'
+							}
+						}
+					},
+					phone: {
+						validators: {
+							notEmpty: {
+								message: 'Phone is required'
+							}
+						}
+					},
+					email: {
+						validators: {
+							notEmpty: {
+								message: 'Email is required'
+							},
+							emailAddress: {
+								message: 'The value is not a valid email address'
+							}
+						}
+					}
+				},
+				plugins: {
+					trigger: new FormValidation.plugins.Trigger(),
+					// Bootstrap Framework Integration
+					bootstrap: new FormValidation.plugins.Bootstrap({
+						//eleInvalidClass: '',
+						eleValidClass: '',
+					})
+				}
+			}
+		));
+
+		
 
 		// Step 3
 		validations.push(FormValidation.formValidation(
@@ -481,6 +667,8 @@ var KTLogin = function() {
 
 		// Validation before going to next page
 		wizardObj.on('change', function (wizard) {
+			
+			
 			if (wizard.getStep() > wizard.getNewStep()) {
 				return; // Skip if stepped back
 			}
@@ -520,35 +708,86 @@ var KTLogin = function() {
 
 		// Submit event
 		wizardObj.on('submit', function (wizard) {
-			Swal.fire({
-				text: "All is good! Please confirm the form submission.",
-				icon: "success",
-				showCancelButton: true,
-				buttonsStyling: false,
-				confirmButtonText: "Yes, submit!",
-				cancelButtonText: "No, cancel",
-				customClass: {
-					confirmButton: "btn font-weight-bold btn-primary",
-					cancelButton: "btn font-weight-bold btn-default"
-				}
-			}).then(function (result) {
-				if (result.value) {
-					form.submit(); // Submit form
-				} else if (result.dismiss === 'cancel') {
-					Swal.fire({
-						text: "Your form has not been submitted!.",
-						icon: "error",
-						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
-						customClass: {
-							confirmButton: "btn font-weight-bold btn-primary",
-						}
-					});
-				}
-			});
+			
+
+			if (wizard.getStep() < wizard.getNewStep()) {
+				return; // Skip if stepped back   "<" 신의한수 1스텝이랑 2스텝이랑 위치 변환후 유효성 고치고 나서 버튼 유효성이 여기에 답이있었음.
+			}
+
+			// Validate form before change wizard step
+			var validator = validations[wizard.getStep() - 1]; // get validator for currnt step
+
+			if (validator) {
+				validator.validate().then(function (status) {
+					if (status == 'Valid') {
+						form.submit();
+						//wizard.goTo(wizard.getNewStep());
+						location.href='/';
+						
+						
+						KTUtil.scrollTop();
+					}else {
+						Swal.fire({
+							text: "놓친 부분은 없는지 확인후, 다시 시도해주세요.",
+							icon: "error",
+							buttonsStyling: false,
+							confirmButtonText: "Ok, got it!",
+							customClass: {
+								confirmButton: "btn font-weight-bold btn-light"
+							}
+						}).then(function () {
+							KTUtil.scrollTop();
+						});
+					}          
+				});
+			}
+
+			return false;  // Do not change wizard step, further action will be handled by he validator
+			
+			
 		});
     }
 
+	
+/*	 이게 원본 submit 파일 , 나중에 기능 합칠떄 봐야할부분.
+	// Submit event
+	wizardObj.on('submit', function (wizard) {
+		Swal.fire({
+			text: "All is good! Please confirm the form submission.",
+			icon: "success",
+			showCancelButton: true,
+			buttonsStyling: false,
+			confirmButtonText: "Yes, submit!",
+			cancelButtonText: "No, cancel",
+			customClass: {
+				confirmButton: "btn font-weight-bold btn-primary",
+				cancelButton: "btn font-weight-bold btn-default"
+			}
+		}).then(function (result) {
+			if (result.value) {
+				form.submit(); // Submit form
+			} else if (result.dismiss === 'cancel') {
+				Swal.fire({
+					text: "Your form has not been submitted!.",
+					icon: "error",
+					buttonsStyling: false,
+					confirmButtonText: "Ok, got it!",
+					customClass: {
+						confirmButton: "btn font-weight-bold btn-primary",
+					}
+				});
+			}
+		});
+	});
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
     // Public Functions
     return {
         init: function() {

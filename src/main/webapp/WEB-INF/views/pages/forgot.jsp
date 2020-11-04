@@ -55,8 +55,8 @@ License: You must have a valid license purchased only from themeforest(the above
 							<form class="form" id="kt_login_forgot_form" action="">
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">
-									<h3 class="font-weight-bolder text-dark font-size-h2 cafe24 font-size-h1-lg"> 비밀번호 뭐였지?</h3>
-									<p class="text-muted font-weight-bold cafe24 font-size-h4"> 아 진짜, 내일은 절대 안까먹는다 </p>
+									<h3 class="font-weight-bolder text-dark font-size-h2 cafe24 font-size-h1-lg"> 비밀번호 찾기</h3>
+									<p class="text-muted font-weight-bold cafe24 font-size-h4"> 아이디와 이메일을 적어주세요 </p>
 								</div>
 								<!--end::Title-->
 								<!--begin::Form group-->
@@ -69,7 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Form group-->
 								<div class="form-group d-flex flex-wrap">
 									<button type="submit" id="kt_login_forgot_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-4">확인 </button>
-									<a href="signin" id="kt_login_forgot_cancel" class="btn btn-light-primary cafe24 font-weight-bolder font-size-h6 px-8 py-4 my-3">뒤로가기</a>
+									<a href="gangstudy/signin" id="kt_login_forgot_cancel" class="btn btn-light-primary cafe24 font-weight-bolder font-size-h6 px-8 py-4 my-3">뒤로가기</a>
 								</div>
 								<!--end::Form group-->
 							</form>

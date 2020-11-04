@@ -117,14 +117,14 @@ var KTLogin = function() {
 						username: {
 							validators: {
 								notEmpty: {
-									message: '아이디를 적어주세요'
+									message: 'Username is required'
 								}
 							}
 						},
 						password: {
 							validators: {
 								notEmpty: {
-									message: '비밀번호를 적어주세요'
+									message: 'Password is required'
 								}
 							}
 						}
@@ -142,7 +142,7 @@ var KTLogin = function() {
 		    )
 		    .on('core.form.valid', function() {
 				// Show loading state on button
-				KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "자..잠시만요 ");
+				KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "Please wait");
 
 				// Simulate Ajax request
 				setTimeout(function() {
@@ -192,10 +192,10 @@ var KTLogin = function() {
 		    })
 			.on('core.form.invalid', function() {
 				Swal.fire({
-					text: "다시 확인해볼까?",
+					text: "Sorry, looks like there are some errors detected, please try again.",
 					icon: "error",
 					buttonsStyling: false,
-					confirmButtonText: "옥~헤이",
+					confirmButtonText: "Ok, got it!",
 					customClass: {
 						confirmButton: "btn font-weight-bold btn-light-primary"
 					}
