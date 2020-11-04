@@ -23,16 +23,16 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Page Custom Styles(used by this page)-->
-		<link href="resources/assets/css/pages/login/login-3.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/css/pages/login/login-3.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Custom Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />		
+		<link href="webapp/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />		
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="resources/assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="webapp/resources/assets/media/logos/favicon.ico" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -47,7 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="d-flex flex-column-auto flex-column pt-15 px-30">
 						<!--begin::Aside header-->
 						<a href="#" class="login-logo py-6">
-							<img src="resources/assets/media/logos/logo-g1.png" class="max-h-70px" alt="" />
+							<img src="webapp/resources/assets/media/logos/logo-g1.png" class="max-h-70px" alt="" />
 						</a>   
 						<!--end::Aside header-->
 						<!--begin: Wizard Nav-->
@@ -100,7 +100,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="text-right d-flex justify-content-center">
 						<div class="top-signup text-right d-flex justify-content-end pt-5 pb-lg-0 pb-10">
 							<span class="font-weight-bold text-muted font-size-h4">문제가 있나요 ?</span>
-							<a href="javascript:;" class="font-weight-bolder text-primary font-size-h4 ml-2" id="kt_login_signup">문의하기</a>
+							<a href="http://pf.kakao.com/_xbgCJxb" class="font-weight-bolder text-primary font-size-h4 ml-2" id="kt_login_signup">문의하기</a>
 						</div>
 					</div>
 					<!--end::Top-->																														
