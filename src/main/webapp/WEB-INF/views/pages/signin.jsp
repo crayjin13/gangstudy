@@ -23,12 +23,12 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Page Custom Styles(used by this page)-->
-		<link href="resources/assets/css/pages/login/login-4.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/css/pages/login/login-4.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Custom Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
@@ -72,7 +72,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="form-group">
 									<div class="d-flex justify-content-between mt-n5">
 										<label class="font-size-h6 font-weight-bolder cafe24 text-dark pt-5">비밀번호</label>
-										<a href="gangstudy/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">아, 비밀번호 뭐였더라?</a>
+										<a href="/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">아, 비밀번호 뭐였더라?</a>
 									</div>
 									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
 								</div>

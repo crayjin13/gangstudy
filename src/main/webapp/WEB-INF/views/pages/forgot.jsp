@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../../">
 		<meta charset="utf-8" />
-		<title>Forgot Password | Keenthemes</title>
+		<title>Forgot Password | 갱스터디</title>
 		<meta name="description" content="Forgot password page example" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -23,12 +23,12 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Page Custom Styles(used by this page)-->
-		<link href="resources/assets/css/pages/login/login-4.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/css/pages/login/login-4.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Custom Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="webapp/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes--> 
