@@ -11,11 +11,19 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.jts.gangstudy.domain.KakaoProfile;
+import com.jts.gangstudy.domain.KakaoUser;
+import com.jts.gangstudy.mapper.KakaoMapper;
 
 @Service
 public class KakaoServiceImpl implements KakaoService {
+	
+	@Autowired
+	private KakaoMapper mapper;
+	
 	private final static String login = "https://kauth.kakao.com/oauth/authorize";		// Kakao 인가코드 요청 URI
 	private final static String token = "https://kauth.kakao.com/oauth/token";			// Kakao 토큰 요청 URI
 	private final static String profile = "https://kapi.kakao.com/v2/user/me";			// Kakao 사용자 정보 요청 URI
@@ -61,12 +69,12 @@ public class KakaoServiceImpl implements KakaoService {
 		        JSONObject jsonObject = new JSONObject(json);
 
 		        String access_token = jsonObject.getString("access_token");				// 사용자 액세스 토큰
-		        
+		        String refresh = jsonObject.getString("refresh_token");					// 사용자 리프레시 토큰 값
+		        System.out.println(refresh);
 		        /* 불필요한 정보
 		         * 
 		        String token_type = jsonObject.getString("token_type");					// 토큰 타입, bearer로 고정
 		        int expires = jsonObject.getInt("expires_in");							// 액세스 토큰 만료 시간(초)
-		        String refresh = jsonObject.getString("refresh_token");					// 사용자 리프레시 토큰 값
 		        int refresh_expires = jsonObject.getInt("refresh_token_expires_in");	// 리프레시 토큰 만료 시간(초)
 		        String scope = jsonObject.getString("scope");							// 인증된 사용자의 정보 조회 권한 범위. 범위가 여러 개일 경우, 공백으로 구분
 				*
@@ -119,5 +127,10 @@ public class KakaoServiceImpl implements KakaoService {
 			e1.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void insertKakaoUser(KakaoUser kakaoUser) {
+		mapper.insertKakaoUser(kakaoUser);
 	}
 }

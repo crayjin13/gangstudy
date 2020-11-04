@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jts.gangstudy.domain.KakaoProfile;
+import com.jts.gangstudy.domain.KakaoUser;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.KakaoService;
 import com.jts.gangstudy.service.UserService;
@@ -41,8 +42,9 @@ public class KakaoController {
 			boolean isdup = userService.idDuplicateCheck(user_id);
 	       
 			if(isdup == false) {
-				User kakaoUser = new  User(user_id, "#", profile.getNickname());
-				userService.insertKakaoUser(kakaoUser);
+				User user = new  User(user_id, "#", profile.getNickname());
+				userService.insertKakaoUser(user);
+				kakaoService.insertKakaoUser(new KakaoUser(user_id, access_token));
 		        // 회원가입 페이지는 카카오 계정 정보를 이용하여 데이터를 넣고, 나머지 정보만 입력하도록 해야 함. -> 어떤 정보가 필요한지?
 				// 가입 절차는 어떻게 처리할지? 가입 없이? 가입페이지 추가해서 정보 얻기?
 			}
