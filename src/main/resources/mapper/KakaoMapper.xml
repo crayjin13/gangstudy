@@ -1,0 +1,11 @@
+
+	
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jts.gangstudy.mapper.KakaoMapper">
+	<!-- 계정 추가 -->
+	<insert id="insertKakaoUser" parameterType="com.jts.gangstudy.domain.KakaoUser">
+	  INSERT INTO KakaoUser_TB
+	  (ID, REFRESH_TOKEN) VALUES
+	  (#{user_no}, #{refresh_token})
+	</insert>
+</mapper>
