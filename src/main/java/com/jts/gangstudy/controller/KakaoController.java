@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jts.gangstudy.domain.KakaoProfile;
 import com.jts.gangstudy.domain.KakaoUser;
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.service.KakaoPayService;
 import com.jts.gangstudy.service.KakaoService;
 import com.jts.gangstudy.service.UserService;
 
@@ -22,12 +23,15 @@ public class KakaoController {
 	private KakaoService kakaoService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private KakaoPayService kakaoPayService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("redirect:"+kakaoService.getLoginUrl());
 		return mav;
 	}
+
 	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
 	public String oauth(HttpServletRequest request, HttpSession session) throws Exception {
 		String code = request.getParameter("code");

@@ -17,13 +17,16 @@ public class PaymentController {
 	@Autowired
 	private KakaoPayService kakaoPayService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("serverTime", "/payment/test" );
 		return mav;
 	}
 	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
-	public String oauth(HttpServletRequest request, HttpSession session) {
-		return null;
+	public ModelAndView oauth(HttpServletRequest request, HttpSession session) {
+		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("serverTime", kakaoPayService.get() );
+		return mav;
 	}
 }
