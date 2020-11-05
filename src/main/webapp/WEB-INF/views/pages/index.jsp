@@ -42,29 +42,29 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!--begin::Page Vendors Styles(used by this page)-->
 <link
-	href="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css"
+	href="resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css"
 	rel="stylesheet" type="text/css" />
 
 <!--end::Page Vendors Styles-->
 
 <!--begin::Global Theme Styles(used by all pages)-->
-<link href="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.css"
+<link href="resources/assets/plugins/global/plugins.bundle.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.css"
+<link href="resources/assets/plugins/custom/prismjs/prismjs.bundle.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/assets/css/style.bundle.css" rel="stylesheet"
+<link href="resources/assets/css/style.bundle.css" rel="stylesheet"
 	type="text/css" />
 
 <!--end::Global Theme Styles-->
 
 <!--begin::Layout Themes(used by all pages)-->
-<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/base/light.css"
+<link href="resources/assets/css/themes/layout/header/base/light.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/menu/light.css"
+<link href="resources/assets/css/themes/layout/header/menu/light.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/light.css"
+<link href="resources/assets/css/themes/layout/brand/light.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/light.css"
+<link href="resources/assets/css/themes/layout/aside/light.css"
 	rel="stylesheet" type="text/css" />
 
 <!--end::Layout Themes-->
@@ -178,20 +178,20 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--end::Global Config-->
 
 	<!--begin::Global Theme Bundle(used by all pages)-->
-	<script src="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
+	<script src="resources/assets/plugins/global/plugins.bundle.js"></script>
+	<script src="resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+	<script src="resources/assets/js/scripts.bundle.js"></script>
 
 	<!--end::Global Theme Bundle-->
 
 	<!--begin::Page Vendors(used by this page)-->
 	<script
-		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+		src="resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
 	<!--end::Page Vendors-->
 
 	<!--begin::Page Scripts(used by this page)-->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/pages/widgets.js"></script>
+	<script src="resources/assets/js/pages/widgets.js"></script>
 
 	<!--end::Page Scripts-->
 </body>
