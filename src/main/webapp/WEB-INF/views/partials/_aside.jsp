@@ -124,14 +124,14 @@
 								</li>
 								<!-- 메뉴안에 메뉴  -->
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/signin"
+									data-menu-toggle="hover"><a href="${pageContext.request.requestURI} : /signin"
 									class="menu-link menu-toggle"> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">로그인</span></a>
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/signup"
+									data-menu-toggle="hover"><a href="${pageContext.request.requestURI} : /signup"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원가입</span></a>
