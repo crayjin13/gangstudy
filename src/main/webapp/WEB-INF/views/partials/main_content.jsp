@@ -34,7 +34,7 @@
 
 					
 
-							<img src="resources/images/logo.png" width="120" height="140">
+							<img src="${pageContext.request.contextPath}/resources/images/logo.png" width="120" height="140">
 
 					
  
@@ -47,7 +47,7 @@
 								<div class="form-group form-group-last">
 									<div class="alert alert-custom alert-default" role="alert">
 										<div class="alert-icon">
-											<span class="svg-icon svg-icon-primary svg-icon-xl"> <!--begin::Svg Icon | path:resources/assets/media/svg/icons/Tools/Compass.svg-->
+											<span class="svg-icon svg-icon-primary svg-icon-xl"> <!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Tools/Compass.svg-->
 												<span class="svg-icon svg-icon-primary svg-icon-2x">
 													<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display1.svg-->
 													<svg xmlns="http://www.w3.org/2000/svg"

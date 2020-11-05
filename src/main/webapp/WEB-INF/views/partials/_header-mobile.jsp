@@ -4,7 +4,7 @@
 
 			<!--begin::Logo-->
 			<a href="index.html">
-			<img alt="Logo" src="resources/assets/media/logos/logo-g1.png" /> 
+			<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" /> 
 			</a>
 
 			<!--end::Logo-->
