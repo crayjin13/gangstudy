@@ -105,18 +105,18 @@
 								<div class="form-group">
 
 
-									<button type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 ">이용하기
-									</button>
+									<input type="button"
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="location.href='gangstudy/remo-control'"  value="이용하기"/>
+								
 								</div>
 
-								<div class="form-group">
+								<div class="form-group">  
 
 									<button type="button"
 										onclick="location.href='http://pf.kakao.com/_xbgCJxb'"
 										class="btn btn-outline-warning btn-lg btn-block mr-2 ">
 										카톡으로 문의하기</button>
-								</div>
+								</div>  
 								<!--begin: Code-->
 								<div class="example-code mt-10">
 									<div class="example-highlight"></div>

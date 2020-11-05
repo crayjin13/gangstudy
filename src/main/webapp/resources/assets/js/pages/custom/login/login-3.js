@@ -315,6 +315,7 @@ var KTLogin = function() {
 		var pw2 = document.querySelector('#pw2');
 		var error = document.querySelectorAll('.error');
 		pw2.addEventListener("change", comparePw);
+		
 		$("#name").focus();
 		
 		function comparePw() { 
@@ -500,6 +501,7 @@ var KTLogin = function() {
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 		// Step 1
 		validations.push(FormValidation.formValidation(
+				
 			form,
 			{
 				
@@ -667,8 +669,31 @@ var KTLogin = function() {
 
 		// Validation before going to next page
 		wizardObj.on('change', function (wizard) {
+			  
 			
-			
+			if($('#c1').prop('checked') == false || $('#c2').prop('checked') == false){
+				
+				
+		    	
+		    	Swal.fire({
+					text: "필수 약관에 동의 하셔야 합니다.",
+					icon: "error",
+					buttonsStyling: false,
+					confirmButtonText: "다시 확인하기",
+					customClass: {
+						confirmButton: "btn font-weight-bold btn-light"     
+					}
+				}).then(function () {
+					KTUtil.scrollTop();
+				});      
+		    	return false;  // Do not change wizard step, further action will be handled by he validator
+			}else{
+				wizard.goTo(wizard.getNewStep());        
+			}   
+			  
+			 
+			     
+		/*	
 			if (wizard.getStep() > wizard.getNewStep()) {
 				return; // Skip if stepped back
 			}
@@ -699,7 +724,7 @@ var KTLogin = function() {
 			}
 
 			return false;  // Do not change wizard step, further action will be handled by he validator
-		});
+*/		});
 
 		// Change event
 		wizardObj.on('changed', function (wizard) {

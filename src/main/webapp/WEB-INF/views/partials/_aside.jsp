@@ -118,20 +118,20 @@
 									<span class="menu-link"> <span class="menu-text">
 											Gang Students </span>
 									</span>
-								
+								      
 							
 									
 								</li>
-								<!-- 메뉴안에 메뉴  -->
+								<!-- 메뉴안에 메뉴   ${pageContext.request.requestURI} : 이방법ㅇ 경로 망가졌음   -->
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="${pageContext.request.requestURI} : /signin"
+									data-menu-toggle="hover"><a href="gangstudy/signin"
 									class="menu-link menu-toggle"> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">로그인</span></a>
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="${pageContext.request.requestURI} : /signup"
+									data-menu-toggle="hover"><a href="gangstudy/signup"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원가입</span></a>
