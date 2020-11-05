@@ -23,16 +23,16 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Page Custom Styles(used by this page)-->
-		<link href="webapp/resources/assets/css/pages/login/login-4.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/pages/login/login-4.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Custom Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="webapp/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="webapp/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="webapp/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="resources/assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/favicon.ico" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -47,8 +47,8 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo--> 
 						<a href="#" class="login-logo pb-xl-20 pb-15">
-						<img src="resources/assets/media/logos/logo-g1.png" width="100"  alt="" />
-						<!-- 갱스터디 그림로고 	<img src="resources/images/logo.png" width="200"  alt="" /> -->
+						<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" width="100"  alt="" />
+						<!-- 갱스터디 그림로고 	<img src="${pageContext.request.contextPath}/resources/images/logo.png" width="200"  alt="" /> -->
 						</a>
 						<!--end::Logo-->
 						<!--begin::Signin-->
@@ -82,7 +82,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-3">로그인 </button>
 									<a href="#" class="btn btn-text-warning btn-hover-light-warning font-weight-bold mr-2 cafe24 font-size-h3">카카오 로그인 </a>									   
 									<!--  <span class="svg-icon svg-icon-md">
-										begin::Svg Icon | path:resources/assets/media/svg/social-icons/google.svg
+										begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/social-icons/google.svg
 										 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 											<path d="M19.9895 10.1871C19.9895 9.36767 19.9214 8.76973 19.7742 8.14966H10.1992V11.848H15.8195C15.7062 12.7671 15.0943 14.1512 13.7346 15.0813L13.7155 15.2051L16.7429 17.4969L16.9527 17.5174C18.879 15.7789 19.9895 13.221 19.9895 10.1871Z" fill="#4285F4" />
 											<path d="M10.1993 19.9313C12.9527 19.9313 15.2643 19.0454 16.9527 17.5174L13.7346 15.0813C12.8734 15.6682 11.7176 16.0779 10.1993 16.0779C7.50243 16.0779 5.21352 14.3395 4.39759 11.9366L4.27799 11.9466L1.13003 14.3273L1.08887 14.4391C2.76588 17.6945 6.21061 19.9313 10.1993 19.9313Z" fill="#34A853" />
@@ -102,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>  
 				<!--begin::Content-->
 				<!--begin::Aside-->
-				<div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right" style="background-image: url(resources/images/Kingsaejong.png);>
+				<div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right" style="background-image: url(${pageContext.request.contextPath}/resources/images/Kingsaejong.png);>
 					<div class="login-conteiner bgi-no-repeat bgi-position-x-right bgi-position-y-bottom" ">
 						<!--begin::Aside title-->
 						<h3 class="pt-lg-40 pl-lg-20 pb-lg-0 pl-10 py-20 m-0 d-flex justify-content-lg-start font-weight-boldest cafe24 display5 display1-lg text-black" >새해는
@@ -121,12 +121,12 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#1BC5BD", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#6993FF", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#1BC5BD", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#E1E9FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
 		<!--end::Global Config-->
 		<!--begin::Global Theme Bundle(used by all pages)-->
-		<script src="resources/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-		<script src="resources/assets/js/scripts.bundle.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="resources/assets/js/pages/custom/login/login-4.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/custom/login/login-4.js"></script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

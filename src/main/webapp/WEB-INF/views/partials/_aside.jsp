@@ -24,7 +24,7 @@
 
 			<!--begin::Logo-->
 			<a href="/" class="brand-logo"> <img alt="Logo"
-				src="resources/images/logo.png" width="60" height="70" />
+				src="${pageContext.request.contextPath}/resources/images/logo.png" width="60" height="70" />
 			</a>
 
 			<!--end::Logo-->

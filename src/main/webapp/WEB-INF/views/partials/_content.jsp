@@ -105,7 +105,7 @@
 														<div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
 															<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Media/Equalizer.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Media/Equalizer.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -123,7 +123,7 @@
 														<div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
 															<span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Add-user.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Add-user.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<polygon points="0 0 24 0 24 24 0 24" />
@@ -145,7 +145,7 @@
 														<div class="col bg-light-danger px-6 py-8 rounded-xl mr-7">
 															<span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Design/Layers.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Design/Layers.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<polygon points="0 0 24 0 24 24 0 24" />
@@ -161,7 +161,7 @@
 														<div class="col bg-light-success px-6 py-8 rounded-xl">
 															<span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Urgent-mail.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Urgent-mail.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -493,7 +493,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-xl svg-icon-success">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -533,7 +533,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Group.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<polygon points="0 0 24 0 24 24 0 24" />
@@ -671,7 +671,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-xl svg-icon-primary">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Home/Library.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Library.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -706,7 +706,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-lg svg-icon-warning">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -741,7 +741,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-lg svg-icon-success">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Group-chat.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -776,7 +776,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-lg svg-icon-danger">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Attachment2.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Attachment2.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -813,7 +813,7 @@
 														<span class="symbol-label">
 															<span class="svg-icon svg-icon-lg svg-icon-info">
 
-																<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Shield-user.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Shield-user.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -904,7 +904,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -929,7 +929,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -944,7 +944,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -959,7 +959,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -977,7 +977,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1002,7 +1002,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1017,7 +1017,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1032,7 +1032,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1050,7 +1050,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1075,7 +1075,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1090,7 +1090,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1105,7 +1105,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1123,7 +1123,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light mr-1">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1148,7 +1148,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1163,7 +1163,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1178,7 +1178,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1196,7 +1196,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1221,7 +1221,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1236,7 +1236,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1251,7 +1251,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1295,7 +1295,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1320,7 +1320,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1335,7 +1335,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1350,7 +1350,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1368,7 +1368,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1393,7 +1393,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1408,7 +1408,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1423,7 +1423,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1441,7 +1441,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1466,7 +1466,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1481,7 +1481,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1496,7 +1496,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1514,7 +1514,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light mr-1">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1539,7 +1539,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1554,7 +1554,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1569,7 +1569,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1587,7 +1587,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1612,7 +1612,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1627,7 +1627,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1642,7 +1642,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1686,7 +1686,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light mr-1">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1711,7 +1711,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1726,7 +1726,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1741,7 +1741,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1759,7 +1759,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1784,7 +1784,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1799,7 +1799,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1814,7 +1814,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1832,7 +1832,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1857,7 +1857,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1872,7 +1872,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1887,7 +1887,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1905,7 +1905,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -1930,7 +1930,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1945,7 +1945,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1960,7 +1960,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -1978,7 +1978,7 @@
 																		<td class="pl-0 py-4">
 																			<div class="symbol symbol-50 symbol-light">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
 																				</span>
 																			</div>
 																		</td>
@@ -2003,7 +2003,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Settings-1.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -2018,7 +2018,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/Communication/Write.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -2033,7 +2033,7 @@
 																			<a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
 																				<span class="svg-icon svg-icon-md svg-icon-primary">
 
-																					<!--begin::Svg Icon | path:resources/assets/media/svg/icons/General/Trash.svg-->
+																					<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Trash.svg-->
 																					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																							<rect x="0" y="0" width="24" height="24" />
@@ -2148,7 +2148,7 @@
 													<!--begin::Symbol-->
 													<div class="symbol symbol-40 symbol-light-success mr-5">
 														<span class="symbol-label">
-															<img src="resources/assets/media/svg/avatars/009-boy-4.svg" class="h-75 align-self-end" alt="" />
+															<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/009-boy-4.svg" class="h-75 align-self-end" alt="" />
 														</span>
 													</div>
 
@@ -2237,7 +2237,7 @@
 													<!--begin::Symbol-->
 													<div class="symbol symbol-40 symbol-light-success mr-5">
 														<span class="symbol-label">
-															<img src="resources/assets/media/svg/avatars/006-girl-3.svg" class="h-75 align-self-end" alt="" />
+															<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/006-girl-3.svg" class="h-75 align-self-end" alt="" />
 														</span>
 													</div>
 
@@ -2326,7 +2326,7 @@
 													<!--begin::Symbol-->
 													<div class="symbol symbol-40 symbol-light-success mr-5">
 														<span class="symbol-label">
-															<img src="resources/assets/media/svg/avatars/011-boy-5.svg" class="h-75 align-self-end" alt="" />
+															<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/011-boy-5.svg" class="h-75 align-self-end" alt="" />
 														</span>
 													</div>
 
@@ -2415,7 +2415,7 @@
 													<!--begin::Symbol-->
 													<div class="symbol symbol-40 symbol-light-success mr-5">
 														<span class="symbol-label">
-															<img src="resources/assets/media/svg/avatars/015-boy-6.svg" class="h-75 align-self-end" alt="" />
+															<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/015-boy-6.svg" class="h-75 align-self-end" alt="" />
 														</span>
 													</div>
 
@@ -2504,7 +2504,7 @@
 													<!--begin::Symbol-->
 													<div class="symbol symbol-40 symbol-light-success mr-5">
 														<span class="symbol-label">
-															<img src="resources/assets/media/svg/avatars/016-boy-7.svg" class="h-75 align-self-end" alt="" />
+															<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/016-boy-7.svg" class="h-75 align-self-end" alt="" />
 														</span>
 													</div>
 
@@ -3251,7 +3251,7 @@
 														<!--begin::Symbol-->
 														<div class="symbol symbol-45 symbol-light mr-5">
 															<span class="symbol-label">
-																<img src="resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+																<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
 															</span>
 														</div>
 
@@ -3285,7 +3285,7 @@
 														<!--begin::Symbol-->
 														<div class="symbol symbol-45 symbol-light mr-5">
 															<span class="symbol-label">
-																<img src="resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
+																<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
 															</span>
 														</div>
 
@@ -3319,7 +3319,7 @@
 														<!--begin::Symbol-->
 														<div class="symbol symbol-45 symbol-light mr-5">
 															<span class="symbol-label">
-																<img src="resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
+																<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
 															</span>
 														</div>
 
@@ -3522,7 +3522,7 @@
 																		<div class="d-flex align-items-center">
 																			<div class="symbol symbol-50 symbol-light mr-4">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt="" />
 																				</span>
 																			</div>
 																			<div>
@@ -3544,7 +3544,7 @@
 																		<span class="text-muted font-weight-bold">Web, UI/UX Design</span>
 																	</td>
 																	<td>
-																		<img src="resources/assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
+																		<img src="${pageContext.request.contextPath}/resources/assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
 																		<span class="text-muted font-weight-bold d-block font-size-sm">Best Rated</span>
 																	</td>
 																	<td class="pr-0 text-right">
@@ -3556,7 +3556,7 @@
 																		<div class="d-flex align-items-center">
 																			<div class="symbol symbol-50 symbol-light mr-4">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/avatars/018-girl-9.svg" class="h-75 align-self-end" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/018-girl-9.svg" class="h-75 align-self-end" alt="" />
 																				</span>
 																			</div>
 																			<div>
@@ -3578,7 +3578,7 @@
 																		<span class="text-muted font-weight-bold">Houses &amp; Hotels</span>
 																	</td>
 																	<td>
-																		<img src="resources/assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
+																		<img src="${pageContext.request.contextPath}/resources/assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
 																		<span class="text-muted font-weight-bold d-block font-size-sm">Above Avarage</span>
 																	</td>
 																	<td class="pr-0 text-right">
@@ -3590,7 +3590,7 @@
 																		<div class="d-flex align-items-center">
 																			<div class="symbol symbol-50 symbol-light mr-4">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/avatars/047-girl-25.svg" class="h-75 align-self-end" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/047-girl-25.svg" class="h-75 align-self-end" alt="" />
 																				</span>
 																			</div>
 																			<div>
@@ -3612,7 +3612,7 @@
 																		<span class="text-muted font-weight-bold">Paid</span>
 																	</td>
 																	<td>
-																		<img src="resources/assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
+																		<img src="${pageContext.request.contextPath}/resources/assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
 																		<span class="text-muted font-weight-bold d-block font-size-sm">Best Rated</span>
 																	</td>
 																	<td class="pr-0 text-right">
@@ -3624,7 +3624,7 @@
 																		<div class="d-flex align-items-center">
 																			<div class="symbol symbol-50 symbol-light mr-4">
 																				<span class="symbol-label">
-																					<img src="resources/assets/media/svg/avatars/014-girl-7.svg" class="h-75 align-self-end" alt="" />
+																					<img src="${pageContext.request.contextPath}/resources/assets/media/svg/avatars/014-girl-7.svg" class="h-75 align-self-end" alt="" />
 																				</span>
 																			</div>
 																			<div>
@@ -3646,7 +3646,7 @@
 																		<span class="text-muted font-weight-bold">Insurance</span>
 																	</td>
 																	<td>
-																		<img src="resources/assets/media/logos/stars.png" style="width: 5.5rem" alt="" />
+																		<img src="${pageContext.request.contextPath}/resources/assets/media/logos/stars.png" style="width: 5.5rem" alt="" />
 																		<span class="text-muted font-weight-bold d-block font-size-sm">Avarage</span>
 																	</td>
 																	<td class="pr-0 text-right">
