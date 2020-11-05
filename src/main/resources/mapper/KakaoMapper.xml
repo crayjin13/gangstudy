@@ -5,7 +5,7 @@
 	<!-- 계정 추가 -->
 	<insert id="insertKakaoUser" parameterType="com.jts.gangstudy.domain.KakaoUser">
 	  INSERT INTO KakaoUser_TB
-	  (ID, REFRESH_TOKEN) VALUES
-	  (#{user_no}, #{refresh_token})
+	  (USER_NO, KAKAO_ID) VALUES
+	  (#{user_no}, #{id})
 	</insert>
 </mapper>
