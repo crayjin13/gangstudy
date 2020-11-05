@@ -66,7 +66,7 @@ public interface UserMapper {
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
 	public boolean insertUser(User user);
 	
-	// ȸ������ @��
+	// legacy
 	@Insert("INSERT INTO USER_TB(name, id, pw)"
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{id},#{pw})")
 	public boolean insertKakaoUser(User user);

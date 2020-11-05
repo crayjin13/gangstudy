@@ -3,6 +3,9 @@ package com.jts.gangstudy.service;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -12,25 +15,32 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.jts.gangstudy.domain.KakaoProfile;
 import com.jts.gangstudy.domain.KakaoUser;
+import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.mapper.KakaoMapper;
 
 @Service
+@PropertySource("classpath:config.properties")
 public class KakaoServiceImpl implements KakaoService {
 	
 	@Autowired
 	private KakaoMapper mapper;
-	
-	private final static String login = "https://kauth.kakao.com/oauth/authorize";		// Kakao 인가코드 요청 URI
-	private final static String token = "https://kauth.kakao.com/oauth/token";			// Kakao 토큰 요청 URI
-	private final static String profile = "https://kapi.kakao.com/v2/user/me";			// Kakao 사용자 정보 요청 URI
-	
-	private final static String redirect = "http://localhost:8080/kakao/oauth";			// 인가 코드가 리다이렉트될 URI
-	private final static String client_id = "f740ab2294a7a6569c89717bdf837231";			// 앱 생성 시 발급 받은 REST API 키
 
+    @Value("${kakao.login}")
+	private String login;			// Kakao 인가코드 요청 URI
+    @Value("${kakao.token}")
+	private String token;			// Kakao 토큰 요청 URI
+    @Value("${kakao.profile}")
+	private String profile;			// Kakao 사용자 정보 요청 URI
+	
+    @Value("${kakao.restapi_key}")
+	private String client_id;			// 앱 생성 시 발급 받은 REST API 키
+    
+	private final static String redirect = "http://localhost:8080/kakao/oauth";			// 인가 코드가 리다이렉트될 URI
 
 	@Override
 	public String getLoginUrl() {
@@ -94,7 +104,7 @@ public class KakaoServiceImpl implements KakaoService {
 
     // access_token을 통해 카카오 유저 정보를 얻는다.
 	@Override
-	public KakaoProfile getProfile(String access_token) {
+	public User getProfile(String access_token) {
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 	        URI uri = new URI(profile);
 	        uri = new URIBuilder(uri).build();
@@ -105,19 +115,8 @@ public class KakaoServiceImpl implements KakaoService {
         
 			try (CloseableHttpResponse response = httpClient.execute(httpPost)){
 		        String json = EntityUtils.toString(response.getEntity());
-		        JSONObject jsonObject = new JSONObject(json);
-		        
-		        Long id = jsonObject.getLong("id");										// 회원번호
-		        JSONObject properties = jsonObject.getJSONObject("properties");			// 추가 정보
-		        
-		        /* 불필요한 정보
-		         * 
-		        String connected_at = jsonObject.getString("connected_at");				// 서비스에 연결 완료된 시각, UTC
-		        JSONObject kakao_account = jsonObject.getJSONObject("kakao_account");	// 카카오계정 정보
-		        *
-		        */
-		        
-		        return new KakaoProfile(id.toString(), properties);
+		        User user = parseProfile(new JSONObject(json));
+		        return user;
 			}
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -132,5 +131,44 @@ public class KakaoServiceImpl implements KakaoService {
 	@Override
 	public void insertKakaoUser(KakaoUser kakaoUser) {
 		mapper.insertKakaoUser(kakaoUser);
+	}
+	
+	public User parseProfile(JSONObject object) {
+		// id
+		Long long_id = object.getLong("id");
+		String id = long_id.toString();
+		
+		// properties
+		JSONObject kakao_account = object.getJSONObject("kakao_account");
+		
+		// gender
+		String gender = kakao_account.getString("gender").equals("male") ? "M" : "F";
+		
+		// bod
+		String birthdate = kakao_account.getString("birthyear") + kakao_account.getString("birthday");
+		SimpleDateFormat kakaoformat = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat dbformat = new SimpleDateFormat("yy/MM/dd");
+		try {
+			Date date = kakaoformat.parse(birthdate);
+			birthdate = dbformat.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		// phone_number
+		String phone_number = kakao_account.getString("phone_number");
+		if(phone_number.startsWith("+82")){
+			phone_number = phone_number.replace("+82 ", "0");
+		}
+		phone_number = phone_number.replaceAll("[^0-9]", "");
+		
+		// name(nickname)
+		String name = null;
+		JSONObject profile = kakao_account.getJSONObject("profile");
+		if(profile.has("nickname")) {
+			name = profile.getString("nickname");
+		}
+		
+		return new User(name, phone_number, id, "#", "", birthdate, gender);
 	}
 }

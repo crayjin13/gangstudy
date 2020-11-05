@@ -1,19 +1,21 @@
 package com.jts.gangstudy.domain;
 
 public class KakaoUser {
+	private Integer user_no;
 	private String id;
-	private String refresh_token;
 
-	public KakaoUser(String id, String refresh_token) {
+	public KakaoUser(Integer user_no, String id) {
 		super();
+		this.user_no = user_no;
 		this.id = id;
-		this.refresh_token = refresh_token;
+	}
+	
+	public Integer getUser_no() {
+		return user_no;
 	}
 
 	public String getId() {
 		return id;
 	}
-	public String getToken() {
-		return refresh_token;
-	}
+
 }
