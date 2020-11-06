@@ -101,16 +101,18 @@ var KTKBootstrapTouchspin = function() {
     // Private functions
     var demos = function() {
         // minimum setup
+    	 
         $('#kt_touchspin_1, #kt_touchspin_2_1').TouchSpin({
             buttondown_class: 'btn btn-secondary',
             buttonup_class: 'btn btn-secondary',
 
             min: 0,
             max: 100,
-            step: 0.1,
+            step: 0.1,  
             decimals: 2,
             boostat: 5,
             maxboostedstep: 10,
+            
         });
 
         // with prefix
@@ -134,7 +136,7 @@ var KTKBootstrapTouchspin = function() {
             max: 1000000000,
             stepinterval: 50,
             maxboostedstep: 10000000,
-            postfix: '$'
+            postfix: '℃'
         });
 
         // vertical buttons with custom icons:
