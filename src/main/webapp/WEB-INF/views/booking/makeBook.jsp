@@ -9,7 +9,7 @@
 	<body>
 		예약 신청 페이지
 		<hr>
-		<form action="/booking/check" method="GET">
+		<form action="${pageContext.request.contextPath}/booking/check" method="GET">
 			인원 :
 			<select name="people">
 				<option value="1">1</option>

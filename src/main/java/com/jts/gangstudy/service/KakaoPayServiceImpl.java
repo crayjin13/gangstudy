@@ -46,7 +46,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	private final static String tax_free_amount = "100";						// 상품 비과세 금액
 	private final static String approval_url = "http://localhost:8080/app";		// 결제 성공 시 redirect url, 최대 255자
 	private final static String cancel_url = "http://localhost:8080/can";		// 결제 취소 시 redirect url, 최대 255자
-	private final static String fail_url = "http://localhost:8080/fail";		// 상품 비과세 금액
+	private final static String fail_url = "http://localhost:8080/fail";		// 결제 실패 시 redirect url, 최대 255자
 	
 	// 선택 요구사항
 	private final static String cid_secret = "fqwrqrqwf";						// 가맹점 코드 인증키, 24자, 숫자와 영문 소문자 조합

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
+import com.jts.gangstudy.service.KakaoPayService;
 import com.jts.gangstudy.service.UserService;
 
 
@@ -27,7 +28,10 @@ public class BookingController {
 	private BookingService bookingService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private KakaoPayService kakaoPayService;
 	
+	// booking main page
 	@UserLoginCheck
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView bookMain() {
@@ -52,6 +56,7 @@ public class BookingController {
 		return mav;
 	}
 	
+	// booking 신청 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request) {
@@ -62,7 +67,7 @@ public class BookingController {
 		return mav;
 	}
 
-	
+	//booking 신청시 처리
 	// 결제를 진행한 후 wait 상태로 변경해야 함.
 	@ResponseBody
 	@RequestMapping(value = "/make", method = RequestMethod.POST)
@@ -73,6 +78,7 @@ public class BookingController {
 		return bookingService.insertDB(book);
 	}
 	
+	// booking 수정 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView editBook(HttpServletRequest request) {
@@ -90,12 +96,12 @@ public class BookingController {
 			mav.addObject("dates", dates)
 			.addObject("book", book)
 			.addObject("userID", sUserId.getId())
-			.addObject("charge", charge)
-			.addObject("href", "edit");
+			.addObject("charge", charge);
 		}
 		return mav;
 	}
 	
+	// booking 수정시 처리
 	// 수정 완료 후 차액에 대해 재결제 처리해야함
 	@ResponseBody
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -124,8 +130,14 @@ public class BookingController {
 		String endDateTime = request.getParameter("endDate") + " " + request.getParameter("endTime");
 		Booking book = new Booking(sUserId.getUser_no(), room_no, startDateTime, endDateTime, people, "wait");
 		int charge = bookingService.calcCharge(book);
-		session.setAttribute("book", book);
+		
 
+		
+		// payment에 필요한 클래스를 생성해서 담아야 한다.
+		// 여기서 charge, item, url 등을 넘겨줘야 한다. -> 세션으로 보내준다.
+		session.setAttribute("book", book);
+		
+		
 		mav.addObject("book", book)
 			.addObject("userID", sUserId.getId())
 			.addObject("charge", charge)
