@@ -46,7 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Wrapper-->
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo--> 
-						<a href="/jts" class="login-logo pb-xl-20 pb-15">
+						<a href="/gangstudy" class="login-logo pb-xl-20 pb-15">
 						<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" width="100"  alt="" />
 						<!-- 갱스터디 그림로고 	<img src="${pageContext.request.contextPath}/resources/images/logo.png" width="200"  alt="" /> -->
 						</a>
@@ -59,7 +59,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="pb-5 pb-lg-15">
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">로그인</h3>
 									<div class="text-muted font-weight-bold cafe24 font-size-h4">처음이신가요?
-									<a href="gangstudy/signup" class="text-primary cafe24 font-weight-bolder"> 가입하기 </a></div>
+									<a href="/gangstudy/signup" class="text-primary cafe24 font-weight-bolder"> 가입하기 </a></div>
 								</div>
 								<!--begin::Title-->
 								<!--begin::Form group-->
@@ -72,7 +72,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="form-group">
 									<div class="d-flex justify-content-between mt-n5">
 										<label class="font-size-h6 font-weight-bolder cafe24 text-dark pt-5">비밀번호</label>
-										<a href="gangstudy/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">비밀번호 찾기</a>
+										<a href="/gangstudy/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">비밀번호 찾기</a>
 									</div>
 									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
 								</div>

@@ -106,7 +106,7 @@
 
 
 									<input type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="location.href='gangstudy/remo-control'"  value="이용하기"/>
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="location.href='/gangstudy/remo-control'"  value="이용하기"/>
 								
 								</div>
 
