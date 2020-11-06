@@ -17,6 +17,22 @@ public class PaymentController {
 	@Autowired
 	private KakaoPayService kakaoPayService;
 	
+	// 결제 수단 선택
+	@RequestMapping(value = "/choose", method = RequestMethod.GET)
+	public ModelAndView choose(HttpServletRequest request) {
+		// 상품명
+		// 상품 수량
+		// 상품 총액
+		// 상품 비과세 금액?
+		// redirect url
+		// 취소 url
+		// 
+		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("serverTime", "/payment/test" );
+		return mav;
+	}
+
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("home");
@@ -26,7 +42,7 @@ public class PaymentController {
 	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
 	public ModelAndView oauth(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("home");
-		mav.addObject("serverTime", kakaoPayService.get() );
+		mav.addObject("serverTime", kakaoPayService.get());
 		return mav;
 	}
 }

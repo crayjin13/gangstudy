@@ -19,14 +19,17 @@
 		        <td>비용: <c:out value="${costs[status.index]}"/></td>
 		        <td>예약상태: <c:out value="${book.state}"/></td>
 		        <td>신청일: <c:out value="${book.request_dt}"/></td>
-		        <br>
 		    </tr>
+	        <br>
 		</c:forEach>
 		<hr>
-		<button onClick="location.href='/booking/make'">예약신청</button>
-		<button onClick="location.href='/booking/edit'">예약수정</button>
-		<button onClick="location.href='/booking/view'">예약확인</button>
-		<button onClick="location.href='/booking/cancel'">예약취소</button>
+		<a href="${pageContext.request.contextPath}/booking/make">
+			<button>예약신청</button>
+		</a>
+		<button onClick="location.href='${pageContext.request.contextPath}/booking/make'">예약신청</button>
+		<button onClick="location.href='${pageContext.request.contextPath}/booking/edit'">예약수정</button>
+		<button onClick="location.href='${pageContext.request.contextPath}/booking/view'">예약확인</button>
+		<button onClick="location.href='${pageContext.request.contextPath}/booking/cancel'">예약취소</button>
 	</body>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/booking.js"></script>
