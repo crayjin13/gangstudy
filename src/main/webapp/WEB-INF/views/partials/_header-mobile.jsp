@@ -3,7 +3,7 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 
 			<!--begin::Logo-->
-			<a href="index.html">
+			<a href="/jts">
 			<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" /> 
 			</a>
 

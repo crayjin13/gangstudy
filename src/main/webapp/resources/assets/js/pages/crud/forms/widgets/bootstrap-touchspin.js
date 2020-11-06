@@ -132,8 +132,8 @@ var KTKBootstrapTouchspin = function() {
             buttondown_class: 'btn btn-secondary',
             buttonup_class: 'btn btn-secondary',
 
-            min: -1000000000,
-            max: 1000000000,
+            min: 15,
+            max: 40,
             stepinterval: 50,
             maxboostedstep: 10000000,
             postfix: '℃'

@@ -269,10 +269,10 @@ var KTLogin = function() {
 		    })
 			.on('core.form.invalid', function() {
 				Swal.fire({
-					text: "Sorry, looks like there are some errors detected, please try again.",
+					text: "다시 입력해 주세요.",
 					icon: "error",
 					buttonsStyling: false,
-					confirmButtonText: "Ok, got it!",
+					confirmButtonText: "네",
 					customClass: {
 						confirmButton: "btn font-weight-bold btn-light-primary"
 					}

@@ -77,11 +77,11 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label> 시작 시간</label> <input class="form-control "
+									<label> 시작 시간</label> <input class="form-control " value="클릭"
 										type="datetime-local" id="example-datetime-local-input">
 								</div>
 								<div class="form-group">
-									<label> 종료 시간</label> <input class="form-control"
+									<label> 종료 시간</label> <input class="form-control" value="클릭"
 										type="datetime-local" id="example-datetime-local-input">
 								</div>
 								<div class="form-group">
@@ -89,7 +89,7 @@
 										class="form-control" id="exampleSelect1">
 										<option>1</option>
 										<option>2</option>
-										<option>3</option>
+										<option>3</option>  
 										<option>4</option>
 										<option>5</option>
 										<option>6</option>
@@ -106,7 +106,7 @@
 
 
 									<input type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="location.href='gangstudy/remo-control'"  value="이용하기"/>
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="location.href='/gangstudy/remo-control'"  value="이용하기"/>
 								
 								</div>
 
