@@ -136,6 +136,8 @@ public class BookingController {
 		// payment에 필요한 클래스를 생성해서 담아야 한다.
 		// 여기서 charge, item, url 등을 넘겨줘야 한다. -> 세션으로 보내준다.
 		session.setAttribute("book", book);
+		session.setAttribute("charge", charge);
+		session.setAttribute("item", "roomBooking");
 		
 		
 		mav.addObject("book", book)

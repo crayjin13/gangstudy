@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.jts.gangstudy.domain.KakaoUser;
 import com.jts.gangstudy.mapper.KakaoMapper;
 
 @Service
@@ -40,11 +39,11 @@ public class KakaoPayServiceImpl implements KakaoPayService {
     @Value("${kakao.partner_user_id}")
 	private String partner_user_id;												// 가맹점 회원 id, 최대 100자
     
-	private final static String item_name = "room";								// 상품명, 최대 100자
-	private final static String quantity	 = "1";								// 상품 수량
+	private final static String item_name = "스터디룸 예약";						// 상품명, 최대 100자
+	private final static String quantity = "1";									// 상품 수량
 	private final static String total_amount = "2500";							// 상품 총액
 	private final static String tax_free_amount = "100";						// 상품 비과세 금액
-	private final static String approval_url = "http://localhost:8080/app";		// 결제 성공 시 redirect url, 최대 255자
+	private final static String approval_url = "http://localhost:8080/payment/kakaopay/complete";			// 결제 성공 시 redirect url, 최대 255자
 	private final static String cancel_url = "http://localhost:8080/can";		// 결제 취소 시 redirect url, 최대 255자
 	private final static String fail_url = "http://localhost:8080/fail";		// 결제 실패 시 redirect url, 최대 255자
 	
@@ -80,15 +79,17 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		        String json = EntityUtils.toString(response.getEntity());
 		        JSONObject jsonObject = new JSONObject(json);
 		        /*
-		        String tid = jsonObject.getString("tid");								// 결제 고유 번호, 20자
 		        String app_url = jsonObject.getString("next_redirect_app_url");			// 요청한 클라이언트(Client)가 모바일 앱일 경우
-		        String mobile_url = jsonObject.getString("next_redirect_mobile_url");	// 요청한 클라이언트가 모바일 웹일 경우
-		        String pc_url = jsonObject.getString("next_redirect_pc_url");			// 요청한 클라이언트가 PC 웹일 경우
 		        String android_app_scheme = jsonObject.getString("android_app_scheme");	// 카카오페이 결제 화면으로 이동하는 Android 앱 스킴(Scheme)
 		        String ios_app_scheme = jsonObject.getString("ios_app_scheme");			// 카카오페이 결제 화면으로 이동하는 iOS 앱 스킴(Scheme)
 		        String created_at = jsonObject.getString("created_at");					// 결제 준비 요청 시간
 		        */
-				return json;
+
+		        String tid = jsonObject.getString("tid");								// 결제 고유 번호, 20자
+		        String pc_url = jsonObject.getString("next_redirect_pc_url");			// 요청한 클라이언트가 PC 웹일 경우
+		        String mobile_url = jsonObject.getString("next_redirect_mobile_url");	// 요청한 클라이언트가 모바일 웹일 경우
+		        System.out.println(json);
+				return pc_url;
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -99,4 +100,5 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		}
 		return null;
 	}
+	
 }

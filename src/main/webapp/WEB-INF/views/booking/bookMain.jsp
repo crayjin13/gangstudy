@@ -23,9 +23,6 @@
 	        <br>
 		</c:forEach>
 		<hr>
-		<a href="${pageContext.request.contextPath}/booking/make">
-			<button>예약신청</button>
-		</a>
 		<button onClick="location.href='${pageContext.request.contextPath}/booking/make'">예약신청</button>
 		<button onClick="location.href='${pageContext.request.contextPath}/booking/edit'">예약수정</button>
 		<button onClick="location.href='${pageContext.request.contextPath}/booking/view'">예약확인</button>
