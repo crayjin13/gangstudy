@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script src="/js/cbpHorizontalMenu.min.js"></script>
+	<script src="/js/cbpHorizontalMenu.min.js"></script>
 
 
 
@@ -24,7 +24,8 @@
 
 			<!--begin::Logo-->
 			<a href="/" class="brand-logo"> <img alt="Logo"
-				src="${pageContext.request.contextPath}/resources/images/logo.png" width="60" height="70" />
+				src="${pageContext.request.contextPath}/resources/images/logo.png"
+				width="60" height="70" />
 			</a>
 
 			<!--end::Logo-->
@@ -68,7 +69,7 @@
 				<!--begin::Menu Nav-->
 				<ul class="menu-nav">
 					<li class="menu-item menu-item-active" aria-haspopup="true"><a
-						href="/" class="menu-link"> <span class="svg-icon menu-icon">
+						href="/gangstudy" class="menu-link"> <span class="svg-icon menu-icon">
 								<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg"
 									xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -113,20 +114,20 @@
 						<div class="menu-submenu">
 							<i class="menu-arrow"></i>
 							<ul class="menu-subnav">
-								
+
 								<li class="menu-item menu-item-parent" aria-haspopup="true">
 									<span class="menu-link"> <span class="menu-text">
 											Gang Students </span>
-									</span>
-								      
-							  
-									
+								</span>
+
+
+
 								</li>
 								<!-- 메뉴안에 메뉴   ${pageContext.request.requestURI} : 이방법ㅇ 경로 망가졌음   -->
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/gangstudy/signin"
-									class="menu-link menu-toggle"> <i class="menu-bullet menu-bullet-line"><span></span></i>
-										<span
+									class="menu-link menu-toggle"> <i
+										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">로그인</span></a>
 								</li>
 
@@ -138,9 +139,16 @@
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="javascript:;"
+									data-menu-toggle="hover"><a href="/gangstudy/edit-user"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원정보
+											수정</span></a></li>
+
+								<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a
+									href="/gangstudy/order-details" class="menu-link "> <i
+										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">예약정보</span></a>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"

@@ -99,21 +99,30 @@ var KTBootstrapDatetimepicker = function () {
     // Private functions
     var baseDemos = function () {
         // Demo 1
-        $('#kt_datetimepicker_1').datetimepicker();
+        $('#kt_datetimepicker_1').datetimepicker({
+        	minDate: 0,
+        	maxDate: "+7D"
+        });
 
         // Demo 2
         $('#kt_datetimepicker_2').datetimepicker({
-            locale: 'de'
+            locale: 'de',
+            	minDate: 0,
+            	maxDate: "+7D"
         });
 
         // Demo 3
         $('#kt_datetimepicker_3').datetimepicker({
-            format: 'L'
+            format: 'L',
+            minDate: 0,
+        	maxDate: "+7D"
         });
 
         // Demo 4
         $('#kt_datetimepicker_4').datetimepicker({
-            format: 'LT'
+            format: 'LT',
+            minDate: 0,
+        	maxDate: "+7D"
         });
 
         // Demo 5

@@ -102,32 +102,47 @@ var KTKBootstrapTouchspin = function() {
     var demos = function() {
         // minimum setup
     	 
+    	$('#kt_touchspin_0, #kt_touchspin_2_1').TouchSpin({
+    		buttondown_class: 'btn btn-secondary',
+    		buttonup_class: 'btn btn-secondary',
+    		
+    		min: 0,
+    		max: 6,
+    		step: 1,  
+    		// decimals: 2, 소수점 몇자리
+    		boostat: 5,
+    		maxboostedstep: 10000000,
+    		
+    	});
+    	
+    	//인원수 
         $('#kt_touchspin_1, #kt_touchspin_2_1').TouchSpin({
             buttondown_class: 'btn btn-secondary',
             buttonup_class: 'btn btn-secondary',
 
             min: 0,
-            max: 100,
-            step: 0.1,  
-            decimals: 2,
+            max: 6,
+            step: 1,  
+           // decimals: 2, 소수점 몇자리
             boostat: 5,
-            maxboostedstep: 10,
+            maxboostedstep: 10000000,
             
         });
 
-        // with prefix
+        // with prefix 
         $('#kt_touchspin_2, #kt_touchspin_2_2').TouchSpin({
             buttondown_class: 'btn btn-secondary',
             buttonup_class: 'btn btn-secondary',
 
-            min: -1000000000,
-            max: 1000000000,
+            min: 0,
+            max: 24,
             stepinterval: 50,
             maxboostedstep: 10000000,
-            prefix: '$'
+            //prefix: '시간'
+            postfix: '시간'
         });
 
-        // vertical button alignment:
+        // vertical button alignment: 난방&에어컨 온도
         $('#kt_touchspin_3, #kt_touchspin_2_3').TouchSpin({
             buttondown_class: 'btn btn-secondary',
             buttonup_class: 'btn btn-secondary',

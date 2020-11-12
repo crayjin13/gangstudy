@@ -68,7 +68,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		
 		
- 		<jsp:include page="/WEB-INF/views/layout.jsp" flush="true"/>
+ 		<jsp:include page="/WEB-INF/views/partials/layout.jsp" flush="true"/>
 
 		<jsp:include page="/WEB-INF/views/partials/_extras/offcanvas/quick-user.jsp" flush="true"/>
 
