@@ -40,12 +40,12 @@
  
 
 					</div>
-					<!--begin::Form-->
+					<!--begin::Form-->    
 					<form class="form">
 						<div class="card-body">
 							<div class="card-footer">
 								<div class="form-group form-group-last">
-									<div class="alert alert-custom alert-default" role="alert">
+									<%--<div class="alert alert-custom alert-default" role="alert">
 										<div class="alert-icon">
 											<span class="svg-icon svg-icon-primary svg-icon-xl"> <!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Tools/Compass.svg-->
 												<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -66,14 +66,14 @@
 											</span>
 											</span>
 										</div>
-										<div class="alert-text">
+										 <div class="alert-text">
 											갱스터디는
 											<code>24시간 언제든지</code>
 											원하는 시간에 자유롭게 이용할 수 있는 공간입니다.
 											<code>스터디, 사무 , 모임, 강의 녹화 </code>
 											등 원하시는 시간을 충분히 가질 수 있도록 도와드리겠습니다.
 
-										</div>
+										</div> --%>
 									</div>
 								</div>
 								<div class="form-group">
@@ -99,7 +99,7 @@
 
 
 									<button type="button"
-										class="btn btn-outline-primary btn-lg btn-block mr-2  ">예약
+										class="btn btn-outline-primary btn-lg btn-block mr-2  " onClick="location.href='/gangstudy/shoppingcart'">예약
 										하기</button>
 								</div>
 								<div class="form-group">

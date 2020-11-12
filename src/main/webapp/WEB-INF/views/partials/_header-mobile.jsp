@@ -27,10 +27,10 @@
 				<!--end::Header Menu Mobile Toggle-->
 
 				<!--begin::Topbar Mobile Toggle-->
-				<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
-					<span class="svg-icon svg-icon-xl">
+			<!-- 	<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle"> -->
+					<!-- <span class="svg-icon svg-icon-xl">
 
-						<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
+						begin::Svg Icon | path:assets/media/svg/icons/General/User.svg
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -39,8 +39,8 @@
 							</g>
 						</svg>
 
-						<!--end::Svg Icon-->
-					</span>
+						end::Svg Icon
+					</span> -->
 				</button>
 
 				<!--end::Topbar Mobile Toggle-->

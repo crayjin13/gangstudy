@@ -44,6 +44,7 @@ public class HomeController {
 		   
 	
 	}      
+	  
 	
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
@@ -54,7 +55,7 @@ public class HomeController {
 	public String signup() {
 		return "pages/signup";
 	}
-	
+	   
 	
 	@RequestMapping(value = "/forgot", method = RequestMethod.GET)
 	public String forgot() {
@@ -64,4 +65,29 @@ public class HomeController {
 	public String remo() {
 		return "pages/remo-control";
 	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String admincontorl() {
+		return "pages/admin";
+	}
+	@RequestMapping(value = "/shoppingcart", method = RequestMethod.GET)
+	public String shoppingcart() {
+		return "pages/shoppingcart";
+	}
+	@RequestMapping(value = "/order-details", method = RequestMethod.GET)
+	public String orderDetails() {
+		return "pages/order-details";
+	}
+	
+	@RequestMapping(value = "/modifycart", method = RequestMethod.GET)
+	public String modifycart() {
+		return "pages/modifycart";
+	}
+	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
+	public String edituser() {
+		return "pages/edit-user";
+	}
+	
+	
+	
 }

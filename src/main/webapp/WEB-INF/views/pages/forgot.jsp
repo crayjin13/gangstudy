@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../../">
 		<meta charset="utf-8" />
-		<title>Forgot Password | 갱스터디</title>
+		<title>비밀번호 찾기 | Gangstudy</title>
 		<meta name="description" content="Forgot password page example" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
