@@ -41,7 +41,7 @@
 
 					</div>
 					<!--begin::Form-->    
-					<form class="form">
+					<form class="form" id="bookingForm" action="${pageContext.request.contextPath}/booking/make">
 						<div class="card-body">
 							<div class="card-footer">
 								<div class="form-group form-group-last">
@@ -74,19 +74,28 @@
 											등 원하시는 시간을 충분히 가질 수 있도록 도와드리겠습니다.
 
 										</div> --%>
-									</div>
+										</div>
 								</div>
 								<div class="form-group">
-									<label> 시작 시간</label> <input class="form-control " value="클릭"
-										type="datetime-local" id="example-datetime-local-input">
+									<label> 시작 시간</label>
+										<input class="form-control " id="start-date-input" name="startDateInput" type="date">
+										<select 
+											class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm">
+											<option>날짜를 선택해주세요.</option>
+										</select>
 								</div>
 								<div class="form-group">
-									<label> 종료 시간</label> <input class="form-control" value="클릭"
-										type="datetime-local" id="example-datetime-local-input">
+									<label> 종료 시간</label>
+										<input class="form-control " id="end-date-input" name="endDateInput" type="date">
+										<select 
+											class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm">
+											<option>날짜를 선택해주세요.</option>
+										</select>
 								</div>
 								<div class="form-group">
 									<label for="exampleTextarea">인원수</label> <select
-										class="form-control" id="exampleSelect1">
+										class="form-control" id="user-count-input" name="userCountInput" >
+										<option value="">인원을 선택해주세요.</option>
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>  
@@ -99,14 +108,14 @@
 
 
 									<button type="button"
-										class="btn btn-outline-primary btn-lg btn-block mr-2  " onClick="location.href='/gangstudy/shoppingcart'">예약
+										class="btn btn-outline-primary btn-lg btn-block mr-2  " id="bookingButton">예약
 										하기</button>
 								</div>
 								<div class="form-group">
 
 
 									<input type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="location.href='/gangstudy/remo-control'"  value="이용하기"/>
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="#"  value="이용하기"/>
 								
 								</div>
 
@@ -123,9 +132,7 @@
 								</div>
 								<!--end: Code-->
 							</div>
-						</div>
-
-					</form>
+						</form>
 					<!--end::Form-->
 				</div>
 				<!--end::Card-->
@@ -141,8 +148,6 @@
 </div>
 <!--end::Content-->
 
-
-
 <!--[html-partial:begin:{"id":"demo1/dist/inc/view/demos/pages/index","page":"index"}]/-->
 
 <!--[html-partial:begin:{"id":"demo1/dist/inc/view/partials/content/dashboards/demo1","page":"index"}]/-->
@@ -151,3 +156,7 @@
 </div>
 
 <!--end::Entry-->
+
+<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/booking.js"></script>
