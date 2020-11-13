@@ -342,6 +342,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																	class="ki ki-plus icon-xs"></i>
 
 															</td>
+															-->
 															<td class="text-right align-middle font-weight-bolder ">보유
 																포인트:  <br/>1000
 															</td>
