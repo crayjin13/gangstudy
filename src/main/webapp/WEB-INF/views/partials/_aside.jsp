@@ -23,7 +23,7 @@
 		<div class="brand flex-column-auto" id="kt_brand">
 
 			<!--begin::Logo-->
-			<a href="/" class="brand-logo"> <img alt="Logo"
+			<a href="/gangstudy" class="brand-logo"> <img alt="Logo"
 				src="${pageContext.request.contextPath}/resources/images/logo.png"
 				width="60" height="70" />
 			</a>
