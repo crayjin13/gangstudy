@@ -60,10 +60,7 @@ public class BookingController {
 	@UserLoginCheck
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("booking/makeBook");
-		List<String> dates = bookingService.makeDates();
-		
-		mav.addObject("dates", dates);
+		ModelAndView mav = new ModelAndView("pages/shoppingcart");
 		return mav;
 	}
 
@@ -153,8 +150,8 @@ public class BookingController {
 		User sUserId = (User)session.getAttribute("sUserId");
 		String date = request.getParameter("startDate");
 		List<Booking> books = bookingService.viewDate(date);
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
-		books.remove(book);
+//		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+//		books.remove(book);
 		List<String> times = bookingService.getUnbookedTimeList(date, books);
 		return times;
 	}
@@ -168,8 +165,8 @@ public class BookingController {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		List<Booking> books = bookingService.viewDate(endDate);
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
-		books.remove(book);
+//		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+//		books.remove(book);
 		List<String> times = bookingService.getEndTimes(books, startDate, startTime, endDate);
 		return times;
 	}
