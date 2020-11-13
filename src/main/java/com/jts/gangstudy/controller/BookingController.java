@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.Item;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.KakaoPayService;
@@ -136,8 +137,7 @@ public class BookingController {
 		// payment에 필요한 클래스를 생성해서 담아야 한다.
 		// 여기서 charge, item, url 등을 넘겨줘야 한다. -> 세션으로 보내준다.
 		session.setAttribute("book", book);
-		session.setAttribute("charge", charge);
-		session.setAttribute("item", "roomBooking");
+		session.setAttribute("item", new Item("스터디룸", 1, charge));
 		
 		
 		mav.addObject("book", book)
