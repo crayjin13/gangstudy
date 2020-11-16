@@ -1,5 +1,6 @@
 
 <!--begin::Header Mobile-->
+
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 
 			<!--begin::Logo-->

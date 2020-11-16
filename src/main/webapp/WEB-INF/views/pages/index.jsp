@@ -68,7 +68,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	rel="stylesheet" type="text/css" />
 
 <!--end::Layout Themes-->
-<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/favicon.ico" />
 </head>
 
 <!--end::Head-->
@@ -85,7 +85,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 	<jsp:include page="/WEB-INF/views/layout.jsp" flush="true" />
-	<!-- layout 울 partials로 옮기면 읽지못하는 에러 발생  -->
+
 
 	<jsp:include
 		page="/WEB-INF/views/partials/_extras/offcanvas/quick-user.jsp"

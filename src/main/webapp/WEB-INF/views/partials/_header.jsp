@@ -1,4 +1,6 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!--begin::Header-->
 					<div id="kt_header" class="header header-fixed">
 
@@ -126,6 +128,20 @@
 								<!--end::Languages-->
 
 								<!--begin::User-->
+								<%
+            // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
+            if(session.getAttribute("sUserId")==null){ 
+        %>
+	<!-- 	<button onclick="location.href='signin'">로그인</button> -->
+		
+		<%
+            // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
+            }else{ 
+        %>
+		<button onclick="location.href='logout'">로그아웃</button>
+	
+		<% } %>
+								
 								<div class="topbar-item">
 									<div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
 										<span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>

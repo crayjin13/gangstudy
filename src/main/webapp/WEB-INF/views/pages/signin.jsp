@@ -14,7 +14,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <style>  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;}</style>
 	<!--begin::Head-->
 	<head><base href="../../../../">
-		<meta charset="utf-8" />
+		<meta charset="utf-8" />				
 		<title>로그인 | Gangstudy</title>
 		<meta name="description" content="Singin page example" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -54,9 +54,9 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signin-->
 						<div class="login-form">
 							<!--begin::Form-->
-							<form class="form" id="kt_login_singin_form" action="">
+							<form class="form"   method="post" action="/gangstudy" id="kt_login_singin_form"  method="post">
 								<!--begin::Title-->
-								<div class="pb-5 pb-lg-15">
+								<div class="pb-5 pb-lg-15">								
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">로그인</h3>
 									<div class="text-muted font-weight-bold cafe24 font-size-h4">처음이신가요?
 									<a href="/gangstudy/signup" class="text-primary cafe24 font-weight-bolder"> 가입하기 </a></div>
@@ -65,7 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Form group-->
 								<div class="form-group">
 									<label class="font-size-h6 font-weight-bolder cafe24 text-dark">아이디</label>
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="text" name="username" autocomplete="off" />
+									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="id" type="text" name="id" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
@@ -74,12 +74,12 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label class="font-size-h6 font-weight-bolder cafe24 text-dark pt-5">비밀번호</label>
 										<a href="/gangstudy/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">비밀번호 찾기</a>
 									</div>
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
+									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="pw" type="password" name="pw" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Action-->  
 								<div class="pb-lg-0 pb-5">
-									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-3">로그인 </button>
+									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-3" name="loginbtn">로그인 </button>
 									<a href="#" class="btn btn-text-warning btn-hover-light-warning font-weight-bold mr-2 cafe24 font-size-h3">카카오 로그인 </a>									   
 									<!--  <span class="svg-icon svg-icon-md">
 										begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/social-icons/google.svg
@@ -123,8 +123,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Global Theme Bundle(used by all pages)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
-		<!--end::Global Theme Bundle-->
+		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wUser.js"></script>
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/custom/login/login-4.js"></script>
 		<!--end::Page Scripts-->
