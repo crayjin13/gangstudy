@@ -55,7 +55,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Header Mobile-->
 	<div id="kt_header_mobile" class="header-mobile">
 		<!--begin::Logo-->
-		<a href="/gangstudy"> <img alt="Logo"
+		<a href="/"> <img alt="Logo"
 			src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png"
 			class="logo-default max-h-30px" />
 		</a>
@@ -77,7 +77,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div
 						class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12">
 						<!--begin::Logo-->
-						<a href="/gangstudy"> <img alt="Logo"
+						<a href="/"> <img alt="Logo"
 							src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png"
 							class="max-h-30px" />
 						</a>
@@ -347,7 +347,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																포인트:  <br/>1000
 															</td>
 															<td class="text-right align-middle"><a
-																href="/gangstudy/shoppingcart"
+																href="/shoppingcart"
 																class="btn btn-light-primary font-weight-bolder font-size-sm">전액
 																	사용 </a></td>
 														</tr>
@@ -366,7 +366,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</tr>
 														<tr>
 															<td colspan="2" class="border-0 pt-10">
-																<form><a href="/gangstudy" class="btn btn-secondary font-weight-bolder px-8"
+																<form><a href="/" class="btn btn-secondary font-weight-bolder px-8"
 																>다시 설정하기  </a></form>
 															</td>
 															<td colspan="2" class="border-0 text-right pt-10">
@@ -403,9 +403,9 @@ License: You must have a valid license purchased only from themeforest(the above
 						class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
 						<!--begin::Copyright-->
 						<div class="text-dark order-2 order-md-1">
-							<a href="/gangstudy/admin"> <span
+							<a href="/admin"> <span
 								class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span></a> <a
-								href="/gangstudy" target="_blank"
+								href="/" target="_blank"
 								class="text-dark-75 text-hover-primary">갱스터디</a>
 						</div>
 

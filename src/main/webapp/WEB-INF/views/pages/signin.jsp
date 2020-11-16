@@ -46,7 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Wrapper-->
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo--> 
-						<a href="/gangstudy" class="login-logo pb-xl-20 pb-15">
+						<a href="/" class="login-logo pb-xl-20 pb-15">
 						<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" width="100"  alt="" />
 						<!-- 갱스터디 그림로고 	<img src="${pageContext.request.contextPath}/resources/images/logo.png" width="200"  alt="" /> -->
 						</a>
@@ -54,12 +54,12 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signin-->
 						<div class="login-form">
 							<!--begin::Form-->
-							<form class="form"   method="post" action="/gangstudy" id="kt_login_singin_form"  method="post">
+							<form class="form"   method="post" action="/" id="kt_login_singin_form"  method="post">
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">								
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">로그인</h3>
 									<div class="text-muted font-weight-bold cafe24 font-size-h4">처음이신가요?
-									<a href="/gangstudy/signup" class="text-primary cafe24 font-weight-bolder"> 가입하기 </a></div>
+									<a href="/signup" class="text-primary cafe24 font-weight-bolder"> 가입하기 </a></div>
 								</div>
 								<!--begin::Title-->
 								<!--begin::Form group-->
@@ -72,7 +72,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="form-group">
 									<div class="d-flex justify-content-between mt-n5">
 										<label class="font-size-h6 font-weight-bolder cafe24 text-dark pt-5">비밀번호</label>
-										<a href="/gangstudy/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">비밀번호 찾기</a>
+										<a href="/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">비밀번호 찾기</a>
 									</div>
 									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="pw" type="password" name="pw" autocomplete="off" />
 								</div>
@@ -123,9 +123,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Global Theme Bundle(used by all pages)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wUser.js"></script>
-		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>		<!--end::Global Theme Bundle-->
-		<!--begin::Page Scripts(used by this page)-->
+		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>		
+		<!--end::Global Theme Bundle-->		<!--begin::Page Scripts(used by this page)-->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wUser.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/custom/login/login-4.js"></script>
 		<!--end::Page Scripts-->
 	</body>

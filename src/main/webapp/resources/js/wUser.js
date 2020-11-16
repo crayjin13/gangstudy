@@ -45,19 +45,22 @@ $(function(){
 			url : 'sign_in_action',
 			method : 'POST',
 			data : mlafArray,
-			dataType : 'json',
+			dataType : 'text',
 			success : function(textData) {
-				if (textData.trim() == "json") {
+				if (textData.trim() == "text") {
+					alert('로그인성공');
 					location.href = '/gangstudy';
 				} else if (textData.trim() == "false1") {
 					alert('아이디를 다시 확인해주세요');
 					id_check();
-				} else if (textData.trim() == "false2") {
+					
+				
+		        } else if (textData.trim() == "false2") {
 					alert('비밀번호를 다시 확인해주세요');
 					password_check();
 				} else if (textData.trim() == "false3") {
 					alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.'); 
-					location.href = '/gangstudy';
+					location.href = '/';
 				}
 			}
 		});
@@ -350,7 +353,7 @@ function user_login_action_function() {
  * 2) Id, Password 체크
  */
 function id_check() {
-	var mlafArray = $('#user_login_action').serialize();
+	var mlafArray = $('#kt_login_singin_form').serialize();
 	for (var i = 0; i < mlafArray.length; i++) {
 		if (mlafArray[i].name != 'id' && mlafArray[i].name == 'pw') {
 			$('#i-error').text('아이디를 다시 확인해주세요.').show();
@@ -360,7 +363,7 @@ function id_check() {
 	}
 }
 function password_check() {
-	var mlafArray = $('#user_login_action').serialize();
+	var mlafArray = $('#kt_login_singin_form').serialize();
 	for (var i = 0; i < mlafArray.length; i++) {
 		if (mlafArray[i].name != 'pw' && mlafArray[i].name == 'id') {
 			$('#p-error').text('비밀번호가 틀렸습니다.').show();

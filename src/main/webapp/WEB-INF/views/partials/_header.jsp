@@ -132,7 +132,7 @@
             // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
             if(session.getAttribute("sUserId")==null){ 
         %>
-	<!-- 	<button onclick="location.href='signin'">로그인</button> -->
+	 	<button onclick="location.href='signin'">로그인</button>
 		
 		<%
             // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
