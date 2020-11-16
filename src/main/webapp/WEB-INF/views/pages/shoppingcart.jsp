@@ -218,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													   
 													
 														<input id="kt_touchspin_1" type="text"
-															class="form-control" value="5" name="demo"     
+															class="form-control" value=${userCount} name="demo" min="1" max="6"
 															style="text-align: center; width:20px;">
 													</div> <!-- <a
 																href="javascript:;"
@@ -249,13 +249,13 @@ License: You must have a valid license purchased only from themeforest(the above
 															</td>
 
 															<td class="text-center align-middle"><input
-																id="time" type="text" class="form-control" value="6 시간"
+																id="time" type="text" class="form-control" value=${timeInterval}
 																name="demo0" placeholder="Select time" readonly
 																style="text-align: center; width:120%;" /></td>
 
 															<td class="text-right align-middle font-weight-bolder">
 																시작: <br/>
-																12월 1일 12시 
+																${startDateTime}
 															</td>     
 
 															<!--     
@@ -321,7 +321,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																</td> -->
 															<td class="text-right align-middle font-weight-bolder">
 																 종료:<br/>
-																  12월 1일 18시
+																${endDateTime}
 															</td>
 														</tr>      
 														<tr>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,11 +60,30 @@ public class BookingController {
 	// booking 신청 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
-	public ModelAndView makeBook(HttpServletRequest request) {
+	
+	public ModelAndView makeBook(HttpServletRequest request,
+			@RequestParam("startDateInput") String startDate, @RequestParam("startTimeInput") String startTime,
+			@RequestParam("endDateInput") String endDate, @RequestParam("endTimeInput") String endTime,
+			@RequestParam("userCountInput") String userCount) {
 		ModelAndView mav = new ModelAndView("pages/shoppingcart");
+		
+		String startDateTime = bookingService.getViewFormat(startDate, startTime);
+		String endDateTime = bookingService.getViewFormat(endDate, endTime);
+		String timeInterval = bookingService.getTimeInterval(startDate, startTime, endDate, endTime);
+		
+		mav.addObject("startDateTime", startDateTime);
+		mav.addObject("endDateTime", endDateTime);
+		mav.addObject("timeInterval", timeInterval);
+		mav.addObject("userCount", userCount);
 		return mav;
 	}
 
+	// 예약 신청 전에 수정을 한번 더 거치므로 거기서 처리해야 될 것들.
+	// 유효성 검사 필요
+	// 세션에 넘기기 전에 요금을 계산해둔다.
+	// 세션에 넘기고 결제 페이지로 넘어간다.
+	
+	
 	//booking 신청시 처리
 	// 결제를 진행한 후 wait 상태로 변경해야 함.
 	@ResponseBody

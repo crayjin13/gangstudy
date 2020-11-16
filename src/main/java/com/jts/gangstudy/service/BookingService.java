@@ -30,4 +30,8 @@ public interface BookingService {
 
 	// 대기중인 예약
 	public Booking getUserWaitBooking(Integer user_no);
+	
+	
+	public String getViewFormat(String startDate, String startTime);
+	public String getTimeInterval(String startDate, String startTime, String endDate, String endTime);
 }
