@@ -57,6 +57,7 @@ endDateInput.addEventListener("change", function() {
 	if(startDateInput.value=="") {
 		var date = new Date(endDateInput.value);
 		startDateInput.value = getFormatDate(date);
+		removeOptions(startTimeInput);
 		requestStartTime();
 	} else {
 		requestEndTime();

@@ -81,7 +81,7 @@
 										<input class="form-control " id="start-date-input" name="startDateInput" type="date">
 										<select 
 											class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm">
-											<option>날짜를 선택해주세요.</option>
+											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
 								<div class="form-group">
@@ -89,7 +89,7 @@
 										<input class="form-control " id="end-date-input" name="endDateInput" type="date">
 										<select 
 											class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm">
-											<option>날짜를 선택해주세요.</option>
+											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
 								<div class="form-group">
