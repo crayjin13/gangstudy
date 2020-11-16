@@ -47,7 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo-->
 							
-						<a href="/gangstudy" class="login-logo pb-xl-20 pb-15">							<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" class="max-h-70px" alt="" />							
+						<a href="/" class="login-logo pb-xl-20 pb-15">							<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" class="max-h-70px" alt="" />							
 						</a>
 						<!--end::Logo--> 
 						<!--begin::Signin-->
@@ -69,7 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Form group-->
 								<div class="form-group d-flex flex-wrap">
 									<button type="submit" id="kt_login_forgot_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-4">확인 </button>
-									<a href="/gangstudy/signin" id="kt_login_forgot_cancel" class="btn btn-light-primary cafe24 font-weight-bolder font-size-h6 px-8 py-4 my-3">뒤로가기</a>
+									<a href="/signin" id="kt_login_forgot_cancel" class="btn btn-light-primary cafe24 font-weight-bolder font-size-h6 px-8 py-4 my-3">뒤로가기</a>
 								</div>
 								<!--end::Form group-->
 							</form>

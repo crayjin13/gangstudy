@@ -4,11 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String route = request.getParameter("pageChange");
-
-	if (route == null) {
-		route = "partials/main_content.jsp";
-	}
+	String pages = request.getParameter("pages");
+	if (pages == null)
+		pages = "index.jsp";
 %>
 
 <!--begin::Main-->
@@ -32,8 +30,9 @@
 
 			<%@ include
 				file="/WEB-INF/views/partials/_subheader/subheader-v1.jsp"%>
-				<jsp:include page="<%=route%>" flush="false" />
-				
+			<%-- <jsp:include page="<%=route%>" flush="false" /> --%>
+
+			<jsp:include page="<%=pages%>"  />
 			<%-- <%@ include file="/WEB-INF/views/partials/main_content.jsp"%> --%>
 		</div>
 

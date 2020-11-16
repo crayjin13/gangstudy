@@ -46,7 +46,7 @@ public class UserController {
 
 	@RequestMapping(value = "/login")
 	public String login() {
-		return "login";
+		return "signin";
 	}
 	
 	
@@ -189,12 +189,12 @@ public class UserController {
 			e.printStackTrace();
 			forwardPath = "false";
 		}
+		return forwardPath;
+	}
 		/*
 		 * if(user.getmRetire()=="off"){ System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
 		 * //forwardPath = 계정 활성화 창으로 포워딩 }
 		 */
-		return forwardPath;
-	}
 
 	/* 로그아웃 */
 	@RequestMapping(value = "/logout")
