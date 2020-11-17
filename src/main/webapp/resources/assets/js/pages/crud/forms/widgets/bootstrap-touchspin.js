@@ -120,7 +120,7 @@ var KTKBootstrapTouchspin = function() {
             buttondown_class: 'btn btn-secondary',
             buttonup_class: 'btn btn-secondary',
 
-            min: 0,
+            min: 1,
             max: 6,
             step: 1,  
            // decimals: 2, 소수점 몇자리

@@ -18,7 +18,7 @@ public interface BookingService {
 	// 선택 가능한 날짜 목록
 	public ArrayList<String> makeDates();
 	// 예약 요금
-	public int calcCharge(Booking book);
+	public int getCharge(Booking book);
 	
 	
 	
@@ -32,6 +32,7 @@ public interface BookingService {
 	public Booking getUserWaitBooking(Integer user_no);
 	
 	
-	public String getViewFormat(String startDate, String startTime);
-	public String getTimeInterval(String startDate, String startTime, String endDate, String endTime);
+	public String getTimeInterval(Booking book);
+	public String getTimeAmount(Booking book);
+	public int getHourPrice();
 }

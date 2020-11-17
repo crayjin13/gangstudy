@@ -210,15 +210,15 @@ License: You must have a valid license purchased only from themeforest(the above
 														<!--begin::Cart Content-->        
 														<tr>    
 															<td class="d-flex align-items-center font-weight-bolder">
-																<!--begin::Symbol--> <!--end::Symbol--> <a href=""
-																class="text-dark text-hover-primary">인원수</a>    
+																<!--begin::Symbol--> <!--end::Symbol-->
+																<div class="text-dark">인원수</div>
 															</td>      
 
 															<td class="text-center align-middle"><div class="form-group" style="width:120%;" >     
 													   
 													
 														<input id="kt_touchspin_1" type="text"
-															class="form-control" value=${userCount} name="demo" min="1" max="6"
+															class="form-control" value=${userCount} name="demo"
 															style="text-align: center; width:20px;">
 													</div> <!-- <a
 																href="javascript:;"
@@ -244,18 +244,16 @@ License: You must have a valid license purchased only from themeforest(the above
 														</tr>
 														<tr>
 															<td class="d-flex align-items-center font-weight-bolder">
-																<!--begin::Symbol--> <!--end::Symbol--> <a href=""
-																class="text-dark text-hover-primary">총 이용시간</a>
+																<div class="text-dark">총 이용시간</div>
 															</td>
 
 															<td class="text-center align-middle"><input
-																id="time" type="text" class="form-control" value=${timeInterval}
+																id="time" type="text" class="form-control" value="${timeInterval}"
 																name="demo0" placeholder="Select time" readonly
 																style="text-align: center; width:120%;" /></td>
 
 															<td class="text-right align-middle font-weight-bolder">
-																시작: <br/>
-																${startDateTime}
+																시작:<br/>${startDateTime}
 															</td>     
 
 															<!--     
@@ -320,18 +318,16 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 																</td> -->
 															<td class="text-right align-middle font-weight-bolder">
-																 종료:<br/>
-																${endDateTime}
+																 종료:<br/>${endDateTime}
 															</td>
 														</tr>      
 														<tr>
 															<td class="d-flex align-items-center font-weight-bolder">
-																<!--begin::Symbol--> <!--end::Symbol--> <a href=""
-																class="text-dark text-hover-primary"> 사용 포인트 </a>
+																<div class="text-dark">사용 포인트</div>
 															</td>
 															<td class="text-center align-middle">
 															 <input id="kt_touchspin" type="text"
-																class="form-control" value="500" name="demo0"  style="text-align: center; width:120%;"/>
+																class="form-control" value="0" name="pointUse" style="text-align: center; width:120%;"/>
 																<!-- <a
 																href="javascript:;"
 																class="btn btn-xs btn-light-success btn-icon mr-2">
@@ -343,21 +339,20 @@ License: You must have a valid license purchased only from themeforest(the above
 
 															</td>
 															-->
-															<td class="text-right align-middle font-weight-bolder ">보유
-																포인트:  <br/>1000
+															<td class="text-right align-middle font-weight-bolder ">보유 포인트:<br/>
+																<div id="pointMax">${point}</div>
 															</td>
 															<td class="text-right align-middle"><a
-																href="/gangstudy/shoppingcart"
-																class="btn btn-light-primary font-weight-bolder font-size-sm">전액
-																	사용 </a></td>
+																class="btn btn-light-primary font-weight-bolder font-size-sm" id="pointMaxUseBtn">전액 사용</a></td>
 														</tr>
 														<!--end::Cart Content-->
 														<!--begin::Cart Footer-->
 														<tr>
 															<td colspan="2"></td>
-															<td class="font-weight-bolder font-size-h4 text-right">최종
-																결제 금액</td>
-															<td class="font-weight-bolder font-size-h4 text-right">29,500원</td>
+															<div id="chargePerPeople" style="display:none">${chargePerPeople}</div>
+															<td class="font-weight-bolder font-size-h4 text-right">최종 결제 금액</td>
+															<td class="font-weight-bolder font-size-h4 text-right">
+																<span id="totalAmount">${charge}</span>원</td>
 														</tr>
 														<tr>
 															<!-- 결제금액 밑에 적을사항 있으면 여기 td 사이에 적기 -->
@@ -366,8 +361,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</tr>
 														<tr>
 															<td colspan="2" class="border-0 pt-10">
-																<form><a href="/gangstudy" class="btn btn-secondary font-weight-bolder px-8"
-																>다시 설정하기  </a></form>
+																<form><a href="/" class="btn btn-secondary font-weight-bolder px-8">다시 설정하기  </a></form>
 															</td>
 															<td colspan="2" class="border-0 text-right pt-10">
 															<a
@@ -578,6 +572,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<!--end::Global Theme Bundle-->
+	<script src="${pageContext.request.contextPath}/resources/js/shopBook.js"></script>
 </body>
 <!--end::Body-->
 </html>
