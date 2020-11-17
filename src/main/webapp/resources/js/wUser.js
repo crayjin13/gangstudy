@@ -45,11 +45,11 @@ $(function(){
 			url : 'sign_in_action',
 			method : 'POST',
 			data : mlafArray,
-			dataType : 'text',
+			dataType : 'text',          
 			success : function(textData) {
 				if (textData.trim() == "text") {
 					alert('로그인성공');
-					location.href = '/gangstudy';
+					location.href = '/index';
 				} else if (textData.trim() == "false1") {
 					alert('아이디를 다시 확인해주세요');
 					id_check();
@@ -120,7 +120,44 @@ $(function(){
 	
 	//***** 회원가입  ************
 	
+//	$("#kt_login_signup_form_submit_button").click(function() {
 		$("#btn").click(function() {
+			var userArray = $('#kt_login_signup_form').serialize();
+			console.log("#값이 오는지 확인 ---" + userArray);
+			//select option 으로 가져올때 이 문법으로 보내려면 
+			// select name="" 네임 인지 확인하기
+			// https://java119.tistory.com/27             
+			$.ajax({
+				url : 'signUp',
+				data : userArray,            
+				method : 'POST',        
+				dataType : 'text',
+				success : function(textData) {
+					console.log(textData);
+					if (textData.trim() == "true") {
+						
+						kt_login_signup_form.name.value = textData.name;
+						kt_login_signup_form.phone.value = textData.phone;
+						kt_login_signup_form.id.value = textData.id;
+						kt_login_signup_form.pw.value = textData.pw;
+						kt_login_signup_form.pw2.value = textData.pw2;
+						kt_login_signup_form.email.value = textData.email;
+						kt_login_signup_form.bod.value = textData.bod;
+						kt_login_signup_form.gender.value = textData.gender;
+						
+						
+					
+					} else if (textData.trim() == "false") {
+
+					}
+
+				}
+			});
+			// e.preventDefault();
+		});
+		
+		
+/*		$("#kt_login_signup_form").click(function() {
 			var userArray = $('#sign_up').serialize();
 			console.log("#값이 오는지 확인 ---" + userArray);
 			//select option 으로 가져올때 이 문법으로 보내려면 
@@ -134,16 +171,16 @@ $(function(){
 				success : function(textData) {
 					console.log(textData);
 					if (textData.trim() == "true") {
-					location.href = '/gangstudy/signup';
+						location.href = '/signup';
 					} else if (textData.trim() == "false") {
-
+						
 					}
-
+					
 				}
 			});
 			// e.preventDefault();
 		});
-	
+*/	
 	
 	
 		
@@ -358,7 +395,7 @@ function id_check() {
 		if (mlafArray[i].name != 'id' && mlafArray[i].name == 'pw') {
 			$('#i-error').text('아이디를 다시 확인해주세요.').show();
 			// validate 활용
-			$('#i').focus();
+			$('#id').focus();
 		}
 	}
 }
@@ -367,7 +404,7 @@ function password_check() {
 	for (var i = 0; i < mlafArray.length; i++) {
 		if (mlafArray[i].name != 'pw' && mlafArray[i].name == 'id') {
 			$('#p-error').text('비밀번호가 틀렸습니다.').show();
-			$('#p').focus();
+			$('#pw').focus();
 		}
 	}
 }

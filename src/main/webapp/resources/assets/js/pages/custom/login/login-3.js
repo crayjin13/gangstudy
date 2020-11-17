@@ -747,7 +747,7 @@ var KTLogin = function() {
 					if (status == 'Valid') {
 						form.submit();
 						//wizard.goTo(wizard.getNewStep());
-						location.href='/';
+						location.href='signup';         
 						
 						
 						KTUtil.scrollTop();

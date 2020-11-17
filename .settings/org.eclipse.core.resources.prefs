@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/jts/gangstudy/controller/HomeController.java=UTF-8
+encoding//src/main/java/com/jts/gangstudy/mapper/UserMapper.java=UTF-8
 encoding//src/main/java/com/jts/gangstudy/service/BookingServiceImpl.java=UTF-8
 encoding//src/main/java/com/jts/gangstudy/service/KakaoServiceImpl.java=UTF-8
 encoding//src/main/resources/config.properties=UTF-8
