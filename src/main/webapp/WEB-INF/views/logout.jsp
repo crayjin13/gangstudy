@@ -9,6 +9,8 @@
     HttpSession userSession = request.getSession();
     userSession.invalidate();
     out.println("<h1>로그아웃 되었습니다.</h1>");
+    response.sendRedirect("/");
+
 %>
 <h2>로그아웃 되었습니다.</h2>
 

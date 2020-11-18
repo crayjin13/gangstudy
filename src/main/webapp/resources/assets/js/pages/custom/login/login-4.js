@@ -114,14 +114,14 @@ var KTLogin = function() {
 		        form,
 		        {
 		            fields: {
-						username: {
+						name: {
 							validators: {
 								notEmpty: {
 									message: 'Username is required'
 								}
 							}
 						},
-						password: {
+						pw: {
 							validators: {
 								notEmpty: {
 									message: 'Password is required'
@@ -222,10 +222,10 @@ var KTLogin = function() {
 						email: {
 							validators: {
 								notEmpty: {
-									message: 'Email is required'
+									message: '이메일을 적어주세요 '
 								},
 								emailAddress: {
-									message: 'The value is not a valid email address'
+									message: '이메일 형식에 맞게 적어주세요'
 								}
 							}
 						}
@@ -248,14 +248,16 @@ var KTLogin = function() {
 				// Simulate Ajax request
 				setTimeout(function() {
 					KTUtil.btnRelease(formSubmitButton);
-				}, 2000);
+				}, 2000);     
+				
+				             
 		    })
 			.on('core.form.invalid', function() {
 				Swal.fire({
-					text: "Sorry, looks like there are some errors detected, please try again.",
+					text: "죄송하지만 다시 시도해주세요",
 					icon: "error",
 					buttonsStyling: false,
-					confirmButtonText: "Ok, got it!",
+					confirmButtonText: "네",
 					customClass: {
 						confirmButton: "btn font-weight-bold btn-light-primary"
 					}

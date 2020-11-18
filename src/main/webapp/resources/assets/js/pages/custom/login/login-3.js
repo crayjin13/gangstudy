@@ -718,7 +718,7 @@ var KTLogin = function() {
 							}
 						}).then(function () {
 							KTUtil.scrollTop();
-						});
+						});            
 					}
 				});
 			}
@@ -747,7 +747,7 @@ var KTLogin = function() {
 					if (status == 'Valid') {
 						form.submit();
 						//wizard.goTo(wizard.getNewStep());
-						location.href='/';
+						location.href='/';         
 						
 						
 						KTUtil.scrollTop();

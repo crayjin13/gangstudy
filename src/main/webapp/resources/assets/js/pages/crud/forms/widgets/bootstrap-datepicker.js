@@ -114,15 +114,23 @@ var KTBootstrapDatepicker = function () {
     var demos = function () {
     	
     	
-        // minimum setup
+        // minimum setup 회원 가입 생년월일 
         $('#kt_datepicker_1, #kt_datepicker_1_validate').datepicker({   
             rtl: KTUtil.isRTL(),
+            endDate: '-5y',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+            autoclose : true,  //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
             todayHighlight: true,
             language : "ko",    
             orientation: "bottom left",
-            templates: arrows
+            templates: arrows,               
+            todayHighlight : true ,        
+            templates : {
+		        leftArrow: '&laquo;',
+		        rightArrow: '&raquo;'
+		    }, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징 
+            format: "yyyy-mm-dd"              
         });
-
+     
         // minimum setup for modal demo
         $('#kt_datepicker_1_modal').datepicker({
             rtl: KTUtil.isRTL(),
