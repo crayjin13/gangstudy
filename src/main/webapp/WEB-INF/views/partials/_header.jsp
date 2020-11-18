@@ -2,6 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--begin::Header-->
+<script>
+	$(document).ready(function() {
+
+		document.getElementById("logout").onclick = function() {
+			document.user_logout.submit();
+
+		}
+	});
+</script>
 					<div id="kt_header" class="header header-fixed">
 
 						<!--begin::Container-->
@@ -129,16 +138,16 @@
 
 								<!--begin::User-->
 								<%
-            // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
+            // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.    
             if(session.getAttribute("sUserId")==null){ 
         %>
-	 	<button onclick="location.href='signin'">로그인</button>
+	 	<button onclick="location.href='signin'" class="btn btn-light-primary font-weight-bold">로그인</button>
 		
 		<%
             // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
             }else{ 
         %>
-		<button onclick="location.href='logout'">로그아웃</button>
+		<button id="logout"  class="btn btn-light-primary font-weight-bold">로그아웃</button>
 	
 		<% } %>
 								
@@ -149,7 +158,7 @@
 										<span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
 											<span class="symbol-label font-size-h5 font-weight-bold">S</span>
 										</span>
-									</div>
+									</div>  
 								</div>
 
 								<!--end::User-->

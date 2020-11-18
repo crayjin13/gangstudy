@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
@@ -41,16 +42,7 @@ public class UserController {
 	 * @RequestMapping(value = "/") public String index() { return ""; }
 	 */
 
-	@RequestMapping(value = "/logOn")
-	public String logOn() {
-		return "logOn";
-	}
 
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "signin";
-	}
-	
 	
 
 	
@@ -76,7 +68,7 @@ public class UserController {
 			return pw;
 		}  
 		return "";
-	}
+	}  
 
 	// È¸¿ø Å»Åð
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
@@ -85,7 +77,7 @@ public class UserController {
 
 		ModelAndView mv = new ModelAndView();
 
-		boolean deleteUser = userService.deleteUser(id, pw);
+		boolean deleteUser = userService.deleteUser(id, pw);  
 		if (deleteUser) {
 			System.out.println("À¯Àú Å»Åð ¼º°ø");     
 			deleteUser = true;
@@ -208,11 +200,14 @@ public class UserController {
 		 */
 
 	/* ·Î±×¾Æ¿ô */
-	@RequestMapping(value = "/logout")
-	public String sign_out_action(HttpSession session) {
+	@RequestMapping(value = "/logout" , method=RequestMethod.POST)
+	public String sign_out_action(HttpSession session, RedirectAttributes reAttributes, HttpServletRequest request) {
 		System.out.println(" ·Î ±× ¾Æ ¿ô µÊ.");
-		session.invalidate();
-		return "/";
+		HttpSession sess = request.getSession(false);
+		request.getSession(true).invalidate();
+		
+		
+		return "redirect:/";
 	}
 
 	/* °ü¸®ÀÚ ÀÔÀå °Ë»ö,À¯Àú ¸ñ·Ï */
