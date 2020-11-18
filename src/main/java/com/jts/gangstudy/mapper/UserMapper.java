@@ -32,9 +32,9 @@ public interface UserMapper {
 	// 회占쏙옙 占쏙옙占싱듸옙占� 占싻깍옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 
 	@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE id=#{id}")
 	public User selectById(@Param("id") String id);
-
+         
 	// 회占쏙옙탈占쏙옙 @占쏙옙
-	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#', bod='#' WHERE id=#{id} and pw=#{pw}")
+	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#' WHERE id=#{id} and pw=#{pw}")
 	public boolean delete(@Param("id") String id, @Param("pw") String pw);
 
 	// 회占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 @ 占쏙옙

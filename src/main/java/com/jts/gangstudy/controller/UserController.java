@@ -1,12 +1,14 @@
 package com.jts.gangstudy.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
+import javax.xml.crypto.Data;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -85,7 +87,7 @@ public class UserController {
 
 		boolean deleteUser = userService.deleteUser(id, pw);
 		if (deleteUser) {
-			System.out.println("유저 탈퇴 성공");
+			System.out.println("유저 탈퇴 성공");     
 			deleteUser = true;
 			session.invalidate();
 		} else {
@@ -93,25 +95,47 @@ public class UserController {
 			deleteUser = false;
 		}
 
-		mv.setViewName("login");
+		mv.setViewName("signin");
 		mv.addObject("delete", deleteUser);
 
 		return mv;
 
 	}
 
+	
+	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 */
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
+		boolean truePw = userService.pwMatch(pw);
+		if (truePw) {
+			System.out.println("## 비밀번호 일치 여부:" + truePw);
+			truePw = true;
+		} else {
+			System.out.println("## 비밀번호 불일치:" + truePw);
+			
+		}
+		return truePw + "";
+	}
+	
+	
+	
+	
+	
+	
 	// 유저 정보 수정
 	@UserLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/modifyInfo", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String modifyInfo(@RequestParam("name") String name, @RequestParam("phone") String phone,
 			@RequestParam(value = "id") String id, @RequestParam("pw") String pw, @RequestParam("email") String email,
-			@RequestParam("bod") String bod, @RequestParam("gender") String gender, HttpSession session,
+			@RequestParam("bod") Date bod, @RequestParam("gender") String gender, HttpSession session,
 			HttpServletRequest request) {
 		boolean updateUser = userService.updateUser(new User(name, phone, id, pw, email, bod, gender));
 
 		System.out.println(updateUser);
-
+         
 		if (updateUser) {
 			System.out.println("유저 정보 수정 성공.");
 			updateUser = true;
@@ -121,8 +145,10 @@ public class UserController {
 		}
 		session.invalidate();
 
-		return updateUser + "userInfo";
+		return updateUser + "signin";
 	}
+	
+
 
 	/* 아이디 중복 체크 */
 	@ResponseBody
@@ -136,21 +162,6 @@ public class UserController {
 			newId = true;
 		}
 		return newId + "";
-	}
-
-	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 */
-	@UserLoginCheck
-	@ResponseBody
-	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
-		boolean truePw = userService.pwMatch(pw);
-		if (truePw) {
-			System.out.println("## 비밀번호 일치 여부:" + truePw);
-			truePw = true;
-		} else {
-			System.out.println("## 비밀번호 일치 여부:" + truePw);
-		}
-		return truePw + "";
 	}
 
 	/* 로그인 */
@@ -201,7 +212,7 @@ public class UserController {
 	public String sign_out_action(HttpSession session) {
 		System.out.println(" 로 그 아 웃 됨.");
 		session.invalidate();
-		return "/home";
+		return "/";
 	}
 
 	/* 관리자 입장 검색,유저 목록 */
@@ -257,16 +268,7 @@ public class UserController {
 	 * userList); m.setViewName("login"); System.out.println(userList); return m; }
 	 * 
 	 */
-	// 유저 자신의 정보 보이는 페이지
-	@UserLoginCheck
-	@RequestMapping(value = "/userInfo")
-	public ModelAndView userInfo(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-
-		mv.setViewName("userInfo");
-
-		return mv;
-	}
+	
 
 	// 회원가입
 	@ResponseBody

@@ -1,7 +1,16 @@
 
 $(function(){
+	///////////////////
 	
-	//비밀번호 찾기 
+	 /* 비밀번호 찾기 */
+	/*$('#kt_login_forgot_form').submit(function(e){
+		findPw();
+		e.preventDefault();      
+	}); */ 
+	/*
+	6) 비밀번호 찾기 
+	*/
+	
 	$("button[name=forgotbtn]").click(function() {         
 		var fpwArray = $('#kt_login_forgot_form').serialize();
 		console.log("r값이들어오는가--->"+fpwArray);
@@ -19,24 +28,30 @@ $(function(){
 					alert("잘못된정보입니다.");      
 				}
 			}
-		});	ㄴ
+		});	
 	});     
-	    
-	       
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 	// **************회원 탈퇴 *************
-	$('#deletebtn').click(function(){
+	$('#deleteUser').on('click', function() {
 		var idpw = $('#delete_User').serialize();
-		console.log("값들어오는지 확인 "+idpw);
+		console.log(idpw);
 		$.ajax({
 			url: 'deleteUser',
 			method : 'POST',
 			data : idpw,
 			dataType : 'text',
 			success : function(textData){
-				location.href = '/';
+				location.href = '/login';
 				alert('회원 탈퇴 되었습니다.')
 			}
 		});
@@ -73,7 +88,31 @@ $(function(){
 			}
 		});
 	});    
-  
+/*	$("#loginbtn").click(function() {
+		var mlafArray = $('#user_login_action').serialize();
+		console.log("---- 로그인 값이 들어오는가  ---" + mlafArray);
+		$.ajax({
+			url : 'sign_in_action',
+			method : 'POST',
+			data : mlafArray,
+			dataType : 'text',
+			success : function(textData) {
+				if (textData.trim() == "true") {
+					location.href = '/';
+				} else if (textData.trim() == "false1") {
+					alert('아이디를 다시 확인해주세요');
+					id_check();
+				} else if (textData.trim() == "false2") {
+					alert('비밀번호를 다시 확인해주세요');
+					password_check();
+				} else if (textData.trim() == "false3") {
+					alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.'); 
+					location.href = '/login';
+				}
+			}
+		});
+	});        
+*/	   
 	 
 	
 	// *******  회원 정보 수정  ********************
@@ -88,11 +127,40 @@ $(function(){
 			success : function(textData) {
 				location.href = '/signin';
 				alert('수정 되었습니다. 다시 로그인 해주세요');
-			
+				/*if (textData.trim() == "true") {
+					
+				
+					
+				} else {
+					location.href = '/userInfo';
+					
+				}*/
 			}
 		});
 		});
-
+/*	$("#modifybtn").click(function(){
+		var asArray = $('#modify_action').serializeArray();
+		console.log("*****회원정보수정 값 "+asArray);
+		$.ajax({
+			url : 'modifyInfo',
+			method : 'POST',
+			data : asArray,
+			dataType : 'text',
+			success : function(textData) {
+				location.href = '/signin';
+				alert('수정 되었습니다. 다시 로그인 해주세요');
+				if (textData.trim() == "true") {
+					
+				
+					
+				} else {
+					location.href = '/userInfo';
+					
+				}
+			}
+		});
+	});
+*/	
 	
 	
 	//***** 회원가입  ************
@@ -130,12 +198,62 @@ $(function(){
 
 				}
 			});
-		
+			// e.preventDefault();
 		});
-
+		
+		
+/*		$("#kt_login_signup_form").click(function() {
+			var userArray = $('#sign_up').serialize();
+			console.log("#값이 오는지 확인 ---" + userArray);
+			//select option 으로 가져올때 이 문법으로 보내려면 
+			// select name="" 네임 인지 확인하기
+			// https://java119.tistory.com/27 
+			$.ajax({
+				url : 'signUp',
+				data : userArray,
+				method : 'POST',
+				dataType : 'text',
+				success : function(textData) {
+					console.log(textData);
+					if (textData.trim() == "true") {
+						location.href = '/signup';
+					} else if (textData.trim() == "false") {
+						
+					}
+					
+				}
+			});
+			// e.preventDefault();
+		});
+*/	
+	
+	
+		
+//////////	
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*$(document).ready(function() {
+	signUp_function();
+
+});*/
 
 
 // DOM Tree 로딩 후 이벤트 처리
