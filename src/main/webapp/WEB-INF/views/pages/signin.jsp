@@ -51,10 +51,10 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!-- 갱스터디 그림로고 	<img src="${pageContext.request.contextPath}/resources/images/logo.png" width="200"  alt="" /> -->
 						</a>
 						<!--end::Logo-->
-						<!--begin::Signin-->    
+						<!--begin::Signin-->                
 						<div class="login-form">
 							<!--begin::Form-->
-							<form   id="kt_login_singin_form" action="/index.jsp" method="post">
+							<form   id="kt_login_singin_form" action="/" method="post">
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">								
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">로그인</h3>

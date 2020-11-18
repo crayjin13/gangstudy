@@ -3,11 +3,33 @@ $(function(){
 	///////////////////
 	
 	 /* 비밀번호 찾기 */
-	$("#find_pw_btn").click(function(){
-		location.href='/findPw';
-	});
+	/*$('#kt_login_forgot_form').submit(function(e){
+		findPw();
+		e.preventDefault();      
+	}); */ 
+	/*
+	6) 비밀번호 찾기 
+	*/
 	
-	
+	$("button[name=forgotbtn]").click(function() {         
+		var fpwArray = $('#kt_login_forgot_form').serialize();
+		console.log("r값이들어오는가--->"+fpwArray);
+		$.ajax({
+			url : 'findPw_action',              
+			method : 'POST',
+			data : fpwArray,
+			dataType : 'text',
+			success : function(textData) {       
+		
+				if (textData.trim() !=null) {
+					alert(kt_login_forgot_form.id.value+"님의 비밀번호는 "+textData+"입니다.");
+					//location.href = '/forgot';
+				}else{
+					alert("잘못된정보입니다.");      
+				}
+			}
+		});	
+	});     
 	
 	
 	
@@ -47,9 +69,10 @@ $(function(){
 			data : mlafArray,
 			dataType : 'text',          
 			success : function(textData) {
-				if (textData.trim() == "text") {
-					alert('로그인성공');
-					location.href = '/index';
+				if (textData.trim() == "true") {
+    
+					location.href='/';   
+					
 				} else if (textData.trim() == "false1") {
 					alert('아이디를 다시 확인해주세요');
 					id_check();
@@ -60,7 +83,7 @@ $(function(){
 					password_check();
 				} else if (textData.trim() == "false3") {
 					alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.'); 
-					location.href = '/';
+					
 				}
 			}
 		});
@@ -93,7 +116,7 @@ $(function(){
 	
 	
 	// *******  회원 정보 수정  ********************
-	$("#modifybtn").click(function(){
+	$("#kt_form").click(function(){
 		var asArray = $('#modify_action').serializeArray();
 		console.log("*****회원정보수정 값 "+asArray);
 		$.ajax({
@@ -102,7 +125,7 @@ $(function(){
 			data : asArray,
 			dataType : 'text',
 			success : function(textData) {
-				location.href = '/login';
+				location.href = '/signin';
 				alert('수정 되었습니다. 다시 로그인 해주세요');
 				/*if (textData.trim() == "true") {
 					
@@ -115,13 +138,35 @@ $(function(){
 			}
 		});
 		});
-	
+/*	$("#modifybtn").click(function(){
+		var asArray = $('#modify_action').serializeArray();
+		console.log("*****회원정보수정 값 "+asArray);
+		$.ajax({
+			url : 'modifyInfo',
+			method : 'POST',
+			data : asArray,
+			dataType : 'text',
+			success : function(textData) {
+				location.href = '/signin';
+				alert('수정 되었습니다. 다시 로그인 해주세요');
+				if (textData.trim() == "true") {
+					
+				
+					
+				} else {
+					location.href = '/userInfo';
+					
+				}
+			}
+		});
+	});
+*/	
 	
 	
 	//***** 회원가입  ************
 	
 //	$("#kt_login_signup_form_submit_button").click(function() {
-		$("#btn").click(function() {
+		$("#kt_login_signup_form_submit_button").click(function() {
 			var userArray = $('#kt_login_signup_form').serialize();
 			console.log("#값이 오는지 확인 ---" + userArray);
 			//select option 으로 가져올때 이 문법으로 보내려면 
@@ -129,7 +174,7 @@ $(function(){
 			// https://java119.tistory.com/27             
 			$.ajax({
 				url : 'signUp',
-				data : userArray,            
+				data : userArray,                      
 				method : 'POST',        
 				dataType : 'text',
 				success : function(textData) {

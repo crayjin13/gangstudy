@@ -65,9 +65,9 @@ public class UserController {
 	/* 비밀번호 찾기 - id , email */
 	@ResponseBody
 	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) {
+	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) throws Exception {
 		User findPw = userService.findPw(id, email);
-
+  
 		if (findPw != null) {
 			System.out.println("## 회원의 비밀번호는:" + findPw.getPw() + "입니다.");
 			String pw = findPw.getPw();
