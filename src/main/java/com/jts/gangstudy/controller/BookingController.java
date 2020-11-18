@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
+import com.jts.gangstudy.service.KakaoPayService;
 import com.jts.gangstudy.service.UserService;
 
 
@@ -27,7 +29,10 @@ public class BookingController {
 	private BookingService bookingService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private KakaoPayService kakaoPayService;
 	
+	// booking main page
 	@UserLoginCheck
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView bookMain() {
@@ -52,17 +57,34 @@ public class BookingController {
 		return mav;
 	}
 	
+	// booking 신청 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
-	public ModelAndView makeBook(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("booking/makeBook");
-		List<String> dates = bookingService.makeDates();
+	
+	public ModelAndView makeBook(HttpServletRequest request,
+			@RequestParam("startDateInput") String startDate, @RequestParam("startTimeInput") String startTime,
+			@RequestParam("endDateInput") String endDate, @RequestParam("endTimeInput") String endTime,
+			@RequestParam("userCountInput") String userCount) {
+		ModelAndView mav = new ModelAndView("pages/shoppingcart");
 		
-		mav.addObject("dates", dates);
+		String startDateTime = bookingService.getViewFormat(startDate, startTime);
+		String endDateTime = bookingService.getViewFormat(endDate, endTime);
+		String timeInterval = bookingService.getTimeInterval(startDate, startTime, endDate, endTime);
+		
+		mav.addObject("startDateTime", startDateTime);
+		mav.addObject("endDateTime", endDateTime);
+		mav.addObject("timeInterval", timeInterval);
+		mav.addObject("userCount", userCount);
 		return mav;
 	}
 
+	// 예약 신청 전에 수정을 한번 더 거치므로 거기서 처리해야 될 것들.
+	// 유효성 검사 필요
+	// 세션에 넘기기 전에 요금을 계산해둔다.
+	// 세션에 넘기고 결제 페이지로 넘어간다.
 	
+	
+	//booking 신청시 처리
 	// 결제를 진행한 후 wait 상태로 변경해야 함.
 	@ResponseBody
 	@RequestMapping(value = "/make", method = RequestMethod.POST)
@@ -73,6 +95,7 @@ public class BookingController {
 		return bookingService.insertDB(book);
 	}
 	
+	// booking 수정 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView editBook(HttpServletRequest request) {
@@ -90,12 +113,12 @@ public class BookingController {
 			mav.addObject("dates", dates)
 			.addObject("book", book)
 			.addObject("userID", sUserId.getId())
-			.addObject("charge", charge)
-			.addObject("href", "edit");
+			.addObject("charge", charge);
 		}
 		return mav;
 	}
 	
+	// booking 수정시 처리
 	// 수정 완료 후 차액에 대해 재결제 처리해야함
 	@ResponseBody
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -124,8 +147,14 @@ public class BookingController {
 		String endDateTime = request.getParameter("endDate") + " " + request.getParameter("endTime");
 		Booking book = new Booking(sUserId.getUser_no(), room_no, startDateTime, endDateTime, people, "wait");
 		int charge = bookingService.calcCharge(book);
-		session.setAttribute("book", book);
+		
 
+		
+		// payment에 필요한 클래스를 생성해서 담아야 한다.
+		// 여기서 charge, item, url 등을 넘겨줘야 한다. -> 세션으로 보내준다.
+		session.setAttribute("book", book);
+		
+		
 		mav.addObject("book", book)
 			.addObject("userID", sUserId.getId())
 			.addObject("charge", charge)
@@ -141,8 +170,8 @@ public class BookingController {
 		User sUserId = (User)session.getAttribute("sUserId");
 		String date = request.getParameter("startDate");
 		List<Booking> books = bookingService.viewDate(date);
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
-		books.remove(book);
+//		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+//		books.remove(book);
 		List<String> times = bookingService.getUnbookedTimeList(date, books);
 		return times;
 	}
@@ -156,8 +185,8 @@ public class BookingController {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		List<Booking> books = bookingService.viewDate(endDate);
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
-		books.remove(book);
+//		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+//		books.remove(book);
 		List<String> times = bookingService.getEndTimes(books, startDate, startTime, endDate);
 		return times;
 	}

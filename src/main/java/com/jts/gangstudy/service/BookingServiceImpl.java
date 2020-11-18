@@ -160,6 +160,40 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return timeList;
 	}
+	
+	// 년 월 일 시 분 포맷 변환
+	@Override
+	public String getViewFormat(String date, String time) {
+	    LocalDateTime localDateTime = getDateTime(date, time);
+	    String stringDateTime = localDateTime.format(DateTimeFormatter.ofPattern("M월 d일 h시 mm분"));
+		return stringDateTime;
+	}
+
+	// 시작일시 ~ 종료일시 간의 시간차이 계산
+	@Override
+	public String getTimeInterval(String startDate, String startTime, String endDate, String endTime) {
+		LocalDateTime startDateTime = getDateTime(startDate, startTime);
+		LocalDateTime endDateTime = getDateTime(endDate, endTime);
+
+		int hour = Duration.between(startDateTime, endDateTime).toHoursPart();
+		int minute = Duration.between(startDateTime, endDateTime).toMinutesPart();
+		String timeInterval;
+		if(hour > 0) {
+			timeInterval = hour + "시간 " + minute + "분";
+		} else {
+			timeInterval = minute + "분";
+		}
+		return timeInterval;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// time 목록 반환
 	public List<String> createTimeList() {
 		List<String> times = new ArrayList<>();

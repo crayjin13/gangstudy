@@ -25,7 +25,7 @@
         
 		<hr>
 		
-		<form action="/booking/check" method="GET">
+		<form action="${pageContext.request.contextPath}/booking/check" method="GET">
 			수정사항<br>
 			인원 :
 			<select name="people">

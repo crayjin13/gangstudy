@@ -3,7 +3,6 @@ package com.jts.gangstudy.service;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.jts.gangstudy.domain.KakaoProfile;
 import com.jts.gangstudy.domain.KakaoUser;
 import com.jts.gangstudy.mapper.KakaoMapper;
 
@@ -27,31 +25,32 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	
 	@Autowired
 	private KakaoMapper mapper;
-	
-	private final static String ready = "https://kapi.kakao.com/v1/payment/ready";		// Kakao 결제 준비
+
+    @Value("${kakao.ready}")
+	private String ready;														// Kakao 결제 준비
 
     @Value("${kakao.admin_key}")
-	private String admin_key;			// Admin 키
+	private String admin_key;													// Admin 키
 	
 	// 필수 요구사항
     @Value("${kakao.cid}")
-	private String cid;										// 가맹점 코드, 10자
+	private String cid;															// 가맹점 코드, 10자
     @Value("${kakao.partner_order_id}")
-	private String partner_order_id;					// 가맹점 주문번호, 최대 100자
+	private String partner_order_id;											// 가맹점 주문번호, 최대 100자
     @Value("${kakao.partner_user_id}")
-	private String partner_user_id;					// 가맹점 회원 id, 최대 100자
+	private String partner_user_id;												// 가맹점 회원 id, 최대 100자
     
-	private final static String item_name = "room";										// 상품명, 최대 100자
-	private final static String quantity	 = "1";										// 상품 수량
-	private final static String total_amount = "2500";									// 상품 총액
-	private final static String tax_free_amount = "100";								// 상품 비과세 금액
+	private final static String item_name = "room";								// 상품명, 최대 100자
+	private final static String quantity	 = "1";								// 상품 수량
+	private final static String total_amount = "2500";							// 상품 총액
+	private final static String tax_free_amount = "100";						// 상품 비과세 금액
 	private final static String approval_url = "http://localhost:8080/app";		// 결제 성공 시 redirect url, 최대 255자
 	private final static String cancel_url = "http://localhost:8080/can";		// 결제 취소 시 redirect url, 최대 255자
-	private final static String fail_url = "http://localhost:8080/fail";			// 상품 비과세 금액
+	private final static String fail_url = "http://localhost:8080/fail";		// 결제 실패 시 redirect url, 최대 255자
 	
 	// 선택 요구사항
-	private final static String cid_secret = "fqwrqrqwf";		// 가맹점 코드 인증키, 24자, 숫자와 영문 소문자 조합
-	private final static String vat_amount = "100";		// 상품 부가세 금액
+	private final static String cid_secret = "fqwrqrqwf";						// 가맹점 코드 인증키, 24자, 숫자와 영문 소문자 조합
+	private final static String vat_amount = "100";								// 상품 부가세 금액
 
 	@Override
 	public String get() {
