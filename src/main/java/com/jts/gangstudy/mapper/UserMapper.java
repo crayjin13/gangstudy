@@ -22,7 +22,7 @@ public interface UserMapper {
 	public User find_id(@Param("email") String email, @Param("name") String name);
 
 	// 占쏙옙橘占싫� 占쏙옙占쏙옙
-	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}")
+	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}") 
 	public boolean update_pw(@Param("id") String id);
 
 	// 占쏙옙橘占싫� 찾占쏙옙
