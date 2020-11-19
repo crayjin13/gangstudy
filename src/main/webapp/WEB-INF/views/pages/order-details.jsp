@@ -76,7 +76,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
 											<div class="col-md-9">
 												<div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
-													<h1 class="display-4 font-weight-boldest mb-10"> 00님의 결제 내역 </h1>
+													<h1 class="display-4 font-weight-boldest mb-10"> ${name}님의 결제 내역 </h1>
 													<div class="d-flex flex-column align-items-md-end px-0">
 														<!--begin::Logo-->
 														<a href="/" class="mb-5">
@@ -88,24 +88,24 @@ License: You must have a valid license purchased only from themeforest(the above
 															<span>  </span>   
 														</span>
 													</div>
-												</div>
+												</div>												<%												String hasBooking = (String)request.getAttribute("hasBooking");												if(hasBooking.equals("false")){												%>													스터디룸 예약이 없습니다.													</div>												</div>												<%												} else {												%>
 												<div class="border-bottom w-100"></div>
 												<div class="d-flex justify-content-between pt-6">
 													<div class="d-flex flex-column flex-root">
 														<span class="font-weight-bolder mb-2">날짜&시간 </span>
-														<span class="opacity-70"> 시작시간: <br/>12월 1일 12시 </span>
-														<span class="opacity-70"> 종료시간:<br/> 12월 1일 18시 </span>
+														<span class="opacity-70"> 시작시간:<br/>${start}</span>
+														<span class="opacity-70"> 종료시간:<br/>${end}</span>
 													</div>
 													<div class="d-flex flex-column flex-root">
 														<span class="font-weight-bolder mb-2">인원수 </span>
-														<span class="opacity-70">5명 </span>
+														<span class="opacity-70">${people}명</span>
 													</div>
 													<div class="d-flex flex-column flex-root">
 														<span class="font-weight-bolder mb-2">1인 1시간 이용금액</span>
-														<span class="opacity-70">1,000원  
+														<span class="opacity-70">${hourPrice}  
 														<br /> </span>    
 													</div>
-												</div>
+												</div>	
 											</div>
 										</div>
 										<!-- end: Invoice header-->
@@ -124,10 +124,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														</thead>
 														<tbody>
 															<tr class="font-weight-boldest">
-																<td class="pl-0 pt-7">5명 </td>
-																<td class="text-right pt-7">6시간 </td>
-																<td class="text-right pt-7">-500원</td>
-																<td class="text-danger pr-0 pt-7 text-right">29,500원</td>
+																<td class="pl-0 pt-7">${people}명</td>
+																<td class="text-right pt-7">${timeInterval}</td>
+																<td class="text-right pt-7">0원</td>
+																<td class="text-danger pr-0 pt-7 text-right">${totalCharge}원</td>
 															</tr>														<!-- 	한사람이 예약 두번하면 목록 
 															<tr class="font-weight-boldest border-bottom-0">
 																<td class="border-top-0 pl-0 py-4">Front-End Development</td>
@@ -145,7 +145,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													</table>
 												</div>
 											</div>  
-										</div>										<!-- end: Invoice body-->
+										</div>										<%										}										%>										<!-- end: Invoice body-->
 										<!-- begin: Invoice footer-->
 									<!--	<p>위아래 배경색 있고 없고, 가격 폰트 사이즈 차이, 둘중에 맘에 드는 디자인으로 </p>
 										 <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
@@ -178,7 +178,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-md-9">
 												<div class="d-flex justify-content-between">												<!-- onclick="window.print(); 프린트 바로 할수있는 버튼  -->
 													<button type="button" class="btn btn-secondary font-weight-bold" onclick="location.href='/'">메인으로 </button>
-													<button type="button" class="btn btn-light-primary font-weight-bold" id="modify" onclick="location.href='/modifycart'">수정하기 </button>																								</div>
+													<button type="button" class="btn btn-light-primary font-weight-bold" id="modify" onclick="location.href='/booking/modify'">수정하기 </button>																								</div>
 													
 											</div>     
 										</div>

@@ -65,8 +65,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<mvc:interceptors>
+	    <mvc:interceptor>
+	        <mvc:mapping path="/**" />
+			<beans:bean
+				class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<mvc:annotation-driven>
+	    <mvc:argument-resolvers>
+	        <beans:bean
+	        	class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
+	    </mvc:argument-resolvers>
+	</mvc:annotation-driven>
 	
-
-
-
+	
 </beans:beans>

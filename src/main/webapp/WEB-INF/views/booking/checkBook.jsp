@@ -10,7 +10,6 @@
 	<body>
 		예약 정보 <br>
         사용자 아이디: <span>${userID}</span><br>
-        <input readonly>${book.room_no}<br>
         방 번호: <span id="room_no" class = "book">${book.room_no}</span><br>
         시작일: <span id="check_in" class = "book">${book.check_in}</span><br>
         종료일: <span id="check_out" class = "book">${book.check_out}</span><br>

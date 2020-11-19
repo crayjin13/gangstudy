@@ -28,6 +28,11 @@ public class BookingServiceImpl implements BookingService{
 	private final int startMin = 0;			// 예약 가능한 시작 분
 	private final int endHour = 24;			// 예약 가능한 종료 시간
 	private final int endMin = 0;			// 예약 가능한 종료 분
+
+	@Override
+	public int getHourPrice() {
+		return (60 / minuteSize) * amount;
+	}
 	
 	// 전체 예약 목록 (디버깅용)
 	@Override
@@ -71,12 +76,9 @@ public class BookingServiceImpl implements BookingService{
 	}
 	// 예약 요금
 	@Override
-	public int calcCharge(Booking book) {
-		LocalDateTime ciDateTime = book.getciDateTime();
-		LocalDateTime coDateTime = book.getcoDateTime();
-		Duration duration = Duration.between(ciDateTime, coDateTime);
+	public int getCharge(Booking book) {
+		Duration duration = book.getDuration();
 		int slot = (int)duration.toMinutes() / minuteSize;
-		
 		// 단위 수 * 단위 금액 * 인원
 		return slot * amount * book.getPeople();
 	}
@@ -86,7 +88,7 @@ public class BookingServiceImpl implements BookingService{
 		int result = viewDuplicate(book);
 		if(result == 0) {
 			mapper.insertBook(book);
-			return "true";
+			return "done";
 		} else if(result > 1){
 			System.err.println("BookingController:insertDB: duplicate booking is exist.");
 			return "critical";
@@ -94,6 +96,10 @@ public class BookingServiceImpl implements BookingService{
 			return "duplicate";
 		}
 	}
+	
+	
+	
+	
 	
 	
 	
@@ -160,23 +166,14 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return timeList;
 	}
-	
-	// 년 월 일 시 분 포맷 변환
-	@Override
-	public String getViewFormat(String date, String time) {
-	    LocalDateTime localDateTime = getDateTime(date, time);
-	    String stringDateTime = localDateTime.format(DateTimeFormatter.ofPattern("M월 d일 h시 mm분"));
-		return stringDateTime;
-	}
 
 	// 시작일시 ~ 종료일시 간의 시간차이 계산
 	@Override
-	public String getTimeInterval(String startDate, String startTime, String endDate, String endTime) {
-		LocalDateTime startDateTime = getDateTime(startDate, startTime);
-		LocalDateTime endDateTime = getDateTime(endDate, endTime);
-
-		int hour = Duration.between(startDateTime, endDateTime).toHoursPart();
-		int minute = Duration.between(startDateTime, endDateTime).toMinutesPart();
+	public String getTimeInterval(Booking book) {
+		Duration duration = book.getDuration();
+		int hour = duration.toHoursPart();
+		int minute = duration.toMinutesPart();
+		
 		String timeInterval;
 		if(hour > 0) {
 			timeInterval = hour + "시간 " + minute + "분";
@@ -184,6 +181,30 @@ public class BookingServiceImpl implements BookingService{
 			timeInterval = minute + "분";
 		}
 		return timeInterval;
+	}
+	
+	// 1인당 이용요금 (= 총액 / 인원 )
+	@Override
+	public String getTimeAmount(Booking book) {
+		Duration duration = book.getDuration();
+		Long minute = duration.toMinutes();
+		int charge = minute.intValue() / minuteSize;
+		return Integer.toString(charge);
+	}
+	
+	
+
+
+	@Override
+	public void changeState(Booking book, String state) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		System.out.println("book_no : " + book.getBook_no());
+		System.out.println("state : " + state);
+		map.put("book_no", Integer.toString(book.getBook_no()));
+		map.put("state", state);
+		
+		mapper.updateState(map);
 	}
 	
 	

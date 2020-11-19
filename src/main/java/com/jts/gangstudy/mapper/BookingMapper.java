@@ -15,4 +15,5 @@ public interface BookingMapper {
 	public List<Booking> viewUserState(HashMap<String, String> map);
 	public int checkDuplicate(HashMap<String, String> map);
 	public List<Booking> viewOvernight(String date);
+	public void updateState(HashMap<String, String> map);
 }

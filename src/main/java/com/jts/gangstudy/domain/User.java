@@ -227,7 +227,11 @@ public class User {
 
 
 	public String getPoints() {
-		return points;
+		if(points==null) {
+			return "0";
+		} else {
+			return points;
+		}
 	}
 
 
