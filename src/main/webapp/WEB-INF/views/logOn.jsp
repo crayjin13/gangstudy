@@ -52,7 +52,7 @@
 		<div class="cp-field">
 			<h5>아이디(수정 불가)</h5>
 			<div class="cpp-fiel">
-				<input type="text" name="id" value="${sUserId.id}" readonly
+				<input type="text" name="id" value="${sUserId.id} " readonly
 					placeholder="수정불가"> <i class="la la-user"></i>
 			</div>
 		</div>

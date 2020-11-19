@@ -8,6 +8,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+
+/* function changeView(value){
+	if(value =="0")
+		{
+		location.href="index.jsp";
+		}
+	else if(value =="1")
+		{
+		location.href="index.jsp?pages=pages/signin.jsp";
+		
+		}
+}
+ */
+
+
+
+</script>
 	<script src="/js/cbpHorizontalMenu.min.js"></script>
 
 
@@ -125,21 +143,21 @@
 								</li>
 								<!-- 메뉴안에 메뉴   ${pageContext.request.requestURI} : 이방법ㅇ 경로 망가졌음   -->
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/gangstudy/signin"
-									class="menu-link menu-toggle"> <i
+									data-menu-toggle="hover"><a href="/signin"
+									class="menu-link "> <i
 										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">로그인</span></a>
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/gangstudy/signup"
+									data-menu-toggle="hover"><a href="/signup"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원가입</span></a>
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/gangstudy/edit-user"
+									data-menu-toggle="hover"><a href="/edit-user"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원정보
@@ -147,9 +165,15 @@
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a
-									href="/booking/check" class="menu-link "> <i
+									href="/order-details" class="menu-link "> <i
 										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">예약정보</span></a>
+								</li>
+								<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a
+									href="/remo-control" class="menu-link "> <i
+										class="menu-bullet menu-bullet-line"><span></span></i> <span
+										class="menu-text font-weight-boldest font-size-h3 cafe24">리모컨 기능</span></a>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="javascript:;"

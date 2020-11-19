@@ -46,7 +46,7 @@ public class UserController {
 
 	@RequestMapping(value = "/login")
 	public String login() {
-		return "login";
+		return "signin";
 	}
 	
 	
@@ -65,9 +65,9 @@ public class UserController {
 	/* 비밀번호 찾기 - id , email */
 	@ResponseBody
 	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) {
+	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) throws Exception {
 		User findPw = userService.findPw(id, email);
-
+  
 		if (findPw != null) {
 			System.out.println("## 회원의 비밀번호는:" + findPw.getPw() + "입니다.");
 			String pw = findPw.getPw();
@@ -189,12 +189,12 @@ public class UserController {
 			e.printStackTrace();
 			forwardPath = "false";
 		}
+		return forwardPath;
+	}
 		/*
 		 * if(user.getmRetire()=="off"){ System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
 		 * //forwardPath = 계정 활성화 창으로 포워딩 }
 		 */
-		return forwardPath;
-	}
 
 	/* 로그아웃 */
 	@RequestMapping(value = "/logout")

@@ -47,12 +47,12 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo-->
 							
-						<a href="/gangstudy" class="login-logo pb-xl-20 pb-15">							<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" class="max-h-70px" alt="" />							
+						<a href="/" class="login-logo pb-xl-20 pb-15">							<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" class="max-h-70px" alt="" />							
 						</a>
 						<!--end::Logo--> 
-						<!--begin::Signin-->
+						<!--begin::Signin-->            
 						<div class="login-form">
-							<form class="form" id="kt_login_forgot_form" action="">
+							<form class="form" id="kt_login_forgot_form" action="/" method="post">
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">
 									<h3 class="font-weight-bolder text-dark font-size-h2 cafe24 font-size-h1-lg"> 비밀번호 찾기</h3>
@@ -61,20 +61,20 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--end::Title-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="id" placeholder="id" name="id" autocomplete="off" />
+									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="text" placeholder="id" id="id" name="id" autocomplete="off" />
 								</div>								<div class="form-group">
-									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" autocomplete="off" />
+									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="email" placeholder="Email" id="email" name="email" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
 								<div class="form-group d-flex flex-wrap">
-									<button type="submit" id="kt_login_forgot_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-4">확인 </button>
-									<a href="/gangstudy/signin" id="kt_login_forgot_cancel" class="btn btn-light-primary cafe24 font-weight-bolder font-size-h6 px-8 py-4 my-3">뒤로가기</a>
+									<button type="submit" id="kt_login_forgot_form_submit_button" name="forgotbtn" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-4">확인 </button>
+									<a href="/signin" id="kt_login_forgot_cancel" class="btn btn-light-primary cafe24 font-weight-bolder font-size-h6 px-8 py-4 my-3">뒤로가기</a>
 								</div>
 								<!--end::Form group-->
 							</form>
 						</div> 
-						<!--end::Signin-->
+						<!--end::Signin-->    
 					</div>
 					<!--end::Wrapper-->
 				</div>
@@ -93,7 +93,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<!--end::Login-->
 		</div>
-		<!--end::Main-->
+		<!--end::Main-->										
 		<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
 		<!--begin::Global Config(global config for global JS scripts)-->
 		<script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#1BC5BD", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#6993FF", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#1BC5BD", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#E1E9FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
@@ -103,7 +103,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Theme Bundle-->
-		<!--begin::Page Scripts(used by this page)-->
+		<!--begin::Page Scripts(used by this page)-->		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wUser.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/custom/login/login-4.js"></script>
 		<!--end::Page Scripts-->
 	</body>

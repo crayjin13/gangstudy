@@ -79,7 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<h1 class="display-4 font-weight-boldest mb-10"> ${name}님의 결제 내역 </h1>
 													<div class="d-flex flex-column align-items-md-end px-0">
 														<!--begin::Logo-->
-														<a href="/gangstudy" class="mb-5">
+														<a href="/" class="mb-5">
 															<img src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" alt="" />
 														</a>
 														<!--end::Logo-->
@@ -199,7 +199,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Container-->
 						<div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
 							<!--begin::Copyright-->
-							<div class="text-dark order-2 order-md-1">								<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span>								<a href="/gangstudy" target="_blank" class="text-dark-75 text-hover-primary">갱스터디</a>							</div>							<!--end::Copyright-->							<!--begin::Nav-->							<div class="nav nav-dark">								<a href="http://pf.kakao.com/_xbgCJxb" target="_blank" class="nav-link pl-0 pr-5">카톡으로 문의하기 </a>								<a href="tel:+821021367733" target="_blank" class="nav-link pl-0 pr-5">전화하기 </a>								<a onclick="window.open('${pageContext.request.contextPath}/resources/images/regit.png','_blank','scrollbars=no,width=564,height=860,top=10,left=20');" target="_blank" class="nav-link pl-0 pr-0">사업자 등록 번호 : 783-17-01344</a>							</div>
+							<div class="text-dark order-2 order-md-1">								<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span>								<a href="/" target="_blank" class="text-dark-75 text-hover-primary">갱스터디</a>							</div>							<!--end::Copyright-->							<!--begin::Nav-->							<div class="nav nav-dark">								<a href="http://pf.kakao.com/_xbgCJxb" target="_blank" class="nav-link pl-0 pr-5">카톡으로 문의하기 </a>								<a href="tel:+821021367733" target="_blank" class="nav-link pl-0 pr-5">전화하기 </a>								<a onclick="window.open('${pageContext.request.contextPath}/resources/images/regit.png','_blank','scrollbars=no,width=564,height=860,top=10,left=20');" target="_blank" class="nav-link pl-0 pr-0">사업자 등록 번호 : 783-17-01344</a>							</div>
 							<!--end::Nav-->
 						</div>
 						<!--end::Container-->

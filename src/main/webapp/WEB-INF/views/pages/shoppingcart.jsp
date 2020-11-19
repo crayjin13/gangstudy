@@ -392,9 +392,9 @@ License: You must have a valid license purchased only from themeforest(the above
 						class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
 						<!--begin::Copyright-->
 						<div class="text-dark order-2 order-md-1">
-							<a href="/gangstudy/admin"> <span
+							<a href="/admin"> <span
 								class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span></a> <a
-								href="/gangstudy" target="_blank"
+								href="/" target="_blank"
 								class="text-dark-75 text-hover-primary">갱스터디</a>
 						</div>
 
