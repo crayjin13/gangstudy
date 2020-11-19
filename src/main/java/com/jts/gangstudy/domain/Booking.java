@@ -54,10 +54,6 @@ public class Booking {
 		this.state = state;
 	}
 
-	public void setBook_no(int book_no) {
-		this.book_no = book_no;
-	}
-
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}

@@ -31,7 +31,7 @@ public interface BookingService {
 	// 대기중인 예약
 	public Booking getUserWaitBooking(Integer user_no);
 	
-	
+	public void changeState(Booking book, String state);
 	public String getTimeInterval(Booking book);
 	public String getTimeAmount(Booking book);
 	public int getHourPrice();

@@ -54,12 +54,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Main-->
 	<!--begin::Header Mobile-->
 	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Logo-->
-		<a href="/gangstudy"> <img alt="Logo"
-			src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png"
-			class="logo-default max-h-30px" />
-		</a>
-		<!--end::Logo-->
 		<!--begin::Toolbar-->
 		<div class="d-flex align-items-center"></div>
 		<!--end::Toolbar-->
@@ -76,12 +70,6 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Brand-->
 					<div
 						class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12">
-						<!--begin::Logo-->
-						<a href="/gangstudy"> <img alt="Logo"
-							src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png"
-							class="max-h-30px" />
-						</a>
-						<!--end::Logo-->
 					</div>
 					<!--end::Brand-->
 					<!--begin::Nav Wrapper-->
@@ -189,9 +177,16 @@ License: You must have a valid license purchased only from themeforest(the above
 												<span
 													class="card-label font-weight-bolder font-size-h3 text-dark">결제정보</span>
 											</h3>
+											<!--begin::Logo-->
+											<a href="/"> <img alt="Logo"
+												src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png"
+												class="logo-default max-h-30px" />
+											</a>
+											<!--end::Logo-->
 
 										</div>
 										<!--end::Header-->
+										<div id="kakaopay"></div>
 										<div class="card-body">
 											<!--begin::Shopping Cart-->
 											<div class="table-responsive">
@@ -366,7 +361,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<td colspan="2" class="border-0 text-right pt-10">
 															<a
 																class="btn btn-light-primary font-weight-bolder px-8"
-																id="pay">결제하기 </a></td>
+																id="payments">결제하기 </a></td>
 														</tr>
 														<!--end::Cart Footer-->     
 													</tbody>
@@ -565,10 +560,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-touchspin.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/iamport.js"></script>
-	<script type="text/javascript"
-		src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<!--end::Global Theme Bundle-->

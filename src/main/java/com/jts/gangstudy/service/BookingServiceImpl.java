@@ -88,7 +88,7 @@ public class BookingServiceImpl implements BookingService{
 		int result = viewDuplicate(book);
 		if(result == 0) {
 			mapper.insertBook(book);
-			return "true";
+			return "done";
 		} else if(result > 1){
 			System.err.println("BookingController:insertDB: duplicate booking is exist.");
 			return "critical";
@@ -96,6 +96,10 @@ public class BookingServiceImpl implements BookingService{
 			return "duplicate";
 		}
 	}
+	
+	
+	
+	
 	
 	
 	
@@ -186,6 +190,21 @@ public class BookingServiceImpl implements BookingService{
 		Long minute = duration.toMinutes();
 		int charge = minute.intValue() / minuteSize;
 		return Integer.toString(charge);
+	}
+	
+	
+
+
+	@Override
+	public void changeState(Booking book, String state) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		System.out.println("book_no : " + book.getBook_no());
+		System.out.println("state : " + state);
+		map.put("book_no", Integer.toString(book.getBook_no()));
+		map.put("state", state);
+		
+		mapper.updateState(map);
 	}
 	
 	

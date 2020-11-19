@@ -4,6 +4,9 @@
 <mapper namespace="com.jts.gangstudy.mapper.BookingMapper">
 	<!-- 예약 추가 -->
 	<insert id="insertBook" parameterType="com.jts.gangstudy.domain.Booking">
+	  <selectKey keyProperty="book_no" resultType="int" order="AFTER">
+	    select BOOKING_TB_SEQ.CURRVAL FROM DUAL
+	  </selectKey>
 	  INSERT INTO BOOKING_TB
 	  (USER_NO, ROOM_NO, CHECK_IN, CHECK_OUT, PEOPLE, STATE, REQUEST_DT) VALUES
 	  (#{user_no}, #{room_no}, TO_DATE(#{check_in}, 'YYYY-MM-DD HH24:MI'), TO_DATE(#{check_out}, 'YYYY-MM-DD HH24:MI'), #{people}, #{state}, SYSDATE)
@@ -55,5 +58,10 @@
 	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') != #{date}
 	</select>
 	
-	
+	<!-- 예약 삭제 -->
+	<select id="updateState" parameterType="hashmap">
+	  UPDATE BOOKING_TB
+	  SET STATE = #{state}
+	  WHERE BOOK_NO = #{book_no}
+	</select>
 </mapper>

@@ -38,7 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile">
 			<!--begin::Logo-->      
-			<a href="/gangstudy">
+			<a href="/">
 				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" class="logo-default max-h-30px" />
 			</a>   
 			<!--end::Logo-->
@@ -88,7 +88,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<span>  </span>   
 														</span>
 													</div>
-												</div>
+												</div>												<%												String hasBooking = (String)request.getAttribute("hasBooking");												if(hasBooking.equals("false")){												%>													스터디룸 예약이 없습니다.													</div>												</div>												<%												} else {												%>
 												<div class="border-bottom w-100"></div>
 												<div class="d-flex justify-content-between pt-6">
 													<div class="d-flex flex-column flex-root">
@@ -105,7 +105,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span class="opacity-70">${hourPrice}  
 														<br /> </span>    
 													</div>
-												</div>
+												</div>	
 											</div>
 										</div>
 										<!-- end: Invoice header-->
@@ -145,7 +145,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													</table>
 												</div>
 											</div>  
-										</div>										<!-- end: Invoice body-->
+										</div>										<%										}										%>										<!-- end: Invoice body-->
 										<!-- begin: Invoice footer-->
 									<!--	<p>위아래 배경색 있고 없고, 가격 폰트 사이즈 차이, 둘중에 맘에 드는 디자인으로 </p>
 										 <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
