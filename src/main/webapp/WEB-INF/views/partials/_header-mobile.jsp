@@ -26,7 +26,7 @@
 		// 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.    
 		} else {
 	%>
-	<button id="logout" class="btn btn-light-primary font-weight-bold">로그아웃</button>
+<input type="button"  id="logout"  class="btn btn-light-primary font-weight-bold" onclick="location.href='/logout.do'" value="로그아웃" />
 
 	<%
 		}

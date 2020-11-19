@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 import javax.xml.crypto.Data;
@@ -15,6 +16,7 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,24 +73,25 @@ public class UserController {
 	}  
 
 	// 회원 탈퇴
+	@ResponseBody
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public ModelAndView deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw,
-			HttpServletRequest request, HttpSession session) throws Exception {
+			 HttpSession session) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
 
-		boolean deleteUser = userService.deleteUser(id, pw);  
-		if (deleteUser) {
+		boolean delete = userService.deleteUser(id, pw);  
+		if (delete) {
 			System.out.println("유저 탈퇴 성공");     
-			deleteUser = true;
+			delete = true;
 			session.invalidate();
 		} else {
 			System.out.println("탈퇴 실패");
-			deleteUser = false;
+			delete = false;
 		}
-
-		mv.setViewName("signin");
-		mv.addObject("delete", deleteUser);
+System.out.println("화면전환 되는지");
+		mv.setViewName("");
+		mv.addObject(delete); 
 
 		return mv;
 
@@ -199,15 +202,13 @@ public class UserController {
 		 * //forwardPath = 계정 활성화 창으로 포워딩 }
 		 */
 
-	/* 로그아웃 */
-	@RequestMapping(value = "/logout" , method=RequestMethod.POST)
-	public String sign_out_action(HttpSession session, RedirectAttributes reAttributes, HttpServletRequest request) {
-		System.out.println(" 로 그 아 웃 됨.");
-		HttpSession sess = request.getSession(false);
-		request.getSession(true).invalidate();
-		
-		
-		return "redirect:/";
+	// 로그아웃
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public void logout(HttpSession session, HttpServletResponse  response) throws Exception{
+		session.invalidate();
+		System.out.println("로그아웃 성공 ");
+//		session.removeAttribute("sUserId");
+		userService.logout(response);
 	}
 
 	/* 관리자 입장 검색,유저 목록 */

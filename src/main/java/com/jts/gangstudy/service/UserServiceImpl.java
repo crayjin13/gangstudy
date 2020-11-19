@@ -1,6 +1,9 @@
 package com.jts.gangstudy.service;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +21,23 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	
+	
+	// ·Î±×¾Æ¿ô
+		@Override
+		public void logout(HttpServletResponse response) throws Exception {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("location.href='/';");
+			out.println("</script>");
+			out.close();
+		}
+	
+	
+	
+	
 
 	///////////////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ////////////////////////////////
 	@Override
@@ -124,5 +144,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.getUser(user_no);
 	}
+
+	
 
 }
