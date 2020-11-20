@@ -32,15 +32,22 @@ $(function() {
 			url : 'deleteUser',
 			method : 'POST',
 			data : idpw,
-			dataType : 'text',
-			comlete : function(data) {
-				if (date == true) {
-					alert('탈퇴되셨습니다.');
-					// 통신에는 실패해도 완료가 되었을때 complete , 통신이 성공적으로 이루어졌을떄 success
-					location.href = '/';
-				}else {  
-					alert("탈퇴 실패");
+			dataType : 'json',
+			success : function(data) { // 통신에는 실패해도 완료가 되었을때 complete , 통신이
+										// 성공적으로 이루어졌을떄 success
+				if (data == false) {
+					alert('탈퇴실패');
+					 location.href = '/signin';     
+				} else {
+					var result = confirm('정말 탈퇴 하시겠습니까?');
+					if(result){
+						$('#delete_User').submit();
+						alert('탈퇴성공');
+					}      
 				}
+			},
+			error: function(){
+				alert("서버 에러.");
 			}
 
 		});
@@ -119,11 +126,12 @@ $(function() {
 					kt_login_signup_form.bod.value = textData.bod;
 					kt_login_signup_form.gender.value = textData.gender;
 
-				} else if (textData.trim() == "false") {
+					alert("가입이 완료되었습니다.");
+					
+				} 
 
-				}
-
-			}
+			},
+			
 		});
 
 	});
