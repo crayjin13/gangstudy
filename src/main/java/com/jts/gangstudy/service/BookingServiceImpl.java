@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.mapper.BookingMapper;
 
 @Service
@@ -105,11 +106,8 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 대기중인 예약
 	@Override
-	public Booking getUserWaitBooking(Integer user_no) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("user_no", user_no.toString());
-		map.put("state", "wait");
-		List<Booking> books = mapper.viewUserState(map);
+	public Booking getWaitBooking(User user) {
+		List<Booking> books = getUserBooking(user, "wait");
 		Booking book = null;
 		if(books.size() > 1) {
 			System.err.println("BookingServiceImpl:getUserWaitBooking: booking 'wait' state is least one more.");
@@ -118,31 +116,29 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return book;
 	}
+	
+	@Override
+	public List<Booking> getUserBooking(User user, String state) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("user_no", user.getUser_no().toString());
+		map.put("state", state);
+		List<Booking> books = mapper.viewUserState(map);
+		return books;
+	}
 
 	// 시작일 기준의 시작시간 목록
 	@Override
 	public List<String> getUnbookedTimeList(String date, List<Booking> books) {
 	    List<String> timeList = null;
-		// 예약 시간 단위로 모든 예약 시간 생성
-	    TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
-	    DateFormat dateTimeformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-	    dateTimeformat.setTimeZone(tz);
-	    LocalDateTime localDateTime = LocalDateTime.parse(dateTimeformat.format(new Date()));
-	    
-	    LocalTime localTime = localDateTime.toLocalTime().plusHours(1);
-	    
-	    if(localTime.getMinute() < 30) {
-	    	localTime = localTime.withMinute(0);
-	    } else {
-	    	localTime = localTime.withMinute(30);
-	    }
-	    
-	    if(localDateTime.toLocalDate().toString().equals(date)) {	
+		
+	    if(LocalDate.now().toString().equals(date)) {			// 오늘 예약시 현재시간 기준 생성
+	    	LocalTime localTime = LocalTime.now().plusHours(1);
 		    if(localTime.getHour() == 0) { // 23시 지나갔음.
 		    	return null;
 		    }
+		    localTime = localTime.getMinute() < 30 ? localTime.withMinute(0) : localTime.withMinute(30);
 	    	timeList = createTimeList(localTime.getHour(), localTime.getMinute());
-	    } else {
+	    } else {												// 예약 시간 단위로 모든 예약 시간 생성
 	    	timeList = createTimeList(0, 0);
 	    }
 		
@@ -157,8 +153,9 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public String getTimeInterval(Booking book) {
 		Duration duration = book.getDuration();
-		int hour = duration.toHoursPart();
-		int minute = duration.toMinutesPart();
+		int hour = (int) duration.toHours();
+		int minute = (int) duration.toMinutes();
+		minute%=60;
 		
 		String timeInterval;
 		if(hour > 0) {
@@ -185,6 +182,18 @@ public class BookingServiceImpl implements BookingService{
 		map.put("state", state);
 		
 		mapper.updateState(map);
+	}
+
+	// 시간 유효성 체크
+	@Override
+	public boolean allowsBooking(Booking book) {
+		LocalDateTime CIDT = book.getciDateTime();
+		LocalDateTime CODT = book.getcoDateTime();
+		LocalDateTime now = LocalDateTime.now();
+		if(now.isBefore(CIDT) && now.plusDays(8).with(LocalTime.MIN).isBefore(CODT)) return false;
+		if(CODT.getDayOfYear() - CIDT.getDayOfYear() > 1) return false;
+		if(CIDT.isAfter(CODT)) return false;
+		return true;
 	}
 	
 	// 시작시간 기준의 종료시간 목록
@@ -286,4 +295,5 @@ public class BookingServiceImpl implements BookingService{
 		LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
 		return dateTime;
 	}
+
 }
