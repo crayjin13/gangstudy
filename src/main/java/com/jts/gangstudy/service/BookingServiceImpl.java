@@ -1,13 +1,16 @@
 package com.jts.gangstudy.service;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +27,6 @@ public class BookingServiceImpl implements BookingService{
 	private final int dateSize = 7;			// 예약 신청이 가능한 기간
 	private final int minuteSize = 30;		// 에약 신청 시간 단위
 	private final int amount = 500;			// 예약 신청 시간 당 필요 요금
-	private final int startHour = 0;		// 예약 가능한 시작 시간
-	private final int startMin = 0;			// 예약 가능한 시작 분
-	private final int endHour = 24;			// 예약 가능한 종료 시간
-	private final int endMin = 0;			// 예약 가능한 종료 분
 
 	@Override
 	public int getHourPrice() {
@@ -120,45 +119,32 @@ public class BookingServiceImpl implements BookingService{
 		return book;
 	}
 
-	// 시작시간 기준의 종료시간 목록
-	@Override
-	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate) {
-		LocalDateTime start_dt;
-		LocalDateTime end_dt = getDateTime(endDate, "23:29");		// 24시 - 1 - minutesize
-		List<Booking> overnight = mapper.viewOvernight(startDate);
-
-		if(startDate.equals(endDate)) { // 당일 예약
-			start_dt = getDateTime(startDate, startTime);
-			start_dt = start_dt.plusMinutes(minuteSize);
-		} else { 
-			if(!overnight.isEmpty()) { // 밤을 새는 예약이 이미 있는 경우
-				System.out.println("getEndTimes : overnighit is not empty");
-				return null;
-			} else { // 밤을 새는 예약
-				System.out.println("getEndTimes : overnighit is empty");
-				start_dt = getDateTime(endDate, "00:00");
-			}
-		}
-		List<String> unbookedTimeList = getUnbookedTimeList(endDate, books);	// 예약되지 않은 전체 시간목록
-		List<String> endTimeList = new ArrayList<>();							// 선택 가능한 예약종료 시간목록
-
-		// 예약가능시간 존재 OR 마지막 시간까지
-		String time = start_dt.toLocalTime().toString();
-		endTimeList.add(time);
-		while(unbookedTimeList.contains(time) && start_dt.isBefore(end_dt)) {
-			start_dt = start_dt.plusMinutes(minuteSize);	// 시간 증가
-			time = start_dt.toLocalTime().toString();		// 시간 설정
-			endTimeList.add(time);							// 시간 추가
-		}
-		
-		return endTimeList;
-	}
-
 	// 시작일 기준의 시작시간 목록
 	@Override
 	public List<String> getUnbookedTimeList(String date, List<Booking> books) {
+	    List<String> timeList = null;
 		// 예약 시간 단위로 모든 예약 시간 생성
-		List<String> timeList = createTimeList();
+	    TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
+	    DateFormat dateTimeformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+	    dateTimeformat.setTimeZone(tz);
+	    LocalDateTime localDateTime = LocalDateTime.parse(dateTimeformat.format(new Date()));
+	    
+	    LocalTime localTime = localDateTime.toLocalTime().plusHours(1);
+	    
+	    if(localTime.getMinute() < 30) {
+	    	localTime = localTime.withMinute(0);
+	    } else {
+	    	localTime = localTime.withMinute(30);
+	    }
+	    
+	    if(localDateTime.toLocalDate().toString().equals(date)) {	
+		    if(localTime.getHour() == 0) { // 23시 지나갔음.
+		    	return null;
+		    }
+	    	timeList = createTimeList(localTime.getHour(), localTime.getMinute());
+	    } else {
+	    	timeList = createTimeList(0, 0);
+	    }
 		
 		// 기존 예약을 예약 시간에서 제거
 		for(Booking book : books) {
@@ -192,22 +178,89 @@ public class BookingServiceImpl implements BookingService{
 		return Integer.toString(charge);
 	}
 	
-	
-
-
 	@Override
 	public void changeState(Booking book, String state) {
 		HashMap<String, String> map = new HashMap<String, String>();
-		
-		System.out.println("book_no : " + book.getBook_no());
-		System.out.println("state : " + state);
 		map.put("book_no", Integer.toString(book.getBook_no()));
 		map.put("state", state);
 		
 		mapper.updateState(map);
 	}
 	
-	
+	// 시작시간 기준의 종료시간 목록
+	@Override
+	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate) {
+		// 당일 예약 기준 설정
+		LocalDateTime start_dt = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime));
+		LocalDateTime end_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN).plusDays(1);
+
+		List<Booking> overnight = mapper.viewOvernight(startDate);
+		if(startDate.equals(endDate)) {			// 당일 예약
+			if(startTime.equals("23:30")) {		// 당일 마지막 시간에 예약을 신청하는 경우(==23:30)
+				return null;
+			}
+			start_dt = start_dt.plusMinutes(minuteSize);
+		} else { 
+			if(overnight.isEmpty()) { 			// 밤을 새는 예약
+				start_dt = end_dt.minusDays(1);
+			} else { 							// 밤을 새는 예약이 이미 있는 경우
+				return null;
+			}
+		}
+		
+		System.out.println(
+				"startDate : " + startDate +
+				", startTime : " + startTime +
+				", endDate : " + endDate +
+				", start_dt : " + start_dt.toString() +
+				", end_dt : " + end_dt.toString()
+				);
+		
+		List<String> unbookedTimeList = getUnbookedTimeList(endDate, books);	// 예약되지 않은 전체 시간목록
+		List<String> endTimeList = new ArrayList<>();							// 선택 가능한 예약종료 시간목록
+
+		// 예약가능시간 존재 OR 마지막 시간까지
+		String time = start_dt.toLocalTime().toString();
+		endTimeList.add(time);
+		start_dt = start_dt.plusMinutes(minuteSize);
+		
+		while(unbookedTimeList.contains(time) && start_dt.isBefore(end_dt)) {
+			time = start_dt.toLocalTime().toString();		// 시간 설정
+			endTimeList.add(time);							// 시간 추가
+			start_dt = start_dt.plusMinutes(minuteSize);	// 시간 증가
+		}
+		
+		return endTimeList;
+	}
+	// 일정구간 예약을 지우는 함수
+	public void removeTimes(List<String> times, String date, Booking book) {
+		String startDate = book.getciDate().toString();
+		String endDate = book.getcoDate().toString();
+		// 예약의 시작일-시작시 로 된 localdatetime 생성
+		LocalDateTime startDateTime = book.getciDateTime();
+		LocalDateTime endDateTime = book.getcoDateTime();
+		
+		if(!date.equals(startDate)) {		// date != book.startdate 인 경우 -> startdatetime을 date+1일 0시 0분 으로 설정
+			startDateTime = startDateTime.plusDays(1);
+			startDateTime = startDateTime.with(LocalTime.MIN);
+		} else if(!date.equals(endDate)) {	// date != book.enddate 인 경우   -> enddatetime을   date+1일 0시 0분 으로 설정
+			endDateTime = endDateTime.with(LocalTime.MIN);
+		}
+		
+//		System.out.println(
+//				"BOOKNO : " + book.getBook_no() +
+//				", book_CIDT : " + book.getciDateTime().toString() +
+//				", book_CODT : " + book.getcoDateTime().toString() +
+//				", startDateTime : " + startDateTime.toString() +
+//				", endDateTime : " + endDateTime.toString()
+//				);
+		for(;
+				!startDateTime.isEqual(endDateTime);
+				startDateTime = startDateTime.plusMinutes(minuteSize)) {
+			String time = startDateTime.toLocalTime().toString();
+			times.remove(time);
+		}
+	}
 	
 	
 	
@@ -216,10 +269,10 @@ public class BookingServiceImpl implements BookingService{
 	
 	
 	// time 목록 반환
-	public List<String> createTimeList() {
+	public List<String> createTimeList(int startHour, int startMin) {
 		List<String> times = new ArrayList<>();
-		LocalDateTime start_dt = LocalDateTime.of(1, 1, 1, startHour, startMin);
-		LocalDateTime end_dt = start_dt.plusHours(endHour-startHour);
+		LocalDateTime start_dt = LocalDateTime.of(LocalDate.MIN, LocalTime.of(startHour, startMin));
+		LocalDateTime end_dt = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN).plusDays(1);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 		
 		for(; start_dt.isBefore(end_dt); start_dt = start_dt.plusMinutes(minuteSize)) {
@@ -228,26 +281,9 @@ public class BookingServiceImpl implements BookingService{
 		
 		return times;
 	}
-	// 일정구간 예약을 지우는 함수
-		public void removeTimes(List<String> times, String date, Booking book) {
-			LocalTime startTime = book.getciTime();
-			String end = book.getcoTime().toString();
-			
-			// overnight
-			if(!date.equals(book.getciDate())) {		// 예약일 != 시작일
-				startTime = LocalTime.parse("00:00");
-			} else if(!date.equals(book.getcoDate())) {	// 예약일 != 종료일
-				end = "23:30";
-			}
-			
-			for(String time = startTime.toString(); !time.equals(end); startTime = startTime.plusMinutes(minuteSize)) {
-				time = startTime.toString();
-				times.remove(time);
-			}
-		}
-		
-		public LocalDateTime getDateTime(String date, String time) {
-			LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
-			return dateTime;
-		}
+	
+	public LocalDateTime getDateTime(String date, String time) {
+		LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
+		return dateTime;
+	}
 }

@@ -165,7 +165,7 @@
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a
-									href="/order-details" class="menu-link "> <i
+									href="/booking/check" class="menu-link "> <i
 										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">예약정보</span></a>
 								</li>

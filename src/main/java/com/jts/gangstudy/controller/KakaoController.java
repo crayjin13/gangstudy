@@ -34,7 +34,7 @@ public class KakaoController {
 		String error = request.getParameter("error");
 		
 		if(error == "access_denied") {	// 사용자 로그인 취소 or 만 14세 미만 사용자의 보호자 동의 실패
-			return "/";
+			return "?kakaologin=access_denied";
 		} else {
 			String access_token = kakaoService.getAccessToken(code);
 	        User profile = kakaoService.getProfile(access_token);

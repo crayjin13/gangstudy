@@ -1,18 +1,20 @@
 
-const bookingButton = document.getElementById("bookingButton");
+const modifyButton = document.getElementById("modify");
 const startDateInput = document.getElementById("start-date-input");
 const startTimeInput = document.getElementById("start-time-input");
 const endDateInput = document.getElementById("end-date-input");
 const endTimeInput = document.getElementById("end-time-input");
-const userCountInput = document.getElementById("user-count-input");
 const bookingForm = document.getElementById("bookingForm");
 	
 $(document).ready(function() {
 	setMinMaxDate(startDateInput, new Date(), 0, 7);
 	setMinMaxDate(endDateInput, new Date(), 0, 7);
+	
+	// 현재 날짜 얻어서 그 날짜에 대한 현재 시간 목록 얻기
+	// 그 날짜의 시간으로 설정해주기.
 });
 
-bookingButton.addEventListener("click", function() {
+modifyButton.addEventListener("click", function() {
 	// validation check
 	if(startDateInput.value == "") {
 		alert("시작일을 선택해주세요.");
@@ -28,10 +30,6 @@ bookingButton.addEventListener("click", function() {
 	}
 	if(endTimeInput.value == "") {
 		alert("종료시간을 선택해주세요.");
-		return;
-	}
-	if(userCountInput.value == "") {
-		alert("사용인원을 선택해주세요.");
 		return;
 	}
 	
@@ -81,13 +79,7 @@ function requestStartTime() {
 				 "startDate" : startDateInput.value
 			   },
 		success : function(times) {
-			if(times.length == 0) {
-				var option = document.createElement("option");
-				option.text = "해당일에 예약할 수 있는 시간이 없습니다.";
-				option.value = "";
-				startTimeInput.options.add(option);
-				return ;
-			}
+			
 			var option = document.createElement("option");
 			option.text = "시간을 선택해주세요.";
 			option.value = "";
