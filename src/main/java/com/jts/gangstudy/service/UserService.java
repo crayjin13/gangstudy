@@ -1,11 +1,16 @@
 package com.jts.gangstudy.service;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.domain.Booking;
 
 public interface UserService {
+	
+
 
 	/*************** 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 *********************/
 
@@ -56,5 +61,7 @@ public interface UserService {
 			String points, String note);
 
 	boolean insertKakaoUser(User kakaoUser);
+
+	void logout(HttpServletResponse response) throws Exception;
 
 }

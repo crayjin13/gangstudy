@@ -1,35 +1,57 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!--begin::Header Mobile-->
 
-		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
+<div id="kt_header_mobile"
+	class="header-mobile align-items-center header-mobile-fixed">
 
-			<!--begin::Logo-->
-			<a href="/jts">
-			<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" /> 
-			</a>
+	<!--begin::Logo-->
+	<a href="/jts"> <img alt="Logo"
+		src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
+	</a>
 
-			<!--end::Logo-->
+<form name="logout" action="logout" method="POST">
+	<input type="hidden">
+</form>
+	<!--end::Logo-->
+	<%
+		// 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.    
+		if (session.getAttribute("sUserId") == null) {
+	%>
+	<button onclick="location.href='signin'"
+		class="btn btn-light-primary font-weight-bold">로그인</button>
 
-			<!--begin::Toolbar-->
-			<div class="d-flex align-items-center">
+	<%
+		// 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.    
+		} else {
+	%>
+<input type="button"  id="logout"  class="btn btn-light-primary font-weight-bold" onclick="location.href='/logout.do'" value="로그아웃" />
 
-				<!--begin::Aside Mobile Toggle-->
-				<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
-					<span></span>
-				</button>
+	<%
+		}
+	%>
+	<!--begin::Toolbar-->
+	<div class="d-flex align-items-center">
 
-				<!--end::Aside Mobile Toggle-->
+		<!--begin::Aside Mobile Toggle-->
+		<button class="btn p-0 burger-icon burger-icon-left"
+			id="kt_aside_mobile_toggle">
+			<span></span>
+		</button>
 
-				<!--begin::Header Menu Mobile Toggle-->
-			<!-- 	<button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+		<!--end::Aside Mobile Toggle-->
+
+		<!--begin::Header Menu Mobile Toggle-->
+		<!-- 	<button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
 					<span></span>
 				</button>
  -->
-				<!--end::Header Menu Mobile Toggle-->
+		<!--end::Header Menu Mobile Toggle-->
 
-				<!--begin::Topbar Mobile Toggle-->
-			<!-- 	<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle"> -->
-					<!-- <span class="svg-icon svg-icon-xl">
+		<!--begin::Topbar Mobile Toggle-->
+		<!-- 	<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle"> -->
+		<!-- <span class="svg-icon svg-icon-xl">
 
 						begin::Svg Icon | path:assets/media/svg/icons/General/User.svg
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -42,12 +64,20 @@
 
 						end::Svg Icon
 					</span> -->
-				</button>
+		</button>
 
-				<!--end::Topbar Mobile Toggle-->
-			</div>
+		<!--end::Topbar Mobile Toggle-->
+	</div>
 
-			<!--end::Toolbar-->
-		</div>
+	<!--end::Toolbar-->
+</div>
+<script>
+	$(document).ready(function() {
 
-		<!--end::Header Mobile-->
+		document.getElementById("logout").onclick = function() {
+			document.user_logout.submit();
+
+		}
+	});
+</script>
+<!--end::Header Mobile-->

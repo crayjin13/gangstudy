@@ -41,7 +41,7 @@
 		<div class="brand flex-column-auto" id="kt_brand">
 
 			<!--begin::Logo-->
-			<a href="/gangstudy" class="brand-logo"> <img alt="Logo"
+			<a href="/" class="brand-logo"> <img alt="Logo"
 				src="${pageContext.request.contextPath}/resources/images/logo.png"
 				width="60" height="70" />
 			</a>
@@ -87,7 +87,7 @@
 				<!--begin::Menu Nav-->
 				<ul class="menu-nav">
 					<li class="menu-item menu-item-active" aria-haspopup="true"><a
-						href="/gangstudy" class="menu-link"> <span class="svg-icon menu-icon">
+						href="/" class="menu-link"> <span class="svg-icon menu-icon">
 								<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg"
 									xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
