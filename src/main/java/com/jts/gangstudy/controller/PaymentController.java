@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Item;
+import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.KakaoPayService;
 
 @Controller
@@ -21,6 +23,8 @@ import com.jts.gangstudy.service.KakaoPayService;
 public class PaymentController {
 	@Autowired
 	private KakaoPayService kakaoPayService;
+	@Autowired
+	private BookingService bookingService;
 
 	// 결제 수단 선택
 	@RequestMapping(value = "/choose", method = RequestMethod.GET)
@@ -63,10 +67,15 @@ public class PaymentController {
 		kakaoPayService.getPayInfo(tid, pg_token);
 
 		// 예약에 대해서 uncharge -> wait으로 변경한다.
+		Booking book = (Booking)session.getAttribute("book");
+		bookingService.changeState(book, "wait");
+		
 		session.removeAttribute("item");
+		session.removeAttribute("book");
+		session.removeAttribute("tid");
 		
 		// 완료 페이지로 이동한다.
-		return "redirect:" + "/booking/done";
+		return "redirect:" + "/booking/check";
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
