@@ -9,7 +9,6 @@
 </style>
 
 
-
 <!--begin::Entry-->
 
 
@@ -160,3 +159,4 @@
 <script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/mainBook.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/inappBridge.js"></script>

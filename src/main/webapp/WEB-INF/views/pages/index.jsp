@@ -31,7 +31,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <meta name="description"
 	content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	content="width=device-width user-scalable=no, initial-scale=1, shrink-to-fit=no" />
 
 
 <!--begin::Fonts-->

@@ -43,9 +43,14 @@ public class BookingController {
 		User sUserId = (User)session.getAttribute("sUserId");
 		// check a existing booking
 		sUserId.getUser_no();
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		Booking book = bookingService.getWaitBooking(sUserId);
 		if(book!=null) {
 			mav.setViewName("redirect:/booking/check");
+		}
+		// check a uncharge booking
+		List<Booking> books = bookingService.getUserBooking(sUserId, "uncharge");
+		for(Booking item : books) {
+			bookingService.removeBook(item);
 		}
 		
 		// registry booking in session
@@ -91,21 +96,10 @@ public class BookingController {
 		if(usePoint > maxPoint || usePoint < 0) {
 			return "?point=error";
 		}
-		// 시간 유효성 체크
-		// 시간 유효성 체크
-		// 시간 유효성 체크
-		// 시간 유효성 체크
-		// 시간 유효성 체크
-		// 시간 유효성 체크
-		// 시간 유효성 체크
+		if(bookingService.allowsBooking(book) == false) {
+			return "?date=error";
+		}
 		
-		
-		
-		
-		
-		
-		
-	
 		// insert DB
 		book.setPeople(people);
 		book.setUser_no(sUserId.getUser_no());
@@ -132,7 +126,7 @@ public class BookingController {
 		ModelAndView mav = new ModelAndView("pages/order-details");
 		
 		User sUserId = (User)session.getAttribute("sUserId");
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		Booking book = bookingService.getWaitBooking(sUserId);
 		if(book==null) {
 			mav.addObject("hasBooking", "false");
 		} else {
@@ -154,10 +148,10 @@ public class BookingController {
 	public ModelAndView editBook(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("pages/modifycart");
 		User sUserId = (User)session.getAttribute("sUserId");
-		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		Booking book = bookingService.getWaitBooking(sUserId);
 		
 		if(book == null) {	// 수정 불가능한 경우
-			mav.setViewName("/");
+			mav.setViewName("?booking=null");
 		} else {			// 수정 가능한 경우
 			int charge = bookingService.getCharge(book); // 결제 정보를 통해서 알아내야함
 			int usedPoint = 0; // 결제 정보를 통해서 알아내야함
@@ -237,7 +231,7 @@ public class BookingController {
 		User sUserId = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		session.removeAttribute("book");
-		Booking preBook = bookingService.getUserWaitBooking(sUserId.getUser_no());
+		Booking preBook = bookingService.getWaitBooking(sUserId);
 		bookingService.removeBook(preBook);
 		return bookingService.insertDB(book);
 	}
@@ -253,7 +247,7 @@ public class BookingController {
 //		User sUserId = (User)session.getAttribute("sUserId");
 		String date = request.getParameter("startDate");
 		List<Booking> books = bookingService.viewDate(date);
-//		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+//		Booking book = bookingService.getUserWaitBooking(sUserId);
 //		books.remove(book);
 		List<String> times = bookingService.getUnbookedTimeList(date, books);
 		return times;
@@ -267,7 +261,7 @@ public class BookingController {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		List<Booking> books = bookingService.viewDate(endDate);
-//		Booking book = bookingService.getUserWaitBooking(sUserId.getUser_no());
+//		Booking book = bookingService.getUserWaitBooking(sUserId);
 //		books.remove(book);
 		List<String> times = bookingService.getEndTimes(books, startDate, startTime, endDate);
 		return times;

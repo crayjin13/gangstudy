@@ -3,6 +3,7 @@ package com.jts.gangstudy.service;
 import java.util.*;
 
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.User;
 
 
 public interface BookingService {
@@ -29,10 +30,14 @@ public interface BookingService {
 	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate);
 
 	// 대기중인 예약
-	public Booking getUserWaitBooking(Integer user_no);
+	public Booking getWaitBooking(User user);
+	
+	// 특정 상태의 예약
+	public List<Booking> getUserBooking(User user, String state);
 	
 	public void changeState(Booking book, String state);
 	public String getTimeInterval(Booking book);
 	public String getTimeAmount(Booking book);
 	public int getHourPrice();
+	public boolean allowsBooking(Booking book);
 }
