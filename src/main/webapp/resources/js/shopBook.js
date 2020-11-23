@@ -40,14 +40,30 @@ pointUse.addEventListener("change", function() {
 		pointUse.value = 0;
 	}
 });
-
+people.addEventListener("change", function() {
+	if(people.value > 6){
+		people.value = 6;
+	}
+	if(people.value < 1) {
+		people.value = 1;
+	}
+	
+	totalAmount.textContent = chargePerPeople.textContent * people.value + "원";
+});
 
 window.addEventListener('load', function(){
 	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("click", function() {
-		totalAmount.textContent = chargePerPeople.textContent * people.value;
+		totalAmount.textContent = chargePerPeople.textContent * people.value + "원";
 	});
+	
 	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("click", function() {
-		totalAmount.textContent = chargePerPeople.textContent * people.value;
+		totalAmount.textContent = chargePerPeople.textContent * people.value + "원";
+	});
+	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("touchend", function() {
+		totalAmount.textContent = chargePerPeople.textContent * people.value + "원";
+	});
+	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("touchend", function() {
+		totalAmount.textContent = chargePerPeople.textContent * people.value + "원";
 	});
 });
 

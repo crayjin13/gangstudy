@@ -33,6 +33,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <base href="../../../">
 
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width user-scalable=no, initial-scale=1, shrink-to-fit=no" />
 <title>예약하기 | Gangstudy</title>
 <meta name="description" content="ECommerce Shopping Cart" />
 <meta name="viewport"
@@ -358,7 +359,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div id="chargePerPeople" style="display:none">${chargePerPeople}</div>
 															<td class="font-weight-bolder font-size-h4 text-right">최종 결제 금액</td>
 															<td class="font-weight-bolder font-size-h4 text-right">
-																<span id="totalAmount">${charge}</span>원</td>
+																<span id="totalAmount">${charge}원</span></td>
 														</tr>
 														<tr>
 															<!-- 결제금액 밑에 적을사항 있으면 여기 td 사이에 적기 -->
