@@ -157,8 +157,8 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public String getTimeInterval(Booking book) {
 		Duration duration = book.getDuration();
-		int hour = duration.toHoursPart();
-		int minute = duration.toMinutesPart();
+		int hour = (int) duration.toHours();
+		int minute = (int) duration.toMinutes();
 		
 		String timeInterval;
 		if(hour > 0) {

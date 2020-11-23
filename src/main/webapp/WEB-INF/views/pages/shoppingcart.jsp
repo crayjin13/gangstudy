@@ -9,13 +9,24 @@ Author: KeenThemes
 Website: http://www.keenthemes.com/
 Contact: support@keenthemes.com
 Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes   
 Like: www.facebook.com/keenthemes
 Purchase: https://1.envato.market/EA4JP
 Renew Support: https://1.envato.market/EA4JP
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
 <html lang="en">
+
+<style>
+ 
+ 
+@font-face { 
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 
 <!--begin::Head-->
 <head>

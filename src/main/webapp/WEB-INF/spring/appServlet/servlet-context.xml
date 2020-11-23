@@ -14,9 +14,14 @@
 
 	<!-- Controller Mapping -->
 	<context:component-scan
-		base-package="com.jts.gangstudy.controller" />
+		base-package="com.jts.gangstudy.controller" />     
 	<!-- RequestMappingHandlerMapping -->
 	<mvc:annotation-driven />
+
+
+
+
+
 
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 

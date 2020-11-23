@@ -118,58 +118,7 @@ jQuery(document).ready(function() {
 });
 
 
-$(function() {
 
-	// ******* 회원 정보 수정 ********************
-	$("#modifybtn").click(function() {
-		var asArray = $('#kt_form').serialize();
-		console.log("*****회원정보수정 값 " + asArray);
-		$.ajax({
-			url : 'modifyInfo',
-			method : 'POST',
-			data : asArray,
-			dataType : 'text',
-			success : function(textData) {
-				location.href = '/signin';
-				alert('수정 되었습니다. 다시 로그인 해주세요');
-
-			}
-		});
-	});
-	
-	
-	
-	// **************회원 탈퇴 *************
-	$("#deletebtn").click(function() {
-		var idpw = $('#delete_User').serialize();
-		console.log("값들어오는지 확인 " + idpw);
-		$.ajax({
-			url : 'deleteUser',
-			method : 'POST',
-			data : idpw,
-			dataType : 'json',
-			success : function(data) { // 통신에는 실패해도 완료가 되었을때 complete , 통신이
-										// 성공적으로 이루어졌을떄 success
-				if (data == false) {
-					alert('탈퇴실패');
-					 location.href = '/signin';     
-				} else {
-					var result = confirm('정말 탈퇴 하시겠습니까?');
-					if(result){
-						$('#delete_User').submit();
-						alert('탈퇴성공');
-					}      
-				}
-			},
-			error: function(){
-				alert("서버 에러.");
-			}
-
-		});
-	});
-
-
-});
 
 
 

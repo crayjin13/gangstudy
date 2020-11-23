@@ -16,7 +16,7 @@ $(function() {
 							alert(kt_login_forgot_form.id.value + "님의 비밀번호는 "
 									+ textData + "입니다.");
 							// location.href = '/forgot';
-						} else {
+						} else {          
 							alert("잘못된정보입니다.");
 						}
 					}
@@ -31,8 +31,8 @@ $(function() {
 		$.ajax({
 			url : 'deleteUser',
 			method : 'POST',
-			data : idpw,
-			dataType : 'json',
+			data : idpw,        
+			dataType : 'text',
 			success : function(data) { // 통신에는 실패해도 완료가 되었을때 complete , 통신이
 										// 성공적으로 이루어졌을떄 success
 				if (data == false) {
