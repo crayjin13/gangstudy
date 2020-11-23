@@ -41,9 +41,9 @@
 		<div class="brand flex-column-auto" id="kt_brand">
 
 			<!--begin::Logo-->
-			<a href="/" class="brand-logo"> <img alt="Logo"
+			<a href="/" class="brand-logo"> <%-- <img alt="Logo"
 				src="${pageContext.request.contextPath}/resources/images/logo.png"
-				width="60" height="70" />
+				width="60" height="70" /> --%>
 			</a>
 
 			<!--end::Logo-->
@@ -176,7 +176,7 @@
 										class="menu-text font-weight-boldest font-size-h3 cafe24">리모컨 기능</span></a>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="javascript:;"
+									data-menu-toggle="hover"><a href="/notice"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text font-weight-boldest  font-size-h3 cafe24">

@@ -45,69 +45,94 @@ public class UserController {
 
 	Logger logger;
 
-	// ºñ¹øÃ£±â ÆäÀÌÁö ÀÌµ¿
+	
+	
+	@UserLoginCheck
+	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
+	public String edituser() {
+		return "pages/edit-user";
+	}
+	
+	@UserLoginCheck
+	@RequestMapping(value = "/remo-control", method = RequestMethod.GET)
+	public String remo() {
+		return "pages/remo-control";
+	}
+	
+	
+	@UserLoginCheck
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String admincontorl() {
+		return "pages/admin";
+	}
+	
+	
+	
+	
+	
+
+	// ë¹„ë²ˆì°¾ê¸° í˜ì´ì§€ ì´ë™
 	@RequestMapping(value = "/findPw", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "text/plain; charset=UTF-8")
 	public String findPw() throws Exception {
 		return "findPw";
 	}
 
-	/* ºñ¹Ğ¹øÈ£ Ã£±â - id , email */
+	/* ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° - id , email */
 	@ResponseBody
 	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) throws Exception {
 		User findPw = userService.findPw(id, email);
 
 		if (findPw != null) {
-			System.out.println("## È¸¿øÀÇ ºñ¹Ğ¹øÈ£´Â:" + findPw.getPw() + "ÀÔ´Ï´Ù.");
+			System.out.println("## íšŒì›ì˜ ë¹„ë°€ë²ˆí˜¸ëŠ”:" + findPw.getPw() + "ì…ë‹ˆë‹¤.");
 			String pw = findPw.getPw();
 			return pw;
 		}
 		return "";
 	}
 
-	// È¸¿ø Å»Åğ
-	@UserLoginCheck
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "json/plain; charset=UTF-8")
-	public ModelAndView deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session)
+	// íšŒì› íƒˆí‡´
+	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public  boolean deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session)
 			throws Exception {
 
-		ModelAndView mv = new ModelAndView();
+	
 
 		boolean delete = userService.deleteUser(id, pw);
 		if (delete) {    
-			System.out.println("À¯Àú Å»Åğ ¼º°ø");
+			System.out.println("ìœ ì € íƒˆí‡´ ì„±ê³µ");
 			delete = true;
 			session.invalidate();
 		} else {
-			System.out.println("Å»Åğ ½ÇÆĞ");
+			System.out.println("íƒˆí‡´ ì‹¤íŒ¨");
 			delete = false;
 		}
-		System.out.println("È­¸éÀüÈ¯ µÇ´ÂÁö");
-		mv.setViewName("signin");
-		mv.addObject(delete);
+		System.out.println("í™”ë©´ì „í™˜ ë˜ëŠ”ì§€"); 
+	
 
-		return mv;
+		return delete;
 
 	}
 
-	/* ºñ¹Ğ¹øÈ£ ÀÏÄ¡ ¿©ºÎ Ã¼Å© À¯Àú Á¤º¸ ¼öÁ¤ÇÒ¶§ */
+	/* ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ ì—¬ë¶€ ì²´í¬ ìœ ì € ì •ë³´ ìˆ˜ì •í• ë•Œ */
 	@UserLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
 		boolean truePw = userService.pwMatch(pw);
 		if (truePw) {
-			System.out.println("## ºñ¹Ğ¹øÈ£ ÀÏÄ¡ ¿©ºÎ:" + truePw);
+			System.out.println("## ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ ì—¬ë¶€:" + truePw);
 			truePw = true;
 		} else {
-			System.out.println("## ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡:" + truePw);
+			System.out.println("## ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜:" + truePw);
 
 		}
 		return truePw + "";
 	}
 
-	// À¯Àú Á¤º¸ ¼öÁ¤
+	// ìœ ì € ì •ë³´ ìˆ˜ì •
 	@UserLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/modifyInfo", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
@@ -120,10 +145,10 @@ public class UserController {
 		System.out.println(updateUser);
 
 		if (updateUser) {
-			System.out.println("À¯Àú Á¤º¸ ¼öÁ¤ ¼º°ø.");
+			System.out.println("ìœ ì € ì •ë³´ ìˆ˜ì • ì„±ê³µ.");
 			updateUser = true;
 		} else {
-			System.out.println("À¯Àú Á¤º¸ ¼öÁ¤ ¾ÈµÊ.");
+			System.out.println("ìœ ì € ì •ë³´ ìˆ˜ì • ì•ˆë¨.");
 			updateUser = false;
 		}
 		session.invalidate();
@@ -131,13 +156,13 @@ public class UserController {
 		return updateUser + "signin";
 	}
 
-	/* ¾ÆÀÌµğ Áßº¹ Ã¼Å© */
+	/* ì•„ì´ë”” ì¤‘ë³µ ì²´í¬ */
 	@ResponseBody
 	@RequestMapping(value = "/duplicate_check", method = RequestMethod.GET, produces = "text/plain; charset=UTF-8")
 	public String existeduser(@RequestParam(value = "id") String id) {
 		boolean newId = userService.idDuplicateCheck(id);
 		if (newId) {
-			System.out.println("Áßº¹µÈ ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
+			System.out.println("ì¤‘ë³µëœ ì•„ì´ë”” ì…ë‹ˆë‹¤.");
 			newId = false;
 		} else {
 			newId = true;
@@ -145,22 +170,22 @@ public class UserController {
 		return newId + "";
 	}
 
-	/* ·Î±×ÀÎ */
+	/* ë¡œê·¸ì¸ */
 	@ResponseBody
 	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
 			Model model, HttpServletRequest request) throws Exception {
-		System.out.println(" ·Î±×ÀÎ ¾ÆÀÌµğ ºñ¹ø °ª ¹Ş±â  " + "id:" + id + " pw:" + pw);
+		System.out.println(" ë¡œê·¸ì¸ ì•„ì´ë”” ë¹„ë²ˆ ê°’ ë°›ê¸°  " + "id:" + id + " pw:" + pw);
 		String forwardPath = "";
 		// String a= request.getSession().getServletContext().getRealPath("/");
 		User user = userService.selectById(id);
-		// logger.info("ÇÁ·ÎÁ§Æ® °æ·Î Ã£±â" + a);
+		// logger.info("í”„ë¡œì íŠ¸ ê²½ë¡œ ì°¾ê¸°" + a);
 
 		try {
 			User signInuser = userService.signIn(id, pw);
 			System.out.println();
 			if (signInuser != null) {
-				System.out.println(" ·Î ±× ÀÎ ¼º °ø");
+				System.out.println(" ë¡œ ê·¸ ì¸ ì„± ê³µ");
 				session.setAttribute("id", id);
 				session.setAttribute("name", user.getName());
 
@@ -184,25 +209,25 @@ public class UserController {
 		return forwardPath;
 	}
 	/*
-	 * if(user.getmRetire()=="off"){ System.out.println("## ºñÈ°¼ºÈ­µÈ °èÁ¤À¸·Î ·Î±×ÀÎ ÇÒ ¼ö ¾øÀ½");
-	 * //forwardPath = °èÁ¤ È°¼ºÈ­ Ã¢À¸·Î Æ÷¿öµù }
+	 * if(user.getmRetire()=="off"){ System.out.println("## ë¹„í™œì„±í™”ëœ ê³„ì •ìœ¼ë¡œ ë¡œê·¸ì¸ í•  ìˆ˜ ì—†ìŒ");
+	 * //forwardPath = ê³„ì • í™œì„±í™” ì°½ìœ¼ë¡œ í¬ì›Œë”© }
 	 */
 
-	// ·Î±×¾Æ¿ô
+	// ë¡œê·¸ì•„ì›ƒ
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public void logout(HttpSession session, HttpServletResponse response) throws Exception {
 		session.invalidate();
-		System.out.println("·Î±×¾Æ¿ô ¼º°ø ");
+		System.out.println("ë¡œê·¸ì•„ì›ƒ ì„±ê³µ ");
 //		session.removeAttribute("sUserId");
 		userService.logout(response);
 	}
 
-	/* °ü¸®ÀÚ ÀÔÀå °Ë»ö,À¯Àú ¸ñ·Ï */
+	/* ê´€ë¦¬ì ì…ì¥ ê²€ìƒ‰,ìœ ì € ëª©ë¡ */
 
 	@RequestMapping(value = "/admin_cm")
 	public ModelAndView userList(@Param(value = "search") String search) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("##°Ë»ö ±â´É ->" + search);
+		System.out.println("##ê²€ìƒ‰ ê¸°ëŠ¥ ->" + search);
 		if (search == null) {
 			List<User> userList = userService.UserList();
 			mv.addObject("userList", userList);
@@ -217,31 +242,31 @@ public class UserController {
 
 	@RequestMapping(value = "/click_user", method = RequestMethod.GET)
 	public String userDetail(Model model, @RequestParam(value = "id") String id) throws Exception {
-		logger.info("È¸¿ø »ó¼¼ Á¤º¸ Á¶È¸ ÁøÀÔ.");
-		// ¸â¹ö °´Ã¼ »ı¼º
+		logger.info("íšŒì› ìƒì„¸ ì •ë³´ ì¡°íšŒ ì§„ì….");
+		// ë©¤ë²„ ê°ì²´ ìƒì„±
 		User user = new User();
-//		 getMember() °ªÀ» memberVO °´Ã¼¿¡ ÀúÀå
+//		 getMember() ê°’ì„ memberVO ê°ì²´ì— ì €ì¥
 
 		user = userService.selectById(id);
-		// ¸ğµ¨ °´Ã¼¿¡ °ª ÀúÀå
+		// ëª¨ë¸ ê°ì²´ì— ê°’ ì €ì¥
 		model.addAttribute("user", user);
 
 		return "click_user";
 	}
 
-	// È¸¿ø»ó¼¼Á¤º¸Á¶Èñ ¸ñ·Ï¿¡¼­ Å¬¸¯ÇßÀ»‹š
+	// íšŒì›ìƒì„¸ì •ë³´ì¡°í¬ ëª©ë¡ì—ì„œ í´ë¦­í–ˆì„Â‹Âš
 	@RequestMapping("user/view.do")
 	public String clickUser(String id, Model model) throws Exception {
 		model.addAttribute("user", userService.selectById(id));
 
-		logger.info("Å¬¸¯ÇÑ ¾ÆÀÌµğ:" + id);
+		logger.info("í´ë¦­í•œ ì•„ì´ë””:" + id);
 
 		return "/click_user";
 	}
 
 	/*
 	 * 
-	 * //* °ü¸®ÀÚ ÀÔÀå È¸¿ø ¿¹¾à ¸ñ·Ï *
+	 * //* ê´€ë¦¬ì ì…ì¥ íšŒì› ì˜ˆì•½ ëª©ë¡ *
 	 * 
 	 * @RequestMapping(value = "/login") public ModelAndView main() { ModelAndView m
 	 * = new ModelAndView(); List<User> userList = userService.userBookingList();
@@ -251,7 +276,7 @@ public class UserController {
 	 * 
 	 */
 
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	@ResponseBody
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String signUp(User user) {

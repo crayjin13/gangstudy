@@ -155,7 +155,7 @@ public class BookingServiceImpl implements BookingService{
 		Duration duration = book.getDuration();
 		int hour = (int) duration.toHours();
 		int minute = (int) duration.toMinutes();
-		minute%=60;
+
 		
 		String timeInterval;
 		if(hour > 0) {
