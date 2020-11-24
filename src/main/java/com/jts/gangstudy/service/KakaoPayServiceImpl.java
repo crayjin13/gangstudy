@@ -30,7 +30,9 @@ public class KakaoPayServiceImpl implements KakaoPayService {
     @Value("${kakao.ready}")
 	private String ready;													// Kakao 결제 준비
     @Value("${kakao.complete}")
-    private String complete;												// Kakao 결제 준비
+    private String complete;												// Kakao 결제 승인 요청
+    @Value("${kakao.cancel}")
+    private String cancel;													// Kakao 결제 취소
 
     @Value("${kakao.admin_key}")
 	private String admin_key;												// Admin 키
@@ -153,6 +155,46 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		        map.put("pay_type", payment_method_type.toLowerCase());
 		        map.put("amount", amount.toString());
 		        
+		        return map;
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return map;
+	}
+
+	@Override
+	public HashMap<String, String> cancel(String tid, String amount) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
+			URI uri = new URI(cancel);
+			uri = new URIBuilder(uri)
+					.addParameter("cid", cid)
+					.addParameter("tid", tid)
+					.addParameter("cancel_amount", amount)
+					.addParameter("cancel_tax_free_amount", "0")
+					.build();
+			
+			HttpPost httpPost = new HttpPost(uri);
+			httpPost.addHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			httpPost.addHeader("Authorization", "KakaoAK " + admin_key);
+			
+			try(CloseableHttpResponse response = httpClient.execute(httpPost)) {
+		        String json = EntityUtils.toString(response.getEntity());
+		        JSONObject jsonObject = new JSONObject(json);
+		        System.out.println(json);
+
+		        String cancelTid = jsonObject.getString("tid");									// 결제 고유 번호
+		        String status = jsonObject.getString("status");									// 결제 상태
+		        String payment_method_type = jsonObject.getString("payment_method_type");		// 결제 수단, CARD 또는 MONEY 중 하나
+		        
+		        map.put("tid", cancelTid);
+		        map.put("status", status);
+		        map.put("pay_type", payment_method_type.toLowerCase());
 		        return map;
 			}
 		} catch (IOException e1) {

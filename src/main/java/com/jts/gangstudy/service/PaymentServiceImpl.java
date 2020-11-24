@@ -1,8 +1,11 @@
 package com.jts.gangstudy.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.mapper.PaymentMapper;
 
@@ -19,7 +22,15 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	
 	@Override
-	public Payment selectPayment(int book_no) {
-		return mapper.selectPayment(book_no);
+	public Payment selectPayment(Booking book) {
+		return mapper.selectPayment(book.getBook_no());
+	}
+
+	@Override
+	public void changeState(Payment payment, String state) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("pay_no", Integer.toString(payment.getPay_no()));
+		map.put("state", state);
+		mapper.updateState(map);
 	}
 }

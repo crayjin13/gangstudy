@@ -9,10 +9,12 @@ public interface BookingMapper {
 	public void insertBook(Booking book);
 	public void deleteBook(int book_no);
 	public List<Booking> selectAll();
-	public List<Booking> selectDate(String date);
+	public List<Booking> selectWithDate(String date);
+	public List<Booking> selectWithDateTime(String dateTime);
 	
-	public List<Booking> viewUser(int user_no);
-	public List<Booking> viewUserState(HashMap<String, String> map);
+	public List<Booking> selectWithUser(int user_no);
+	public List<Booking> selectWithState(String state);
+	public List<Booking> selectWithUserState(HashMap<String, String> map);
 	public int checkDuplicate(HashMap<String, String> map);
 	public List<Booking> viewOvernight(String date);
 	public void updateState(HashMap<String, String> map);
