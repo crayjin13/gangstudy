@@ -1,18 +1,22 @@
 package com.jts.gangstudy.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
+import javax.xml.crypto.Data;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
@@ -29,30 +34,15 @@ import com.jts.gangstudy.service.UserService;
 
 @Controller
 public class UserController {
-	
+
 //	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
-	
+
 	@Autowired
 	private UserService userService;
 	/*
 	 * @RequestMapping(value = "/") public String index() { return ""; }
 	 */
 
-	@RequestMapping(value = "/logOn")
-	public String logOn() {
-		return "logOn";
-	}
-
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "signin";
-	}
-	
-	
-
-	
-	
 	Logger logger;
 
 	// 비번찾기 페이지 이동
@@ -67,7 +57,7 @@ public class UserController {
 	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) throws Exception {
 		User findPw = userService.findPw(id, email);
-  
+
 		if (findPw != null) {
 			System.out.println("## 회원의 비밀번호는:" + findPw.getPw() + "입니다.");
 			String pw = findPw.getPw();
@@ -77,27 +67,44 @@ public class UserController {
 	}
 
 	// 회원 탈퇴
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public ModelAndView deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	@UserLoginCheck
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "json/plain; charset=UTF-8")
+	public ModelAndView deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session)
+			throws Exception {
 
 		ModelAndView mv = new ModelAndView();
 
-		boolean deleteUser = userService.deleteUser(id, pw);
-		if (deleteUser) {
+		boolean delete = userService.deleteUser(id, pw);
+		if (delete) {    
 			System.out.println("유저 탈퇴 성공");
-			deleteUser = true;
+			delete = true;
 			session.invalidate();
 		} else {
 			System.out.println("탈퇴 실패");
-			deleteUser = false;
+			delete = false;
 		}
-
-		mv.setViewName("login");
-		mv.addObject("delete", deleteUser);
+		System.out.println("화면전환 되는지");
+		mv.setViewName("signin");
+		mv.addObject(delete);
 
 		return mv;
 
+	}
+
+	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 */
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
+		boolean truePw = userService.pwMatch(pw);
+		if (truePw) {
+			System.out.println("## 비밀번호 일치 여부:" + truePw);
+			truePw = true;
+		} else {
+			System.out.println("## 비밀번호 불일치:" + truePw);
+
+		}
+		return truePw + "";
 	}
 
 	// 유저 정보 수정
@@ -106,7 +113,7 @@ public class UserController {
 	@RequestMapping(value = "/modifyInfo", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String modifyInfo(@RequestParam("name") String name, @RequestParam("phone") String phone,
 			@RequestParam(value = "id") String id, @RequestParam("pw") String pw, @RequestParam("email") String email,
-			@RequestParam("bod") String bod, @RequestParam("gender") String gender, HttpSession session,
+			@RequestParam("bod") Date bod, @RequestParam("gender") String gender, HttpSession session,
 			HttpServletRequest request) {
 		boolean updateUser = userService.updateUser(new User(name, phone, id, pw, email, bod, gender));
 
@@ -121,7 +128,7 @@ public class UserController {
 		}
 		session.invalidate();
 
-		return updateUser + "userInfo";
+		return updateUser + "signin";
 	}
 
 	/* 아이디 중복 체크 */
@@ -136,21 +143,6 @@ public class UserController {
 			newId = true;
 		}
 		return newId + "";
-	}
-
-	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 */
-	@UserLoginCheck
-	@ResponseBody
-	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
-		boolean truePw = userService.pwMatch(pw);
-		if (truePw) {
-			System.out.println("## 비밀번호 일치 여부:" + truePw);
-			truePw = true;
-		} else {
-			System.out.println("## 비밀번호 일치 여부:" + truePw);
-		}
-		return truePw + "";
 	}
 
 	/* 로그인 */
@@ -191,17 +183,18 @@ public class UserController {
 		}
 		return forwardPath;
 	}
-		/*
-		 * if(user.getmRetire()=="off"){ System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
-		 * //forwardPath = 계정 활성화 창으로 포워딩 }
-		 */
+	/*
+	 * if(user.getmRetire()=="off"){ System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
+	 * //forwardPath = 계정 활성화 창으로 포워딩 }
+	 */
 
-	/* 로그아웃 */
-	@RequestMapping(value = "/logout")
-	public String sign_out_action(HttpSession session) {
-		System.out.println(" 로 그 아 웃 됨.");
+	// 로그아웃
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public void logout(HttpSession session, HttpServletResponse response) throws Exception {
 		session.invalidate();
-		return "/home";
+		System.out.println("로그아웃 성공 ");
+//		session.removeAttribute("sUserId");
+		userService.logout(response);
 	}
 
 	/* 관리자 입장 검색,유저 목록 */
@@ -257,16 +250,6 @@ public class UserController {
 	 * userList); m.setViewName("login"); System.out.println(userList); return m; }
 	 * 
 	 */
-	// 유저 자신의 정보 보이는 페이지
-	@UserLoginCheck
-	@RequestMapping(value = "/userInfo")
-	public ModelAndView userInfo(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-
-		mv.setViewName("userInfo");
-
-		return mv;
-	}
 
 	// 회원가입
 	@ResponseBody

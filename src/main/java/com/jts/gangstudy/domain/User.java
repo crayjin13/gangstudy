@@ -1,6 +1,6 @@
 package com.jts.gangstudy.domain;
 
-
+import java.sql.Date;
 
 public class User {
 	private Integer user_no;
@@ -9,7 +9,7 @@ public class User {
 	private String id;
 	private String pw;
 	private String email;
-	private String bod;
+	private Date bod;
 	private String gender;
 	private Integer rate;
 	private String points;
@@ -53,7 +53,7 @@ public class User {
 
 
 
-	public User(Integer user_no, String name, String phone, String id, String pw, String email, String bod,
+	public User(Integer user_no, String name, String phone, String id, String pw, String email, Date bod,
 			String gender, Integer rate, String points, String note) {
 		super();
 		this.user_no = user_no;
@@ -72,7 +72,7 @@ public class User {
 		
 	
 
-	public User(String name, String phone, String id, String pw, String email, String bod, String gender) {
+	public User(String name, String phone, String id, String pw, String email, Date bod, String gender) {
 		super();
 		this.name = name;
 		this.phone = phone;
@@ -82,10 +82,21 @@ public class User {
 		this.bod = bod;
 		this.gender = gender;
 	}
+	public User(String name, String phone, String id,  String email, Date bod, String gender) {
+		super();
+		this.name = name;
+		this.phone = phone;
+		this.id = id;
+		this.email = email;
+		this.bod = bod;
+		this.gender = gender;
+	}
+	
+	
 
 
 
-	public User(String name, String phone, String id, String pw, String email, String bod, String gender, Integer rate,
+	public User(String name, String phone, String id, String pw, String email, Date bod, String gender, Integer rate,
 			String points, String note) {
 		super();
 		this.name = name;
@@ -190,13 +201,13 @@ public class User {
 
 
 
-	public String getBod() {
+	public Date getBod() {
 		return bod;
 	}
 
 
 
-	public void setBod(String bod) {
+	public void setBod(Date bod) {
 		this.bod = bod;
 	}
 
