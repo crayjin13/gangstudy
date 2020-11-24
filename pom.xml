@@ -15,7 +15,7 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -125,8 +125,8 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
-		
+
+
 
 		<!-- Jdbc Template -->
 		<dependency>
@@ -228,15 +228,15 @@
 			<version>4.3.5</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20200518</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20200518</version>
 		</dependency>
 		<!-- device check -->
 		<dependency>
-		    <groupId>org.springframework.mobile</groupId>
-		    <artifactId>spring-mobile-device</artifactId>
-		    <version>1.1.5.RELEASE</version>
+			<groupId>org.springframework.mobile</groupId>
+			<artifactId>spring-mobile-device</artifactId>
+			<version>1.1.5.RELEASE</version>
 		</dependency>
 	</dependencies>
 	<repositories>

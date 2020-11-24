@@ -1,5 +1,6 @@
 package com.jts.gangstudy.controller;
 
+import com.jts.gangstudy.controller.UserLoginCheck;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -58,15 +59,11 @@ public class HomeController {
 	public String forgot() {
 		return "pages/forgot";
 	}
-	@RequestMapping(value = "/remo-control", method = RequestMethod.GET)
-	public String remo() {
-		return "pages/remo-control";
-	}
 	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admincontorl() {
-		return "pages/admin";
-	}
+	
+	
+	
+	
 	@RequestMapping(value = "/shoppingcart", method = RequestMethod.GET)
 	public String shoppingcart() {
 		return "pages/shoppingcart";
@@ -80,11 +77,43 @@ public class HomeController {
 	public String modifycart() {
 		return "pages/modifycart";
 	}
-	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
-	public String edituser() {
-		return "pages/edit-user";
+	
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String notice() {
+		return "pages/notice";
 	}
 	
+	@RequestMapping(value = "/faq", method = RequestMethod.GET)
+	public String faq() {
+		return "pages/faq";
+	}
+
+	
+	
+	
+	 /**
+     * Tiles를 사용하지 않은 일반적인 형태
+     */    
+    @RequestMapping("/test.do")
+    public String test() {
+        return "test";
+    }    
+    
+    /**
+     * Tiles를 사용(header, left, footer 포함)
+     */        
+    @RequestMapping("/testPage.do")
+    public String testPage() {
+        return "test.page";
+    }
+    
+    /**
+     * Tiles를 사용(header, left, footer 제외)
+     */    
+    @RequestMapping("/testPart.do")
+    public String testPart() {
+        return "test.part";
+    }        
 	
 	
 }

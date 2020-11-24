@@ -727,7 +727,7 @@ var KTLogin = function() {
 */		});
 
 		// Change event
-		wizardObj.on('changed', function (wizard) {
+		wizardObj.on('changed', function (wizard) {      
 			KTUtil.scrollTop();
 		});
 
@@ -746,6 +746,7 @@ var KTLogin = function() {
 				validator.validate().then(function (status) {
 					if (status == 'Valid') {
 						form.submit();
+						alert(' 축하합니다 ! 갱스터디 회원이 되셨습니다.');
 						//wizard.goTo(wizard.getNewStep());
 						location.href='/';         
 						
@@ -756,7 +757,7 @@ var KTLogin = function() {
 							text: "놓친 부분은 없는지 확인후, 다시 시도해주세요.",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "네",
 							customClass: {
 								confirmButton: "btn font-weight-bold btn-light"
 							}
