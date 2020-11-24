@@ -5,12 +5,50 @@ const startTimeInput = document.getElementById("start-time-input");
 const endDateInput = document.getElementById("end-date-input");
 const endTimeInput = document.getElementById("end-time-input");
 const bookingForm = document.getElementById("bookingForm");
-	
+const startTimeValue = document.getElementById("startTimeValue");
+const endTimeValue = document.getElementById("endTimeValue");
+
 $(document).ready(function() {
 	setMinMaxDate(startDateInput, new Date(), 0, 7);
 	setMinMaxDate(endDateInput, new Date(), 0, 7);
 	
-	// 현재 날짜 얻어서 그 날짜에 대한 현재 시간 목록 얻기
+	removeOptions(startTimeInput);
+	removeOptions(endTimeInput);
+	$.ajax({
+		url :  getContextPath()+"/booking/reqStartTime",
+		type : "GET",
+		data : {
+				 "startDate" : startDateInput.value
+			   },
+		success : function(times) {
+			for(var i = 0; i < times.length; i++) {
+				addOption(startTimeInput, times[i], times[i]);
+			}
+			startTimeInput.value=startTimeValue.textContent;
+			$.ajax({
+				url : getContextPath()+"/booking/reqEndTime",
+				type : "GET",
+				data : {
+						 "startDate" : startDateInput.value,
+						 "startTime" : startTimeInput.value,
+						 "endDate" : endDateInput.value,
+					   },
+				success : function(times) {
+					for(var i = 0; i < times.length; i++) {
+						addOption(endTimeInput, times[i], times[i]);
+					}
+					endTimeInput.value=endTimeValue.textContent;
+				},
+				error : function(){
+					alert("init get end time error");
+				}
+			});
+			
+		},
+		error : function(){
+			alert("init get start time error");
+		}
+	});
 	// 그 날짜의 시간으로 설정해주기.
 });
 
@@ -79,16 +117,9 @@ function requestStartTime() {
 				 "startDate" : startDateInput.value
 			   },
 		success : function(times) {
-			
-			var option = document.createElement("option");
-			option.text = "시간을 선택해주세요.";
-			option.value = "";
-			startTimeInput.options.add(option);
+			addOption(startTimeInput, "시간을 선택해주세요.", "");
 			for(var i = 0; i < times.length; i++) {
-				var option = document.createElement("option");
-				option.text = times[i];
-				option.value = times[i];
-				startTimeInput.options.add(option);
+				addOption(startTimeInput, times[i], times[i]);
 			}
 		},
 		error : function(){
@@ -108,15 +139,9 @@ function requestEndTime() {
 				 "endDate" : endDateInput.value,
 			   },
 		success : function(times) {
-			var option = document.createElement("option");
-			option.text = "시간을 선택해주세요.";
-			option.value = "";
-			endTimeInput.options.add(option);
+			addOption(endTimeInput, "시간을 선택해주세요.", "");
 			for(var i = 0; i < times.length; i++) {
-				var option = document.createElement("option");
-				option.text = times[i];
-				option.value = times[i];
-				endTimeInput.options.add(option);
+				addOption(endTimeInput, times[i], times[i]);
 			}
 		},
 		error : function(){
@@ -150,4 +175,12 @@ function setMinMaxDate(input, date, min, max){
 	input.min = getFormatDate(date);
     date.setDate(date.getDate() - min + max);
 	input.max = getFormatDate(date);
+}
+
+function addOption(target, text, value) {
+	var option = document.createElement("option");
+	option.text = text;
+	option.value = value;
+	option.name = value;
+	target.options.add(option);
 }

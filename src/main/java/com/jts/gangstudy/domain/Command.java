@@ -50,5 +50,15 @@ public class Command {
 	public int getCommand_no() {
 		return command_no;
 	}
+
+	public String getHour() {
+		return reserveTime.substring(0, 2);
+	}
+	public String getMinute() {
+		return reserveTime.substring(3, 5);
+	}
+	public String getSecond() {
+		return reserveTime.substring(6, 8);
+	}
 	
 }

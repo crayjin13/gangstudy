@@ -17,43 +17,43 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.jts.gangstudy.domain.Item;
-import com.jts.gangstudy.mapper.KakaoMapper;
+import com.jts.gangstudy.domain.Payment;
+import com.jts.gangstudy.mapper.PaymentMapper;
 
 @Service
 @PropertySource("classpath:config.properties")
 public class KakaoPayServiceImpl implements KakaoPayService {
 	
 	@Autowired
-	private KakaoMapper mapper;
+	private PaymentMapper mapper;
 
     @Value("${kakao.ready}")
-	private String ready;														// Kakao 결제 준비
+	private String ready;													// Kakao 결제 준비
     @Value("${kakao.complete}")
-    private String complete;													// Kakao 결제 준비
+    private String complete;												// Kakao 결제 준비
 
     @Value("${kakao.admin_key}")
-	private String admin_key;													// Admin 키
+	private String admin_key;												// Admin 키
 	
 	// 필수 요구사항
     @Value("${kakao.cid}")
-	private String cid;															// 가맹점 코드, 10자
+	private String cid;														// 가맹점 코드, 10자
     @Value("${kakao.partner_order_id}")
-	private String partner_order_id;											// 가맹점 주문번호, 최대 100자
+	private String partner_order_id;										// 가맹점 주문번호, 최대 100자
     @Value("${kakao.partner_user_id}")
-	private String partner_user_id;												// 가맹점 회원 id, 최대 100자
+	private String partner_user_id;											// 가맹점 회원 id, 최대 100자
     
 	private final static String tax_free_amount = "0";						// 상품 비과세 금액
 	private final static String approval_url = "/payment/complete";			// 결제 성공 시 redirect url, 최대 255자
-	private final static String cancel_url = "/";		// 결제 취소 시 redirect url, 최대 255자
-	private final static String fail_url = "/";		// 결제 실패 시 redirect url, 최대 255자
+	private final static String cancel_url = "/payment/fail";				// 결제 취소 시 redirect url, 최대 255자
+	private final static String fail_url = "/payment/fail";					// 결제 실패 시 redirect url, 최대 255자
 	
 	// 선택 요구사항
-	private final static String cid_secret = "fqwrqrqwf";						// 가맹점 코드 인증키, 24자, 숫자와 영문 소문자 조합
-	private final static String vat_amount = "100";								// 상품 부가세 금액
+	private final static String cid_secret = "fqwrqrqwf";					// 가맹점 코드 인증키, 24자, 숫자와 영문 소문자 조합
+	private final static String vat_amount = "100";							// 상품 부가세 금액
 
 	@Override
-	public HashMap<String, String> ready(String domain, String deviceType, Item item) {
+	public HashMap<String, String> ready(String domain, String deviceType, Payment payment) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			URI uri = new URI(ready);
@@ -61,9 +61,9 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 					.addParameter("cid", cid)
 					.addParameter("partner_order_id", partner_order_id)
 					.addParameter("partner_user_id", partner_user_id)
-					.addParameter("item_name", item.getItem_name())
-					.addParameter("quantity", Integer.toString(item.getQuantity()))
-					.addParameter("total_amount", Integer.toString(item.getTotal_amount()))
+					.addParameter("item_name", "스터디룸 예약")
+					.addParameter("quantity", Integer.toString(1))
+					.addParameter("total_amount", Integer.toString(payment.getAmount()))
 					.addParameter("tax_free_amount", tax_free_amount)
 					.addParameter("approval_url", domain + approval_url)
 					.addParameter("cancel_url", domain + cancel_url)
@@ -108,7 +108,8 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	}
 
 	@Override
-	public void getPayInfo(String tid, String pg_token) {
+	public HashMap<String, String> getPayInfo(String tid, String pg_token) {
+		HashMap<String, String> map = new HashMap<String, String>();
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			URI uri = new URI(complete);
 			uri = new URIBuilder(uri)
@@ -149,6 +150,10 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		        String approved_at = jsonObject.getString("approved_at");			// 결제 승인 시각
 //		        String payload = jsonObject.getString("payload");					// 결제 승인 요청에 대해 저장한 값, 요청 시 전달된 내용
 
+		        map.put("pay_type", payment_method_type.toLowerCase());
+		        map.put("amount", amount.toString());
+		        
+		        return map;
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -157,6 +162,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		return map;
 	}
+
 }

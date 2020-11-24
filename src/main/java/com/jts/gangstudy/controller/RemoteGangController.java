@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -13,8 +14,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,7 @@ import com.jts.gangstudy.mapper.CommandMapper;
 
 @Controller
 @RequestMapping("/remote")
-public class remoteGangController {
+public class RemoteGangController {
 	private final String ipAdress = "211.201.46.200";
 	private final String portNumber = "1200";
 
@@ -67,6 +68,25 @@ public class remoteGangController {
 		return commands;
 	}
 	
+	@Scheduled(cron="*/1 * * * * *" )
+	public void cornTrigger() {
+		LocalTime now = LocalTime.now();
+		List<Command> list = mapper.selectAll();
+		String message = "";
+		for(Command command : list) {
+			int hour = Integer.parseInt(command.getHour());
+			int minute = Integer.parseInt(command.getMinute());
+			int second = Integer.parseInt(command.getSecond());
+			
+			LocalTime time = LocalTime.of(hour, minute, second);
+			Duration duration = Duration.between(now, time);
+			
+			if(Math.abs(duration.getSeconds()) <= 1) {
+				message = sendMessage(command.getIpAdress(), command.getPortNumber(), command.getMessage());
+			}
+		}
+	}
+	
 	public String sendMessage(String ip, String port, String message) {
 		int portNumber = Integer.parseInt(port);
 		byte[] buf = null;
@@ -97,6 +117,5 @@ public class remoteGangController {
                 e.printStackTrace();
         }
         return new String(temp);
-
 	}
 }

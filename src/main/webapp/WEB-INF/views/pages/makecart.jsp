@@ -564,7 +564,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<!--end::Global Theme Bundle-->
-	<script src="${pageContext.request.contextPath}/resources/js/shopBook.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/makecart.js"></script>
 </body>
 <!--end::Body-->
 </html>
