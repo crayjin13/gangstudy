@@ -1,5 +1,6 @@
 package com.jts.gangstudy.service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import com.jts.gangstudy.domain.Booking;
@@ -12,7 +13,7 @@ public interface BookingService {
 	// 예약 제거
 	public void removeBook(Booking book);
 	// 예약 추가 요청
-	public String insertDB(Booking book);
+	public String insertBook(Booking book);
 	// 해당 날짜의 예약 목록
 	public List<Booking> viewDate(String date);
 	
@@ -34,6 +35,9 @@ public interface BookingService {
 	
 	// 특정 상태의 예약
 	public List<Booking> getUserBooking(User user, String state);
+
+	public List<Booking> getTimeBooking(LocalDateTime now);
+	public List<Booking> getStateBooking(String string);
 	
 	public void changeState(Booking book, String state);
 	public String getTimeInterval(Booking book);

@@ -58,7 +58,7 @@ public class BookingServiceImpl implements BookingService{
 	// 날짜 검색
 	@Override
 	public List<Booking> viewDate(String date) {
-		return mapper.selectDate(date);
+		return mapper.selectWithDate(date);
 	}
 
 	// 선택 가능한 날짜 목록
@@ -84,7 +84,7 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	// 동기화 처리 된 예약 추가
-	public synchronized String insertDB(Booking book) {
+	public synchronized String insertBook(Booking book) {
 		int result = viewDuplicate(book);
 		if(result == 0) {
 			mapper.insertBook(book);
@@ -97,9 +97,10 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 	
-	
-	
-	
+	@Override
+	public List<Booking> getStateBooking(String state) {
+		return mapper.selectWithState(state);
+	}
 	
 	
 	
@@ -116,13 +117,20 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return book;
 	}
+
+
+	@Override
+	public List<Booking> getTimeBooking(LocalDateTime dateTime) {
+		String formatDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		return mapper.selectWithDateTime(formatDateTime);
+	}
 	
 	@Override
 	public List<Booking> getUserBooking(User user, String state) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("user_no", user.getUser_no().toString());
 		map.put("state", state);
-		List<Booking> books = mapper.viewUserState(map);
+		List<Booking> books = mapper.selectWithUserState(map);
 		return books;
 	}
 
@@ -155,7 +163,7 @@ public class BookingServiceImpl implements BookingService{
 		Duration duration = book.getDuration();
 		int hour = (int) duration.toHours();
 		int minute = (int) duration.toMinutes();
-
+		minute %= 60;
 		
 		String timeInterval;
 		if(hour > 0) {
@@ -272,11 +280,6 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	
-	
-	
-	
-	
-	
 	// time 목록 반환
 	public List<String> createTimeList(int startHour, int startMin) {
 		List<String> times = new ArrayList<>();
@@ -295,5 +298,6 @@ public class BookingServiceImpl implements BookingService{
 		LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
 		return dateTime;
 	}
+
 
 }

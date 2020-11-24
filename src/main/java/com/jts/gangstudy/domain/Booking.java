@@ -11,7 +11,7 @@ public class Booking {
 	private String check_in;
 	private String check_out;
 	private int people;
-	private String state;
+	private String state;			// 'uncharge', 'wait', 'use', 'clear', 'cancel', 'error'
 	private String request_dt;
 
 	public Booking() {

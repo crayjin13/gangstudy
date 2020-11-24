@@ -2,7 +2,7 @@
 <mapper namespace="com.jts.gangstudy.mapper.PaymentMapper">
 	<!-- 결제 추가 -->
 	<insert id="insertPayment" parameterType="com.jts.gangstudy.domain.Payment">
-	  INSERT INTO Payment_TB
+	  INSERT INTO PAYMENT_TB
 	  (AMOUNT, POINT, PG_NM, TID, PAY_TYPE, STATE, BOOK_NO) VALUES
 	  (#{amount}, #{point}, #{pg_name}, #{tid}, #{pay_type}, #{state}, #{book_no})
 	</insert>
@@ -10,7 +10,14 @@
 	<!-- 예약 번호로 결제 찾기 -->
 	<select id="selectPayment" parameterType="int" resultType="com.jts.gangstudy.domain.Payment">
 	  SELECT *
-	  FROM Payment_TB
+	  FROM PAYMENT_TB
 	  WHERE BOOK_NO = #{book_no}
+	</select>
+	
+	<!-- 결제 상태 변경 -->
+	<select id="updateState" parameterType="hashmap">
+	  UPDATE PAYMENT_TB
+	  SET STATE = #{state}
+	  WHERE PAY_NO = #{pay_no}
 	</select>
 </mapper>
