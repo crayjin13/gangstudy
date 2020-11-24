@@ -14,22 +14,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jts.gangstudy.domain.Booking;
-import com.jts.gangstudy.domain.Item;
+import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
-import com.jts.gangstudy.service.UserService;
+import com.jts.gangstudy.service.PaymentService;
 
 
 @Controller
 @RequestMapping("/booking")
 public class BookingController {
 	private final int room_no = 1;
-	private final String item_name = "스터디룸 예약";
 	
 	@Autowired
 	private BookingService bookingService;
 	@Autowired
-	private UserService userService;
+	private PaymentService paymentService;
 	
 	// booking shop page - 결제 직전 페이지
 	@UserLoginCheck
@@ -39,7 +38,7 @@ public class BookingController {
 			@RequestParam("startDateInput") String startDate, 	@RequestParam("startTimeInput") String startTime,
 			@RequestParam("endDateInput") String endDate, 		@RequestParam("endTimeInput") String endTime,
 			@RequestParam("userCountInput") String people) {
-		ModelAndView mav = new ModelAndView("pages/shoppingcart");
+		ModelAndView mav = new ModelAndView("pages/makecart");
 		User sUserId = (User)session.getAttribute("sUserId");
 		// check a existing booking
 		sUserId.getUser_no();
@@ -65,7 +64,7 @@ public class BookingController {
 		String endDateTime = book.getFormattedCO("M월 d일 H시 mm분");
 		String timeInterval = bookingService.getTimeInterval(book);
 		int chargePerPeople = bookingService.getCharge(book) / book.getPeople();
-		String point = sUserId.getPoints();
+		int point = Integer.parseInt(sUserId.getPoints());
 		
 		mav.addObject("startDateTime", startDateTime)
 		.addObject("endDateTime", endDateTime)
@@ -73,7 +72,7 @@ public class BookingController {
 		.addObject("chargePerPeople", chargePerPeople)
 		.addObject("userCount", people)
 		.addObject("point", point)
-		.addObject("charge", chargePerPeople*Integer.parseInt(people));
+		.addObject("charge", chargePerPeople*Integer.parseInt(people) - point);
 		return mav;
 	}
 
@@ -112,8 +111,12 @@ public class BookingController {
 		
 		// session registry
 		int charge = bookingService.getCharge(book) - usePoint;
-		Item item = new Item(item_name, 1, charge);
-		session.setAttribute("item", item);
+		Payment payment = new Payment();
+		payment.setAmount(charge);
+		payment.setPoint(usePoint);
+		payment.setBook_no(book.getBook_no());
+		payment.setState("ready");
+		session.setAttribute("payment", payment);
 		
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
@@ -127,16 +130,23 @@ public class BookingController {
 		
 		User sUserId = (User)session.getAttribute("sUserId");
 		Booking book = bookingService.getWaitBooking(sUserId);
+		
+		// payment.getPoint();
+		
 		if(book==null) {
 			mav.addObject("hasBooking", "false");
 		} else {
+			// book_no와 연결되는 payment를 얻는다.
+			Payment payment = paymentService.selectPayment(book.getBook_no());
+			
 			mav.addObject("hasBooking", "true")
-			.addObject("start", book.getFormattedCI("M월 d일 h시 mm분"))
-			.addObject("end", book.getFormattedCO("M월 d일 h시 mm분"))
+			.addObject("start", book.getFormattedCI("M월 d일 H시 mm분"))
+			.addObject("end", book.getFormattedCO("M월 d일 H시 mm분"))
 			.addObject("people", book.getPeople())
 			.addObject("timeInterval", bookingService.getTimeInterval(book))
 			.addObject("hourPrice", bookingService.getHourPrice())
-			.addObject("totalCharge", bookingService.getCharge(book));
+			.addObject("totalCharge", bookingService.getCharge(book))
+			.addObject("usedpoint", payment.getPoint());
 		}
 		mav.addObject("name", sUserId.getName());
 		return mav;
@@ -146,15 +156,17 @@ public class BookingController {
 	@UserLoginCheck
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public ModelAndView editBook(HttpServletRequest request, HttpSession session) {
-		ModelAndView mav = new ModelAndView("pages/modifycart");
+		ModelAndView mav = new ModelAndView("pages/modify");
 		User sUserId = (User)session.getAttribute("sUserId");
 		Booking book = bookingService.getWaitBooking(sUserId);
 		
 		if(book == null) {	// 수정 불가능한 경우
 			mav.setViewName("?booking=null");
 		} else {			// 수정 가능한 경우
-			int charge = bookingService.getCharge(book); // 결제 정보를 통해서 알아내야함
-			int usedPoint = 0; // 결제 정보를 통해서 알아내야함
+			Payment payment = paymentService.selectPayment(book.getBook_no());
+			
+			int charge = payment.getAmount();
+			int usedPoint = payment.getPoint();
 
 			// mav add
 			String timeInterval = bookingService.getTimeInterval(book);
@@ -171,84 +183,84 @@ public class BookingController {
 		
 		return mav;
 	}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-	
-	// booking main page
+	// booking modify page - 결제 직전 페이지
 	@UserLoginCheck
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView bookMain() {
-		ModelAndView mav = new ModelAndView("booking/bookMain");
-		List<Booking> books = bookingService.viewAll();
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<String> costs = new ArrayList<String>();
-		for(Booking book : books) {
-			int user_no = book.getUser_no();
-			User user = userService.getUser(user_no);
-			String user_name = user.getName();
-			names.add(user_name);
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public ModelAndView editSubmit(HttpServletRequest request, HttpSession session,
+			@RequestParam("startDateInput") String startDate, @RequestParam("endDateInput") String endDate,
+			@RequestParam("startTimeInput") String startTime, @RequestParam("endTimeInput") String endTime,
+			@RequestParam("people") String people) {
+		ModelAndView mav = new ModelAndView("pages/modifycart");
+		User sUserId = (User)session.getAttribute("sUserId");
+		Booking currentBook = bookingService.getWaitBooking(sUserId);
+		Booking book = new Booking();
+		book.setCheck_in(startDate, startTime);
+		book.setCheck_out(endDate, endTime);
+		book.setPeople(people);
+		
+		if(book.getciDateTime().isEqual(currentBook.getciDateTime())&&book.getcoDateTime().isEqual(currentBook.getcoDateTime())) {
+			// current == new
+			mav.setViewName("redirect:/booking/check");
+			return mav;
 		}
-		for(Booking book : books) {
-			String charge = Integer.toString(bookingService.getCharge(book));
-			costs.add(charge);
-		}
-				
-		mav.addObject("books", books);
-		mav.addObject("names", names);
-		mav.addObject("costs", costs);
+		Payment payment = paymentService.selectPayment(currentBook.getBook_no());
+		// registry booking in session
+		session.setAttribute("book", book);
+		
+		// mav add
+		String startDateTime = book.getFormattedCI("M월 d일 H시 mm분");
+		String endDateTime = book.getFormattedCO("M월 d일 H시 mm분");
+		String timeInterval = bookingService.getTimeInterval(book);
+		int charge = bookingService.getCharge(book) - payment.getAmount(); // 추가요금
+		String point = sUserId.getPoints();
+		
+		mav.addObject("startDateTime", startDateTime)
+		.addObject("endDateTime", endDateTime)
+		.addObject("timeInterval", timeInterval)
+		.addObject("userCount", people)
+		.addObject("point", point)
+		.addObject("charge", charge);
 		return mav;
 	}
-	
-	
-	// booking 수정시 처리
-	// 수정 완료 후 차액에 대해 재결제 처리해야함
-	@ResponseBody
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String updateBook(HttpServletRequest request, HttpSession session) {
-		User sUserId = (User)session.getAttribute("sUserId");
-		Booking book = (Booking)session.getAttribute("book");
-		session.removeAttribute("book");
-		Booking preBook = bookingService.getWaitBooking(sUserId);
-		bookingService.removeBook(preBook);
-		return bookingService.insertDB(book);
-	}
-	
-	
-	
-	
+		
+		// 유효성 체크 + payment로 요청
 
+		//if(book.getciDateTime().equals(CIDT) && book.getcoDateTime().equals(CODT)) {
+		//	return "?date=equal";
+		//}
+		// 추가로 기존 book과 시간을 비교해서 동일한지 확인
+
+		
+		// 기존 예약 cancel로 상태 변경
+		// insert DB
+//		book.setPeople(people);
+//		book.setUser_no(sUserId.getUser_no());
+//		book.setRoom_no(room_no);
+//		book.setState("uncharge");
+//		String result = bookingService.insertDB(book);
+//		if(result.equals("duplicate")) {
+//			return "?booking=duplicate";
+//		}
+		
+		// 금액은 기존 예약과의 차이만큼 받는다.
+		// session registry
+//		int charge = bookingService.getCharge(book) - usePoint;
+//		Item item = new Item(item_name, 1, charge);
+//		session.setAttribute("item", item);
+		
+		// 결제 페이지(선택페이지)로 이동
+//		return "/payment/kakaopay";
+		
 	
 	@ResponseBody
 	@RequestMapping(value = "/reqStartTime", method = RequestMethod.GET)
 	public List<String> reqStartTime(HttpServletRequest request, HttpSession session) {
-//		User sUserId = (User)session.getAttribute("sUserId");
+		User sUserId = (User)session.getAttribute("sUserId");
 		String date = request.getParameter("startDate");
 		List<Booking> books = bookingService.viewDate(date);
-//		Booking book = bookingService.getUserWaitBooking(sUserId);
-//		books.remove(book);
+		Booking book = bookingService.getWaitBooking(sUserId);
+		books.remove(book);
 		List<String> times = bookingService.getUnbookedTimeList(date, books);
 		return times;
 	}
@@ -256,13 +268,13 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "/reqEndTime", method = RequestMethod.GET)
 	public List<String> reqEndTime(HttpServletRequest request, HttpSession session) {
-//		User sUserId = (User)session.getAttribute("sUserId");
+		User sUserId = (User)session.getAttribute("sUserId");
 		String startTime = request.getParameter("startTime");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		List<Booking> books = bookingService.viewDate(endDate);
-//		Booking book = bookingService.getUserWaitBooking(sUserId);
-//		books.remove(book);
+		Booking book = bookingService.getWaitBooking(sUserId);
+		books.remove(book);
 		List<String> times = bookingService.getEndTimes(books, startDate, startTime, endDate);
 		return times;
 	}

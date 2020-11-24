@@ -14,13 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jts.gangstudy.domain.Booking;
-import com.jts.gangstudy.domain.Item;
+import com.jts.gangstudy.domain.Payment;
+import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.KakaoPayService;
+import com.jts.gangstudy.service.PaymentService;
 
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
+	@Autowired
+	private PaymentService paymentService;
 	@Autowired
 	private KakaoPayService kakaoPayService;
 	@Autowired
@@ -42,7 +46,7 @@ public class PaymentController {
 
 	@RequestMapping(value = "/kakaopay", method = RequestMethod.GET)
 	public String kakaopay(HttpServletRequest request, HttpSession session) {
-		Item item = (Item)session.getAttribute("item");
+		Payment payment = (Payment)session.getAttribute("payment");
 		Device device = DeviceUtils.getCurrentDevice(request);
 		String deviceType;
 		if (device.isMobile()) {
@@ -53,7 +57,7 @@ public class PaymentController {
 			deviceType = "desktop";
 		}
 		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort();
-		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, item);
+		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, payment);
 		
 		session.setAttribute("tid", map.get("tid"));
 		return "redirect:" + map.get("url");
@@ -61,25 +65,40 @@ public class PaymentController {
 
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
+		Booking book = (Booking)session.getAttribute("book");
+		Payment payment = (Payment)session.getAttribute("payment");
+		User sUserId = (User)session.getAttribute("sUserId");
 		// 결제 정보를 저장한다.
 		String tid = (String)session.getAttribute("tid");
 		String pg_token = request.getParameter("pg_token");
-		kakaoPayService.getPayInfo(tid, pg_token);
+		HashMap<String, String> payInfo = kakaoPayService.getPayInfo(tid, pg_token);
+		payment.setPay_type(payInfo.get("pay_type"));
+		payment.setTid(tid);
+		payment.setPg_name("KakaoPay");
+		payment.setState("paid");
+		paymentService.insertPayment(payment);
 
 		// 예약에 대해서 uncharge -> wait으로 변경한다.
-		Booking book = (Booking)session.getAttribute("book");
 		bookingService.changeState(book, "wait");
+		Integer remainPoint = (Integer.parseInt(sUserId.getPoints()) - payment.getPoint());
+		sUserId.setPoints(remainPoint.toString());
 		
-		session.removeAttribute("item");
 		session.removeAttribute("book");
+		session.removeAttribute("payment");
 		session.removeAttribute("tid");
 		
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/check";
 	}
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(HttpServletRequest request, HttpSession session) {
-		return "home";
+	@RequestMapping(value = "/fail", method = RequestMethod.GET)
+	public String fail(HttpServletRequest request, HttpSession session) {
+		Booking book = (Booking)session.getAttribute("book");
+		bookingService.removeBook(book);
+		session.removeAttribute("payment");
+		session.removeAttribute("book");
+		session.removeAttribute("tid");
+		System.out.println("fail");
+		return "/";
 	}
 }

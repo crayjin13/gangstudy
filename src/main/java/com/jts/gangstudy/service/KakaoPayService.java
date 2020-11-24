@@ -2,10 +2,10 @@ package com.jts.gangstudy.service;
 
 import java.util.HashMap;
 
-import com.jts.gangstudy.domain.Item;
+import com.jts.gangstudy.domain.Payment;
 
 public interface KakaoPayService {
-	public HashMap<String, String> ready(String domain, String deviceType, Item item);
+	public HashMap<String, String> ready(String domain, String deviceType, Payment payment);
 
-	public void getPayInfo(String tid, String pg_token);
+	public HashMap<String, String> getPayInfo(String tid, String pg_token);
 }
