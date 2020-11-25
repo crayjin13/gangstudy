@@ -31,25 +31,22 @@ $(function() {
 		$.ajax({
 			url : 'deleteUser',
 			method : 'POST',
-			data : idpw,        
-			dataType : 'text',
-			success : function(data) { // 통신에는 실패해도 완료가 되었을때 complete , 통신이
-										// 성공적으로 이루어졌을떄 success
-				if (data == false) {
-					alert('탈퇴실패');
-					 location.href = '/signin';     
-				} else {
-					var result = confirm('정말 탈퇴 하시겠습니까?');
-					if(result){
-						$('#delete_User').submit();
-						alert('탈퇴성공');
-					}      
-				}
-			},
-			error: function(){
-				alert("서버 에러.");
-			}
+			data : idpw,               
+			dataType : 'json',
+			success : function(async) {
+				console.log("ajax 거쳤는지  ");
+				if (async == false) {
+					console.log("false 일때 "+idpw);
+					return;
+					alert('비밀번호와 아이디를 다시 확인해주세요');
 
+				} else {
+					console.log("true 일떄 "+idpw);
+				 alert('탈퇴성공');
+				 location.href="/";
+				} 
+			      
+			}
 		});
 	});
 
@@ -85,20 +82,55 @@ $(function() {
 	// ******* 회원 정보 수정 ********************
 	$("#modifybtn").click(function() {
 		var asArray = $('#kt_form').serialize();
-		console.log("*****회원정보수정 값 " + asArray);
-		$.ajax({
-			url : 'modifyInfo',
-			method : 'POST',
-			data : asArray,
-			dataType : 'text',
-			success : function(textData) {
-				location.href = '/signin';
-				alert('수정 되었습니다. 다시 로그인 해주세요');
-
-			}
+		var pw = $("#pw").val();
+		var pw2 = $("#pw2").val();
+		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
+		
+		if(pw==pw2){
+			console.log("값 비교"+pw,+pw2);
+			
+			$.ajax({    
+				url : 'modifyInfo',
+				method : 'POST',
+				data : asArray,
+				dataType : 'text',
+				success : function(textData) {
+					console.log("succes 타는지");
+					if(pw===pw2){
+						console.log("if문 true 일떄 ");   
+						alert('수정 되었습니다. 다시 로그인 해주세요');
+						location.href = '/signin';
+						
+					}else {
+						return;
+						alert("오류가 있습니다.");
+					}
+					
+				}
+			});
+			
+		}else {
+			console.log("틀린 값 비교"+pw,+pw2);
+			alert("비밀번호를 다시 체크해주세요");
+		}
 		});
-	});
 
+	/*////////////
+	
+	$("#kt_form").on("click", function(){
+		var pw = $("#pw").val();
+		var pw2 = $("#pw2").val();
+		
+		if(pw==pw2){
+			
+		}
+		
+		
+	})
+	*/
+	
+	
+	
 	// ***** 회원가입 ************
 
 	// $("#kt_login_signup_form_submit_button").click(function() {
@@ -126,7 +158,7 @@ $(function() {
 					kt_login_signup_form.bod.value = textData.bod;
 					kt_login_signup_form.gender.value = textData.gender;
 
-					alert("가입이 완료되었습니다.");
+					    
 					
 				} 
 
@@ -144,7 +176,7 @@ $(function() {
 	$('#msg2').hide();
 
 	// 회원가입 유효성 검증
-	$('#sign_up').validate({
+	$('#kt_form').validate({
 		rules : {
 			name : {
 				required : true,
@@ -232,28 +264,63 @@ $(function() {
 
 /* / 비밀번호 유효성체크, 비밀번호 두개 같은지 체크 / */
 
-var pw = document.querySelector('#pw');
+/*var pw = document.querySelector('#pw');
 var pw2 = document.querySelector('#pw2');
 var error = document.querySelectorAll('.error');
 // pw.addEventListener("change", checkPw);
 pw2.addEventListener("change", comparePw);
 $("#name").focus();
-// 비밀번호 재확인
+// 비밀번호 재확인   
 function comparePw() {
-	if (pw2.value === pw.value) {
-
-		error[0].style.display = "none";
-	} else if (pw2.value !== pw.value) {
-
-		error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
+	
+	 if (pw2.value !== pw.value) {      
+		alert("비밀번호가 일치하지 않습니다.");
+		error[0].innerHTML = "비밀번호가 일치하지 않습니다.";      
 		error[0].style.display = "block";
+		return false;
 	}
 
 	if (pw2.value === "") {
 		error[0].innerHTML = "필수 정보입니다.";
 		error[0].style.display = "block";
-	}
-}
+		return false;
+		
+	}else if (pw2.value === pw.value) {
+
+		error[0].style.display = "none";
+		return true;
+	} 
+}*/
+
+var pw2 = document.querySelector('#pw2');
+       pw2.addEventListener("change", checkPassword);
+function checkPassword(id, pw, pw2) {
+    //비밀번호가 입력되었는지 확인하기
+    if (!checkExistData(pw, "비밀번호를 입력해주세요 "))
+        return false;
+    //비밀번호 확인이 입력되었는지 확인하기
+    if (!checkExistData(pw2, "비밀번호를 확인 해주세요"))
+        return false;
+    var password1RegExp = /^[a-zA-z0-9]{4,12}$/; 
+    //비밀번호 유효성 검사
+    if (!password1RegExp.test(pw)) {
+        alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다");
+        form.pw.value = "";
+        form.pw.focus();
+        return false;
+    }
+    //비밀번호와 비밀번호 확인이 맞지 않다면..
+    if (pw != pw2) {
+        alert("두 비밀번호가 맞지 않습니다.");
+        form.pw.value = "";
+        form.pw2.value = "";
+        form.pw2.focus();
+        return false;
+    }
+    return true; //확인이 완료되었을 때
+}    
+
+
 /*
  * function checkId() { var idPattern = /[a-zA-Z0-9_-]{5,20}/; if(id.value ===
  * "") { error[0].innerHTML = "필수 정보입니다."; error[0].style.display = "block"; }
