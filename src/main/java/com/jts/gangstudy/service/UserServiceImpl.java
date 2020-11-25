@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	
 	
 	
-	// �α׾ƿ�
+	// �α׾ƿ�
 		@Override
 		public void logout(HttpServletResponse response) throws Exception {
 			response.setContentType("text/html;charset=utf-8");

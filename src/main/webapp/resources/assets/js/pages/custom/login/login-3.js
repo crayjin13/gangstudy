@@ -1,836 +1,941 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "../demo1/src/js/pages/custom/login/login-3.js");
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "../demo1/src/js/pages/custom/login/login-3.js":
-/*!*****************************************************!*\
-  !*** ../demo1/src/js/pages/custom/login/login-3.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// Class Definition
-var KTLogin = function() {
-	var _buttonSpinnerClasses = 'spinner spinner-right spinner-white pr-15';
-
-	var _handleFormSignin = function() {
-		var form = KTUtil.getById('kt_login_singin_form');
-		var formSubmitUrl = KTUtil.attr(form, 'action');
-		var formSubmitButton = KTUtil.getById('kt_login_singin_form_submit_button');
-
-		if (!form) {
-			return;
+/** *** */
+(function(modules) { // webpackBootstrap
+	/** *** */
+	// The module cache
+	/** *** */
+	var installedModules = {};
+	/** *** */
+	/** *** */
+	// The require function
+	/** *** */
+	function __webpack_require__(moduleId) {
+		/** *** */
+		/** *** */
+		// Check if module is in cache
+		/** *** */
+		if (installedModules[moduleId]) {
+			/** *** */
+			return installedModules[moduleId].exports;
+			/** *** */
 		}
-
-		FormValidation
-		    .formValidation(
-		        form,
-		        {
-		            fields: {
-						username: {
-							validators: {
-								notEmpty: {
-									message: 'Username is required'
-								}
-							}
-						},
-						password: {
-							validators: {
-								notEmpty: {
-									message: 'Password is required'
-								}
-							}
-						}
-		            },
-		            plugins: {
-						trigger: new FormValidation.plugins.Trigger(),
-						submitButton: new FormValidation.plugins.SubmitButton(),
-	            		//defaultSubmit: new FormValidation.plugins.DefaultSubmit(), // Uncomment this line to enable normal button submit after form validation
-						bootstrap: new FormValidation.plugins.Bootstrap({
-						//	eleInvalidClass: '', // Repace with uncomment to hide bootstrap validation icons
-						//	eleValidClass: '',   // Repace with uncomment to hide bootstrap validation icons
-						})
-		            }
-		        }
-		    )
-		    .on('core.form.valid', function() {
-				// Show loading state on button
-				KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "Please wait");
-
-				// Simulate Ajax request
-				setTimeout(function() {
-					KTUtil.btnRelease(formSubmitButton);
-				}, 2000);
-
-				// Form Validation & Ajax Submission: https://formvalidation.io/guide/examples/using-ajax-to-submit-the-form
-				/**
-		        FormValidation.utils.fetch(formSubmitUrl, {
-		            method: 'POST',
-					dataType: 'json',
-		            params: {
-		                name: form.querySelector('[name="username"]').value,
-		                email: form.querySelector('[name="password"]').value,
-		            },
-		        }).then(function(response) { // Return valid JSON
-					// Release button
-					KTUtil.btnRelease(formSubmitButton);
-
-					if (response && typeof response === 'object' && response.status && response.status == 'success') {
-						Swal.fire({
-			                text: "All is cool! Now you submit this form",
-			                icon: "success",
-			                buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn font-weight-bold btn-light-primary"
-							}
-			            }).then(function() {
-							KTUtil.scrollTop();
-						});
-					} else {
-						Swal.fire({
-			                text: "Sorry, something went wrong, please try again.",
-			                icon: "error",
-			                buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn font-weight-bold btn-light-primary"
-							}
-			            }).then(function() {
-							KTUtil.scrollTop();
-						});
-					}
-		        });
-				**/
-		    })
-			.on('core.form.invalid', function() {
-				Swal.fire({
-					text: "Sorry, looks like there are some errors detected, please try again.",
-					icon: "error",
-					buttonsStyling: false,
-					confirmButtonText: "Ok, got it!",
-					customClass: {
-						confirmButton: "btn font-weight-bold btn-light-primary"
-					}
-				}).then(function() {
-					KTUtil.scrollTop();
-				});
-		    });
-    }
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	var _handleFormForgot = function() {
-		var form = KTUtil.getById('kt_login_forgot_form');
-		var formSubmitUrl = KTUtil.attr(form, 'action');
-		var formSubmitButton = KTUtil.getById('kt_login_forgot_form_submit_button');
-
-		if (!form) {
-			return;
-		}
-
-		FormValidation
-		    .formValidation(
-		        form,
-		        {
-		            fields: {
-		            	id: {
-							validators: {
-								notEmpty: {
-									message: 'ID is required'
-								}
-							}
-						},
-						email: {
-							validators: {
-								notEmpty: {
-									message: 'Email is required'
-								},
-								emailAddress: {
-									message: 'The value is not a valid email address'
-								}
-							}
-						}
-		            },
-		            plugins: {
-						trigger: new FormValidation.plugins.Trigger(),
-						submitButton: new FormValidation.plugins.SubmitButton(),
-	            		//defaultSubmit: new FormValidation.plugins.DefaultSubmit(), // Uncomment this line to enable normal button submit after form validation
-						bootstrap: new FormValidation.plugins.Bootstrap({
-						//	eleInvalidClass: '', // Repace with uncomment to hide bootstrap validation icons
-						//	eleValidClass: '',   // Repace with uncomment to hide bootstrap validation icons
-						})
-		            }
-		        }
-		    )
-		    .on('core.form.valid', function() {
-				// Show loading state on button
-				KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "Please wait");
-
-				// Simulate Ajax request
-				setTimeout(function() {
-					KTUtil.btnRelease(formSubmitButton);
-				}, 2000);
-		    })
-			.on('core.form.invalid', function() {
-				Swal.fire({
-					text: "다시 입력해 주세요.",
-					icon: "error",
-					buttonsStyling: false,
-					confirmButtonText: "네",
-					customClass: {
-						confirmButton: "btn font-weight-bold btn-light-primary"
-					}
-				}).then(function() {
-					KTUtil.scrollTop();
-				});
-		    });
-    }
-
-	
-	/*
-	/ 비밀번호 유효성체크, 비밀번호 두개 같은지 체크  /
-
-	var pw = document.querySelector('#pw');
-	var pw2 = document.querySelector('#pw2');
-	var error = document.querySelectorAll('.error');
-	//pw.addEventListener("change", checkPw);
-	pw2.addEventListener("change", comparePw);
-	$("#name").focus(); 
-	// 비밀번호 재확인 
-	function comparePw() { 
-	    if(pw2.value === pw.value) {
-	       
-	        error[0].style.display = "none";
-	    } else if(pw2.value !== pw.value) {
-	       
-	        error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
-	        error[0].style.display = "block";
-	    } 
-
-	    if(pw2.value === "") {
-	        error[0].innerHTML = "필수 정보입니다.";
-	        error[0].style.display = "block";
-	    }     
+		/** *** */
+		// Create a new module (and put it into the cache)
+		/** *** */
+		var module = installedModules[moduleId] = {
+			/** *** */
+			i : moduleId,
+			/** *** */
+			l : false,
+			/** *** */
+			exports : {}
+		/** *** */
+		};
+		/** *** */
+		/** *** */
+		// Execute the module function
+		/** *** */
+		modules[moduleId].call(module.exports, module, module.exports,
+				__webpack_require__);
+		/** *** */
+		/** *** */
+		// Flag the module as loaded
+		/** *** */
+		module.l = true;
+		/** *** */
+		/** *** */
+		// Return the exports of the module
+		/** *** */
+		return module.exports;
+		/** *** */
 	}
-	*/
-///////////// 회원가입 유효성 검증 //////////////	
-	$(function() {
-		var pw = document.querySelector('#pw');
-		var pw2 = document.querySelector('#pw2');
-		var error = document.querySelectorAll('.error');
-		pw2.addEventListener("change", comparePw);
-		
-		$("#name").focus();
-		
-		function comparePw() { 
-		    if(pw2.value === pw.value) {
-		       
-		        error[0].style.display = "none";
-		    } else if(pw2.value !== pw.value) {
-		       
-		        error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
-		        error[0].style.display = "block";
-		    } 
-
-		    if(pw2.value === "") {
-		        error[0].innerHTML = "필수 정보입니다.";
-		        error[0].style.display = "block";
-		    }
+	/** *** */
+	/** *** */
+	/** *** */
+	// expose the modules object (__webpack_modules__)
+	/** *** */
+	__webpack_require__.m = modules;
+	/** *** */
+	/** *** */
+	// expose the module cache
+	/** *** */
+	__webpack_require__.c = installedModules;
+	/** *** */
+	/** *** */
+	// define getter function for harmony exports
+	/** *** */
+	__webpack_require__.d = function(exports, name, getter) {
+		/** *** */
+		if (!__webpack_require__.o(exports, name)) {
+			/** *** */
+			Object.defineProperty(exports, name, {
+				enumerable : true,
+				get : getter
+			});
+			/** *** */
 		}
-		
-		$('#kt_login_signup_form').validate({
-			rules : {
-				name : {
-					required : true,
-					rangelength : [ 2, 10 ]
-				},
-
-				phone : {
-					required : true,
-					minlength : 9,
-					digits : true
-				},
-
-				id : {
-					required : true,
-					rangelength : [ 3, 12 ],
-					remote : {
-						url : "duplicate_check",
-						method : "GET",
-						type : "text",
-						data : {
-							id : function() {
-								return $('#id').val();
-							}
-						}
-					}
-				},
-
-				pw : {
-					required : true,
-					rangelength : [ 6, 20 ],
-
-				},
-				pw2 : {
-					required : true,
-					rangelength : [ 6, 20 ],
-
-				},
-				email : {
-					required : true,
-					email : true
-				},
-				gender :{
-					required : true,
-					rangelength :[1,1],
-				}
-			},
-			messages : {
-				id : {
-					required : "아이디를 입력해주세요",
-					rangelength : "아이디는 3글자 이상 12글자 이내 입니다",
-
-					remote : "{0}는 이미 존재하는 아이디입니다.",
-				},
-				pw : {
-					required : "비밀번호를 입력해주세요",
-					rangelength : "6~20글자 내외 영어 대소문자, 특수문자, 숫자 사용가능합니다."
-				},
-				name : {
-					required : "이름을 입력해주세요",
-					rangelength : "이름은 최소 2글자 이상 10글자 이내 입니다",
-				},
-				email : {
-					required : "이메일을 입력해주세요",
-					email : "올바른 형식이 아닙니다 ex) corona2020@naver.com"
-				},
-				phone : {
-					required : "휴대폰 번호를 입력해주세요",
-					digits : "-을 제외한 숫자만 입력해주세요",
-					minlength : "전화번호는 최소 9자리 이상입니다."
-				},
-				gender : {
-					required : "남성이면 M, 여성이면 F 를 입력해 주세요",
-					rangelength : "M 이나 F 만 입력해 주세요."
-				}
-
-			},
-			submitHandler : function() {
-				signUp_function();
-			},
-			errorClass : "error", 
-			validClass : "valid"
-		});
-
-	})
-	
-	
-	 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	var _handleFormSignup = function() {
-		// Base elements
-		var wizardEl = KTUtil.getById('kt_login');
-		var form = KTUtil.getById('kt_login_signup_form');
-		var wizardObj;
-		var validations = [];
-
-		if (!form) {
-			return;
+		/** *** */
+	};
+	/** *** */
+	/** *** */
+	// define __esModule on exports
+	/** *** */
+	__webpack_require__.r = function(exports) {
+		/** *** */
+		if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+			/** *** */
+			Object.defineProperty(exports, Symbol.toStringTag, {
+				value : 'Module'
+			});
+			/** *** */
 		}
-		
-		
-		// Step 2
-		validations.push(FormValidation.formValidation(
-			form,     
-			{
-				fields: {
-					address1: {
-						validators: {
-							notEmpty: {
-								message: 'Address is required'
-							}
-						}
-					},
-					postcode: {
-						validators: {
-							notEmpty: {
-								message: 'Postcode is required'
-							}
-						}
-					},
-					city: {
-						validators: {
-							notEmpty: {
-								message: 'City is required'
-							}
-						}
-					},
-					state: {
-						validators: {
-							notEmpty: {
-								message: 'State is required'
-							}
-						}
-					},
-					country: {
-						validators: {
-							notEmpty: {
-								message: 'Country is required'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-		
-		       
-		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		// Step 1
-		validations.push(FormValidation.formValidation(
-				
-			form,
-			{
-				
-				fields: {
-					name: {
-						validators: {
-							notEmpty: {
-								message: 'name is required'
-							}
-						}
-					},
-					pw: {
-						validators: {
-							notEmpty: {
-								message: 'pw is required'
-							}
-						}
-					},
-					pw2: {
-						validators: {
-							notEmpty: {
-								message: 'pw2 is required'
-							}
-						}
-					},
-					id: {
-						validators: {
-							notEmpty: {
-								message: 'ID is required'
-							}
-						}
-					},
-					phone: {
-						validators: {
-							notEmpty: {
-								message: 'Phone is required'
-							}
-						}
-					},
-					email: {
-						validators: {
-							notEmpty: {
-								message: 'Email is required'
-							},
-							emailAddress: {
-								message: 'The value is not a valid email address'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-
-		
-
-		// Step 3
-		validations.push(FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					delivery: {
-						validators: {
-							notEmpty: {
-								message: 'Delivery type is required'
-							}
-						}
-					},
-					packaging: {
-						validators: {
-							notEmpty: {
-								message: 'Packaging type is required'
-							}
-						}
-					},
-					preferreddelivery: {
-						validators: {
-							notEmpty: {
-								message: 'Preferred delivery window is required'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-
-		// Step 4
-		validations.push(FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					ccname: {
-						validators: {
-							notEmpty: {
-								message: 'Credit card name is required'
-							}
-						}
-					},
-					ccnumber: {
-						validators: {
-							notEmpty: {
-								message: 'Credit card number is required'
-							},
-							creditCard: {
-								message: 'The credit card number is not valid'
-							}
-						}
-					},
-					ccmonth: {
-						validators: {
-							notEmpty: {
-								message: 'Credit card month is required'
-							}
-						}
-					},
-					ccyear: {
-						validators: {
-							notEmpty: {
-								message: 'Credit card year is required'
-							}
-						}
-					},
-					cccvv: {
-						validators: {
-							notEmpty: {
-								message: 'Credit card CVV is required'
-							},
-							digits: {
-								message: 'The CVV value is not valid. Only numbers is allowed'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-
-		// Initialize form wizard
-		wizardObj = new KTWizard(wizardEl, {
-			startStep: 1, // initial active step number
-			clickableSteps: false  // allow step clicking
+		/** *** */
+		Object.defineProperty(exports, '__esModule', {
+			value : true
 		});
-
-		// Validation before going to next page
-		wizardObj.on('change', function (wizard) {
-			  
-			
-			if($('#c1').prop('checked') == false || $('#c2').prop('checked') == false){
-				
-				
-		    	
-		    	Swal.fire({
-					text: "필수 약관에 동의 하셔야 합니다.",
-					icon: "error",
-					buttonsStyling: false,
-					confirmButtonText: "다시 확인하기",
-					customClass: {
-						confirmButton: "btn font-weight-bold btn-light"     
-					}
-				}).then(function () {
-					KTUtil.scrollTop();
-				});      
-		    	return false;  // Do not change wizard step, further action will be handled by he validator
-			}else{
-				wizard.goTo(wizard.getNewStep());        
-			}   
-			  
-			 
-			     
-		/*	
-			if (wizard.getStep() > wizard.getNewStep()) {
-				return; // Skip if stepped back
-			}
-
-			// Validate form before change wizard step
-			var validator = validations[wizard.getStep() - 1]; // get validator for currnt step
-
-			if (validator) {
-				validator.validate().then(function (status) {
-					if (status == 'Valid') {
-						wizard.goTo(wizard.getNewStep());
-
-						KTUtil.scrollTop();
-					} else {
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn font-weight-bold btn-light"
-							}
-						}).then(function () {
-							KTUtil.scrollTop();
-						});            
-					}
-				});
-			}
-
-			return false;  // Do not change wizard step, further action will be handled by he validator
-*/		});
-
-		// Change event
-		wizardObj.on('changed', function (wizard) {      
-			KTUtil.scrollTop();
+		/** *** */
+	};
+	/** *** */
+	/** *** */
+	// create a fake namespace object
+	/** *** */
+	// mode & 1: value is a module id, require it
+	/** *** */
+	// mode & 2: merge all properties of value into the ns
+	/** *** */
+	// mode & 4: return value when already ns object
+	/** *** */
+	// mode & 8|1: behave like require
+	/** *** */
+	__webpack_require__.t = function(value, mode) {
+		/** *** */
+		if (mode & 1)
+			value = __webpack_require__(value);
+		/** *** */
+		if (mode & 8)
+			return value;
+		/** *** */
+		if ((mode & 4) && typeof value === 'object' && value
+				&& value.__esModule)
+			return value;
+		/** *** */
+		var ns = Object.create(null);
+		/** *** */
+		__webpack_require__.r(ns);
+		/** *** */
+		Object.defineProperty(ns, 'default', {
+			enumerable : true,
+			value : value
 		});
+		/** *** */
+		if (mode & 2 && typeof value != 'string')
+			for ( var key in value)
+				__webpack_require__.d(ns, key, function(key) {
+					return value[key];
+				}.bind(null, key));
+		/** *** */
+		return ns;
+		/** *** */
+	};
+	/** *** */
+	/** *** */
+	// getDefaultExport function for compatibility with non-harmony modules
+	/** *** */
+	__webpack_require__.n = function(module) {
+		/** *** */
+		var getter = module && module.__esModule ?
+		/** *** */
+		function getDefault() {
+			return module['default'];
+		} :
+		/** *** */
+		function getModuleExports() {
+			return module;
+		};
+		/** *** */
+		__webpack_require__.d(getter, 'a', getter);
+		/** *** */
+		return getter;
+		/** *** */
+	};
+	/** *** */
+	/** *** */
+	// Object.prototype.hasOwnProperty.call
+	/** *** */
+	__webpack_require__.o = function(object, property) {
+		return Object.prototype.hasOwnProperty.call(object, property);
+	};
+	/** *** */
+	/** *** */
+	// __webpack_public_path__
+	/** *** */
+	__webpack_require__.p = "";
+	/** *** */
+	/** *** */
+	/** *** */
+	// Load entry module and return exports
+	/** *** */
+	return __webpack_require__(__webpack_require__.s = "../demo1/src/js/pages/custom/login/login-3.js");
+	/** *** */
+})
+		/** ********************************************************************* */
+		/** *** */
+		({
 
-		// Submit event
-		wizardObj.on('submit', function (wizard) {
-			
+			/***/
+			"../demo1/src/js/pages/custom/login/login-3.js" :
+			/*******************************************************************
+			 * !*****************************************************!*\ !***
+			 * ../demo1/src/js/pages/custom/login/login-3.js ***! \
+			 ******************************************************************/
+			/* ! no static exports found */
+			/***/
+			(function(module, exports, __webpack_require__) {
 
-			if (wizard.getStep() < wizard.getNewStep()) {
-				return; // Skip if stepped back   "<" 신의한수 1스텝이랑 2스텝이랑 위치 변환후 유효성 고치고 나서 버튼 유효성이 여기에 답이있었음.
-			}
+				"use strict";
 
-			// Validate form before change wizard step
-			var validator = validations[wizard.getStep() - 1]; // get validator for currnt step
+				// Class Definition
+				var KTLogin = function() {
+					var _buttonSpinnerClasses = 'spinner spinner-right spinner-white pr-15';
 
-			if (validator) {
-				validator.validate().then(function (status) {
-					if (status == 'Valid') {
-						form.submit();
-						alert(' 축하합니다 ! 갱스터디 회원이 되셨습니다.');
-						//wizard.goTo(wizard.getNewStep());
-						location.href='/';         
-						
-						
-						KTUtil.scrollTop();
-					}else {
-						Swal.fire({
-							text: "놓친 부분은 없는지 확인후, 다시 시도해주세요.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "네",
-							customClass: {
-								confirmButton: "btn font-weight-bold btn-light"
-							}
-						}).then(function () {
+					var _handleFormSignin = function() {
+						var form = KTUtil.getById('kt_login_singin_form');
+						var formSubmitUrl = KTUtil.attr(form, 'action');
+						var formSubmitButton = KTUtil
+								.getById('kt_login_singin_form_submit_button');
+
+						if (!form) {
+							return;
+						}
+
+						FormValidation
+								.formValidation(
+										form,
+										{
+											fields : {
+												username : {
+													validators : {
+														notEmpty : {
+															message : 'Username is required'
+														}
+													}
+												},
+												password : {
+													validators : {
+														notEmpty : {
+															message : 'Password is required'
+														}
+													}
+												}
+											},
+											plugins : {
+												trigger : new FormValidation.plugins.Trigger(),
+												submitButton : new FormValidation.plugins.SubmitButton(),
+												// defaultSubmit: new
+												// FormValidation.plugins.DefaultSubmit(),
+												// // Uncomment this line to
+												// enable normal button submit
+												// after form validation
+												bootstrap : new FormValidation.plugins.Bootstrap(
+														{
+														// eleInvalidClass: '',
+														// // Repace with
+														// uncomment to hide
+														// bootstrap validation
+														// icons
+														// eleValidClass: '', //
+														// Repace with uncomment
+														// to hide bootstrap
+														// validation icons
+														})
+											}
+										})
+								.on(
+										'core.form.valid',
+										function() {
+											// Show loading state on button
+											KTUtil.btnWait(formSubmitButton,
+													_buttonSpinnerClasses,
+													"Please wait");
+
+											// Simulate Ajax request
+											setTimeout(
+													function() {
+														KTUtil
+																.btnRelease(formSubmitButton);
+													}, 2000);
+
+											// Form Validation & Ajax
+											// Submission:
+											// https://formvalidation.io/guide/examples/using-ajax-to-submit-the-form
+											/**
+											 * FormValidation.utils.fetch(formSubmitUrl, {
+											 * method: 'POST', dataType: 'json',
+											 * params: { name:
+											 * form.querySelector('[name="username"]').value,
+											 * email:
+											 * form.querySelector('[name="password"]').value, },
+											 * }).then(function(response) { //
+											 * Return valid JSON // Release
+											 * button
+											 * KTUtil.btnRelease(formSubmitButton);
+											 * 
+											 * if (response && typeof response
+											 * === 'object' && response.status &&
+											 * response.status == 'success') {
+											 * Swal.fire({ text: "All is cool!
+											 * Now you submit this form", icon:
+											 * "success", buttonsStyling: false,
+											 * confirmButtonText: "Ok, got it!",
+											 * customClass: { confirmButton:
+											 * "btn font-weight-bold
+											 * btn-light-primary" }
+											 * }).then(function() {
+											 * KTUtil.scrollTop(); }); } else {
+											 * Swal.fire({ text: "Sorry,
+											 * something went wrong, please try
+											 * again.", icon: "error",
+											 * buttonsStyling: false,
+											 * confirmButtonText: "Ok, got it!",
+											 * customClass: { confirmButton:
+											 * "btn font-weight-bold
+											 * btn-light-primary" }
+											 * }).then(function() {
+											 * KTUtil.scrollTop(); }); } });
+											 */
+										})
+								.on(
+										'core.form.invalid',
+										function() {
+											Swal
+													.fire(
+															{
+																text : "Sorry, looks like there are some errors detected, please try again.",
+																icon : "error",
+																buttonsStyling : false,
+																confirmButtonText : "Ok, got it!",
+																customClass : {
+																	confirmButton : "btn font-weight-bold btn-light-primary"
+																}
+															}).then(function() {
+														KTUtil.scrollTop();
+													});
+										});
+					}
+
+					var _handleFormForgot = function() {
+						var form = KTUtil.getById('kt_login_forgot_form');
+						var formSubmitUrl = KTUtil.attr(form, 'action');
+						var formSubmitButton = KTUtil
+								.getById('kt_login_forgot_form_submit_button');
+
+						if (!form) {
+							return;
+						}
+
+						FormValidation
+								.formValidation(
+										form,
+										{
+											fields : {
+												id : {
+													validators : {
+														notEmpty : {
+															message : 'ID is required'
+														}
+													}
+												},
+												email : {
+													validators : {
+														notEmpty : {
+															message : 'Email is required'
+														},
+														emailAddress : {
+															message : 'The value is not a valid email address'
+														}
+													}
+												}
+											},
+											plugins : {
+												trigger : new FormValidation.plugins.Trigger(),
+												submitButton : new FormValidation.plugins.SubmitButton(),
+												// defaultSubmit: new
+												// FormValidation.plugins.DefaultSubmit(),
+												// // Uncomment this line to
+												// enable normal button submit
+												// after form validation
+												bootstrap : new FormValidation.plugins.Bootstrap(
+														{
+														// eleInvalidClass: '',
+														// // Repace with
+														// uncomment to hide
+														// bootstrap validation
+														// icons
+														// eleValidClass: '', //
+														// Repace with uncomment
+														// to hide bootstrap
+														// validation icons
+														})
+											}
+										})
+								.on(
+										'core.form.valid',
+										function() {
+											// Show loading state on button
+											KTUtil.btnWait(formSubmitButton,
+													_buttonSpinnerClasses,
+													"Please wait");
+
+											// Simulate Ajax request
+											setTimeout(
+													function() {
+														KTUtil
+																.btnRelease(formSubmitButton);
+													}, 2000);
+										})
+								.on(
+										'core.form.invalid',
+										function() {
+											Swal
+													.fire(
+															{
+																text : "다시 입력해 주세요.",
+																icon : "error",
+																buttonsStyling : false,
+																confirmButtonText : "네",
+																customClass : {
+																	confirmButton : "btn font-weight-bold btn-light-primary"
+																}
+															}).then(function() {
+														KTUtil.scrollTop();
+													});
+										});
+					}
+
+					// /////////// 아이디 중복 체크 시작  //////////////
+					$(function() {
+						$('#msg1').hide();
+						$('#msg2').hide();
+
+						// 회원가입 유효성 검증
+						$('#kt_login_signup_form').validate({
+							rules : {
+								
+
+								id : {
+									required : true,
+									rangelength : [ 3, 12 ],
+									remote : {
+										url : "duplicate_check",
+										method : "GET",
+										type : "text",
+										data : {
+											id : function() {
+												return $('#id').val();
+											}
+										}
+									}
+								}
+							},
+							messages : {
+								id : {
+									
+
+									remote : "{0}는 이미 존재하는 아이디입니다.",
+								}
+							},
+							submitHandler : function() {
+								signUp_function();
+							},
+							errorClass : "error",
+							validClass : "valid"
+						});
+
+					})
+					///아이디 중복체크 끝 ///
+
+					/// 가입 유효성 검사 시작 // 
+					var _handleFormSignup = function() {
+						// Base elements
+
+
+						$("#name").focus();
+
+
+						var wizardEl = KTUtil.getById('kt_login');
+						var form = KTUtil.getById('kt_login_signup_form');
+						var wizardObj;
+						var validations = [];
+
+						if (!form) {
+							return;
+						}
+
+						// Step 2
+						validations
+								.push(FormValidation
+										.formValidation(
+												form,
+												{
+													fields : {
+														address1 : {
+															validators : {
+																notEmpty : {
+																	message : 'Address is required'
+																}
+															}
+														},
+														postcode : {
+															validators : {
+																notEmpty : {
+																	message : 'Postcode is required'
+																}
+															}
+														},
+														city : {
+															validators : {
+																notEmpty : {
+																	message : 'City is required'
+																}
+															}
+														},
+														state : {
+															validators : {
+																notEmpty : {
+																	message : 'State is required'
+																}
+															}
+														},
+														country : {
+															validators : {
+																notEmpty : {
+																	message : 'Country is required'
+																}
+															}
+														}
+													},
+													plugins : {
+														trigger : new FormValidation.plugins.Trigger(),
+														// Bootstrap Framework
+														// Integration
+														bootstrap : new FormValidation.plugins.Bootstrap(
+																{
+																	// eleInvalidClass:
+																	// '',
+																	eleValidClass : '',
+																})
+													}
+												}));
+
+						// Init form validation rules. For more info check the
+						// FormValidation plugin's official
+						// documentation:https://formvalidation.io/
+						// Step 1
+						validations
+								.push(FormValidation
+										.formValidation(
+
+												form,
+												{
+
+													fields : {
+														name : {
+															validators : {
+																notEmpty : {
+																	message : '이름을 적어주세요 '
+																},
+																stringLength : {
+																	min : 2,
+																	max : 10,
+																	message : '이름은 최소 2글자 이상 10글자 이내 입니다'
+																}
+															}
+														},
+
+														pw : {
+															validators : {
+																notEmpty : {
+																	message : '비밀번호를 적어주세요'
+																},
+																stringLength : {
+																	min : 6,
+																	max : 20,
+																	message : ' 6글자 이상 20글자 이내 입니다'
+																},
+																different : {
+																	message : '비밀번호는 이름으로 설정하실수 없습니다.',
+																	compare : function() {
+																		return form
+																				.querySelector('[name="name"]').value;
+																	}
+																}
+
+															}
+														},
+														pw2 : {
+															validators : {
+																notEmpty : {
+																	message : '비밀번호 재확인을 적어주세요'
+																},    
+
+																stringLength : {
+																	min : 6,
+																	max : 20,
+																	message : ' 6글자 이상 20글자 이내 입니다'
+																},
+																identical: {
+										                            compare: function() {
+										                                return form.querySelector('[name="pw"]').value;
+										                            },
+										                            message: '비밀번호가 일치하지 않습니다. 다시 확인해주세요'
+										                        }
+																
+															}
+														},
+														id : {
+															validators : {
+																notEmpty : {
+																	message : '회원 아이디를 적어주세요'
+																},
+
+																stringLength : {
+																	min : 3,
+																	max : 12,
+																	message : ' 3글자 이상 12글자 이내 입니다'
+																},
+																regexp : {         
+																	regexp : /^[a-zA-Z0-9_]+$/,
+																	message : '아이디는 오직 영문 대소문자, 숫자, _ 만 허용됩니다.'
+																}
+															}
+														},
+														
+														
+														phone : {
+															validators : {
+																notEmpty : {
+																	message : '폰 번호를 적어주세요'
+																},
+																stringLength : {
+																	min : 9,
+																	message : '폰번호는 최소 9숫자 이상입니다. '
+																},
+																regexp : {
+																	regexp : /^[0-9]+$/,
+																	message : '-  을 제외한 숫자만 입력해 주세요'
+																}
+															}
+														},
+														email : {
+															validators : {
+																notEmpty : {
+																	message : '이메일을 적어주세요'
+																},
+																emailAddress : {
+																	message : '올바른 이메일 주소가 아닙니다.'
+																}
+															}
+														}
+													},
+													plugins : {
+														trigger : new FormValidation.plugins.Trigger(),
+														// Bootstrap Framework
+														// Integration
+														bootstrap : new FormValidation.plugins.Bootstrap(
+																{
+																	// eleInvalidClass:
+																	// '',
+																	eleValidClass : '',
+																})
+													}
+												}));
+
+						// Step 3
+						validations
+								.push(FormValidation
+										.formValidation(
+												form,
+												{
+													fields : {
+														delivery : {
+															validators : {
+																notEmpty : {
+																	message : 'Delivery type is required'
+																}
+															}
+														},
+														packaging : {
+															validators : {
+																notEmpty : {
+																	message : 'Packaging type is required'
+																}
+															}
+														},
+														preferreddelivery : {
+															validators : {
+																notEmpty : {
+																	message : 'Preferred delivery window is required'
+																}
+															}
+														}
+													},
+													plugins : {
+														trigger : new FormValidation.plugins.Trigger(),
+														// Bootstrap Framework
+														// Integration
+														bootstrap : new FormValidation.plugins.Bootstrap(
+																{
+																	// eleInvalidClass:
+																	// '',
+																	eleValidClass : '',
+																})
+													}
+												}));
+
+						// Step 4
+						validations
+								.push(FormValidation
+										.formValidation(
+												form,
+												{
+													fields : {
+														ccname : {
+															validators : {
+																notEmpty : {
+																	message : 'Credit card name is required'
+																}
+															}
+														},
+														ccnumber : {
+															validators : {
+																notEmpty : {
+																	message : 'Credit card number is required'
+																},
+																creditCard : {
+																	message : 'The credit card number is not valid'
+																}
+															}
+														},
+														ccmonth : {
+															validators : {
+																notEmpty : {
+																	message : 'Credit card month is required'
+																}
+															}
+														},
+														ccyear : {
+															validators : {
+																notEmpty : {
+																	message : 'Credit card year is required'
+																}
+															}
+														},
+														cccvv : {
+															validators : {
+																notEmpty : {
+																	message : 'Credit card CVV is required'
+																},
+																digits : {
+																	message : 'The CVV value is not valid. Only numbers is allowed'
+																}
+															}
+														}
+													},
+													plugins : {
+														trigger : new FormValidation.plugins.Trigger(),
+														// Bootstrap Framework
+														// Integration
+														bootstrap : new FormValidation.plugins.Bootstrap(
+																{
+																	// eleInvalidClass:
+																	// '',
+																	eleValidClass : '',
+																})
+													}
+												}));
+
+						// Initialize form wizard
+						wizardObj = new KTWizard(wizardEl, {
+							startStep : 1, // initial active step number
+							clickableSteps : false
+						// allow step clicking
+						});
+
+						// Validation before going to next page
+						wizardObj
+								.on(
+										'change',
+										function(wizard) {
+
+											if ($('#c1').prop('checked') == false
+													|| $('#c2').prop('checked') == false) {
+
+												Swal
+														.fire(
+																{
+																	text : "필수 약관에 동의 하셔야 합니다.",
+																	icon : "error",
+																	buttonsStyling : false,
+																	confirmButtonText : "다시 확인하기",
+																	customClass : {
+																		confirmButton : "btn font-weight-bold btn-light"
+																	}
+																})
+														.then(function() {
+															KTUtil.scrollTop();
+														});
+												return false; // Do not change
+												// wizard step,
+												// further
+												// action will
+												// be handled by
+												// he validator
+											} else {
+												wizard
+														.goTo(wizard
+																.getNewStep());
+											}
+
+											/*
+											 * if (wizard.getStep() >
+											 * wizard.getNewStep()) { return; //
+											 * Skip if stepped back } //
+											 * Validate form before change
+											 * wizard step var validator =
+											 * validations[wizard.getStep() -
+											 * 1]; // get validator for currnt
+											 * step
+											 * 
+											 * if (validator) {
+											 * validator.validate().then(function
+											 * (status) { if (status == 'Valid') {
+											 * wizard.goTo(wizard.getNewStep());
+											 * 
+											 * KTUtil.scrollTop(); } else {
+											 * Swal.fire({ text: "Sorry, looks
+											 * like there are some errors
+											 * detected, please try again.",
+											 * icon: "error", buttonsStyling:
+											 * false, confirmButtonText: "Ok,
+											 * got it!", customClass: {
+											 * confirmButton: "btn
+											 * font-weight-bold btn-light" }
+											 * }).then(function () {
+											 * KTUtil.scrollTop(); }); } }); }
+											 * 
+											 * return false; // Do not change
+											 * wizard step, further action will
+											 * be handled by he validator
+											 */});
+
+						// Change event
+						wizardObj.on('changed', function(wizard) {
 							KTUtil.scrollTop();
 						});
-					}          
+
+						// Submit event
+						wizardObj.on('submit',function(wizard) {
+
+								if (wizard.getStep() < wizard.getNewStep()) {
+										return; // Skip if stepped back
+										// "<" 신의한수 1스텝이랑 2스텝이랑
+										// 위치 변환후 유효성 고치고 나서 버튼
+										// 유효성이 여기에 답이있었음.
+									}
+
+									// Validate form before change
+									// wizard step
+									var validator = validations[wizard
+											.getStep() - 1]; // get
+									// validator
+									// for
+									// currnt
+									// step    
+
+									if (validator) {
+										validator.validate().then(
+												function(status) {         
+													if (status == 'Valid') {
+														form.submit();
+														
+														Swal.fire({
+															text: "갱스터디 회원이 되셨습니다.!.",
+															icon: "success",
+															buttonsStyling: false,
+															confirmButtonText: "로그인하러가기",
+															customClass: {
+																confirmButton: "btn font-weight-bold btn-primary",
+																cancelButton: "btn font-weight-bold btn-default"
+															}
+														});
+														// wizard.goTo(wizard.getNewStep());
+														location.href = '/signin';
+
+														KTUtil.scrollTop();
+													} else {
+														Swal.fire(
+																		{
+																			text : "놓친 부분은 없는지 확인후, 다시 시도해주세요.",
+																			icon : "error",
+																			buttonsStyling : false,
+																			confirmButtonText : "네",
+																			customClass : {
+																				confirmButton : "btn font-weight-bold btn-light"
+																			}
+																		})
+																.then(
+																		function() {
+																			KTUtil.scrollTop();
+																		});
+													}
+												});
+							}
+
+							return false; // Do not change
+							// wizard step,
+							// further action
+							// will be handled
+							// by he validator
+
+						});
+	}
+
+					/*
+					 * 이게 원본 submit 파일 , 나중에 기능 합칠떄 봐야할부분. // Submit event
+					 * wizardObj.on('submit', function (wizard) { Swal.fire({
+					 * text: "All is good! Please confirm the form submission.",
+					 * icon: "success", showCancelButton: true, buttonsStyling:
+					 * false, confirmButtonText: "Yes, submit!",
+					 * cancelButtonText: "No, cancel", customClass: {
+					 * confirmButton: "btn font-weight-bold btn-primary",
+					 * cancelButton: "btn font-weight-bold btn-default" }
+					 * }).then(function (result) { if (result.value) {
+					 * form.submit(); // Submit form } else if (result.dismiss
+					 * === 'cancel') { Swal.fire({ text: "Your form has not been
+					 * submitted!.", icon: "error", buttonsStyling: false,
+					 * confirmButtonText: "Ok, got it!", customClass: {
+					 * confirmButton: "btn font-weight-bold btn-primary", } }); }
+					 * }); });
+					 * 
+					 */
+
+					// Public Functions
+					return {
+						init : function() {
+							_handleFormSignin();
+							_handleFormForgot();
+							_handleFormSignup();
+						}
+					};
+				}();
+
+				// Class Initialization
+				jQuery(document).ready(function() {
+					KTLogin.init();
 				});
-			}
 
-			return false;  // Do not change wizard step, further action will be handled by he validator
-			
-			
+				/***/
+			})
+
+		/** *** */
 		});
-    }
-
-	
-/*	 이게 원본 submit 파일 , 나중에 기능 합칠떄 봐야할부분.
-	// Submit event
-	wizardObj.on('submit', function (wizard) {
-		Swal.fire({
-			text: "All is good! Please confirm the form submission.",
-			icon: "success",
-			showCancelButton: true,
-			buttonsStyling: false,
-			confirmButtonText: "Yes, submit!",
-			cancelButtonText: "No, cancel",
-			customClass: {
-				confirmButton: "btn font-weight-bold btn-primary",
-				cancelButton: "btn font-weight-bold btn-default"
-			}
-		}).then(function (result) {
-			if (result.value) {
-				form.submit(); // Submit form
-			} else if (result.dismiss === 'cancel') {
-				Swal.fire({
-					text: "Your form has not been submitted!.",
-					icon: "error",
-					buttonsStyling: false,
-					confirmButtonText: "Ok, got it!",
-					customClass: {
-						confirmButton: "btn font-weight-bold btn-primary",
-					}
-				});
-			}
-		});
-	});
-	
-	*/
-	
-	
-	
-	
-	
-	
-	
-    // Public Functions
-    return {
-        init: function() {
-            _handleFormSignin();
-			_handleFormForgot();
-			_handleFormSignup();
-        }
-    };
-}();
-
-// Class Initialization
-jQuery(document).ready(function() {
-    KTLogin.init();
-});
-
-
-/***/ })
-
-/******/ });
-//# sourceMappingURL=login-3.js.map
+// # sourceMappingURL=login-3.js.map

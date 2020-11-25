@@ -93,24 +93,24 @@ public class UserController {
 	}
 
 	// 회원 탈퇴
-	
+	@ResponseBody
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public  boolean deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session)
 			throws Exception {
 
-	
+	   
 
 		boolean delete = userService.deleteUser(id, pw);
 		if (delete) {    
 			System.out.println("유저 탈퇴 성공");
 			delete = true;
-			session.invalidate();
+			session.invalidate();    
 		} else {
 			System.out.println("탈퇴 실패");
 			delete = false;
 		}
-		System.out.println("화면전환 되는지"); 
-	
+		System.out.println("컨트롤러 타는지 "); 
+	   
 
 		return delete;
 

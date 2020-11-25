@@ -7,7 +7,7 @@
 	class="header-mobile align-items-center header-mobile-fixed">
 
 	<!--begin::Logo-->
-	<a href="/jts"> <img alt="Logo"
+	<a href="/"> <img alt="Logo"
 		src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
 	</a>
 
