@@ -114,17 +114,17 @@ var KTLogin = function() {
 		        form,
 		        {
 		            fields: {
-						name: {
+						id: {
 							validators: {
 								notEmpty: {
-									message: 'Username is required'
+									message: '아이디를 적어주세요'
 								}
 							}
 						},
 						pw: {
 							validators: {
 								notEmpty: {
-									message: 'Password is required'
+									message: '비밀번호를 적어주세요 '
 								}
 							}
 						}
@@ -192,10 +192,10 @@ var KTLogin = function() {
 		    })
 			.on('core.form.invalid', function() {
 				Swal.fire({
-					text: "Sorry, looks like there are some errors detected, please try again.",
+					text: "정보가 맞는지 확인 후 다시 시도해주세요.",
 					icon: "error",
 					buttonsStyling: false,
-					confirmButtonText: "Ok, got it!",
+					confirmButtonText: "네",
 					customClass: {
 						confirmButton: "btn font-weight-bold btn-light-primary"
 					}
