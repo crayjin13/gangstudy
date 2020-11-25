@@ -94,7 +94,7 @@ public class UserController {
 
 	// 회원 탈퇴
 	@ResponseBody
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public  boolean deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session)
 			throws Exception {
 

@@ -30,15 +30,15 @@ $(function() {
 		console.log("값들어오는지 확인 " + idpw);
 		$.ajax({
 			url : 'deleteUser',
-			method : 'POST',
-			data : idpw,               
+			method : 'POST',    
+			data : idpw,                     
 			dataType : 'json',
-			success : function(async) {
+			success : function(data) {
 				console.log("ajax 거쳤는지  ");
-				if (async == false) {
+				if (data == false) {
 					console.log("false 일때 "+idpw);
-					return;
 					alert('비밀번호와 아이디를 다시 확인해주세요');
+					return;
 
 				} else {
 					console.log("true 일떄 "+idpw);
