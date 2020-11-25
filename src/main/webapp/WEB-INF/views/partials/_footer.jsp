@@ -9,7 +9,7 @@
 
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
-							<a href="/admin">	<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span></a>
+								<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span>
 								<a href="/" target="_blank" class="text-dark-75 text-hover-primary">갱스터디</a>
 							</div>
       
