@@ -65,13 +65,16 @@ public interface UserMapper {
 	@Insert("INSERT INTO USER_TB(name, phone, id, pw, email, bod, gender)"
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{phone},#{id},#{pw},#{email},#{bod},#{gender})")
 	public boolean insertUser(User user);
-	
+	   
 
 
 
 	@Insert("INSERT INTO USER_TB(name, id, pw)"
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{id},#{pw})")
 	public boolean insertKakaoUser(User user);
-
+	
+	// 포인트 변경
+	@Update("UPDATE USER_TB SET points=#{points} WHERE user_no=#{user_no}")
+	public boolean updatePoints(@Param("user_no") int user_no, @Param("points") Float points);
 
 }

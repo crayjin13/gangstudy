@@ -19,16 +19,19 @@ import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.KakaoPayService;
 import com.jts.gangstudy.service.PaymentService;
+import com.jts.gangstudy.service.UserService;
 
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
 	@Autowired
+	private UserService userService;
+	@Autowired
 	private PaymentService paymentService;
 	@Autowired
-	private KakaoPayService kakaoPayService;
-	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private KakaoPayService kakaoPayService;
 
 	// 결제 수단 선택
 	@RequestMapping(value = "/choose", method = RequestMethod.GET)
@@ -46,7 +49,8 @@ public class PaymentController {
 
 	@RequestMapping(value = "/kakaopay", method = RequestMethod.GET)
 	public String kakaopay(HttpServletRequest request, HttpSession session) {
-		Payment payment = (Payment)session.getAttribute("payment");
+		int amount = (int)session.getAttribute("amount");
+		
 		Device device = DeviceUtils.getCurrentDevice(request);
 		String deviceType;
 		if (device.isMobile()) {
@@ -56,8 +60,11 @@ public class PaymentController {
 		} else {
 			deviceType = "desktop";
 		}
-		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort();
-		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, payment);
+		
+//		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort();
+		String domain = "http://15.165.185.2:8080";
+		System.out.println(domain);
+		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, amount);
 		
 		session.setAttribute("tid", map.get("tid"));
 		return "redirect:" + map.get("url");
@@ -65,30 +72,47 @@ public class PaymentController {
 
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
-		Booking book = (Booking)session.getAttribute("book");
-		Payment payment = (Payment)session.getAttribute("payment");
 		User sUserId = (User)session.getAttribute("sUserId");
-		// 결제 정보를 저장한다.
+		Booking book = (Booking)session.getAttribute("book");
 		String tid = (String)session.getAttribute("tid");
+		int usePoint = (int)session.getAttribute("usePoint");
+
 		String pg_token = request.getParameter("pg_token");
+		
+		// 결제 완료 요청
 		HashMap<String, String> payInfo = kakaoPayService.getPayInfo(tid, pg_token);
-		payment.setPay_type(payInfo.get("pay_type"));
-		payment.setTid(tid);
+
+		// 결제 정보를 저장한다.
+		int amount = bookingService.getCharge(book) - usePoint;
+		Payment payment = new Payment();
+		payment.setAmount(amount);
+		payment.setPoint(usePoint);
 		payment.setPg_name("KakaoPay");
+		payment.setTid(tid);
+		payment.setPay_type(payInfo.get("pay_type"));
 		payment.setState("paid");
+		payment.setBook_no(book.getBook_no());
+		
 		paymentService.insertPayment(payment);
 
 		// 예약에 대해서 uncharge -> wait으로 변경한다.
 		bookingService.changeState(book, "wait");
-		Integer remainPoint = (Integer.parseInt(sUserId.getPoints()) - payment.getPoint());
+		
+		
+		Integer remainPoint = (Integer.parseInt(sUserId.getPoints()) - usePoint);
+		System.out.println("[debug- complete] sUserId.user_no: " + sUserId.getUser_no()
+							+ ", usePoint : " + usePoint
+							+ ", sUserId.getPoints : " + sUserId.getPoints()
+							+ ", remainPoint : " + remainPoint);
+		userService.updatePoints(sUserId, remainPoint.toString());
 		sUserId.setPoints(remainPoint.toString());
 		
 		session.removeAttribute("book");
-		session.removeAttribute("payment");
 		session.removeAttribute("tid");
+		session.removeAttribute("usePoint");
 		
 		// 완료 페이지로 이동한다.
-		return "redirect:" + "/booking/check";
+		return "redirect:" + "http://ec2-15-165-185-2.ap-northeast-2.compute.amazonaws.com:8080/booking/check";
 	}
 
 	@RequestMapping(value = "/fail", method = RequestMethod.GET)
@@ -100,5 +124,53 @@ public class PaymentController {
 		session.removeAttribute("tid");
 		System.out.println("fail");
 		return "/";
+	}
+	
+	// 전액 취소 후 다시 예약 에서 취소 단계
+	// 기존 예약에 대한 취소 처리
+	@RequestMapping(value = "/cancelAndBooking", method = RequestMethod.GET)
+	public String cancelAndBooking(HttpServletRequest request, HttpSession session) {
+		Booking oldBook = (Booking)session.getAttribute("oldBook");
+		Booking newBook = (Booking)session.getAttribute("newBook");
+		int usePoint = (int)session.getAttribute("usePoint");
+		
+		String tid = paymentService.selectPayment(oldBook).getTid();
+		Integer amount = bookingService.getCharge(oldBook);
+		
+		HashMap<String, String> map = kakaoPayService.cancel(tid, amount.toString());	// 전액 취소 요청
+
+		if(map.get("status").equals("CANCEL_PAYMENT")) {	// 전액 취소 성공
+			// 이전 결제 정보 취소 처리
+			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
+			
+			return "redirect:" + "/booking/cancelAndBooking";
+		}
+		return "redirect:" + "?cancelAndBooking=fail";
+		
+	}
+	
+	// 차액 취소 후 예약변경 에서 취소 단계
+	// 기존 예약에 대한 취소 처리
+	@RequestMapping(value = "/cancelAndChange", method = RequestMethod.GET)
+	public String cancelAndChange(HttpServletRequest request, HttpSession session) {
+		Booking oldBook = (Booking)session.getAttribute("oldBook");
+		Booking newBook = (Booking)session.getAttribute("newBook");
+		int usePoint = (int)session.getAttribute("usePoint");
+		
+		String tid = paymentService.selectPayment(oldBook).getTid();
+		Integer amount = -(bookingService.getCharge(newBook) - paymentService.selectPayment(oldBook).getAmount());
+		
+		HashMap<String, String> map = kakaoPayService.cancel(tid, amount.toString());	// 차액 취소 요청
+		if(map.get("status").equals("PART_CANCEL_PAYMENT")) {	// 차액 취소 성공
+			// 이전 결제 정보 취소 처리
+			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
+
+			session.setAttribute("tid", map.get("tid"));
+			session.setAttribute("pay_type", map.get("pay_type"));
+			
+			return "redirect:" + "/booking/cancelAndChange";
+		}
+		
+		return "redirect:" + "?cancelAndChange=fail";
 	}
 }
