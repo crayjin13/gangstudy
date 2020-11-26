@@ -30,26 +30,23 @@ $(function() {
 		console.log("값들어오는지 확인 " + idpw);
 		$.ajax({
 			url : 'deleteUser',
-			method : 'POST',
-			data : idpw,        
-			dataType : 'text',
-			success : function(data) { // 통신에는 실패해도 완료가 되었을때 complete , 통신이
-										// 성공적으로 이루어졌을떄 success
+			method : 'POST',    
+			data : idpw,                     
+			dataType : 'json',
+			success : function(data) {
+				console.log("ajax 거쳤는지  ");
 				if (data == false) {
-					alert('탈퇴실패');
-					 location.href = '/signin';     
-				} else {
-					var result = confirm('정말 탈퇴 하시겠습니까?');
-					if(result){
-						$('#delete_User').submit();
-						alert('탈퇴성공');
-					}      
-				}
-			},
-			error: function(){
-				alert("서버 에러.");
-			}
+					console.log("false 일때 "+idpw);
+					alert('비밀번호와 아이디를 다시 확인해주세요');
+					return;
 
+				} else {
+					console.log("true 일떄 "+idpw);
+				 alert('탈퇴성공');
+				 location.href="/";
+				} 
+			      
+			}
 		});
 	});
 
@@ -85,23 +82,44 @@ $(function() {
 	// ******* 회원 정보 수정 ********************
 	$("#modifybtn").click(function() {
 		var asArray = $('#kt_form').serialize();
-		console.log("*****회원정보수정 값 " + asArray);
-		$.ajax({
-			url : 'modifyInfo',
-			method : 'POST',
-			data : asArray,
-			dataType : 'text',
-			success : function(textData) {
-				location.href = '/signin';
-				alert('수정 되었습니다. 다시 로그인 해주세요');
-
-			}
+		var pw = $("#pw").val();
+		var pw2 = $("#pw2").val();
+		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
+		
+		if(pw==pw2){
+			console.log("값 비교"+pw,+pw2);
+			
+			$.ajax({    
+				url : 'modifyInfo',
+				method : 'POST',
+				data : asArray,
+				dataType : 'text',
+				success : function(textData) {
+					console.log("succes 타는지");
+					if(pw===pw2){
+						console.log("if문 true 일떄 ");   
+						alert('수정 되었습니다. 다시 로그인 해주세요');
+						location.href = '/signin';
+						
+					}else {
+						return;
+						alert("오류가 있습니다.");
+					}
+					
+				}
+			});
+			
+		}else {
+			console.log("틀린 값 비교"+pw,+pw2);
+			alert("비밀번호를 다시 체크해주세요");
+		}
 		});
-	});
 
+	
+	
 	// ***** 회원가입 ************
 
-	// $("#kt_login_signup_form_submit_button").click(function() {
+	
 	$("#kt_login_signup_form_submit_button").click(function() {
 		var userArray = $('#kt_login_signup_form').serialize();
 		console.log("#값이 오는지 확인 ---" + userArray);
@@ -126,7 +144,7 @@ $(function() {
 					kt_login_signup_form.bod.value = textData.bod;
 					kt_login_signup_form.gender.value = textData.gender;
 
-					alert("가입이 완료되었습니다.");
+					    
 					
 				} 
 
@@ -144,7 +162,7 @@ $(function() {
 	$('#msg2').hide();
 
 	// 회원가입 유효성 검증
-	$('#sign_up').validate({
+	$('#kt_form').validate({
 		rules : {
 			name : {
 				required : true,
@@ -230,51 +248,6 @@ $(function() {
 
 })
 
-/* / 비밀번호 유효성체크, 비밀번호 두개 같은지 체크 / */
-
-var pw = document.querySelector('#pw');
-var pw2 = document.querySelector('#pw2');
-var error = document.querySelectorAll('.error');
-// pw.addEventListener("change", checkPw);
-pw2.addEventListener("change", comparePw);
-$("#name").focus();
-// 비밀번호 재확인
-function comparePw() {
-	if (pw2.value === pw.value) {
-
-		error[0].style.display = "none";
-	} else if (pw2.value !== pw.value) {
-
-		error[0].innerHTML = "비밀번호가 일치하지 않습니다.";
-		error[0].style.display = "block";
-	}
-
-	if (pw2.value === "") {
-		error[0].innerHTML = "필수 정보입니다.";
-		error[0].style.display = "block";
-	}
-}
-/*
- * function checkId() { var idPattern = /[a-zA-Z0-9_-]{5,20}/; if(id.value ===
- * "") { error[0].innerHTML = "필수 정보입니다."; error[0].style.display = "block"; }
- * else if(!idPattern.test(id.value)) { error[0].innerHTML = "5~20자의 영문 소문자, 숫자와
- * 특수기호(_),(-)만 사용 가능합니다."; error[0].style.display = "block"; } else {
- * error[0].innerHTML = "가능한 아이디입니다!"; error[0].style.color = "#08A600";
- * error[0].style.display = "block"; } }
- * 
- * 
- * function checkPw() { var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
- * if(pw.value === "") { error[1].innerHTML = "필수 정보입니다.";
- * error[1].style.display = "block"; } else if(!pwPattern.test(pw.value)) {
- * error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."; pwMsg.innerHTML =
- * "사용불가"; pwMsgArea.style.paddingRight = "93px"; error[1].style.display =
- * "block";
- * 
- * pwMsg.style.display = "block"; // pwImg1.src =
- * "public/images/m_icon_not_use.png"; } else { error[1].style.display = "none";
- * pwMsg.innerHTML = "안전"; pwMsg.style.display = "block"; pwMsg.style.color =
- * "#03c75a"; // pwImg1.src = "public/images/m_icon_safe.png"; } }
- */
 
 // 로그인 form 처리
 function user_login_action_function() {

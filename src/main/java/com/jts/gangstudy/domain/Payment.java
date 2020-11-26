@@ -6,7 +6,7 @@ public class Payment {
 	private int pay_no;
 	private int amount;
 	private int point;
-	private String pg_name;
+	private String pg_nm;
 	private String tid;
 	private String pay_type;
 	private String state;
@@ -14,8 +14,8 @@ public class Payment {
 	public Payment(BigDecimal amount, BigDecimal point, String pg_name, String tid, String pay_type, String state, BigDecimal book_no) {
 		super();
 		this.amount = amount.intValue();
-		this.setPoint(point.intValue());
-		this.pg_name = pg_name;
+		this.point = point.intValue();
+		this.pg_nm = pg_name;
 		this.tid = tid;
 		this.pay_type = pay_type;
 		this.state = state;
@@ -31,10 +31,10 @@ public class Payment {
 		this.amount = amount;
 	}
 	public String getPg_name() {
-		return pg_name;
+		return pg_nm;
 	}
 	public void setPg_name(String pg_name) {
-		this.pg_name = pg_name;
+		this.pg_nm = pg_name;
 	}
 	public String getTid() {
 		return tid;
@@ -70,4 +70,9 @@ public class Payment {
 		this.point = point;
 	}
 	
+	@Override
+	public String toString() {
+		return "Payment [pay_no=" + pay_no + ", amount=" + amount + ", point=" + point + ", pg_name=" + pg_nm
+				+ ", tid=" + tid + ", pay_type=" + pay_type + ", state=" + state + ", book_no=" + book_no + "]";
+	}
 }

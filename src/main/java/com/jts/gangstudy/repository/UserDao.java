@@ -62,5 +62,6 @@ public interface UserDao {
 
 	// 占쌈시븝옙橘占싫� 占쌩깍옙
 	User temporaryPw(String pw, String id);
-
+	
+	boolean updatePoints(int user_no, Float points);
 }

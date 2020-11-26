@@ -17,6 +17,16 @@ License: You must have a valid license purchased only from themeforest(the above
 -->
 <html lang="en">
 
+<style>
+ 
+ 
+@font-face { 
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 <!--begin::Head-->
 <head>
 <base href="../../../">
@@ -160,8 +170,8 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 					<!--end::Subheader-->
 					<!--begin::Entry-->
-					<div class="d-flex flex-column-fluid">
-						<!--begin::Container-->
+					<div class="d-flex flex-column-fluid cafe24" >
+						<!--begin::Container-->   
 						<div class="container">
 							<!--begin::Page Layout-->
 							<div class="d-flex flex-row">

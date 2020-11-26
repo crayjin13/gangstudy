@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	
 	
 	
-	// �α׾ƿ�
+	// �α׾ƿ�
 		@Override
 		public void logout(HttpServletResponse response) throws Exception {
 			response.setContentType("text/html;charset=utf-8");
@@ -143,6 +143,12 @@ public class UserServiceImpl implements UserService {
 	public User getUser(int user_no) {
 		// TODO Auto-generated method stub
 		return userDao.getUser(user_no);
+	}
+
+	@Override
+	public boolean updatePoints(User user, String points) {
+		// TODO Auto-generated method stub
+		return userDao.updatePoints(user.getUser_no().intValue(), Float.parseFloat(points));
 	}
 
 	

@@ -6,6 +6,12 @@
 
                     margin : auto;}
 
+
+@font-face { 
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 </style>
 
 
@@ -75,7 +81,7 @@
 										</div> --%>
 										</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group cafe24">
 									<label> 시작 시간</label>
 										<input class="form-control " id="start-date-input" name="startDateInput" type="date">
 										<select 
@@ -83,7 +89,7 @@
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
-								<div class="form-group">
+								<div class="form-group cafe24">
 									<label> 종료 시간</label>
 										<input class="form-control " id="end-date-input" name="endDateInput" type="date">
 										<select 
@@ -91,7 +97,7 @@
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
-								<div class="form-group">
+								<div class="form-group cafe24">
 									<label for="exampleTextarea">인원수</label> <select
 										class="form-control" id="user-count-input" name="userCountInput" >
 										<option value="">인원을 선택해주세요.</option>
@@ -107,18 +113,18 @@
 
 
 									<button type="button"
-										class="btn btn-outline-primary btn-lg btn-block mr-2  " id="bookingButton">예약
+										class="btn btn-outline-primary btn-lg btn-block mr-2 cafe24 " id="bookingButton">예약
 										하기</button>
 								</div>
 								<div class="form-group">
 
 
 									<input type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 " onClick="#"  value="이용하기"/>
-								
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 cafe24" onClick="location.href='/notice'" value="이용하기"/>
+								    
 								</div>
 
-								<div class="form-group">  
+								<div class="form-group cafe24">  
 
 									<button type="button"
 										onclick="location.href='http://pf.kakao.com/_xbgCJxb'"

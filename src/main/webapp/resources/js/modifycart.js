@@ -7,27 +7,32 @@ const pointMax = document.getElementById("pointMax");
 const pointUse = document.getElementById("kt_touchspin");
 
 document.getElementById("payments").addEventListener("click", function() {
-	$.post("/booking/make", {
-        people : people.value,
-        point : pointUse.value
-	},function(jqXHR) {
-		// always
-	},'text' /* xml, text, script, html */)
-	.done(function(data) {
-		window.location.href = data;
-	})
-	.fail(function(jqXHR) {
-	})
-	.always(function(jqXHR) {
+	$.ajax({
+		url : "/booking/change",
+		type : "POST",
+		data :	{
+			        point : pointUse.value
+				},
+		success : function(url) {
+			window.location.href = url;
+		},
+		error : function() {
+			alert("modify error");
+		}
 	});
-
 });
 
 pointMaxUseBtn.addEventListener("click", function() {
+	if(pointUse.value > totalAmount.textContent) {
+		pointUse.value = totalAmount.textContent;
+	}
 	pointUse.value = pointMax.textContent;
 	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
 });
 pointMaxUseBtn.addEventListener("touchend", function() {
+	if(pointUse.value > totalAmount.textContent) {
+		pointUse.value = totalAmount.textContent;
+	}
 	pointUse.value = pointMax.textContent;
 	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
 });
@@ -41,6 +46,9 @@ pointUse.addEventListener("change", function() {
 	}
 	if(!isInt(pointUse.value)) {
 		pointUse.value = 0;
+	}
+	if(pointUse.value > totalAmount.textContent) {
+		pointUse.value = totalAmount.textContent;
 	}
 });
 
