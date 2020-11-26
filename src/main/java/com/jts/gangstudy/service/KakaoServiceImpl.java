@@ -5,7 +5,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -147,10 +148,9 @@ public class KakaoServiceImpl implements KakaoService {
 		// bod
 		String birthdate = kakao_account.getString("birthyear") + kakao_account.getString("birthday");
 		SimpleDateFormat kakaoformat = new SimpleDateFormat("yyyyMMdd");
-		SimpleDateFormat dbformat = new SimpleDateFormat("yy/MM/dd");
+		java.util.Date date = null;
 		try {
-			Date date = kakaoformat.parse(birthdate);
-			birthdate = dbformat.format(date);
+			date = kakaoformat.parse(birthdate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -168,7 +168,30 @@ public class KakaoServiceImpl implements KakaoService {
 		if(profile.has("nickname")) {
 			name = profile.getString("nickname");
 		}
+		System.out.println("[Debug] name : " + name + 
+							", phone_number : " + phone_number + 
+							", id : " + id + 
+							", birthdate : " + birthdate + 
+							", gender : " + gender);
 		
-		return new User(name, phone_number, id, "#", "", birthdate, gender);
+		return new User(name, phone_number, id, "#", "", new Date(date.getTime()), gender);
+	}
+
+	@Override
+	public boolean isDuplicate(String kakao_id) {
+		List<KakaoUser> users = mapper.selectKakaoUser(kakao_id);
+		if(users.size() == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Integer selectUserNo(String id) {
+		List<KakaoUser> users = mapper.selectKakaoUser(id);
+		if(users.size() == 1) {
+			return users.get(0).getUser_no();
+		}
+		return null;
 	}
 }

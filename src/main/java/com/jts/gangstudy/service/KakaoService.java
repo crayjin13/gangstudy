@@ -12,4 +12,8 @@ public interface KakaoService {
 	public User getProfile(String access_token);
 
 	public void insertKakaoUser(KakaoUser kakaoUser);
+
+	public boolean isDuplicate(String user_id);
+
+	public Integer selectUserNo(String id);
 }

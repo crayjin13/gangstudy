@@ -3,7 +3,7 @@
 	<!-- 예약 추가 -->
 	<insert id="insertBook" parameterType="com.jts.gangstudy.domain.Booking">
 	  <selectKey keyProperty="book_no" resultType="int" order="AFTER">
-	    select BOOKING_TB_SEQ.CURRVAL FROM DUAL
+	    SELECT BOOKING_TB_SEQ.CURRVAL FROM DUAL
 	  </selectKey>
 	  INSERT INTO BOOKING_TB
 	  (USER_NO, ROOM_NO, CHECK_IN, CHECK_OUT, PEOPLE, STATE, REQUEST_DT) VALUES

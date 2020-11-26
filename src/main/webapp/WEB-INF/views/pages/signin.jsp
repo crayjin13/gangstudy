@@ -80,7 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Action-->  
 								<div class="pb-lg-0 pb-5">
 									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-3" name="loginbtn">로그인 </button>
-									<a href="#" class="btn btn-text-warning btn-hover-light-warning font-weight-bold mr-2 cafe24 font-size-h3">카카오 로그인 </a>									   
+									<a href="/kakao/login" class="btn btn-text-warning btn-hover-light-warning font-weight-bold mr-2 cafe24 font-size-h3">카카오 로그인 </a>									   
 									<!--  <span class="svg-icon svg-icon-md">
 										begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/social-icons/google.svg
 										 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
