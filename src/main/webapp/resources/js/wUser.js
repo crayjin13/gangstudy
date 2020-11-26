@@ -119,7 +119,7 @@ $(function() {
 	
 	// ***** 회원가입 ************
 
-	// $("#kt_login_signup_form_submit_button").click(function() {
+	
 	$("#kt_login_signup_form_submit_button").click(function() {
 		var userArray = $('#kt_login_signup_form').serialize();
 		console.log("#값이 오는지 확인 ---" + userArray);
