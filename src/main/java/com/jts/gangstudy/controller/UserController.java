@@ -275,7 +275,7 @@ public class UserController {
 	 * userList); m.setViewName("login"); System.out.println(userList); return m; }
 	 * 
 	 */
-
+ 
 	// 회원가입
 	@ResponseBody
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
