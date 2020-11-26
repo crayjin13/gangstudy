@@ -7,10 +7,30 @@ const endTimeInput = document.getElementById("end-time-input");
 const bookingForm = document.getElementById("bookingForm");
 const startTimeValue = document.getElementById("startTimeValue");
 const endTimeValue = document.getElementById("endTimeValue");
+var startPicker = new Pikaday({
+    field: startDateInput,
+    format: 'YYYY-MM-DD',
+    toString(date) {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return year+"-"+month+"-"+day;
+    }
+});
+var endPicker = new Pikaday({
+    field: endDateInput,
+    format: 'YYYY-MM-DD',
+    toString(date) {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return year+"-"+month+"-"+day;
+    }
+});
 
 $(document).ready(function() {
-	setMinMaxDate(startDateInput, new Date(), 0, 7);
-	setMinMaxDate(endDateInput, new Date(), 0, 7);
+	setDateRange(startPicker, new Date(), 7);
+	setDateRange(endPicker, new Date(), 7);
 	
 	removeOptions(startTimeInput);
 	removeOptions(endTimeInput);
@@ -83,14 +103,14 @@ startDateInput.addEventListener("change", function() {
 	// end date select option
 	var date = new Date(startDateInput.value);
 	endDateInput.value = getFormatDate(date);
-	setMinMaxDate(endDateInput, date, 0, 1);
+	setDateRange(endPicker, date, 1);
 	
 	// start time select option
 	requestStartTime();
 });
 
 endDateInput.addEventListener("change", function() {
-	if(startDateInput.value=="") {
+	if(startDateInput.value=="" || startTimeInput.value=="") {
 		var date = new Date(endDateInput.value);
 		startDateInput.value = getFormatDate(date);
 		removeOptions(startTimeInput);
@@ -170,11 +190,11 @@ function getFormatDate(date){
 	return year + "-" + month + "-" + day;
 }
 
-function setMinMaxDate(input, date, min, max){
-    date.setDate(date.getDate() + min);
-	input.min = getFormatDate(date);
-    date.setDate(date.getDate() - min + max);
-	input.max = getFormatDate(date);
+function setDateRange(target, minDate, offset) {
+	var maxDate = new Date();
+	maxDate.setDate(minDate.getDate()+offset);
+	target.setMinDate(minDate);
+	target.setMaxDate(maxDate);
 }
 
 function addOption(target, text, value) {
