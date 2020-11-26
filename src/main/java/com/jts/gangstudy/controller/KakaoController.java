@@ -40,7 +40,9 @@ public class KakaoController {
 	        User profile = kakaoService.getProfile(access_token);
 	        String user_id = profile.getId();
 	        
-			boolean isdup = userService.idDuplicateCheck(user_id);
+	        System.out.println("[debug] user_id : " + user_id);
+	        
+			boolean isdup = kakaoService.isDuplicate(user_id);
 			// signup
 			if(isdup == false) {
 				userService.insertUser(profile);
@@ -48,7 +50,11 @@ public class KakaoController {
 				kakaoService.insertKakaoUser(new KakaoUser(user.getUser_no(), user_id));
 			}
 			// login
-			User user = userService.selectById(user_id);
+			Integer user_no = kakaoService.selectUserNo(profile.getId());
+			if(user_no == null) {
+				return "redirect:/?kakaologin=fail";
+			}
+			User user = userService.getUser(user_no);
 			session.setAttribute("id", user.getId());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("sUserId", user);

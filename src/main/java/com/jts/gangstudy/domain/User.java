@@ -129,14 +129,6 @@ public class User {
 
 
 
-	public User(String name2, String phone_number, String id2, String string, String string2, String birthdate,
-			String gender2) {
-		// TODO Auto-generated constructor stub
-	}
-
-
-
-
 	public Integer getUser_no() {
 		return user_no;
 	}

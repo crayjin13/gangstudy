@@ -61,8 +61,7 @@ public class PaymentController {
 			deviceType = "desktop";
 		}
 		
-//		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort();
-		String domain = "http://15.165.185.2:8080";
+		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort();
 		System.out.println(domain);
 		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, amount);
 		
@@ -112,7 +111,7 @@ public class PaymentController {
 		session.removeAttribute("usePoint");
 		
 		// 완료 페이지로 이동한다.
-		return "redirect:" + "http://ec2-15-165-185-2.ap-northeast-2.compute.amazonaws.com:8080/booking/check";
+		return "redirect:" + "/booking/check";
 	}
 
 	@RequestMapping(value = "/fail", method = RequestMethod.GET)

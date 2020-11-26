@@ -4,8 +4,12 @@
 <mapper namespace="com.jts.gangstudy.mapper.KakaoMapper">
 	<!-- 계정 추가 -->
 	<insert id="insertKakaoUser" parameterType="com.jts.gangstudy.domain.KakaoUser">
-	  INSERT INTO KakaoUser_TB
+	  INSERT INTO KAKAOUSER_TB
 	  (USER_NO, KAKAO_ID) VALUES
-	  (#{user_no}, #{id})
+	  (#{user_no}, #{kakao_id})
 	</insert>
+	
+	<select  id="selectKakaoUser" parameterType="String" resultType="com.jts.gangstudy.domain.KakaoUser">
+	  SELECT USER_NO, KAKAO_ID FROM KAKAOUSER_TB WHERE KAKAO_ID = #{kakao_id}
+	</select>
 </mapper>
