@@ -15,6 +15,8 @@
 </style>
 
 
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <!--begin::Entry-->
 
 
@@ -83,15 +85,16 @@
 								</div>
 								<div class="form-group cafe24">
 									<label> 시작 시간</label>
-										<input class="form-control " id="start-date-input" name="startDateInput" type="date">
+										<input class="form-control" type="text" id="start-date-input" name="startDateInput">
 										<select 
 											class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm">
+											
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
 								<div class="form-group cafe24">
 									<label> 종료 시간</label>
-										<input class="form-control " id="end-date-input" name="endDateInput" type="date">
+										<input class="form-control" type="text" id="end-date-input" name="endDateInput">
 										<select 
 											class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm">
 											<option value="">날짜를 선택해주세요.</option>
