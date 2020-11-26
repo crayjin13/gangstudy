@@ -187,7 +187,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="card-header flex-wrap border-0 pt-6 pb-0">
 											<h3 class="card-title align-items-start flex-column">
 												<span
-													class="card-label font-weight-bolder font-size-h3 text-dark">결제정보</span>
+													class="card-label font-weight-bolder font-size-h3 text-dark cafe24">결제정보</span>
 											</h3>
 											<!--begin::Logo-->
 											<a href="/"> <img alt="Logo"
@@ -201,10 +201,10 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div id="kakaopay"></div>
 										<div class="card-body">
 											<!--begin::Shopping Cart-->
-											<div class="table-responsive">
+											<div class="table-responsive cafe24">
 												<table class="table">
 													<!--begin::Cart Header-->
-													<thead>    
+													<thead>          
 														<tr>      
 															<th></th>
 															<th class="text-center"></th>             
@@ -218,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														<tr>    
 															<td class="d-flex align-items-center font-weight-bolder">
 																<!--begin::Symbol--> <!--end::Symbol-->
-																<div class="text-dark">인원수</div>
+																<div class="text-dark cafe24">인원수</div>
 															</td>      
 
 															<td class="text-center align-middle"><div class="form-group" style="width:120%;" >     
@@ -251,15 +251,15 @@ License: You must have a valid license purchased only from themeforest(the above
 														</tr>
 														<tr>
 															<td class="d-flex align-items-center font-weight-bolder">
-																<div class="text-dark">총 이용시간</div>
+																<div class="text-dark cafe24">총 이용시간</div>
 															</td>
 
-															<td class="text-center align-middle"><input
-																id="time" type="text" class="form-control" value="${timeInterval}"
+															<td class="text-center align-middle cafe24"><input
+																id="time" type="text" class="form-control " value="${timeInterval}"
 																name="demo0" placeholder="Select time" readonly
 																style="text-align: center; width:120%;" /></td>
 
-															<td class="text-right align-middle font-weight-bolder">
+															<td class="text-right align-middle font-weight-bolder cafe24">
 																시작:<br/>${startDateTime}
 															</td>     
 
@@ -289,7 +289,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																	</span>
 																</div>
 															</div>
-														</div>
+														</div>  
 														</td>
 															
 															<td
@@ -324,13 +324,13 @@ License: You must have a valid license purchased only from themeforest(the above
 										type="datetime-local" id="example-datetime-local-input" style="text-align:center; width:100px;">
 								</div>
 																</td> -->
-															<td class="text-right align-middle font-weight-bolder">
+															<td class="text-right align-middle font-weight-bolder cafe24">
 																 종료:<br/>${endDateTime}
 															</td>
 														</tr>      
 														<tr>
-															<td class="d-flex align-items-center font-weight-bolder">
-																<div class="text-dark">사용 포인트</div>
+															<td class="d-flex align-items-center font-weight-bolder ">
+																<div class="text-dark cafe24">사용 포인트</div>
 															</td>
 															<td class="text-center align-middle">
 															 <input id="kt_touchspin" type="text"
@@ -346,10 +346,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
 															</td>
 															-->
-															<td class="text-right align-middle font-weight-bolder ">보유 포인트:<br/>
-																<div id="pointMax">${point}</div>
+															<td class="text-right align-middle font-weight-bolder cafe24 ">보유 포인트:<br/>
+																<div id="pointMax cafe24">${point}</div>
 															</td>
-															<td class="text-right align-middle"><a
+															<td class="text-right align-middle cafe24"><a
 																class="btn btn-light-primary font-weight-bolder font-size-sm" id="pointMaxUseBtn">전액 사용</a></td>
 														</tr>
 														<!--end::Cart Content-->
@@ -357,8 +357,8 @@ License: You must have a valid license purchased only from themeforest(the above
 														<tr>
 															<td colspan="2"></td>
 															<div id="chargePerPeople" style="display:none">${chargePerPeople}</div>
-															<td class="font-weight-bolder font-size-h4 text-right">최종 결제 금액</td>
-															<td class="font-weight-bolder font-size-h4 text-right">
+															<td class="font-weight-bolder font-size-h4 text-right cafe24" >최종 결제 금액</td>
+															<td class="font-weight-bolder font-size-h4 text-right cafe24">
 																<span id="totalAmount">${charge}원</span></td>
 														</tr>
 														<tr>
@@ -368,12 +368,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														</tr>
 														<tr>
 															<td colspan="2" class="border-0 pt-10">
-																<form><a href="/" class="btn btn-secondary font-weight-bolder px-8">다시 설정하기  </a></form>
+																<form><a href="/" class="btn btn-secondary font-weight-bolder px-8 cafe24">다시 설정하기  </a></form>
 															</td>
 															<td colspan="2" class="border-0 text-right pt-10">
 															<a
-																class="btn btn-light-primary font-weight-bolder px-8"
-																id="payments">결제하기 </a></td>
+																class="btn btn-light-primary font-weight-bolder px-8 cafe24"
+																id="payments ">결제하기 </a></td>
 														</tr>
 														<!--end::Cart Footer-->     
 													</tbody>

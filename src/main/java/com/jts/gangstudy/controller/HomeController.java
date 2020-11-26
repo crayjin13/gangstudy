@@ -87,6 +87,10 @@ public class HomeController {
 	public String faq() {
 		return "pages/faq";
 	}
+	@RequestMapping(value = "/jts", method = RequestMethod.GET)
+	public String admin() {
+		return "pages/admin";
+	}
 
 	
 	
