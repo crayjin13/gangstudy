@@ -129,21 +129,21 @@
 		if (session.getAttribute("sUserId") == null) {
 	%>
 	<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/lo"
+									data-menu-toggle="hover"><a href="/signin"
 									class="menu-link "> <i
 										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">로그인</span></a>
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/up"
+									data-menu-toggle="hover"><a href="/signup"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원가입</span></a>
 								</li>
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/mo"
+									data-menu-toggle="hover"><a href="/edit-user"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원정보
@@ -157,7 +157,7 @@
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a
-									href="/re" class="menu-link "> <i
+									href="/remo-control" class="menu-link "> <i
 										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">리모컨 기능</span></a>
 								</li>

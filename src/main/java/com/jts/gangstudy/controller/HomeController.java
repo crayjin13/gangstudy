@@ -59,15 +59,7 @@ public class HomeController {
 	public String signup() {
 		return "pages/signup";
 	}
-	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
-	public String edituser() {
-		return "pages/edit-user";
-	}
-	
-	@RequestMapping(value = "/remo-control", method = RequestMethod.GET)
-	public String mocon() {
-		return "pages/remo-control";
-	}
+
 	
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String notice() {
