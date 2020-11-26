@@ -115,20 +115,6 @@ $(function() {
 		}
 		});
 
-	/*////////////
-	
-	$("#kt_form").on("click", function(){
-		var pw = $("#pw").val();
-		var pw2 = $("#pw2").val();
-		
-		if(pw==pw2){
-			
-		}
-		
-		
-	})
-	*/
-	
 	
 	
 	// ***** 회원가입 ************
@@ -262,86 +248,6 @@ $(function() {
 
 })
 
-/* / 비밀번호 유효성체크, 비밀번호 두개 같은지 체크 / */
-
-/*var pw = document.querySelector('#pw');
-var pw2 = document.querySelector('#pw2');
-var error = document.querySelectorAll('.error');
-// pw.addEventListener("change", checkPw);
-pw2.addEventListener("change", comparePw);
-$("#name").focus();
-// 비밀번호 재확인   
-function comparePw() {
-	
-	 if (pw2.value !== pw.value) {      
-		alert("비밀번호가 일치하지 않습니다.");
-		error[0].innerHTML = "비밀번호가 일치하지 않습니다.";      
-		error[0].style.display = "block";
-		return false;
-	}
-
-	if (pw2.value === "") {
-		error[0].innerHTML = "필수 정보입니다.";
-		error[0].style.display = "block";
-		return false;
-		
-	}else if (pw2.value === pw.value) {
-
-		error[0].style.display = "none";
-		return true;
-	} 
-}*/
-
-var pw2 = document.querySelector('#pw2');
-       pw2.addEventListener("change", checkPassword);
-function checkPassword(id, pw, pw2) {
-    //비밀번호가 입력되었는지 확인하기
-    if (!checkExistData(pw, "비밀번호를 입력해주세요 "))
-        return false;
-    //비밀번호 확인이 입력되었는지 확인하기
-    if (!checkExistData(pw2, "비밀번호를 확인 해주세요"))
-        return false;
-    var password1RegExp = /^[a-zA-z0-9]{4,12}$/; 
-    //비밀번호 유효성 검사
-    if (!password1RegExp.test(pw)) {
-        alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다");
-        form.pw.value = "";
-        form.pw.focus();
-        return false;
-    }
-    //비밀번호와 비밀번호 확인이 맞지 않다면..
-    if (pw != pw2) {
-        alert("두 비밀번호가 맞지 않습니다.");
-        form.pw.value = "";
-        form.pw2.value = "";
-        form.pw2.focus();
-        return false;
-    }
-    return true; //확인이 완료되었을 때
-}    
-
-
-/*
- * function checkId() { var idPattern = /[a-zA-Z0-9_-]{5,20}/; if(id.value ===
- * "") { error[0].innerHTML = "필수 정보입니다."; error[0].style.display = "block"; }
- * else if(!idPattern.test(id.value)) { error[0].innerHTML = "5~20자의 영문 소문자, 숫자와
- * 특수기호(_),(-)만 사용 가능합니다."; error[0].style.display = "block"; } else {
- * error[0].innerHTML = "가능한 아이디입니다!"; error[0].style.color = "#08A600";
- * error[0].style.display = "block"; } }
- * 
- * 
- * function checkPw() { var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
- * if(pw.value === "") { error[1].innerHTML = "필수 정보입니다.";
- * error[1].style.display = "block"; } else if(!pwPattern.test(pw.value)) {
- * error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."; pwMsg.innerHTML =
- * "사용불가"; pwMsgArea.style.paddingRight = "93px"; error[1].style.display =
- * "block";
- * 
- * pwMsg.style.display = "block"; // pwImg1.src =
- * "public/images/m_icon_not_use.png"; } else { error[1].style.display = "none";
- * pwMsg.innerHTML = "안전"; pwMsg.style.display = "block"; pwMsg.style.color =
- * "#03c75a"; // pwImg1.src = "public/images/m_icon_safe.png"; } }
- */
 
 // 로그인 form 처리
 function user_login_action_function() {
