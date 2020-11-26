@@ -6,6 +6,22 @@ const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
 const pointMax = document.getElementById("pointMax");
 const pointUse = document.getElementById("kt_touchspin");
 
+document.getElementById("payments").addEventListener("click", function() {
+	$.ajax({
+		url : "/booking/change",
+		type : "POST",
+		data :	{
+			        point : pointUse.value
+				},
+		success : function(url) {
+			window.location.href = url;
+		},
+		error : function() {
+			alert("modify error");
+		}
+	});
+});
+
 pointMaxUseBtn.addEventListener("click", function() {
 	if(pointUse.value > totalAmount.textContent) {
 		pointUse.value = totalAmount.textContent;
