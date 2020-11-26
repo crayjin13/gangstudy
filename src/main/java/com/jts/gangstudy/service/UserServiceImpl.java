@@ -145,6 +145,12 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(user_no);
 	}
 
+	@Override
+	public boolean updatePoints(User user, String points) {
+		// TODO Auto-generated method stub
+		return userDao.updatePoints(user.getUser_no().intValue(), Float.parseFloat(points));
+	}
+
 	
 
 }

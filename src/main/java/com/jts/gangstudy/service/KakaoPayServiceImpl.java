@@ -55,7 +55,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	private final static String vat_amount = "100";							// 상품 부가세 금액
 
 	@Override
-	public HashMap<String, String> ready(String domain, String deviceType, Payment payment) {
+	public HashMap<String, String> ready(String domain, String deviceType, int amount) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			URI uri = new URI(ready);
@@ -65,7 +65,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 					.addParameter("partner_user_id", partner_user_id)
 					.addParameter("item_name", "스터디룸 예약")
 					.addParameter("quantity", Integer.toString(1))
-					.addParameter("total_amount", Integer.toString(payment.getAmount()))
+					.addParameter("total_amount", Integer.toString(amount))
 					.addParameter("tax_free_amount", tax_free_amount)
 					.addParameter("approval_url", domain + approval_url)
 					.addParameter("cancel_url", domain + cancel_url)

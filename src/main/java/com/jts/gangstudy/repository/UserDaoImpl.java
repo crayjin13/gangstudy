@@ -107,5 +107,11 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return userMapper.getUser(user_no);
 	}
+	
+	@Override
+	public boolean updatePoints(int user_no, Float points) {
+		// TODO Auto-generated method stub
+		return userMapper.updatePoints(user_no, points);
+	}
 
 }
