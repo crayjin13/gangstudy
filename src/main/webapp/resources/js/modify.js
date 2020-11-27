@@ -11,20 +11,14 @@ var startPicker = new Pikaday({
     field: startDateInput,
     format: 'YYYY-MM-DD',
     toString(date) {
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        return year+"-"+month+"-"+day;
+        return getFormatDate(date);
     }
 });
 var endPicker = new Pikaday({
     field: endDateInput,
     format: 'YYYY-MM-DD',
     toString(date) {
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        return year+"-"+month+"-"+day;
+        return getFormatDate(date);
     }
 });
 
