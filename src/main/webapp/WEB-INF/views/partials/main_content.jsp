@@ -83,6 +83,7 @@
 										</div> --%>
 										</div>
 								</div>
+								
 								<div class="form-group cafe24">
 									<label> 시작 시간</label>
 										<input class="form-control" type="text" id="start-date-input" name="startDateInput">

@@ -140,11 +140,11 @@ public class BookingController {
 		// login check
 		if(user == null) {
 			mav.setViewName("redirect:/signin");
-			mav.addObject("startDate", startDate)
-			.addObject("startTime", startTime)
-			.addObject("endDate", endDate)
-			.addObject("endTime", endTime)
-			.addObject("people", people);
+			session.setAttribute("startDate", startDate);
+			session.setAttribute("startTime", startTime);
+			session.setAttribute("endDate", endDate);
+			session.setAttribute("endTime", endTime);
+			session.setAttribute("people", people);
 			return mav;
 		}
 		// check a existing booking

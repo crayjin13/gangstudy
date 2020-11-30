@@ -11,63 +11,63 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.jts.gangstudy.domain.User;;
 
 /*
-��HandlerInterceptor �������̽�
-��HandlerInterceptorAdapter �߻�Ŭ����
+①HandlerInterceptor 인터페이스
+②HandlerInterceptorAdapter 추상클래스
 	- public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler)
-     	Controller ��û �� ����
+     	Controller 요청 전 실행
 	- public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler, ModelAndVeiw modelAndVeiw)
-     	Controller ó���� ������ ȭ�鿡 ����ִ� ó�� ������ ����
-	- afterCompletion() : ��� ó���� ���� �� ȣ��
+     	Controller 처리가 끝나고 화면에 띄어주는 처리 직전에 수행
+	- afterCompletion() : 모든 처리가 끝난 후 호출
  */
 
 public class UserAuthLoginAnnotationInterceptor extends HandlerInterceptorAdapter {
 	public UserAuthLoginAnnotationInterceptor() {
-		System.out.println("### UserAuthLoginAnnotationInterceptor()������");
+		System.out.println("### UserAuthLoginAnnotationInterceptor()생성자");
 	}
 
-	// preHandle() : ��Ʈ�ѷ����� ���� ����Ǵ� �޼���
+	// preHandle() : 컨트롤러보다 먼저 수행되는 메서드
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("### UserAuthLoginAnnotationInterceptor.preHandle()�޽��");
-		// 1. handler ���� Ȯ��
-		// �츮�� ���� �ִ� ���� Controller�� �ִ� �޼����̹Ƿ� HandlerMethod Ÿ������ üũ
+		// 1. handler 종류 확인
+		// 우리가 관심 있는 것은 Controller에 있는 메서드이므로 HandlerMethod 타입인지 체크
 		if (handler instanceof HandlerMethod == false) {
-			// return true�̸� Controller�� �ִ� �޼��尡 �ƴϹǷ�, �״�� ��Ʈ�ѷ��� ����
+			// return true이면 Controller에 있는 메서드가 아니므로, 그대로 컨트롤러로 진행
 			return true;
 		}
-		// 2.�� ��ȯ
+		System.out.println("### UserAuthLoginAnnotationInterceptor.preHandle()메써드");
+		// 2.형 변환
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		// 3. @UserLoginCheck �޾ƿ���
+		// 3. @UserLoginCheck 받아오기
 		UserLoginCheck loginCheck = handlerMethod.getMethodAnnotation(UserLoginCheck.class);
 
-		// 4. method�� @UserLoginCheck�� ���� ���, �� ������ �ʿ� ���� ��û
+		// 4. method에 @UserLoginCheck가 없는 경우, 즉 인증이 필요 없는 요청
 		if (loginCheck == null) {
-			System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck ���� ���");
+			System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck 없는 경우");
 			return true;
 		}
-		// 5. @UserLoginCheck�� �ִ� ����̹Ƿ�, ������ �ִ��� üũ
-		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck �ִ� ���");
-		
-		// session ��ü�� ������
+		// 5. @UserLoginCheck가 있는 경우이므로, 세션이 있는지 체크
+		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck 있는 경우");
+
+		// session 객체를 가져옴
 		HttpSession session = request.getSession();
-		// loginó���� ����ϴ� ����� ������ ��� �ִ� ��ü�� ������
+		// login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
 
 		session.setMaxInactiveInterval(31536000); // 1day ms
 		
 		User sUserId = (User) session.getAttribute("sUserId");
 		if (sUserId == null) {
-			// �α����� �ȵǾ� �ִ� ���������� �α��� ������ �ٽ� ��������(redirect)
+			// 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
 			response.sendRedirect(request.getContextPath()+"/signin");
-			return false; // ���̻� ��Ʈ�ѷ� ��û���� ���� �ʵ��� false�� ��ȯ��
+			return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
 		}
 
-		// preHandle�� return�� ��Ʈ�ѷ� ��û uri�� ���� �ǳ� �ȵǳĸ� �㰡�ϴ� �ǹ���
-		// ���� true���ϸ� ��Ʈ�ѷ� uri�� ���� ��.
+		// preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
+		// 따라서 true로하면 컨트롤러 uri로 가게 됨.
 		return true;
 	}
 
-	// ��Ʈ�ѷ��� ����ǰ� ȭ���� �������� ������ ����Ǵ� �޼���
+	// 컨트롤러가 수행되고 화면이 보여지기 직전에 수행되는 메서드
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
