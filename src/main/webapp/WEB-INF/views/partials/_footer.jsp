@@ -9,7 +9,7 @@
 
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
-								<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span>
+							<a href="/admin">	<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span></a>
 								<a href="/" target="_blank" class="text-dark-75 text-hover-primary">갱스터디</a>
 							</div>
       
@@ -22,7 +22,7 @@
 								<a onclick="window.open('${pageContext.request.contextPath}/resources/images/regit.png','_blank','scrollbars=no,width=564,height=860,top=10,left=20');" target="_blank" class="nav-link pl-0 pr-0">사업자 등록 번호 : 783-17-01344</a>
 							</div>
 
-							<!--end::Nav--> 
+							<!--end::Nav-->
 						</div>
 
 						<!--end::Container-->
