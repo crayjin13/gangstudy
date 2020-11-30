@@ -2,7 +2,11 @@ package com.jts.gangstudy.service;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Booking;
@@ -32,5 +36,19 @@ public class PaymentServiceImpl implements PaymentService {
 		map.put("pay_no", Integer.toString(payment.getPay_no()));
 		map.put("state", state);
 		mapper.updateState(map);
+	}
+
+	@Override
+	public String getDeviceType(HttpServletRequest request) {
+		Device device = DeviceUtils.getCurrentDevice(request);
+		String deviceType;
+		if (device.isMobile()) {
+			deviceType = "mobile";
+		} else if (device.isTablet()) {
+			deviceType = "tablet";
+		} else {
+			deviceType = "desktop";
+		}
+		return deviceType;
 	}
 }

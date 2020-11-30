@@ -182,10 +182,11 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			HttpPost httpPost = new HttpPost(uri);
 			httpPost.addHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			httpPost.addHeader("Authorization", "KakaoAK " + admin_key);
-			
+			String json = null;
+			JSONObject jsonObject = null;
 			try(CloseableHttpResponse response = httpClient.execute(httpPost)) {
-		        String json = EntityUtils.toString(response.getEntity());
-		        JSONObject jsonObject = new JSONObject(json);
+		        json = EntityUtils.toString(response.getEntity());
+		        jsonObject = new JSONObject(json);
 		        System.out.println(json);
 
 		        String cancelTid = jsonObject.getString("tid");									// 결제 고유 번호
@@ -196,6 +197,11 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		        map.put("status", status);
 		        map.put("pay_type", payment_method_type.toLowerCase());
 		        return map;
+			} catch (org.json.JSONException e){
+				System.err.println("at KakaoPayService.cancel JSONException : " + e);
+				System.err.println("at KakaoPayService.cancel api response msg : " + jsonObject.getString("msg"));
+				System.err.println("at KakaoPayService.cancel api response code : " + jsonObject.get("code"));
+				return null;
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

@@ -36,39 +36,28 @@ public class PaymentController {
 	// 결제 수단 선택
 	@RequestMapping(value = "/choose", method = RequestMethod.GET)
 	public ModelAndView choose(HttpServletRequest request) {
-		// 상품명
-		// 상품 수량
-		// 상품 총액
-		// 상품 비과세 금액?
-		// redirect url
-		// 취소 url
-		//
+		// 여러 결제 수단이 있을때 브릿지 역할
 		ModelAndView mav = new ModelAndView("/payment/choose");
 		return mav;
 	}
 
+	// KakaoPay를 통한 결제 요청
 	@RequestMapping(value = "/kakaopay", method = RequestMethod.GET)
 	public String kakaopay(HttpServletRequest request, HttpSession session) {
-		int amount = (int)session.getAttribute("amount");
+		int amount = (int)session.getAttribute("amount");			// 결제 비용
+		int usePoint = (int)session.getAttribute("usePoint");		// 사용한 포인트
+		String deviceType = paymentService.getDeviceType(request);	// 결제 요청 장비
+		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort(); // 요청 도메인
 		
-		Device device = DeviceUtils.getCurrentDevice(request);
-		String deviceType;
-		if (device.isMobile()) {
-			deviceType = "mobile";
-		} else if (device.isTablet()) {
-			deviceType = "tablet";
-		} else {
-			deviceType = "desktop";
-		}
-		
-		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort();
 		System.out.println(domain);
-		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, amount);
+		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, amount-usePoint);
 		
 		session.setAttribute("tid", map.get("tid"));
+		session.removeAttribute("amount");
 		return "redirect:" + map.get("url");
 	}
 
+	// KakaoPay에서 결제 준비됨. 결제 처리하기
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
 		User sUserId = (User)session.getAttribute("sUserId");
@@ -97,12 +86,7 @@ public class PaymentController {
 		// 예약에 대해서 uncharge -> wait으로 변경한다.
 		bookingService.changeState(book, "wait");
 		
-		
 		Integer remainPoint = (Integer.parseInt(sUserId.getPoints()) - usePoint);
-		System.out.println("[debug- complete] sUserId.user_no: " + sUserId.getUser_no()
-							+ ", usePoint : " + usePoint
-							+ ", sUserId.getPoints : " + sUserId.getPoints()
-							+ ", remainPoint : " + remainPoint);
 		userService.updatePoints(sUserId, remainPoint.toString());
 		sUserId.setPoints(remainPoint.toString());
 		
@@ -133,18 +117,22 @@ public class PaymentController {
 		Booking newBook = (Booking)session.getAttribute("newBook");
 		int usePoint = (int)session.getAttribute("usePoint");
 		
-		String tid = paymentService.selectPayment(oldBook).getTid();
-		Integer amount = bookingService.getCharge(oldBook);
+		Payment payment= paymentService.selectPayment(oldBook);
+		String tid = payment.getTid();
+		Integer amount = payment.getAmount();
 		
 		HashMap<String, String> map = kakaoPayService.cancel(tid, amount.toString());	// 전액 취소 요청
 
+		if(map==null) {
+			return "redirect:" + "/?cancelAndBooking=fail";
+		}
 		if(map.get("status").equals("CANCEL_PAYMENT")) {	// 전액 취소 성공
 			// 이전 결제 정보 취소 처리
 			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
 			
 			return "redirect:" + "/booking/cancelAndBooking";
 		}
-		return "redirect:" + "?cancelAndBooking=fail";
+		return "redirect:" + "/?cancelAndBooking=fail";
 		
 	}
 	
@@ -160,6 +148,9 @@ public class PaymentController {
 		Integer amount = -(bookingService.getCharge(newBook) - paymentService.selectPayment(oldBook).getAmount());
 		
 		HashMap<String, String> map = kakaoPayService.cancel(tid, amount.toString());	// 차액 취소 요청
+		if(map==null) {
+			return "redirect:" + "/?cancelAndChange=fail";
+		}
 		if(map.get("status").equals("PART_CANCEL_PAYMENT")) {	// 차액 취소 성공
 			// 이전 결제 정보 취소 처리
 			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
