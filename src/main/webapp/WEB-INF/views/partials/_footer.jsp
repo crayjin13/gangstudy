@@ -9,8 +9,8 @@
 
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
-							<a href="/admin">	<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span></a>
-								<a href="/" target="_blank" class="text-dark-75 text-hover-primary">갱스터디</a>
+								<span class="text-muted font-weight-bold mr-2">갱스터디 대표이사 김정훈 </span>
+								<a href="/" target="_blank" class="text-dark-75 text-hover-primary"> 주소 : 경기도 용인시 처인구 명지로 24, 205호(역북동, 용인역북더럭스나인 상가)</a>
 							</div>
       
 							<!--end::Copyright-->
