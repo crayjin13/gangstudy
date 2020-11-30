@@ -396,7 +396,8 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
-				<!--doc: add "bg-white" class to have footer with solod background color-->
+				<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>
+				<%-- <!--doc: add "bg-white" class to have footer with solod background color-->
 				<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
 					<!--begin::Container-->
 					<div
@@ -424,7 +425,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--end::Nav-->
 					</div>
 					<!--end::Container-->
-				</div>
+				</div> --%>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
