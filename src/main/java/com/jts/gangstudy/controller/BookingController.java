@@ -127,7 +127,7 @@ public class BookingController {
 		mav.addObject("name", sUserId.getName());
 		return mav;
 	}
-
+	
 	// booking shop page - 결제 직전 페이지
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
@@ -174,14 +174,13 @@ public class BookingController {
 		String endDateTime = book.getFormattedCO("M월 d일 H시 mm분");
 		String timeInterval = bookingService.getTimeInterval(book);
 		int chargePerPeople = bookingService.getCharge(book) / book.getPeople();
-		int point = Integer.parseInt(user.getPoints());
 		
 		mav.addObject("startDateTime", startDateTime)
 		.addObject("endDateTime", endDateTime)
 		.addObject("timeInterval", timeInterval)
 		.addObject("chargePerPeople", chargePerPeople)
 		.addObject("userCount", people)
-		.addObject("point", point)
+		.addObject("point", user.getPoints())
 		.addObject("charge", chargePerPeople*Integer.parseInt(people));
 		return mav;
 	}
@@ -192,7 +191,7 @@ public class BookingController {
 	@RequestMapping(value = "/make", method = RequestMethod.POST)
 	public String makeSubmit(HttpServletRequest request, HttpSession session,
 			@RequestParam("people") String peoples, @RequestParam("point") String point) {
-		User sUserId = (User)session.getAttribute("sUserId");
+		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		// validation check
 		int people = Integer.parseInt(peoples);
@@ -201,9 +200,8 @@ public class BookingController {
 		}
 
 		int usePoint = Integer.parseInt(point);
-		int maxPoint = Integer.parseInt(sUserId.getPoints());
 		int charge = bookingService.getCharge(book);
-		if(usePoint > maxPoint || usePoint < 0) {
+		if(usePoint > user.getPoints() || usePoint < 0) {
 			return "?error=point";
 		}
 		if(charge > 0 && charge < usePoint) {
@@ -228,7 +226,25 @@ public class BookingController {
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
 	}
-			
+
+	// 예약 완료 처리
+	@UserLoginCheck
+	@RequestMapping(value = "/complete", method = RequestMethod.GET)
+	public String complete(HttpServletRequest request, HttpSession session) {
+		// 요청된 예약에 대해 예약번호를 얻고
+		// 예약 번호로 된 결제가 있는지 확인한다.
+		Booking book = (Booking)session.getAttribute("book");
+		Payment payment = paymentService.selectPayment(book);
+		// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
+		if(payment != null) {
+			bookingService.changeState(book, "wait");
+			session.removeAttribute("book");
+			return "/booking/check";
+		} else {
+			return "?booking=fail";
+		}
+	}
+	
 	// booking modify page - 결제 수정 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -269,10 +285,10 @@ public class BookingController {
 			@RequestParam("startTimeInput") String startTime, @RequestParam("endTimeInput") String endTime,
 			@RequestParam("people") String people) {
 		ModelAndView mav = new ModelAndView("pages/modifycart");
-		User sUserId = (User)session.getAttribute("sUserId");
-		Booking oldBook = bookingService.getWaitBooking(sUserId);
+		User user = (User)session.getAttribute("sUserId");
+		Booking oldBook = bookingService.getWaitBooking(user);
 		Booking newBook = new Booking();
-		newBook.setUser_no(sUserId.getUser_no());
+		newBook.setUser_no(user.getUser_no());
 		newBook.setRoom_no(room_no);
 		newBook.setCheck_in(startDate, startTime);
 		newBook.setCheck_out(endDate, endTime);
@@ -290,7 +306,6 @@ public class BookingController {
 		// registry booking in session
 		session.setAttribute("oldBook", oldBook);
 		session.setAttribute("newBook", newBook);
-		bookingService.insertBook(newBook);
 		
 		// add view attribute
 		String startDateTime = newBook.getFormattedCI("M월 d일 H시 mm분");
@@ -298,13 +313,12 @@ public class BookingController {
 		String timeInterval = bookingService.getTimeInterval(newBook);
 		Payment payment = paymentService.selectPayment(oldBook);
 		int addedCharge = bookingService.getCharge(newBook) - bookingService.getCharge(oldBook);
-		int point = Integer.parseInt(sUserId.getPoints());
 		
 		mav.addObject("startDateTime", startDateTime)
 		.addObject("endDateTime", endDateTime)
 		.addObject("timeInterval", timeInterval)
 		.addObject("userCount", people)
-		.addObject("point", point)
+		.addObject("point", user.getPoints())
 		.addObject("cancelAmount", payment.getAmount())
 		.addObject("addedCharge", addedCharge);
 		return mav;
@@ -315,9 +329,9 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "/change", method = RequestMethod.POST)
 	public String changeBridge(HttpServletRequest request, HttpSession session, @RequestParam("point") String point) {
-		User sUserId = (User)session.getAttribute("sUserId");
-		Booking oldBook = (Booking)session.getAttribute("oldBook");
-		Booking newBook = (Booking)session.getAttribute("newBook");
+		User user = (User)session.getAttribute("sUserId");
+		Booking oldBook = (Booking)session.getAttribute("oldBook"); session.removeAttribute("oldBook");
+		Booking newBook = (Booking)session.getAttribute("newBook"); session.removeAttribute("newBook");
 
 		Payment oldPayment = paymentService.selectPayment(oldBook);									// 이전 결제
 		int paidMoney = oldPayment.getAmount();														// 이전 결제 지불 금액
@@ -325,9 +339,7 @@ public class BookingController {
 		
 		// validation check
 		int usePoint = Integer.parseInt(point);
-		int maxPoint = Integer.parseInt(sUserId.getPoints());
-		int remainPoint = maxPoint-usePoint;
-		if(remainPoint < 0 || usePoint < 0) {
+		if(user.getPoints() < usePoint || usePoint < 0) {
 			return "?error=point";
 		}
 		if(addedCharge > 0 && usePoint > addedCharge) {
@@ -344,6 +356,10 @@ public class BookingController {
 			
 			// 기존 결제로 예약-결제추가
 			bookingService.changeState(newBook, "wait");
+			String result = bookingService.insertBook(newBook);
+			if(result.equals("duplicate")) {
+				return "?booking=duplicate";
+			}
 			
 			// 기존 결제를 기반으로 새 결제 복사
 			oldPayment.setState("paid");
@@ -352,17 +368,23 @@ public class BookingController {
 			paymentService.insertPayment(oldPayment);
 			
 			// 포인트 사용값 처리
-			userService.updatePoints(sUserId, Integer.toString(remainPoint));
+			userService.deductPoints(user, usePoint);
 			return "/booking/check";
 		} else if(paidMoney == 0) {									// 예전 결제 금액이 0원 (포인트 처리 등) 추가금액 결제
 			bookingService.changeState(oldBook, "cancel");
 			paymentService.changeState(oldPayment, "cancel");
 			
 			// 추가 결제금액으로 예약-결제 추가
-			session.setAttribute("usePoint", usePoint+oldPayment.getPoint());
+			session.setAttribute("amount", addedCharge - usePoint);
+			session.setAttribute("usePoint", oldPayment.getPoint() + usePoint);
 			session.setAttribute("book", newBook);
 			return "redirect:/payment/kakaopay";
 		} else {													// 일반적인 결제
+			String result = bookingService.insertBook(newBook);
+			if(result.equals("duplicate")) {
+				return "?booking=duplicate";
+			}
+			
 			session.setAttribute("oldBook", oldBook);
 			session.setAttribute("newBook", newBook);
 			session.setAttribute("usePoint", usePoint);
@@ -370,7 +392,7 @@ public class BookingController {
 			if(addedCharge > 0) {									// 추가 요금을 받아야 하는 경우
 				session.setAttribute("amount", paidMoney + addedCharge - usePoint);	// 지불했던 금액 + 추가된 금액 - 사용한 포인트
 				return "/payment/cancelAndBooking";
-			} else {											// 취소 요금을 줘야 하는 경우
+			} else {												// 취소 요금을 줘야 하는 경우
 				session.setAttribute("amount", addedCharge);
 				return "/payment/cancelAndChange";
 			}
@@ -387,8 +409,6 @@ public class BookingController {
 
 		// 기존 결제 취소 성공시, 기존 예약을 취소로 변경
 		bookingService.changeState(oldBook, "cancel");
-		// 새로운 예약을 대기시켜 놓는다.
-		bookingService.insertBook(newBook);
 		
 		// session registry
 		session.setAttribute("book", newBook);
@@ -406,34 +426,18 @@ public class BookingController {
 		Booking oldBook = (Booking)session.getAttribute("oldBook");
 		Booking newBook = (Booking)session.getAttribute("newBook");
 		int usePoint = (int)session.getAttribute("usePoint");
-		String tid = (String)session.getAttribute("tid");
-		String pay_type = (String)session.getAttribute("pay_type");
 
 		// 결제 취소 성공시
 		// 기존 예약을 취소로 변경
 		bookingService.changeState(oldBook, "cancel");
 
 		// 새 예약 등록
-		newBook.setState("wait");
-		bookingService.insertBook(newBook);
-		
-		// 해당 결제 정보 저장
-		Payment payment = new Payment();
-		payment.setAmount(bookingService.getCharge(newBook));
-		payment.setPoint(0); // 취소시 사용된 포인트를 돌려줘야 할지도?
-		payment.setPg_name("KakaoPay");
-		payment.setTid(tid);
-		payment.setPay_type(pay_type);
-		payment.setState("paid");
-		payment.setBook_no(newBook.getBook_no());
-		paymentService.insertPayment(payment);
-		
+		bookingService.changeState(newBook, "wait");
 
 		session.removeAttribute("oldBook");
 		session.removeAttribute("newBook");
+		session.removeAttribute("amount");
 		session.removeAttribute("usePoint");
-		session.removeAttribute("tid");
-		session.removeAttribute("pay_type");
 		// 변경 결과 페이지
 		return "redirect:/booking/check";
 	}

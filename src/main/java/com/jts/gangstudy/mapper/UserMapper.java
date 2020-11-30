@@ -75,6 +75,6 @@ public interface UserMapper {
 	
 	// 포인트 변경
 	@Update("UPDATE USER_TB SET points=#{points} WHERE user_no=#{user_no}")
-	public boolean updatePoints(@Param("user_no") int user_no, @Param("points") Float points);
+	public boolean updatePoints(@Param("user_no") Integer user_no, @Param("points") Float points);
 
 }

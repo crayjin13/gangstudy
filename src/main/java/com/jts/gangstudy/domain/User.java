@@ -12,7 +12,7 @@ public class User {
 	private Date bod;
 	private String gender;
 	private Integer rate;
-	private String points;
+	private Float points;
 	private String note;
 	private String retired;
 	
@@ -54,7 +54,7 @@ public class User {
 
 
 	public User(Integer user_no, String name, String phone, String id, String pw, String email, Date bod,
-			String gender, Integer rate, String points, String note) {
+			String gender, Integer rate, Float points, String note) {
 		super();
 		this.user_no = user_no;
 		this.name = name;
@@ -97,7 +97,7 @@ public class User {
 
 
 	public User(String name, String phone, String id, String pw, String email, Date bod, String gender, Integer rate,
-			String points, String note) {
+			Float points, String note) {
 		super();
 		this.name = name;
 		this.phone = phone;
@@ -237,9 +237,9 @@ public class User {
 
 
 
-	public String getPoints() {
+	public Float getPoints() {
 		if(points==null) {
-			return "0";
+			return (float)0;
 		} else {
 			return points;
 		}
@@ -247,7 +247,7 @@ public class User {
 
 
 
-	public void setPoints(String points) {
+	public void setPoints(Float points) {
 		this.points = points;
 	}
 

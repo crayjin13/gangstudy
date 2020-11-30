@@ -146,9 +146,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean updatePoints(User user, String points) {
+	public boolean deductPoints(User user, int point) {
 		// TODO Auto-generated method stub
-		return userDao.updatePoints(user.getUser_no().intValue(), Float.parseFloat(points));
+		user.setPoints(user.getPoints() - point);
+		return userDao.updatePoints(user.getUser_no(), user.getPoints() - point);
 	}
 
 	
