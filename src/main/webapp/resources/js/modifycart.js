@@ -1,9 +1,14 @@
 /**
  * 
  */
-const totalAmount = document.getElementById("totalAmount");
+const cancelAmount = document.getElementById("cancelAmount");
+const addedAmount = document.getElementById("addedAmount");
+const repayAmount = document.getElementById("repayAmount");
+const amount = parseInt(addedAmount.textContent);
+
 const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
 const pointMax = document.getElementById("pointMax");
+
 const pointUse = document.getElementById("kt_touchspin");
 
 document.getElementById("payments").addEventListener("click", function() {
@@ -23,33 +28,39 @@ document.getElementById("payments").addEventListener("click", function() {
 });
 
 pointMaxUseBtn.addEventListener("click", function() {
-	if(pointUse.value > totalAmount.textContent) {
-		pointUse.value = totalAmount.textContent;
+	if(parseInt(pointMax.textContent) > amount) {
+		pointUse.value = amount;
+	} else {
+		pointUse.value = pointMax.textContent;
 	}
-	pointUse.value = pointMax.textContent;
-	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+	addedAmount.textContent = amount - pointUse.value;
+	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 });
 pointMaxUseBtn.addEventListener("touchend", function() {
-	if(pointUse.value > totalAmount.textContent) {
-		pointUse.value = totalAmount.textContent;
+	if(parseInt(pointMax.textContent) > amount) {
+		pointUse.value = amount;
+	} else {
+		pointUse.value = pointMax.textContent;
 	}
-	pointUse.value = pointMax.textContent;
-	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+	addedAmount.textContent = amount - pointUse.value;
+	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 });
 
 pointUse.addEventListener("change", function() {
-	if(pointUse.value > pointMax.textContent) {
+	if(parseInt(pointUse.value) > parseInt(pointMax.textContent)) {
 		pointUse.value = pointMax.textContent;
 	}
-	if(pointUse.value < 0) {
+	if(parseInt(pointUse.value) < 0) {
 		pointUse.value = 0;
 	}
 	if(!isInt(pointUse.value)) {
 		pointUse.value = 0;
 	}
-	if(pointUse.value > totalAmount.textContent) {
-		pointUse.value = totalAmount.textContent;
+	if(parseInt(pointUse.value) > amount) {
+		pointUse.value = amount;
 	}
+	addedAmount.textContent = amount - pointUse.value;
+	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 });
 
 function isInt(value) {

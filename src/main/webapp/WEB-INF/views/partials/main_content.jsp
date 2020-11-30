@@ -152,16 +152,11 @@
 	</div>
 	<!--end::Entry-->
 </div>
-
-</div>
 <!--end::Content-->
 
 <!--[html-partial:begin:{"id":"demo1/dist/inc/view/demos/pages/index","page":"index"}]/-->
 
 <!--[html-partial:begin:{"id":"demo1/dist/inc/view/partials/content/dashboards/demo1","page":"index"}]/-->
-
-
-</div>
 
 <!--end::Entry-->
 

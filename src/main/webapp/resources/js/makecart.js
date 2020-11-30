@@ -26,26 +26,34 @@ document.getElementById("payments").addEventListener("click", function() {
 });
 
 pointMaxUseBtn.addEventListener("click", function() {
-	pointUse.value = pointMax.textContent;
-	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+	if(parseInt(pointMax.textContent) > parseInt(totalAmount.textContent)) {
+		pointUse.value = totalAmount.textContent;
+	} else {
+		pointUse.value = pointMax.textContent;
+	}
+	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 });
 pointMaxUseBtn.addEventListener("touchend", function() {
-	pointUse.value = pointMax.textContent;
-	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+	if(parseInt(pointMax.textContent) > parseInt(totalAmount.textContent)) {
+		pointUse.value = totalAmount.textContent;
+	} else {
+		pointUse.value = pointMax.textContent;
+	}
+	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 });
 
 
 pointUse.addEventListener("change", function() {
-	if(pointUse.value > pointMax.textContent) {
+	if(parseInt(pointUse.value) > parseInt(pointMax.textContent)) {
 		pointUse.value = pointMax.textContent;
 	}
-	if(pointUse.value < 0) {
+	if(parseInt(pointUse.value) < 0) {
 		pointUse.value = 0;
 	}
 	if(!isInt(pointUse.value)) {
 		pointUse.value = 0;
 	}
-	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 });
 
 people.addEventListener("change", function() {
