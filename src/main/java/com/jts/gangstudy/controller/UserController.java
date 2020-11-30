@@ -59,14 +59,7 @@ public class UserController {
 		return "pages/remo-control";
 	}
 	
-	/*
-	@UserLoginCheck
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admincontorl() {
-		return "pages/admin";
-	}
-	
-	*/
+
 	
 	
 	
