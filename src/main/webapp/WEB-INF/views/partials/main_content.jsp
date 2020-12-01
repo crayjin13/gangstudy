@@ -83,35 +83,41 @@
 										</div> --%>
 										</div>
 								</div>
+								
 								<div class="form-group cafe24">
 									<label> 시작 시간</label>
-										<input class="form-control" type="text" id="start-date-input" name="startDateInput">
-										<select 
-											class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm">
-											
+										<input class="form-control" type="text" id="start-date-input" name="startDateInput"
+										value = ${startDate}>
+										<select class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm"
+										time = ${startTime}>
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
+								
 								<div class="form-group cafe24">
 									<label> 종료 시간</label>
-										<input class="form-control" type="text" id="end-date-input" name="endDateInput">
-										<select 
-											class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm">
+										<input class="form-control" type="text" id="end-date-input" name="endDateInput"
+										value = ${endDate}>
+										<select class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm"
+										time = ${endTime}>
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
+								
 								<div class="form-group cafe24">
 									<label for="exampleTextarea">인원수</label> <select
-										class="form-control" id="user-count-input" name="userCountInput" >
+										class="form-control" id="user-count-input" name="userCountInput"
+										people=${people}>
 										<option value="">인원을 선택해주세요.</option>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>  
-										<option>4</option>
-										<option>5</option>
-										<option>6</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>  
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
 									</select>
 								</div>
+								
 								<div class="form-group">
 
 

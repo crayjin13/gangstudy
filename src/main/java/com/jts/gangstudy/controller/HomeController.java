@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,13 +34,26 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, Model model) {
+	public ModelAndView home(HttpSession session, Model model) {
 		ModelAndView mav = new ModelAndView("pages/index");
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date now = new Date();
-		String today = format.format(now);
+		String startDate = (String)session.getAttribute("startDate");
+		String startTime = (String)session.getAttribute("startTime");
+		String endDate = (String)session.getAttribute("endDate");
+		String endTime = (String)session.getAttribute("endTime");
+		String people = (String)session.getAttribute("people");
 		
-		mav.addObject("today", today);
+		if(startDate != null && startTime != null && endDate != null && endTime != null && people != null) {
+			mav.addObject("startDate", startDate)
+				.addObject("startTime", startTime)
+				.addObject("endDate", endDate)
+				.addObject("endTime", endTime)
+				.addObject("people", people);
+			session.removeAttribute("startDate");
+			session.removeAttribute("startTime");
+			session.removeAttribute("endDate");
+			session.removeAttribute("endTime");
+			session.removeAttribute("people");
+		}
 		return mav;
 	}      
 	  
