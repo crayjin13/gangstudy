@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
+<%-- <%
 	String route = request.getParameter("pageChange");
 
 	if (route == null) {
 		route = "partials/main_content.jsp";
 	}
-%>
+%> --%>
 
 <!--begin::Main-->
 
@@ -32,13 +32,14 @@
 
 			<%@ include
 				file="/WEB-INF/views/partials/_subheader/subheader-v1.jsp"%>
-				<jsp:include page="<%=route%>" flush="false" />
+			<%-- 	<jsp:include page="<%=route%>" flush="false" /> --%>
 				
-			<%-- <%@ include file="/WEB-INF/views/partials/main_content.jsp"%> --%>
+		<%@ include file="/WEB-INF/views/partials/main_content.jsp"%> 
 		</div>
 
 		<!--end::Content-->
 
+	
 		<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>
 	</div>
 

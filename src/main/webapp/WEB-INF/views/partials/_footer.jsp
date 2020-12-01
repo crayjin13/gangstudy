@@ -9,8 +9,9 @@
 
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
-								<span class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span>
-								<a href="/" target="_blank" class="text-dark-75 text-hover-primary">갱스터디</a>
+								<span class="text-muted font-weight-bold mr-2">모임공간 운영시간 : 365일 24시 이용가능|사업자명:갱스터디 | 대표이사:김정훈 </span>
+								<a href="
+http://naver.me/FQhzErkA" target="_blank" class="text-dark-75 text-hover-primary"> 주소 : 경기도 용인시 처인구 명지로 24, 205호(역북동, 용인역북더럭스나인 상가)</a>
 							</div>
       
 							<!--end::Copyright-->
@@ -19,10 +20,10 @@
 							<div class="nav nav-dark">
 								<a href="http://pf.kakao.com/_xbgCJxb" target="_blank" class="nav-link pl-0 pr-5">카톡으로 문의하기 </a>
 								<a href="tel:+821021367733" target="_blank" class="nav-link pl-0 pr-5">전화하기 </a>
-								<a onclick="window.open('${pageContext.request.contextPath}/resources/images/regit.png','_blank','scrollbars=no,width=564,height=860,top=10,left=20');" target="_blank" class="nav-link pl-0 pr-0">사업자 등록 번호 : 783-17-01344</a>
+								<a onclick="window.open('${pageContext.request.contextPath}/resources/images/regit.png','_blank','scrollbars=no,width=564,height=860,top=10,left=20');" target="_blank" class="nav-link pl-0 pr-0">사업자 등록 번호 : 783-17-01344 (사업자 등록증 확인하기)</a>
 							</div>
 
-							<!--end::Nav--> 
+							<!--end::Nav-->
 						</div>
 
 						<!--end::Container-->

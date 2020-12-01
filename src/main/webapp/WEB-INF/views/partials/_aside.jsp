@@ -166,7 +166,7 @@
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text font-weight-boldest  font-size-h3 cafe24">
-											공지사항</span></a></li>
+											이용안내</span></a></li>
 
 	<%
 		// 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.    
@@ -198,7 +198,7 @@
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text font-weight-boldest  font-size-h3 cafe24">
-											공지사항</span></a></li>
+											이용안내</span></a></li>
 
 	<%
 		}
