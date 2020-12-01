@@ -22,10 +22,26 @@ var endPicker = new Pikaday({
 });
 
 $(document).ready(function() {
-	startDateInput.value = "시작일을 선택해주세요.";
-	endDateInput.value = "시작일을 선택해주세요.";
-	setDateRange(startPicker, new Date(), 7);
-	setDateRange(endPicker, new Date(), 7);
+	if(startDateInput.value!="" && endDateInput.value!="") {
+		setDateRange(startPicker, new Date(), 7);
+		var date = new Date(startDateInput.value);
+		setDateRange(endPicker, date, 1);
+		
+		removeOptions(startTimeInput);
+		removeOptions(endTimeInput);
+		requestStartTime(function() {
+			startTimeInput.value = startTimeInput.getAttribute("time");
+			requestEndTime(function() {
+				endTimeInput.value = endTimeInput.getAttribute("time");
+			});
+		});
+		userCountInput.value = userCountInput.getAttribute("people");
+	} else {
+		startDateInput.value = "시작일을 선택해주세요.";
+		endDateInput.value = "시작일을 선택해주세요.";
+		setDateRange(startPicker, new Date(), 7);
+		setDateRange(endPicker, new Date(), 7);
+	}
 });
 
 bookingButton.addEventListener("click", function() {
@@ -89,7 +105,7 @@ startTimeInput.addEventListener("change", function() {
 	}
 });
 
-function requestStartTime() {
+function requestStartTime(callback) {
 	$.ajax({
 		url :  getContextPath()+"/booking/reqStartTime",
 		type : "GET",
@@ -114,6 +130,7 @@ function requestStartTime() {
 				option.value = times[i];
 				startTimeInput.options.add(option);
 			}
+			callback();
 		},
 		error : function(){
 			alert("getStartTimeOptions error");
@@ -121,7 +138,7 @@ function requestStartTime() {
 	});
 }
 
-function requestEndTime() {
+function requestEndTime(callback) {
 	removeOptions(endTimeInput);
 	$.ajax({
 		url : getContextPath()+"/booking/reqEndTime",
@@ -142,6 +159,7 @@ function requestEndTime() {
 				option.value = times[i];
 				endTimeInput.options.add(option);
 			}
+			callback();
 		},
 		error : function(){
 			alert("getEndTimeOptions error");

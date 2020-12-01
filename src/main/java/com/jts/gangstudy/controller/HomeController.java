@@ -48,7 +48,11 @@ public class HomeController {
 				.addObject("endDate", endDate)
 				.addObject("endTime", endTime)
 				.addObject("people", people);
-			// jsp에서 hidden으로 받고 그값을 js로 추출해서 사용해야 함.
+			session.removeAttribute("startDate");
+			session.removeAttribute("startTime");
+			session.removeAttribute("endDate");
+			session.removeAttribute("endTime");
+			session.removeAttribute("people");
 		}
 		return mav;
 	}      
