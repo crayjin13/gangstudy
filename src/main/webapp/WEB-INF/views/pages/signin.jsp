@@ -96,9 +96,9 @@ License: You must have a valid license purchased only from themeforest(the above
 							</form>
 							<!--end::Form-->  
 						</div>   
-						<!--end::Signin-->
+						<!--end::Signin-->						
 					</div>
-					<!--end::Wrapper-->
+					<!--end::Wrapper-->					
 				</div>  
 				<!--begin::Content-->
 				<!--begin::Aside-->				
@@ -113,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 				<!--end::Aside-->
 			</div>
-			<!--end::Login-->
+			<!--end::Login-->			<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>
 		</div>
 		<!--end::Main-->
 		<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
