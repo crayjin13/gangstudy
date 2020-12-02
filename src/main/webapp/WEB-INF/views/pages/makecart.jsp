@@ -372,7 +372,10 @@ License: You must have a valid license purchased only from themeforest(the above
 															<td colspan="2" class="border-0 text-right pt-10">
 															<a
 																class="btn btn-light-primary font-weight-bolder px-8"
-																id="payments">결제하기 </a></td>
+																id="payments">결제하기 </a>
+																<button class="btn btn-light-primary font-weight-bolder px-8" id="pay">다날 결제 </button>
+																
+																</td>
 														</tr>
 														<!--end::Cart Footer-->     
 													</tbody>
@@ -398,34 +401,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<!--begin::Footer-->
 				<!--doc: add "bg-white" class to have footer with solod background color-->
 				<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>
-			<%-- 	<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
-					<!--begin::Container-->
-					<div
-						class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
-						<!--begin::Copyright-->
-						<div class="text-dark order-2 order-md-1">
-							<a href="/admin"> <span
-								class="text-muted font-weight-bold mr-2">대표이사 김정훈 </span></a> <a
-								href="/" target="_blank"
-								class="text-dark-75 text-hover-primary">갱스터디</a>
-						</div>
-
-						<!--end::Copyright-->
-
-						<!--begin::Nav-->
-						<div class="nav nav-dark">
-							<a href="http://pf.kakao.com/_xbgCJxb" target="_blank"
-								class="nav-link pl-0 pr-5">카톡으로 문의하기 </a> <a
-								href="tel:+821021367733" target="_blank"
-								class="nav-link pl-0 pr-5">전화하기 </a> <a
-								onclick="window.open('${pageContext.request.contextPath}/resources/images/regit.png','_blank','scrollbars=no,width=564,height=860,top=10,left=20');"
-								target="_blank" class="nav-link pl-0 pr-0">사업자 등록 번호 :
-								783-17-01344</a>
-						</div>
-						<!--end::Nav-->
-					</div>
-					<!--end::Container-->
-				</div> --%>
+		
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -574,8 +550,15 @@ License: You must have a valid license purchased only from themeforest(the above
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-touchspin.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+		
 	<!--end::Global Theme Bundle-->
+			<!--begin:: I'm port -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/iamport.js"></script>
+			<!--end:: I'm port  -->
 	<script src="${pageContext.request.contextPath}/resources/js/makecart.js"></script>
+	
 </body>
 <!--end::Body-->
 </html>
