@@ -87,7 +87,6 @@ endDateInput.addEventListener("change", function() {
 	if(startDateInput.value=="" || startTimeInput.value=="") {
 		var date = new Date(endDateInput.value);
 		startDateInput.value = getFormatDate(date);
-		removeOptions(startTimeInput);
 		requestStartTime();
 	} else {
 		requestEndTime();
@@ -104,6 +103,7 @@ startTimeInput.addEventListener("change", function() {
 });
 
 function requestStartTime(callback) {
+	removeOptions(startTimeInput);
 	$.ajax({
 		url :  getContextPath()+"/booking/reqStartTime",
 		type : "GET",

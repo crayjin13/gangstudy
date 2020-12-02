@@ -8,38 +8,43 @@ import com.jts.gangstudy.domain.User;
 
 
 public interface BookingService {
+	// 예약 추가(sync)
+	public String insertBook(Booking book);
 	// 예약 제거
 	public void removeBook(Booking book);
-	// 예약 추가 요청
-	public String insertBook(Booking book);
-	// 해당 날짜의 예약 목록
+	// 상태 변경
+	public void changeState(Booking book, String state);
+
+	// 날짜로 검색
 	public List<Booking> searchByDate(String date);
+	// 날짜+시간으로 검색
+	public List<Booking> searchByDateTime(LocalDateTime now);
+	// 날짜로 첫 예약 검색
+	public Booking searchByDateFist(String date);
+	// 상태로 검색
+	public List<Booking> searchByState(String string);
+	// 유저의 특정 상태로 검색
+	public List<Booking> searchByUserState(User user, String state);
+	// 유저의 대기중인 예약
+	public Booking searchByUserWait(User user);
 	
-	// 선택 가능한 날짜 목록
+
+	
+	// 날짜 목록
 	public ArrayList<String> makeDates();
 	// 예약 요금
-	public int getCharge(Booking book);
-	
-	
-	
-	// 예약되지 않은 시간 목록
-	public List<String> getUnbookedTimeList(String date, List<Booking> books);
-	
-	// 시작시간 기준의 종료시간 목록
+	public int getAmount(Booking book);
+	// 시간당 요금
+	public int getAmountPerHour();
+
+	// 시작시간 목록
+	public List<String> getStartTimes(String date, List<Booking> books);
+	// 종료시간 목록
 	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate);
 
-	// 대기중인 예약
-	public Booking getWaitBooking(User user);
-	
-	// 특정 상태의 예약
-	public List<Booking> getUserBooking(User user, String state);
-
-	public List<Booking> getTimeBooking(LocalDateTime now);
-	public List<Booking> searchByState(String string);
-	
-	public void changeState(Booking book, String state);
+	// 사용시간(00시간00분)
 	public String getTimeInterval(Booking book);
-	public String getTimeAmount(Booking book);
-	public int getHourPrice();
+	
+	// 시간 유효성 체크
 	public boolean allowsBooking(Booking book);
 }

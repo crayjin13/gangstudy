@@ -151,7 +151,7 @@ public class PaymentController {
 			
 			// 해당 결제 정보 저장
 			Payment payment = new Payment();
-			payment.setAmount(bookingService.getCharge(newBook));
+			payment.setAmount(bookingService.getAmount(newBook));
 			payment.setPoint(0); // 취소시 사용된 포인트를 돌려줘야 할지도?
 			payment.setPg_name("KakaoPay");
 			payment.setTid(tid);
