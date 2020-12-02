@@ -1,16 +1,10 @@
 package com.jts.gangstudy.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,66 +20,16 @@ public class BookingServiceImpl implements BookingService{
 	private BookingMapper mapper;
 	
 	private final int dateSize = 7;			// 예약 신청이 가능한 기간
+	private final int minimumSize = 120;	// 에약 신청 최소 단위
 	private final int minuteSize = 30;		// 에약 신청 시간 단위
 	private final int amount = 500;			// 예약 신청 시간 당 필요 요금
 
-	@Override
-	public int getHourPrice() {
-		return (60 / minuteSize) * amount;
-	}
-	
-	// 전체 예약 목록 (디버깅용)
-	@Override
-	public List<Booking> viewAll() {
-		return mapper.selectAll();
-	}
-	// 예약 추가
-	public void addBook(Booking book) {
-		mapper.insertBook(book);
-	}
-	// 예약 제거
-	@Override
-	public void removeBook(Booking book) {
-		mapper.deleteBook(book.getBook_no());
-	}
-	// 중복 검색
-	public int viewDuplicate(Booking book) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("check_in", book.getCheck_in());
-		map.put("check_out", book.getCheck_out());
-		return mapper.checkDuplicate(map);
-	}
-	// 날짜 검색
-	@Override
-	public List<Booking> viewDate(String date) {
-		return mapper.selectWithDate(date);
-	}
-
-	// 선택 가능한 날짜 목록
-	@Override
-	public ArrayList<String> makeDates() {
-		SimpleDateFormat calFormat = new SimpleDateFormat("yyyy-MM-dd");
-		ArrayList<String> dates = new ArrayList<String>();
-		Calendar cal = Calendar.getInstance();
-		
-		for(int i = 0; i < dateSize; i++) {
-			dates.add(calFormat.format(cal.getTime()));
-	        cal.add(Calendar.DATE, 1);
-		}
-		return dates;
-	}
-	// 예약 요금
-	@Override
-	public int getCharge(Booking book) {
-		Duration duration = book.getDuration();
-		int slot = (int)duration.toMinutes() / minuteSize;
-		// 단위 수 * 단위 금액 * 인원
-		return slot * amount * book.getPeople();
-	}
-
-	// 동기화 처리 된 예약 추가
+	/*						*/
+	/*		데이터베이스 기능	*/
+	/*						*/
+	// 예약 추가(sync)
 	public synchronized String insertBook(Booking book) {
-		int result = viewDuplicate(book);
+		int result = searchDuplicate(book);
 		if(result == 0) {
 			mapper.insertBook(book);
 			return "done";
@@ -97,13 +41,78 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 	
+	// 예약 제거
 	@Override
-	public List<Booking> getStateBooking(String state) {
-		return mapper.selectWithState(state);
+	public void removeBook(Booking book) {
+		mapper.deleteBook(book.getBook_no());
+	}
+
+	// 중복 검색
+	public int searchDuplicate(Booking book) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("check_in", book.getCheck_in());
+		map.put("check_out", book.getCheck_out());
+		return mapper.selectDuplicate(map);
+	}
+
+	// 날짜로 검색
+	@Override
+	public List<Booking> searchByDate(String date) {
+		return mapper.selectByDate(date);
+	}
+
+	// 상태로 검색
+	@Override
+	public List<Booking> searchByState(String state) {
+		return mapper.selectByState(state);
 	}
 	
-	
-	
+
+	/*						*/
+	/*		데이터베이스 기능	*/
+	/*						*/
+	// 선택 가능한 날짜 목록
+	@Override
+	public ArrayList<String> makeDates() {
+		ArrayList<String> dates = new ArrayList<String>();
+		LocalDate localDate = LocalDate.now();
+		
+		for(int i = 0; i < dateSize; i++) {
+			dates.add(localDate.toString());
+			localDate = localDate.plusDays(1);
+		}
+		
+		return dates;
+	}
+
+	// time 목록 반환
+	public List<String> makeTimes(int startHour, int startMin) {
+		List<String> times = new ArrayList<>();
+		LocalDateTime start_dt = LocalDateTime.of(LocalDate.MIN, LocalTime.of(startHour, startMin));
+		LocalDateTime end_dt = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN).plusDays(1);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+		
+		for(; start_dt.isBefore(end_dt); start_dt = start_dt.plusMinutes(minuteSize)) {
+			times.add(dtf.format(start_dt));
+		}
+		
+		return times;
+	}
+
+	// 시간당 요금
+	@Override
+	public int getHourPrice() {
+		return (60 / minuteSize) * amount;
+	}
+	// 예약 요금
+	@Override
+	public int getCharge(Booking book) {
+		Duration duration = book.getDuration();
+		int slot = (int)duration.toMinutes() / minuteSize;
+		// 단위 수 * 단위 금액 * 인원
+		return slot * amount * book.getPeople();
+	}
+
 	
 	// 대기중인 예약
 	@Override
@@ -145,9 +154,9 @@ public class BookingServiceImpl implements BookingService{
 		    	return null;
 		    }
 		    localTime = localTime.getMinute() < 30 ? localTime.withMinute(0) : localTime.withMinute(30);
-	    	timeList = createTimeList(localTime.getHour(), localTime.getMinute());
+	    	timeList = makeTimes(localTime.getHour(), localTime.getMinute());
 	    } else {												// 예약 시간 단위로 모든 예약 시간 생성
-	    	timeList = createTimeList(0, 0);
+	    	timeList = makeTimes(0, 0);
 	    }
 		
 		// 기존 예약을 예약 시간에서 제거
@@ -207,31 +216,39 @@ public class BookingServiceImpl implements BookingService{
 	// 시작시간 기준의 종료시간 목록
 	@Override
 	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate) {
-		// 당일 예약 기준 설정
+		// 시작일 + 시작시간
 		LocalDateTime start_dt = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime));
-		LocalDateTime end_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN).plusDays(1);
-
-		List<Booking> overnight = mapper.viewOvernight(startDate);
-		if(startDate.equals(endDate)) {			// 당일 예약
-			if(startTime.equals("23:30")) {		// 당일 마지막 시간에 예약을 신청하는 경우(==23:30)
+		// 종료일 + 00:00
+		LocalDateTime end_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN);
+		
+		if(start_dt.getDayOfYear() == end_dt.getDayOfYear()) {			// 당일 예약
+			if(start_dt.toLocalTime().isBefore
+				(end_dt.toLocalTime().minusMinutes(minimumSize))) {		// 2시간후부터 선택 가능.
+				start_dt = start_dt.plusMinutes(minimumSize);
+			} else {													// 22시부터는 선택 불가능.
 				return null;
 			}
-			start_dt = start_dt.plusMinutes(minuteSize);
-		} else { 
-			if(overnight.isEmpty()) { 			// 밤을 새는 예약
-				start_dt = end_dt.minusDays(1);
-			} else { 							// 밤을 새는 예약이 이미 있는 경우
+		} else {
+			List<Booking> overnight = mapper.viewOvernight(startDate);
+			if(overnight.isEmpty()) { 									// 밤을 새는 예약 가능.
+				start_dt = start_dt.plusMinutes(minimumSize);			// 시작시간 + 2시간
+				if(start_dt.getDayOfYear() != end_dt.getDayOfYear()) {	// 24시 이전->24시로 설정
+					start_dt = end_dt;
+				}
+			} else { 													// 밤을 새는 예약 불가능.
 				return null;
 			}
 		}
+		// 날짜 비교가 완료되고 종료시간의 최대치를 설정
+		end_dt = end_dt.plusDays(1);
 		
-		System.out.println(
-				"startDate : " + startDate +
-				", startTime : " + startTime +
-				", endDate : " + endDate +
-				", start_dt : " + start_dt.toString() +
-				", end_dt : " + end_dt.toString()
-				);
+//		System.out.println(
+//				"startDate : " + startDate +
+//				", startTime : " + startTime +
+//				", endDate : " + endDate +
+//				", start_dt : " + start_dt.toString() +
+//				", end_dt : " + end_dt.toString()
+//				);
 		
 		List<String> unbookedTimeList = getUnbookedTimeList(endDate, books);	// 예약되지 않은 전체 시간목록
 		List<String> endTimeList = new ArrayList<>();							// 선택 가능한 예약종료 시간목록
@@ -279,25 +296,4 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 	
-	
-	// time 목록 반환
-	public List<String> createTimeList(int startHour, int startMin) {
-		List<String> times = new ArrayList<>();
-		LocalDateTime start_dt = LocalDateTime.of(LocalDate.MIN, LocalTime.of(startHour, startMin));
-		LocalDateTime end_dt = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN).plusDays(1);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-		
-		for(; start_dt.isBefore(end_dt); start_dt = start_dt.plusMinutes(minuteSize)) {
-			times.add(dtf.format(start_dt));
-		}
-		
-		return times;
-	}
-	
-	public LocalDateTime getDateTime(String date, String time) {
-		LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
-		return dateTime;
-	}
-
-
 }

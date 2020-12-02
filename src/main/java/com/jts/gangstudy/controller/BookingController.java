@@ -53,7 +53,7 @@ public class BookingController {
 		
 		
 		// 결제 미완료 등으로 남겨진 에약의 제거
-		List<Booking> unchargeList = bookingService.getStateBooking("uncharge");
+		List<Booking> unchargeList = bookingService.searchByState("uncharge");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		for(Booking book : unchargeList) {
 			LocalDateTime requestDateTime = LocalDateTime.parse(book.getRequest_dt(), formatter).plusHours(9);
@@ -72,7 +72,7 @@ public class BookingController {
 	public List<String> reqStartTime(HttpServletRequest request, HttpSession session) {
 		User sUserId = (User)session.getAttribute("sUserId");
 		String date = request.getParameter("startDate");
-		List<Booking> books = bookingService.viewDate(date);
+		List<Booking> books = bookingService.searchByDate(date);
 		if(sUserId!=null) {
 			Booking book = bookingService.getWaitBooking(sUserId);
 			books.remove(book);
@@ -89,7 +89,7 @@ public class BookingController {
 		String startTime = request.getParameter("startTime");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-		List<Booking> books = bookingService.viewDate(endDate);
+		List<Booking> books = bookingService.searchByDate(endDate);
 		if(sUserId!=null) {
 			Booking book = bookingService.getWaitBooking(sUserId);
 			books.remove(book);

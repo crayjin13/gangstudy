@@ -41,7 +41,7 @@ public class KakaoServiceImpl implements KakaoService {
     @Value("${kakao.restapi_key}")
 	private String client_id;			// 앱 생성 시 발급 받은 REST API 키
     
-	private final static String redirect = "http://localhost:8080/kakao/oauth";			// 인가 코드가 리다이렉트될 URI
+	private final static String redirect = "http://gangstudy.com/kakao/oauth";			// 인가 코드가 리다이렉트될 URI
 
 	@Override
 	public String getLoginUrl() {
