@@ -20,7 +20,7 @@
 	  FROM BOOKING_TB
 	</select>
 	<!-- 지정된 날짜의 예약 목록 조회 -->
-	<select id="selectWithDate" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
+	<select id="selectByDate" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE (TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} OR TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') = #{date})
@@ -41,7 +41,7 @@
 	</select>
 	
 	<!-- 특정상태의 예약 조회 -->
-	<select id="selectWithState" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
+	<select id="selectByState" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO,
 	  		TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT,
 	  		PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD HH24:MI') AS REQUEST_DT
@@ -50,7 +50,7 @@
 	</select>
 	
 	<!-- 유저의 특정상태의 예약 조회 -->
-	<select id="selectWithUserState" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
+	<select id="selectByUserState" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO,
 	  		TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT,
 	  		PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD HH24:MI') AS REQUEST_DT
@@ -59,7 +59,7 @@
 	</select>
 	
 	<!-- 예약시간 중복 확인-->
-	<select id="checkDuplicate" parameterType="hashmap" resultType="int">
+	<select id="selectDuplicate" parameterType="hashmap" resultType="int">
 	  SELECT count(*) cnt
 	  FROM BOOKING_TB
 	  
