@@ -8,14 +8,12 @@ import com.jts.gangstudy.domain.User;
 
 
 public interface BookingService {
-	// 전체 예약 목록 (디버깅용)
-	public List<Booking> viewAll();
 	// 예약 제거
 	public void removeBook(Booking book);
 	// 예약 추가 요청
 	public String insertBook(Booking book);
 	// 해당 날짜의 예약 목록
-	public List<Booking> viewDate(String date);
+	public List<Booking> searchByDate(String date);
 	
 	// 선택 가능한 날짜 목록
 	public ArrayList<String> makeDates();
@@ -37,7 +35,7 @@ public interface BookingService {
 	public List<Booking> getUserBooking(User user, String state);
 
 	public List<Booking> getTimeBooking(LocalDateTime now);
-	public List<Booking> getStateBooking(String string);
+	public List<Booking> searchByState(String string);
 	
 	public void changeState(Booking book, String state);
 	public String getTimeInterval(Booking book);

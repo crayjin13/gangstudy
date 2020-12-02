@@ -22,13 +22,13 @@ var endPicker = new Pikaday({
 });
 
 $(document).ready(function() {
-	if(startDateInput.value!="" && endDateInput.value!="") {
-		setDateRange(startPicker, new Date(), 7);
-		var date = new Date(startDateInput.value);
-		setDateRange(endPicker, date, 1);
+	setDateRange(startPicker, new Date(), 7);
+	setDateRange(endPicker, new Date(), 7);
+	
+	// 로그인 전에 예약정보를 입력했다면 불러온다
+	if(startDateInput.value!="") {
+		setDateRange(endPicker, new Date(startDateInput.value), 1);
 		
-		removeOptions(startTimeInput);
-		removeOptions(endTimeInput);
 		requestStartTime(function() {
 			startTimeInput.value = startTimeInput.getAttribute("time");
 			requestEndTime(function() {
@@ -39,8 +39,6 @@ $(document).ready(function() {
 	} else {
 		startDateInput.value = "시작일을 선택해주세요.";
 		endDateInput.value = "시작일을 선택해주세요.";
-		setDateRange(startPicker, new Date(), 7);
-		setDateRange(endPicker, new Date(), 7);
 	}
 });
 
@@ -120,15 +118,9 @@ function requestStartTime(callback) {
 				startTimeInput.options.add(option);
 				return ;
 			}
-			var option = document.createElement("option");
-			option.text = "시간을 선택해주세요.";
-			option.value = "";
-			startTimeInput.options.add(option);
+			addOption(startTimeInput, "시간을 선택해주세요.", "");
 			for(var i = 0; i < times.length; i++) {
-				var option = document.createElement("option");
-				option.text = times[i];
-				option.value = times[i];
-				startTimeInput.options.add(option);
+				addOption(startTimeInput, times[i], times[i]);
 			}
 			callback();
 		},
@@ -149,15 +141,16 @@ function requestEndTime(callback) {
 				 "endDate" : endDateInput.value,
 			   },
 		success : function(times) {
-			var option = document.createElement("option");
-			option.text = "시간을 선택해주세요.";
-			option.value = "";
-			endTimeInput.options.add(option);
-			for(var i = 0; i < times.length; i++) {
+			if(times.length == 0) {
 				var option = document.createElement("option");
-				option.text = times[i];
-				option.value = times[i];
+				option.text = "해당일에 예약할 수 있는 시간이 없습니다.";
+				option.value = "";
 				endTimeInput.options.add(option);
+				return ;
+			}
+			addOption(endTimeInput, "시간을 선택해주세요.", "");
+			for(var i = 0; i < times.length; i++) {
+				addOption(endTimeInput, times[i], times[i]);
 			}
 			callback();
 		},
@@ -194,19 +187,10 @@ function setDateRange(target, minDate, offset) {
 	target.setMaxDate(maxDate);
 }
 
-function getParameter(parameterName) {
-  var queryString = window.top.location.search.substring(1);
-  var parameterName = parameterName + "=";
-  if ( queryString.length > 0 ) {
-    begin = queryString.indexOf ( parameterName );
-    if ( begin != -1 ) {
-      begin += parameterName.length;
-      end = queryString.indexOf ( "&" , begin );
-        if ( end == -1 ) {
-        end = queryString.length
-      }
-      return unescape ( queryString.substring ( begin, end ) );
-    }
-  }
-  return "null";
+function addOption(target, text, value) {
+	var option = document.createElement("option");
+	option.text = text;
+	option.value = value;
+	option.name = value;
+	target.options.add(option);
 }
