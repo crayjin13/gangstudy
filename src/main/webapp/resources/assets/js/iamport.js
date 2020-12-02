@@ -1,4 +1,4 @@
-  
+   
   $(function(){
 	  $('#pay').on('click',function(e){
         var IMP = window.IMP; // 생략가능
