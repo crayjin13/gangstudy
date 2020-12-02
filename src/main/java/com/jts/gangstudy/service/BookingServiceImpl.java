@@ -69,7 +69,7 @@ public class BookingServiceImpl implements BookingService{
 	
 
 	/*						*/
-	/*		데이터베이스 기능	*/
+	/*		페이지 정보 기능	*/
 	/*						*/
 	// 선택 가능한 날짜 목록
 	@Override
@@ -131,7 +131,7 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public List<Booking> getTimeBooking(LocalDateTime dateTime) {
 		String formatDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		return mapper.selectWithDateTime(formatDateTime);
+		return mapper.selectByDateTime(formatDateTime);
 	}
 	
 	@Override
@@ -139,7 +139,7 @@ public class BookingServiceImpl implements BookingService{
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("user_no", user.getUser_no().toString());
 		map.put("state", state);
-		List<Booking> books = mapper.selectWithUserState(map);
+		List<Booking> books = mapper.selectByUserState(map);
 		return books;
 	}
 
