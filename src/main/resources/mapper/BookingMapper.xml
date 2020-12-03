@@ -41,10 +41,10 @@
 	</select>
 	
 	<!-- 날짜로 첫 예약 조회 -->
-	<select id="selectByDateFirst" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
+	<select id="selectByDateTimeFirst" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
-	  WHERE (TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND (STATE='wait' OR STATE='uncharge'))
+	  WHERE <![CDATA[ (TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') > #{dateTime} AND (STATE='wait' OR STATE='uncharge')) ]]>
 	  ORDER BY CHECK_IN
 	</select>
 	
@@ -80,9 +80,12 @@
 	</select>
 	
 	<!-- 날짜를 걸친 예약 조회 -->
-	<select id="viewOvernight" parameterType="string" resultType="com.jts.gangstudy.domain.Booking">
+	<select id="selectOvernightWithoutBookno" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') != #{date}
+	  		AND ((STATE='uncharge') OR (STATE='wait'))
+	  		AND BOOK_NO != #{book_no}
+	  
 	</select>
 </mapper>
