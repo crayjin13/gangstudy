@@ -96,6 +96,14 @@ public class HomeController {
 	public String admin() {
 		return "pages/admin";
 	}
+	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
+	public String privacyPolicy() {
+		return "partials/privacyPolicy";
+	}
+	@RequestMapping(value = "/TermsOfService", method = RequestMethod.GET)
+	public String TermsOfService() {
+		return "partials/TermsOfService";
+	}
 
 	
 	
