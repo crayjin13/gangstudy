@@ -1,6 +1,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+  
+  <script >     
+  function showPopup() {     
+  var url = "privacyPolicy";
+  var name = "showPopup";      
+   window.open(url,name, "width=1000, height=800, left=100, top=50"); }
+  
+  
+  function terms() {     
+  var url = "TermsOfService";
+  var name = "terms";      
+   window.open(url,name, "width=1000, height=800, left=100, top=50"); }
+
+  
+  
+  </script>
+
+    
 <!--begin::Footer-->
 					<div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
 
@@ -12,8 +32,11 @@
 								<span class="text-muted font-weight-bold mr-2">모임공간 운영시간 : 365일 24시 이용가능 | 사업자명:갱스터디 | 대표이사:김정훈 </span>
 								<a href="
 http://naver.me/FQhzErkA" target="_blank" class="text-dark-75 text-hover-primary"> 주소 : 경기도 용인시 처인구 명지로 24, 205호(역북동, 용인역북더럭스나인 상가)</a>
-								   <a type="button" onclick="/TermsOfService">이용약관</a><br>
-      <button type="button" onclick="location.href='privacyPolicy.jsp' ">개인정보처리방침</button>
+								  <a href="javascript:showPopup();" > 개인정보처리방침 </a>
+								  <a href="javascript:terms();" > 이용약관 </a>
+     
+
+     
 							
 							</div>
       
