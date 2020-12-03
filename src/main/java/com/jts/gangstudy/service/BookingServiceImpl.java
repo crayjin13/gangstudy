@@ -79,10 +79,10 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	// 날짜로 첫 예약 검색
-	@Override
-	public Booking searchByDateFist(String date) {
-		List<Booking> books = mapper.selectByDateFirst(date);
-		if(books.isEmpty()) {
+	public Booking searchByDateTimeFist(LocalDateTime dateTime) {
+		String formatDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		List<Booking> books = mapper.selectByDateTimeFirst(formatDateTime);
+		if(books.size() == 0) {
 			return null;
 		} else {
 			return books.get(0);
@@ -177,11 +177,15 @@ public class BookingServiceImpl implements BookingService{
 
 	// 시작시간 목록
 	@Override
-	public List<String> getStartTimes(String date, List<Booking> books) {
+	public List<String> getStartTimes(Booking userBook, String startDate) {
+		List<Booking> books = searchByDate(startDate);
 	    List<String> timeList = null;
+	    if(userBook != null) {
+	    	books.remove(userBook);
+	    }
 	    
 	    // 선택가능한 시간 생성
-	    if(LocalDate.now().isEqual(LocalDate.parse(date))) {
+	    if(LocalDate.now().isEqual(LocalDate.parse(startDate))) {
 	    	LocalTime localTime = LocalTime.now().plusHours(1);
 	    	
 		    if(localTime.getHour() == 0) { // 23시 지나갔음.
@@ -196,23 +200,24 @@ public class BookingServiceImpl implements BookingService{
 		
 		// 가능한 시간에서 예약된 시간 제거
 		for(Booking book : books) {
-			removeTimes(timeList, date, book);
+			removeTimes(timeList, startDate, book);
 		}
 		return timeList;
 	}
 
 	// 일정구간 예약을 지우는 함수
 	public void removeTimes(List<String> times, String date, Booking book) {
-		String startDate = book.getciDate().toString();
-		String endDate = book.getcoDate().toString();
-		// 예약의 시작일-시작시 로 된 localdatetime 생성
-		LocalDateTime startDateTime = book.getciDateTime();
+		// 예약의 시작일시 -2시간
+		LocalDateTime startDateTime = book.getciDateTime().minusMinutes(minimumSize).plusMinutes(minuteSize);
+		String startDate = startDateTime.toLocalDate().toString();
+		// 예약의 종료일시
 		LocalDateTime endDateTime = book.getcoDateTime();
+		String endDate = endDateTime.toLocalDate().toString();
 		
-		if(!date.equals(startDate)) {		// date != book.startdate 인 경우 -> startdatetime을 date+1일 0시 0분 으로 설정
+		if(!date.equals(startDate)) {		// date != book.startdate 인 경우 -> startDateTime을 date+1일 0시 0분 으로 설정
 			startDateTime = startDateTime.plusDays(1);
 			startDateTime = startDateTime.with(LocalTime.MIN);
-		} else if(!date.equals(endDate)) {	// date != book.enddate 인 경우   -> enddatetime을   date+1일 0시 0분 으로 설정
+		} else if(!date.equals(endDate)) {	// date != book.enddate 인 경우   -> endDateTime  을 date+1일 0시 0분 으로 설정
 			endDateTime = endDateTime.with(LocalTime.MIN);
 		}
 
@@ -226,65 +231,115 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 종료시간 목록
 	@Override
-	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate) {
-		// 시작일시
-		LocalDateTime from_dt = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime));
-		// 종료일 + 00:00
-		LocalDateTime to_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN);
+	public List<String> getEndTimes(Booking userBook, String startDate, String startTime, String endDate) {
+		// 최소 선택가능한 일시
+		LocalDateTime min_dt = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime));
+		// 최대 선택가능한 일시
+		LocalDateTime max_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN);
+		// 최소일시 다음 예약의 시작일시
+		LocalDateTime nextBook_dt = getNextBookingCIDT(min_dt, max_dt.plusDays(1), userBook);
 		// 밤샘예약
-		List<Booking> overNight = mapper.viewOvernight(startDate);
-		
-		if(from_dt.toLocalDate().isEqual(to_dt.toLocalDate())) {
-			if(from_dt.isBefore( to_dt.plusDays(1).minusMinutes(minimumSize) )) {
-				// 시작시간+2시간 에서 내일 00시 까지 확인
-				System.out.println("시작시간+2시간 에서 내일 00시 까지 확인");
-				from_dt = from_dt.plusMinutes(minimumSize);
-				to_dt = to_dt.plusDays(1);
-			} else {
-				System.out.println("22시 이후 선택 = 선택할 수 있는 시간 없음");
-				return null;
-			}
-		} else if(!overNight.isEmpty()) {
+		Boolean allowsOvernight = allowsOvernight(min_dt.toLocalDate().toString(), userBook);
+	    min_dt = getMinDateTime(min_dt, max_dt, allowsOvernight);
+		max_dt = max_dt.plusDays(1);
+
+		System.out.println("min_dt : "+min_dt);
+		System.out.println("max_dt : "+max_dt);
+		System.out.println("nextBook_dt : "+nextBook_dt);
+		if(min_dt == null) {	// 선택가능한 시간이 없음.
 			return null;
-		} else {
-			if(from_dt.isBefore( to_dt.minusMinutes(minimumSize) )) {
-				// 내일 00시 에서 모레 00시 까지 확인
-				System.out.println("내일 00시 에서 모레 00시 까지 확인");
-				from_dt = to_dt;
-				to_dt = to_dt.plusDays(1);
-			} else {
-				// 내일 00시 + 초과시간 에서 모레 00시 까지 확인
-				System.out.println("내일 00시 + 초과시간 에서 모레 00시 까지 확인");
-				from_dt = from_dt.plusMinutes(minimumSize);
-				to_dt = to_dt.plusDays(1);
-			}
 		}
 		
-		
-		System.out.println(
-				"from_dt : " + from_dt +
-				", to_dt : " + to_dt
-				);
-
-//	    List<String> times = makeTimes(from_dt.getHour(), from_dt.getMinute());
 	    List<String> times = new ArrayList<String>();
-	    Booking firstBook = searchByDateFist(to_dt.toLocalDate().toString());
-	    LocalDateTime firstBook_dt;
-	    if(firstBook != null) {
-	    	firstBook_dt = firstBook.getcoDateTime();
-	    } else {
-	    	firstBook_dt = to_dt;
-	    }
-	    
-	    // from_dt의 time이 종료시간 or firstBook의 시작시간 이전인가?
-	    // 맞다면 추가
-	    // from_dt의 시간을 minuteSize 만큼 증가.
-	    for(;	from_dt.isBefore(firstBook_dt) && from_dt.isBefore(to_dt);
-	    		from_dt = from_dt.plusMinutes(minuteSize)) {
-	    	times.add(from_dt.toLocalTime().toString());
+	    // 다음예약 시작일시 or 최대 선택가능일시 까지 time을 추가
+	    for(;
+	    		!min_dt.isAfter(nextBook_dt) && min_dt.isBefore(max_dt);
+	    		min_dt = min_dt.plusMinutes(minuteSize)) {
+	    	times.add(min_dt.toLocalTime().toString());
 	    }
 		
 		return times;
+	}
+ 
+	// 최소일시 다음 예약의 시작일시
+	public LocalDateTime getNextBookingCIDT(LocalDateTime min_dt, LocalDateTime max_dt, Booking userBook) {
+		// min 3일, max 3일	-> 최대선택가능일시 = 4일00시
+		// min 3일, max 4일	-> 최대선택가능일시 = 5일00시
+		// 고른시간 3일 23:30 원하는 목록 4일 00:00 ~
+		
+		LocalDateTime nextBook_dt = null;
+		Booking firstBook = searchByDateTimeFist(min_dt);
+		
+		Booking secondBook = null;
+		
+		if(firstBook != null) {					// 첫 예약이 있는 경우
+	    	if(firstBook.equals(userBook)) {	// 첫 예약 = 사용자 예약인 경우
+	    		secondBook = searchByDateTimeFist(userBook.getcoDateTime());
+	    		if(secondBook != null) {		// 두번째 예약이 있는 경우
+	    			// 다음예약 시작일시 = 두번째예약 시작일시
+	    			nextBook_dt = secondBook.getciDateTime();
+	    		} else {						// 두번째 예약이 없는 경우
+	    			// 다음예약 시작일시 = 최대 선택가능한 일시
+			    	nextBook_dt = max_dt;
+	    		}
+	    	} else {							// 첫 예약 != 사용자 예약
+		    	// 다음예약 시작일시 = 첫예약 시작일시
+	    		nextBook_dt = firstBook.getciDateTime();
+	    	}
+	    } else {								// 첫 예약이 없는 경우
+	    	// 다음예약 시작일시 = 최대 선택가능한 일시
+	    	nextBook_dt = max_dt;
+	    }
+		return nextBook_dt;
+	}
+	
+	// 최소일시 얻기
+	public LocalDateTime getMinDateTime(LocalDateTime min_dt, LocalDateTime max_dt, Boolean allowsOvernight) {
+		System.out.println("allowsOvernight : "+allowsOvernight);
+		// 시작일과 종료일을 통해 밤샘예약에 따른 최소일시 얻기.
+		if(min_dt.toLocalDate().isEqual(max_dt.toLocalDate())) {
+			if(min_dt.isBefore( max_dt.plusDays(1).minusMinutes(minimumSize) )) {
+				// 최소일시+2시간 ~
+				min_dt = min_dt.plusMinutes(minimumSize);
+			} else {
+				System.out.println("null1");
+				return null;
+			}
+		} else if(allowsOvernight) {
+			if(min_dt.isBefore( max_dt.minusMinutes(minimumSize) )) {
+				// 내일 00시 ~
+				min_dt = max_dt;
+			} else {
+				// 내일 00시 + 초과시간 ~
+				min_dt = min_dt.plusMinutes(minimumSize);
+			}
+		} else {
+			System.out.println("null2 ");
+			return null;
+		}
+		return min_dt;
+	}
+	
+	// 해당 예약을 제외한, 밤샘예약이 있는지 확인
+	public Boolean allowsOvernight(String date, Booking book) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String book_no;
+		map.put("date", date);
+		
+		if(book != null) {
+			book_no = Integer.toString(book.getBook_no());
+		} else {
+			book_no = "";
+		}
+		map.put("book_no", book_no);
+		List<Booking> books = mapper.selectOvernightWithoutBookno(map);
+
+		System.out.println("books.isEmpty() : " + books.isEmpty());
+		if(books.isEmpty()) {
+			return true;
+		}
+		System.out.println("books.get(0).. : " + books.get(0).getBook_no());
+		return false;
 	}
 	
 	// 시간 유효성 체크

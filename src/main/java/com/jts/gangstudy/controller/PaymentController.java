@@ -108,7 +108,7 @@ public class PaymentController {
 	@RequestMapping(value = "/cancelAndBooking", method = RequestMethod.GET)
 	public String cancelAndBooking(HttpServletRequest request, HttpSession session) {
 		Booking oldBook = (Booking)session.getAttribute("oldBook");
-		Booking newBook = (Booking)session.getAttribute("book");
+		Booking newBook = (Booking)session.getAttribute("newBook");
 		int usePoint = (int)session.getAttribute("usePoint");
 		
 		Payment payment = paymentService.selectPayment(oldBook);
@@ -123,6 +123,12 @@ public class PaymentController {
 		if(map.get("status").equals("CANCEL_PAYMENT")) {									// 전액 취소 성공
 			// 이전 결제 정보 취소 처리
 			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
+			// 기존 예약을 취소로 변경
+			bookingService.changeState(oldBook, "cancel");
+			String result = bookingService.insertBook(newBook);
+			if(result.equals("duplicate")) {
+				return "?booking=duplicate";
+			}
 			return "redirect:" + "/booking/cancelAndBooking";
 		}
 		return "redirect:" + "/?cancelAndBooking=fail";
@@ -134,10 +140,10 @@ public class PaymentController {
 	@RequestMapping(value = "/cancelAndChange", method = RequestMethod.GET)
 	public String cancelAndChange(HttpServletRequest request, HttpSession session) {
 		Booking oldBook = (Booking)session.getAttribute("oldBook");
-		Booking newBook = (Booking)session.getAttribute("book");
-		Integer amount = (int)session.getAttribute("amount");
+		Booking newBook = (Booking)session.getAttribute("newBook");
+		Integer amount = -(int)session.getAttribute("amount");
 		Integer usePoint = (int)session.getAttribute("usePoint");
-		
+		System.out.println("is null? " + newBook);
 		String tid = paymentService.selectPayment(oldBook).getTid();
 		
 		HashMap<String, String> map = kakaoPayService.cancel(tid, amount.toString());		// 차액 취소 요청
@@ -157,8 +163,7 @@ public class PaymentController {
 			payment.setTid(tid);
 			payment.setPay_type(map.get("pay_type"));
 			payment.setState("paid");
-			payment.setBook_no(newBook.getBook_no());
-			paymentService.insertPayment(payment);
+			session.setAttribute("payment", payment);
 			
 			return "redirect:" + "/booking/cancelAndChange";
 		}

@@ -12,10 +12,10 @@ public interface BookingMapper {
 	
 	public List<Booking> selectByDate(String date);
 	public List<Booking> selectByDateTime(String dateTime);
-	public List<Booking> selectByDateFirst(String date);
+	public List<Booking> selectByDateTimeFirst(String dateTime);
 	public List<Booking> selectByState(String state);
 	public List<Booking> selectByUserState(HashMap<String, String> map);
 	
 	public int selectDuplicate(HashMap<String, String> map);
-	public List<Booking> viewOvernight(String date);
+	public List<Booking> selectOvernightWithoutBookno(HashMap<String, String> map);
 }

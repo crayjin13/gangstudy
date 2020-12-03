@@ -19,10 +19,8 @@ public interface BookingService {
 	public List<Booking> searchByDate(String date);
 	// 날짜+시간으로 검색
 	public List<Booking> searchByDateTime(LocalDateTime now);
-	// 날짜로 첫 예약 검색
-	public Booking searchByDateFist(String date);
 	// 상태로 검색
-	public List<Booking> searchByState(String string);
+	public List<Booking> searchByState(String state);
 	// 유저의 특정 상태로 검색
 	public List<Booking> searchByUserState(User user, String state);
 	// 유저의 대기중인 예약
@@ -38,9 +36,9 @@ public interface BookingService {
 	public int getAmountPerHour();
 
 	// 시작시간 목록
-	public List<String> getStartTimes(String date, List<Booking> books);
+	public List<String> getStartTimes(Booking userBook, String startDate);
 	// 종료시간 목록
-	public List<String> getEndTimes(List<Booking> books, String startDate, String startTime, String endDate);
+	public List<String> getEndTimes(Booking userBook, String startDate, String startTime, String endDate);
 
 	// 사용시간(00시간00분)
 	public String getTimeInterval(Booking book);
