@@ -1,4 +1,4 @@
-  
+   
   $(function(){
 	  $('#pay').on('click',function(e){
         var IMP = window.IMP; // 생략가능
@@ -11,9 +11,9 @@
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : '갱스터디',
             amount : document.getElementById("totalAmount").textContent,
-            buyer_email : 'GANGSTUDY@gmail.com',
-            buyer_name : '갱학생',
-            buyer_tel : '010-1234-5678',
+            buyer_email : '',
+            buyer_name : '',
+            buyer_tel : '',
             //m_redirect_url : 'http://www.naver.com' 모바일 결제시, 결제가 끝나고 랜딩되는 URL을 지정 (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐) 
         }, function(rsp) {
             if ( rsp.success ) {
@@ -50,7 +50,7 @@
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
-                window.location.href='/';
+              //  window.location.href='/';
                 //실패시 이동할 페이지
                // location.href="<%=request.getContextPath()%>/order/payFail";
                 alert(msg);

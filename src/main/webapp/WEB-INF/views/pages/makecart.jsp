@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -342,7 +343,6 @@ License: You must have a valid license purchased only from themeforest(the above
 																href="javascript:;"
 																class="btn btn-xs btn-light-success btn-icon"> <i    
 																	class="ki ki-plus icon-xs"></i>
-
 															</td>
 															-->
 															<td class="text-right align-middle font-weight-bolder ">보유 포인트:<br/>
@@ -372,7 +372,9 @@ License: You must have a valid license purchased only from themeforest(the above
 															<td colspan="2" class="border-0 text-right pt-10">
 															<a
 																class="btn btn-light-primary font-weight-bolder px-8"
-																id="payments">결제하기 </a></td>
+																id="payments">결제하기 </a>
+																<button class="btn btn-light-primary font-weight-bolder px-8" id="pay">다날 결제 </button>
+																</td>
 														</tr>
 														<!--end::Cart Footer-->     
 													</tbody>
@@ -409,9 +411,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								href="/" target="_blank"
 								class="text-dark-75 text-hover-primary">갱스터디</a>
 						</div>
-
 						<!--end::Copyright-->
-
 						<!--begin::Nav-->
 						<div class="nav nav-dark">
 							<a href="http://pf.kakao.com/_xbgCJxb" target="_blank"
@@ -576,6 +576,11 @@ License: You must have a valid license purchased only from themeforest(the above
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<!--end::Global Theme Bundle-->
 	<script src="${pageContext.request.contextPath}/resources/js/makecart.js"></script>
+	<!--begin:: I'm port -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/iamport.js"></script>
+			<!--end:: I'm port  -->
 </body>
 <!--end::Body-->
 </html>
+
