@@ -116,6 +116,7 @@ public class KakaoServiceImpl implements KakaoService {
         
 			try (CloseableHttpResponse response = httpClient.execute(httpPost)){
 		        String json = EntityUtils.toString(response.getEntity());
+		        System.out.println(json);
 		        User user = parseProfile(new JSONObject(json));
 		        return user;
 			}
@@ -164,15 +165,20 @@ public class KakaoServiceImpl implements KakaoService {
 		
 		// name(nickname)
 		String name = null;
-		JSONObject profile = kakao_account.getJSONObject("profile");
-		if(profile.has("nickname")) {
-			name = profile.getString("nickname");
+		try {
+			JSONObject profile = kakao_account.getJSONObject("profile");
+			if(profile.has("nickname")) {
+				name = profile.getString("nickname");
+			}
+		} catch(org.json.JSONException e) {
+			name="사용자";
 		}
 		System.out.println("[Debug] name : " + name + 
-							", phone_number : " + phone_number + 
-							", id : " + id + 
-							", birthdate : " + birthdate + 
-							", gender : " + gender);
+				", phone_number : " + phone_number + 
+				", id : " + id + 
+				", birthdate : " + birthdate + 
+				", gender : " + gender);
+		
 		
 		return new User(name, phone_number, id, "#", "", new Date(date.getTime()), gender);
 	}
