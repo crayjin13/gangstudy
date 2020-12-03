@@ -85,7 +85,7 @@ public class HomeController {
 	
 
 	
-	
+	  
 	
 	
 	@RequestMapping(value = "/faq", method = RequestMethod.GET)
@@ -95,6 +95,15 @@ public class HomeController {
 	@RequestMapping(value = "/jts", method = RequestMethod.GET)
 	public String admin() {
 		return "pages/admin";
+	}
+	
+	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
+	public String privacyPolicy() {
+		return "partials/privacyPolicy";
+	}
+	@RequestMapping(value = "/TermsOfService", method = RequestMethod.GET)
+	public String TermsOfService() {
+		return "partials/TermsOfService";
 	}
 
 	
