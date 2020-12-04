@@ -10,14 +10,14 @@ const endTimeValue = document.getElementById("endTimeValue");
 var startPicker = new Pikaday({
     field: startDateInput,
     format: 'YYYY-MM-DD',
-    toString(date) {
+    toString : function(date) {
         return getFormatDate(date);
     }
 });
 var endPicker = new Pikaday({
     field: endDateInput,
     format: 'YYYY-MM-DD',
-    toString(date) {
+    toString : function(date) {
         return getFormatDate(date);
     }
 });

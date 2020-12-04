@@ -63,8 +63,8 @@
 						</svg>
 
 						end::Svg Icon
-					</span> -->
-		</button>
+					</span> 
+		</button>-->
 
 		<!--end::Topbar Mobile Toggle-->
 	</div>
