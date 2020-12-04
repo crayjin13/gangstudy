@@ -14,9 +14,6 @@
     font-style: normal;
 </style>
 
-
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <!--begin::Entry-->
 
 
@@ -169,8 +166,3 @@
 <!--[html-partial:begin:{"id":"demo1/dist/inc/view/partials/content/dashboards/demo1","page":"index"}]/-->
 
 <!--end::Entry-->
-
-<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/mainBook.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/inappBridge.js"></script>

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -77,6 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/light.css"
 	rel="stylesheet" type="text/css" />
 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/pikaday/pikaday.css">
 <!--end::Layout Themes-->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/favicon.ico" />
 </head>
@@ -204,6 +207,11 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Page Scripts(used by this page)-->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/pages/widgets.js"></script>
 
+	<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/pikaday.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/mainBook.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/inappBridge.js"></script>
 	<!--end::Page Scripts-->
 </body>
 
