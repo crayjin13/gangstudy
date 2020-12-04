@@ -224,7 +224,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<td class="text-center align-middle"><div class="form-group" style="width:120%;" >     
 													   
 													
-														<input id="kt_touchspin_1" type="text"
+														<input id="touchspin" type="text"
 															class="form-control" value=${userCount} name="demo"
 															style="text-align: center; width:20px;">
 													</div> <!-- <a
@@ -254,7 +254,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<div class="text-dark">총 이용시간</div>
 															</td>
 
-															<td class="text-center align-middle"><input
+															<td class="text-center align-middle"><input	
 																id="time" type="text" class="form-control" value="${timeInterval}"
 																name="demo0" placeholder="Select time" readonly
 																style="text-align: center; width:120%;" /></td>
@@ -570,8 +570,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-touchspin.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<!--end::Global Theme Bundle-->

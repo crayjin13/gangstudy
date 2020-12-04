@@ -2,7 +2,7 @@
  * 
  */
 const totalAmount = document.getElementById("totalAmount");
-const people = document.getElementById("kt_touchspin_1");
+const people = document.getElementById("touchspin");
 const chargePerPeople = document.getElementById("chargePerPeople");
 const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
 const pointMax = document.getElementById("pointMax");
@@ -64,22 +64,35 @@ people.addEventListener("change", function() {
 		people.value = 1;
 	}
 	
-	totalAmount.textContent = chargePerPeople.textContent * people.value + "원";
+	totalAmount.textContent = chargePerPeople.textContent * people.value;
 });
 
 window.addEventListener('load', function(){
+	$('#touchspin').TouchSpin({
+            buttondown_class: 'btn btn-secondary',
+            buttonup_class: 'btn btn-secondary',
+
+            min: 1,
+            max: 6,
+            step: 1,  
+           // decimals: 2, 소수점 몇자리
+            boostat: 5,
+            maxboostedstep: 10000000,
+            
+        });
+
 	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("click", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 	});
 	
 	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("click", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 	});
 	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("touchend", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 	});
 	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("touchend", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value)+ "원";
+		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 	});
 });
 

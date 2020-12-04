@@ -27,6 +27,9 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	@Autowired
 	private PaymentMapper mapper;
 
+    @Value("${gang.domain}")
+    private String domain;													// 도메인 이름
+    
     @Value("${kakao.ready}")
 	private String ready;													// Kakao 결제 준비
     @Value("${kakao.complete}")
@@ -55,7 +58,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	private final static String vat_amount = "100";							// 상품 부가세 금액
 
 	@Override
-	public HashMap<String, String> ready(String domain, String deviceType, int amount) {
+	public HashMap<String, String> ready(String deviceType, int amount) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			URI uri = new URI(ready);

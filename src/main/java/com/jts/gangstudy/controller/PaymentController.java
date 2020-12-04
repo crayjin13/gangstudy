@@ -47,10 +47,8 @@ public class PaymentController {
 		int amount = (int)session.getAttribute("amount");			// 결제 비용
 		int usePoint = (int)session.getAttribute("usePoint");		// 사용한 포인트
 		String deviceType = paymentService.getDeviceType(request);	// 결제 요청 장비
-		String domain = request.getScheme()+"://"+request.getServerName() + ":" +request.getServerPort(); // 요청 도메인
 		
-		System.out.println(domain);
-		HashMap<String, String> map = kakaoPayService.ready(domain, deviceType, amount-usePoint);
+		HashMap<String, String> map = kakaoPayService.ready(deviceType, amount-usePoint);
 		
 		session.setAttribute("tid", map.get("tid"));
 		return "redirect:" + map.get("url");
