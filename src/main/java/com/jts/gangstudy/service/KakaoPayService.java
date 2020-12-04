@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.jts.gangstudy.domain.Payment;
 
 public interface KakaoPayService {
-	public HashMap<String, String> ready(String domain, String deviceType, int amount);
+	public HashMap<String, String> ready(String deviceType, int amount);
 
 	public HashMap<String, String> getPayInfo(String tid, String pg_token);
 	

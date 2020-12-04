@@ -31,6 +31,9 @@ public class KakaoServiceImpl implements KakaoService {
 	@Autowired
 	private KakaoMapper mapper;
 
+    @Value("${gang.domain}")
+    private String domain;													// 도메인 이름
+    
     @Value("${kakao.login}")
 	private String login;			// Kakao 인가코드 요청 URI
     @Value("${kakao.token}")
@@ -40,8 +43,6 @@ public class KakaoServiceImpl implements KakaoService {
 	
     @Value("${kakao.restapi_key}")
 	private String client_id;			// 앱 생성 시 발급 받은 REST API 키
-    
-	private final static String redirect = "http://gangstudy.com/kakao/oauth";			// 인가 코드가 리다이렉트될 URI
 
 	@Override
 	public String getLoginUrl() {
@@ -50,7 +51,7 @@ public class KakaoServiceImpl implements KakaoService {
 			uri = new URI(login);
 			uri = new URIBuilder(uri)
 					.addParameter("client_id", client_id)
-					.addParameter("redirect_uri", redirect)
+					.addParameter("redirect_uri", domain+"kakao/oauth")
 					.addParameter("response_type", "code")
 					.build();
 			return uri.toString();
@@ -68,7 +69,7 @@ public class KakaoServiceImpl implements KakaoService {
 			uri = new URIBuilder(uri)
 			        .addParameter("grant_type", "authorization_code")					// authorization_code로 고정
 			        .addParameter("client_id", client_id)								// 앱 생성 시 발급 받은 REST API
-			        .addParameter("redirect_uri", redirect)								// 인가 코드가 리다이렉트된 URI
+			        .addParameter("redirect_uri", domain+"kakao/oauth")								// 인가 코드가 리다이렉트된 URI
 			        .addParameter("code", code)											// 인가 코드 받기 요청으로 얻은 인가 코드	
 			        .build();
 			
