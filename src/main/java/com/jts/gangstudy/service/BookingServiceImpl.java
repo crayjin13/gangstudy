@@ -117,7 +117,12 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return book;
 	}
-	
+
+	// 예약 번호로 검색
+	@Override
+	public Booking searchByBookNo(Booking book) {
+		return mapper.selectByBookNo(book.getBook_no());
+	}
 
 	/*						*/
 	/*		페이지 정보 기능	*/
@@ -354,5 +359,5 @@ public class BookingServiceImpl implements BookingService{
 		return true;
 	}
 
-	
+
 }

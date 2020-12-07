@@ -15,6 +15,7 @@ public interface BookingMapper {
 	public List<Booking> selectByDateTimeFirst(String dateTime);
 	public List<Booking> selectByState(String state);
 	public List<Booking> selectByUserState(HashMap<String, String> map);
+	public Booking selectByBookNo(int book_no);
 	
 	public int selectDuplicate(HashMap<String, String> map);
 	public List<Booking> selectOvernightWithoutBookno(HashMap<String, String> map);
