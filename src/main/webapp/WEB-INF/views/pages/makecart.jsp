@@ -16,11 +16,9 @@ Purchase: https://1.envato.market/EA4JP
 Renew Support: https://1.envato.market/EA4JP
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-<html lang="en">
+<html lang="ko">
 
 <style>
- 
- 
 @font-face { 
     font-family: 'Cafe24Oneprettynight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
@@ -28,9 +26,9 @@ License: You must have a valid license purchased only from themeforest(the above
     font-style: normal;
 }
 </style>
+
 <!--begin::Head-->
 <head>
-<base href="../../../">
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width user-scalable=no, initial-scale=1, shrink-to-fit=no" />
