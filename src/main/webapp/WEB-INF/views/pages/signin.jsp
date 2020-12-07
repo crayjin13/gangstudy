@@ -113,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 				<!--end::Aside-->
 			</div>
-			<!--end::Login-->			<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>
+			<!--end::Login-->			<div>			<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>			</div>
 		</div>
 		<!--end::Main-->
 		<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>

@@ -11,9 +11,9 @@
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : '갱스터디',
             amount : document.getElementById("totalAmount").textContent,
-            buyer_email : '',
-            buyer_name : '',
-            buyer_tel : '',
+            buyer_email : '${sUserId.email}',
+            buyer_name : '${sUserId.name}',
+            buyer_tel : '${sUserId.phone}',
             //m_redirect_url : 'http://www.naver.com' 모바일 결제시, 결제가 끝나고 랜딩되는 URL을 지정 (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐) 
         }, function(rsp) {
             if ( rsp.success ) {
@@ -44,7 +44,9 @@
                 });
                 //성공시 이동할 페이지
                	//location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
-               
+                location.href='<%=request.getContextPath()%>/order-details';
+                	
+                	
                 window.location.href='/booking/check';
                 alert('결제가 완료되었습니다');
             } else {
