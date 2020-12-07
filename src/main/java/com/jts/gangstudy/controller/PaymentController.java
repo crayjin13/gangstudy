@@ -94,6 +94,7 @@ public class PaymentController {
 		return "redirect:" + "/booking/complete";
 	}
 
+	// kakaopay실패 url
 	@RequestMapping(value = "/fail", method = RequestMethod.GET)
 	public String fail(HttpServletRequest request, HttpSession session) {
 		Booking book = (Booking)session.getAttribute("book");
@@ -104,6 +105,36 @@ public class PaymentController {
 		session.removeAttribute("amount");
 		System.out.println("fail");
 		return "?payment=fail";
+	}
+	
+	// kakaoPay를 통한 취소 요청
+	@UserLoginCheck
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public String cancel(HttpServletRequest request, HttpSession session) {
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = bookingService.searchByUserWait(user);
+		if(book==null) {
+			return "redirect:" + "/?book=null";
+		}
+		Payment payment = paymentService.selectPayment(book);
+		
+		String tid = payment.getTid();
+		Integer paidMoney = payment.getAmount();
+		
+		HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString());	// 취소 요청
+
+		if(map==null) {
+			return "redirect:" + "/?cancel=fail";
+		}
+		if(map.get("status").equals("PART_CANCEL_PAYMENT") ||
+				   map.get("status").equals("CANCEL_PAYMENT")) {							// 취소 성공
+			// 이전 결제 정보 취소 처리
+			paymentService.changeState(payment, "cancelled");
+			// 기존 예약을 취소로 변경
+			bookingService.changeState(book, "cancel");
+			return "redirect:" + "/";
+		}
+		return "redirect:" + "/?cancel=fail";
 	}
 	
 	// 전액 취소 후 다시 예약 에서 취소 단계
@@ -125,7 +156,7 @@ public class PaymentController {
 		}
 		if(map.get("status").equals("CANCEL_PAYMENT")) {									// 전액 취소 성공
 			// 이전 결제 정보 취소 처리
-			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
+			paymentService.changeState(payment, "cancelled");
 			// 기존 예약을 취소로 변경
 			bookingService.changeState(oldBook, "cancel");
 			String result = bookingService.insertBook(newBook);
