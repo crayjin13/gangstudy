@@ -441,4 +441,5 @@ public class BookingController {
 		// 변경 결과 페이지
 		return "redirect:/booking/check";
 	}
+	
 }
