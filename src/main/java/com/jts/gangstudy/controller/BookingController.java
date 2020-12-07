@@ -60,7 +60,6 @@ public class BookingController {
 			if(book.getciDateTime().isBefore(now)) {										// 지금보다 이전의 예약 제거
 				bookingService.removeBook(book);
 			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
-				System.out.println("request : "+ requestDateTime.plusMinutes(10) + ", " + now);
 				bookingService.removeBook(book);
 			}
 		}

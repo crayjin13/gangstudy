@@ -30,7 +30,7 @@
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE (TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} OR TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') = #{date})
-	  		AND (STATE!='cancel' OR STATE!='error')
+	  		AND (STATE='uncharge' OR STATE='wait')
 	</select>
 	
 	<!-- 날짜+시간으로 조회 -->
@@ -83,7 +83,7 @@
 	  WHERE <![CDATA[
 	  CHECK_IN < TO_DATE(#{check_out}, 'YYYY-MM-DD HH24:MI') AND CHECK_OUT > TO_DATE(#{check_in}, 'YYYY-MM-DD HH24:MI')
 	  ]]>
-	  AND ((STATE='uncharge') OR (STATE='wait'))
+	  AND (STATE='uncharge' OR STATE='wait')
 	</select>
 	
 	<!-- 날짜를 걸친 예약 조회 -->
@@ -91,7 +91,7 @@
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') != #{date}
-	  		AND ((STATE!='cancel' OR STATE!='error'))
+	  		AND (STATE!='cancel' OR STATE!='error')
 	  		AND BOOK_NO != #{book_no}
 	  
 	</select>
