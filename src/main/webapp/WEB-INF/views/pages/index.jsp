@@ -204,8 +204,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--end::Page Vendors-->
 
 	<!--begin::Page Scripts(used by this page)-->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/pages/widgets.js"></script>
-
 	<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/pikaday.js"></script>
