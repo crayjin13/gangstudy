@@ -30,7 +30,7 @@
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE (TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} OR TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') = #{date})
-	  		AND (STATE='wait' OR STATE='uncharge')
+	  		AND (STATE!='cancel' OR STATE!='error')
 	</select>
 	
 	<!-- 날짜+시간으로 조회 -->
@@ -44,7 +44,7 @@
 	<select id="selectByDateTimeFirst" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
-	  WHERE <![CDATA[ (TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') > #{dateTime} AND (STATE='wait' OR STATE='uncharge')) ]]>
+	  WHERE <![CDATA[ (TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') > #{dateTime} AND (STATE!='cancel' OR STATE!='error')) ]]>
 	  ORDER BY CHECK_IN
 	</select>
 	
@@ -66,7 +66,14 @@
 	  WHERE USER_NO = TO_NUMBER(#{user_no}) AND STATE = #{state}
 	</select>
 	
-	
+	<!-- 예약 번호로 조회 -->
+	<select id="selectByBookNo" parameterType="int" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT BOOK_NO, USER_NO, ROOM_NO,
+	  		TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT,
+	  		PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD HH24:MI') AS REQUEST_DT
+	  FROM BOOKING_TB
+	  WHERE BOOK_NO = #{book_no}
+	</select>
 	
 	<!-- 예약시간 중복 확인-->
 	<select id="selectDuplicate" parameterType="hashmap" resultType="int">
@@ -84,7 +91,7 @@
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') != #{date}
-	  		AND ((STATE='uncharge') OR (STATE='wait'))
+	  		AND ((STATE!='cancel' OR STATE!='error'))
 	  		AND BOOK_NO != #{book_no}
 	  
 	</select>

@@ -25,6 +25,8 @@ public interface BookingService {
 	public List<Booking> searchByUserState(User user, String state);
 	// 유저의 대기중인 예약
 	public Booking searchByUserWait(User user);
+	// 예약 번호로 검색
+	public Booking searchByBookNo(Booking book);
 	
 
 	
