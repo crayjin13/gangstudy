@@ -25,7 +25,6 @@ $(document).ready(function() {
 	setDateRange(startPicker, new Date(), 7);
 	setDateRange(endPicker, new Date(), 7);
 	
-	// 로그인 전에 예약정보를 입력했다면 불러온다
 	if(startDateInput.value!="") {
 		setDateRange(endPicker, new Date(startDateInput.value), 1);
 		
