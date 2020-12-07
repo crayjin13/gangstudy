@@ -42,8 +42,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Layout Themes(used by all pages)-->
 <!--end::Layout Themes-->
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/assets/media/logos/favicon.ico" />
-</head>
+	href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
+</head> 
 <!--end::Head-->
 <!--begin::Body-->
 <body id="kt_body"
