@@ -128,13 +128,13 @@ $(function() {
 		// https://java119.tistory.com/27
 		$.ajax({
 			url : 'signUp',
-			data : userArray,
+			data : userArray,  
 			method : 'POST',
 			dataType : 'text',
 			success : function(textData) {
 				console.log(textData);
 				if (textData.trim() == "true") {
-
+						
 					kt_login_signup_form.name.value = textData.name;
 					kt_login_signup_form.phone.value = textData.phone;
 					kt_login_signup_form.id.value = textData.id;
@@ -143,8 +143,8 @@ $(function() {
 					kt_login_signup_form.email.value = textData.email;
 					kt_login_signup_form.bod.value = textData.bod;
 					kt_login_signup_form.gender.value = textData.gender;
-
-					    
+					alert("갱스터디 회원이 되신걸 축하합니다.");
+					location.href = '/signin';
 					
 				} 
 

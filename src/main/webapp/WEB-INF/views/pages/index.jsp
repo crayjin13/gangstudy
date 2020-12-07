@@ -37,7 +37,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 
-<base href="">
 <meta charset="utf-8" />
 <title>Gangstudy</title>
 <meta name="description"

@@ -34,6 +34,7 @@ public class PaymentController {
 	private KakaoPayService kakaoPayService;
 
 	// 결제 수단 선택
+	@UserLoginCheck
 	@RequestMapping(value = "/choose", method = RequestMethod.GET)
 	public ModelAndView choose(HttpServletRequest request) {
 		// 여러 결제 수단이 있을때 브릿지 역할
@@ -42,6 +43,7 @@ public class PaymentController {
 	}
 
 	// KakaoPay를 통한 결제 요청
+	@UserLoginCheck
 	@RequestMapping(value = "/kakaopay", method = RequestMethod.GET)
 	public String kakaopay(HttpServletRequest request, HttpSession session) {
 		int amount = (int)session.getAttribute("amount");			// 결제 비용
@@ -55,6 +57,7 @@ public class PaymentController {
 	}
 
 	// KakaoPay에서 결제 준비됨. 결제 처리하기
+	@UserLoginCheck
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
 		User user = (User)session.getAttribute("sUserId");
@@ -64,6 +67,10 @@ public class PaymentController {
 		int usePoint = (int)session.getAttribute("usePoint");
 
 		String pg_token = request.getParameter("pg_token");
+		// 대기중인 예약 시간초과 예외처리
+		if(bookingService.searchByBookNo(book) == null) {
+			return "?payment=timeout";
+		}
 		
 		// 결제 완료 요청
 		HashMap<String, String> payInfo = kakaoPayService.getPayInfo(tid, pg_token);
