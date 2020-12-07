@@ -13,10 +13,12 @@
 //			location.href='ftp://15.165.185.2/pub/bridge.html'
 		}
 	} else if(userAgent.match(/NAVER/i)) {
-		if(userAgent.match(/Android/i)) {					// android
-			location.href='intent://gangstudy.com/#Intent;scheme=http;package=com.android.chrome;end'
-			location.href='https://naver.com/'
-		}
+//		if(userAgent.match(/Android/i)) {					// android
+//			location.href='intent://gangstudy.com/#Intent;scheme=http;package=com.android.chrome;end'
+//			setTimeout( function() {
+//				window.close();
+//			}, 500);
+//		}
 	} else if(document.location.hostname == "ec2-15-165-185-2.ap-northeast-2.compute.amazonaws.com") {
 		location.href="http://gangstudy.com"
 	}
