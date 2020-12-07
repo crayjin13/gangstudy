@@ -67,7 +67,7 @@ public class PaymentController {
 		String pg_token = request.getParameter("pg_token");
 		// 대기중인 예약 시간초과 예외처리
 		if(bookingService.searchByBookNo(book) == null) {
-			return "?payment=timeout";
+			return "redirect:" + "/?payment=timeout";
 		}
 		
 		// 결제 완료 요청
