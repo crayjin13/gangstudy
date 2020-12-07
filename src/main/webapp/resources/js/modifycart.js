@@ -28,37 +28,27 @@ document.getElementById("payments").addEventListener("click", function() {
 });
 
 pointMaxUseBtn.addEventListener("click", function() {
-	if(parseInt(pointMax.textContent) > amount) {
-		pointUse.value = amount;
-	} else {
-		pointUse.value = pointMax.textContent;
-	}
-	addedAmount.textContent = amount - pointUse.value;
-	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
+	pointMaxUseBtnEvent();
 });
 pointMaxUseBtn.addEventListener("touchend", function() {
-	if(parseInt(pointMax.textContent) > amount) {
-		pointUse.value = amount;
-	} else {
-		pointUse.value = pointMax.textContent;
-	}
-	addedAmount.textContent = amount - pointUse.value;
-	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
+	pointMaxUseBtnEvent();
 });
 
 pointUse.addEventListener("change", function() {
-	if(parseInt(pointUse.value) > parseInt(pointMax.textContent)) {
-		pointUse.value = pointMax.textContent;
-	}
-	if(parseInt(pointUse.value) < 0) {
-		pointUse.value = 0;
-	}
-	if(!isInt(pointUse.value)) {
-		pointUse.value = 0;
-	}
-	if(parseInt(pointUse.value) > amount) {
+	if(parseInt(pointUse.value) > amount) {									// 사용포인트 > 금액
 		pointUse.value = amount;
 	}
+	
+	if(amount < 0) {														// 금액 < 0
+		pointUse.value = 0;
+	} else if(!isInt(pointUse.value)) {										// 사용포인트 != int
+		pointUse.value = 0;
+	} else if(parseInt(pointUse.value) < 0) {								// 사용포인트 < 0
+		pointUse.value = 0;
+	} else if(parseInt(pointUse.value) > parseInt(pointMax.textContent)) {	// 사용포인트 > 최대 포인트
+		pointUse.value = pointMax.textContent;
+	}
+	
 	addedAmount.textContent = amount - pointUse.value;
 	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 });
@@ -66,4 +56,16 @@ pointUse.addEventListener("change", function() {
 function isInt(value) {
 	var regex = /^-?[0-9]+$/;
 	return regex.test(value);
+}
+
+function pointMaxUseBtnEvent() {
+	if(amount < 0) {
+		pointUse.value = 0;
+	} else if(parseInt(pointMax.textContent) > amount) {
+		pointUse.value = amount;
+	} else {
+		pointUse.value = pointMax.textContent;
+	}
+	addedAmount.textContent = amount - pointUse.value;
+	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 }
