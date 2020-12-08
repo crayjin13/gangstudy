@@ -205,7 +205,6 @@ public class BookingServiceImpl implements BookingService{
 		
 		// 가능한 시간에서 예약된 시간 제거
 		for(Booking book : books) {
-			System.out.println("test start times : " + book.getBook_no());
 			removeTimes(timeList, startDate, book);
 		}
 		return timeList;
