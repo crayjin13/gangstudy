@@ -1,5 +1,6 @@
 package com.jts.gangstudy.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -115,6 +116,10 @@ public class PaymentController {
 		Booking book = bookingService.searchByUserWait(user);
 		if(book==null) {
 			return "redirect:" + "/?book=null";
+		}
+		boolean canCancel = LocalDateTime.now().plusDays(1).isAfter(book.getciDateTime());
+		if(!canCancel) {
+			return "redirect:" + "/?cancel=timeout";
 		}
 		Payment payment = paymentService.selectPayment(book);
 		
