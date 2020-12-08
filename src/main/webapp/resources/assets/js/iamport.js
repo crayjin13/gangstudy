@@ -5,6 +5,7 @@
         IMP.init('imp63891351'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
        
+             
         
         IMP.request_pay({
             pg : 'kakaopay',
@@ -12,9 +13,9 @@
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : '갱스터디',
             amount : document.getElementById("totalAmount").textContent,
-            buyer_email :  ['user_email', '=', self.session.sUserId.email],
-            buyer_name :  ['user_id', '=', self.session.uid],
-            buyer_tel : '${sUserId.phone}',
+            buyer_email : '' ,
+            buyer_name : '' ,
+            buyer_tel :'' ,
             //m_redirect_url : 'http://www.naver.com' 모바일 결제시, 결제가 끝나고 랜딩되는 URL을 지정 (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐) 
         }, function(rsp) {
             if ( rsp.success ) {
