@@ -22,7 +22,6 @@ document.getElementById("payments").addEventListener("click", function() {
 	})
 	.always(function(jqXHR) {
 	});
-
 });
 
 pointMaxUseBtn.addEventListener("click", function() {
