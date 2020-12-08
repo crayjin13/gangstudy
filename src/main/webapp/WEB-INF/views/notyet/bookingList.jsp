@@ -131,7 +131,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--end::Header Menu-->
 							</div>
 							<!--end::Header Menu Wrapper-->
-							<!--begin::Topbar-->														
+							<!--begin::Topbar-->							 							
 							<!--end::Topbar-->
 					
 						</div>
