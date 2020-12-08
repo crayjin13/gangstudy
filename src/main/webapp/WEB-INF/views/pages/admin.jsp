@@ -323,7 +323,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<option value="<C0142><C0152><C0162>">간판끄기(나머지)</option>
 											</select>
 
-										</div>
+										</div> 
 									</div>
 
 									<div class="form-group row">
