@@ -12,19 +12,7 @@ const pointMax = document.getElementById("pointMax");
 const pointUse = document.getElementById("kt_touchspin");
 
 document.getElementById("payments").addEventListener("click", function() {
-	$.ajax({
-		url : "/booking/change",
-		type : "POST",
-		data :	{
-			        point : pointUse.value
-				},
-		success : function(url) {
-			window.location.href = url;
-		},
-		error : function() {
-			alert("modify error");
-		}
-	});
+	requestChange();
 });
 
 pointMaxUseBtn.addEventListener("click", function() {
@@ -68,4 +56,21 @@ function pointMaxUseBtnEvent() {
 	}
 	addedAmount.textContent = amount - pointUse.value;
 	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
+}
+
+function requestChange() {
+	$.ajax({
+		url : "/booking/change",
+		type : "POST",
+		data :	{
+			        point : pointUse.value
+				},
+		success : function(url) {
+			window.location.href = url;
+		},
+		error:function(request,status,error){
+//	    	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			alert("modify error")
+		}
+	});
 }

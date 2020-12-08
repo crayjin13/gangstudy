@@ -205,6 +205,7 @@ public class BookingServiceImpl implements BookingService{
 		
 		// 가능한 시간에서 예약된 시간 제거
 		for(Booking book : books) {
+			System.out.println("test start times : " + book.getBook_no());
 			removeTimes(timeList, startDate, book);
 		}
 		return timeList;
@@ -247,10 +248,7 @@ public class BookingServiceImpl implements BookingService{
 		Boolean allowsOvernight = allowsOvernight(min_dt.toLocalDate().toString(), userBook);
 	    min_dt = getMinDateTime(min_dt, max_dt, allowsOvernight);
 		max_dt = max_dt.plusDays(1);
-
-		System.out.println("min_dt : "+min_dt);
-		System.out.println("max_dt : "+max_dt);
-		System.out.println("nextBook_dt : "+nextBook_dt);
+		
 		if(min_dt == null) {	// 선택가능한 시간이 없음.
 			return null;
 		}
@@ -300,14 +298,12 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 최소일시 얻기
 	public LocalDateTime getMinDateTime(LocalDateTime min_dt, LocalDateTime max_dt, Boolean allowsOvernight) {
-		System.out.println("allowsOvernight : "+allowsOvernight);
 		// 시작일과 종료일을 통해 밤샘예약에 따른 최소일시 얻기.
 		if(min_dt.toLocalDate().isEqual(max_dt.toLocalDate())) {
 			if(min_dt.isBefore( max_dt.plusDays(1).minusMinutes(minimumSize) )) {
 				// 최소일시+2시간 ~
 				min_dt = min_dt.plusMinutes(minimumSize);
 			} else {
-				System.out.println("null1");
 				return null;
 			}
 		} else if(allowsOvernight) {
@@ -319,7 +315,6 @@ public class BookingServiceImpl implements BookingService{
 				min_dt = min_dt.plusMinutes(minimumSize);
 			}
 		} else {
-			System.out.println("null2 ");
 			return null;
 		}
 		return min_dt;
@@ -339,11 +334,9 @@ public class BookingServiceImpl implements BookingService{
 		map.put("book_no", book_no);
 		List<Booking> books = mapper.selectOvernightWithoutBookno(map);
 
-		System.out.println("books.isEmpty() : " + books.isEmpty());
 		if(books.isEmpty()) {
 			return true;
 		}
-		System.out.println("books.get(0).. : " + books.get(0).getBook_no());
 		return false;
 	}
 	
