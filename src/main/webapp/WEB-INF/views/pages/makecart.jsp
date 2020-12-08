@@ -369,10 +369,14 @@ License: You must have a valid license purchased only from themeforest(the above
 															</td>
 															<td colspan="1" class="border-0 text-right pt-10">
 															<a
-																class="btn btn-light-primary font-weight-bolder px-8"
-																id="payments">결제하기 </a>
+
+																class="btn btn-light-warnning font-weight-bolder px-8"
+																id="payments">카카오 페이 결제 </a>
+
+																
 															</td>
 															<td colspan="1" class="border-0 text-right pt-10">
+
 																<button class="btn btn-light-primary font-weight-bolder px-8" id="pay">다날 결제 </button>
 															</td>
 														</tr>

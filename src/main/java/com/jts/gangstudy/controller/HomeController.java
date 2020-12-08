@@ -88,6 +88,15 @@ public class HomeController {
 	  
 	
 	
+	@RequestMapping(value = "/bookingList", method = RequestMethod.GET)
+	public String javascript() {
+		return "notyet/bookingList";
+	}
+	@RequestMapping(value = "/html", method = RequestMethod.GET)
+	public String html() {
+		return "notyet/html";
+	}
+	
 	@RequestMapping(value = "/faq", method = RequestMethod.GET)
 	public String faq() {
 		return "pages/faq";
