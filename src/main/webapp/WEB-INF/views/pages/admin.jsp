@@ -312,11 +312,15 @@ License: You must have a valid license purchased only from themeforest(the above
 											<select name="group_select" id="messageSelect">
 												<option value="">명령어 직접 입력</option>
 												
-												<option value="<C0121><C0131><C0141><C0151><C0161>">간판
-													켜기(초록+파랑+나머지)</option>
-
-												<option value="<C0122><C0132><C0142><C0152><C0162>">간판
-													끄기(초록+파랑+나머지)</option>
+												<option value="<C0111><C0131>">간판켜기(빨강+파랑)</option>
+												<option value="<C0111><C0121>">간판켜기(빨강+초록)</option>							
+												<option value="<C0121><C0131>">간판켜기(초록+파랑)</option>
+												<option value="<C0141><C0151><C0161>">간판켜기(나머지)</option>
+<option>---------------------------------------------</option>
+												<option value="<C0112><C0132>">간판끄기(빨강+파랑)</option>
+												<option value="<C0112><C0122>">간판끄기(빨강+초록)</option>
+												<option value="<C0122><C0132>">간판끄기(초록+파랑)</option>
+												<option value="<C0142><C0152><C0162>">간판끄기(나머지)</option>
 											</select>
 
 										</div>
