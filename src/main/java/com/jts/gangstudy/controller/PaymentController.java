@@ -85,7 +85,7 @@ public class PaymentController {
 		payment.setBook_no(book.getBook_no());
 		paymentService.insertPayment(payment);
 		
-		userService.deductPoints(user, usePoint);
+		userService.minusPoints(user, usePoint);
 		
 		session.removeAttribute("tid");
 		session.removeAttribute("usePoint");

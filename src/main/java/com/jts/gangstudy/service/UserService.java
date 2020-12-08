@@ -64,5 +64,7 @@ public interface UserService {
 
 	void logout(HttpServletResponse response) throws Exception;
 
-	boolean deductPoints(User user, int point);
+	boolean plusPoints(User user, float point);
+	
+	boolean minusPoints(User user, float point);
 }

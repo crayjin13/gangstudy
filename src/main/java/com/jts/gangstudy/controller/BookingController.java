@@ -46,6 +46,10 @@ public class BookingController {
 		for(Booking book : usingList) {
 			if(now.isEqual(book.getciDateTime()) && book.getState().equals("wait")) {		// 예약시간이 되면 use로 변경
 				bookingService.changeState(book, "use");
+				User user = userService.getUser(book.getUser_no());
+				Integer amount = paymentService.selectPayment(book).getAmount();
+				
+				userService.plusPoints(user, (amount/100) * 5);
 			} else if(now.isEqual(book.getcoDateTime()) && book.getState().equals("use")) {	// 예약이 종료되면 clear로 변경
 				bookingService.changeState(book, "clear");
 			}
@@ -381,7 +385,7 @@ public class BookingController {
 			paymentService.insertPayment(oldPayment);
 			
 			// 포인트 사용값 처리
-			userService.deductPoints(user, usePoint);
+			userService.minusPoints(user, usePoint);
 			return "/booking/check";
 		} else if(paidMoney == 0) {									// 예전 결제 금액이 0원 (포인트 처리 등) 추가금액 결제
 			bookingService.changeState(oldBook, "cancel");
