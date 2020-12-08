@@ -117,7 +117,7 @@ public class PaymentController {
 		if(book==null) {
 			return "redirect:" + "/?book=null";
 		}
-		boolean canCancel = LocalDateTime.now().plusDays(1).isAfter(book.getciDateTime());
+		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getciDateTime());
 		if(!canCancel) {
 			return "redirect:" + "/?cancel=timeout";
 		}
