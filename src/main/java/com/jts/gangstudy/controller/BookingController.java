@@ -75,11 +75,12 @@ public class BookingController {
 	public List<String> reqStartTime(HttpServletRequest request, HttpSession session) {
 		User user = (User)session.getAttribute("sUserId");
 		String startDate = request.getParameter("startDate");
-		Booking book = null;
+		List<Booking> books = new ArrayList<Booking>();
 		if(user!=null) {
-			book = bookingService.searchByUserWait(user);
+			books.addAll(bookingService.searchByUserState(user, "wait"));
+			books.addAll(bookingService.searchByUserState(user, "uncharge"));
 		}
-		List<String> times = bookingService.getStartTimes(book, startDate);
+		List<String> times = bookingService.getStartTimes(books, startDate);
 		return times;
 	}
 

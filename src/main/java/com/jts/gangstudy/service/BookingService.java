@@ -38,7 +38,7 @@ public interface BookingService {
 	public int getAmountPerHour();
 
 	// 시작시간 목록
-	public List<String> getStartTimes(Booking userBook, String startDate);
+	public List<String> getStartTimes(List<Booking> userBooks, String startDate);
 	// 종료시간 목록
 	public List<String> getEndTimes(Booking userBook, String startDate, String startTime, String endDate);
 

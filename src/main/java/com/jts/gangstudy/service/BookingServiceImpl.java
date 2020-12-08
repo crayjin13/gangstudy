@@ -68,7 +68,12 @@ public class BookingServiceImpl implements BookingService{
 	// 날짜로 검색
 	@Override
 	public List<Booking> searchByDate(String date) {
-		return mapper.selectByDate(date);
+		List<Booking> books = mapper.selectByDate(date);
+		if(books == null) {
+			return new ArrayList<Booking>();
+		} else {
+			return books;
+		}
 	}
 
 	// 날짜+시간으로 검색
@@ -102,7 +107,11 @@ public class BookingServiceImpl implements BookingService{
 		map.put("user_no", user.getUser_no().toString());
 		map.put("state", state);
 		List<Booking> books = mapper.selectByUserState(map);
-		return books;
+		if(books == null) {
+			return new ArrayList<Booking>();
+		} else {
+			return books;
+		}
 	}
 
 	// 유저의 대기중인 예약
@@ -182,12 +191,12 @@ public class BookingServiceImpl implements BookingService{
 
 	// 시작시간 목록
 	@Override
-	public List<String> getStartTimes(Booking userBook, String startDate) {
-		List<Booking> books = searchByDate(startDate);
+	public List<String> getStartTimes(List<Booking> userBooks, String startDate) {
+		List<Booking> datebooks = searchByDate(startDate);
 	    List<String> timeList = null;
-	    if(userBook != null) {
-	    	books.remove(userBook);
-	    }
+	    
+	    // 요청한 사용자의 예약 제거
+	    datebooks.removeAll(userBooks);
 	    
 	    // 선택가능한 시간 생성
 	    if(LocalDate.now().isEqual(LocalDate.parse(startDate))) {
@@ -204,7 +213,7 @@ public class BookingServiceImpl implements BookingService{
 	    }
 		
 		// 가능한 시간에서 예약된 시간 제거
-		for(Booking book : books) {
+		for(Booking book : datebooks) {
 			removeTimes(timeList, startDate, book);
 		}
 		return timeList;
