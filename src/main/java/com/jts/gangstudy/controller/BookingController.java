@@ -60,7 +60,6 @@ public class BookingController {
 			if(book.getciDateTime().isBefore(now)) {										// 지금보다 이전의 예약 제거
 				bookingService.removeBook(book);
 			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
-				System.out.println("request : "+ requestDateTime.plusMinutes(10) + ", " + now);
 				bookingService.removeBook(book);
 			}
 		}
@@ -96,6 +95,19 @@ public class BookingController {
 		return times;
 	}
 
+	// 예약 취소가 가능한 시간인지 확인
+	@ResponseBody
+	@RequestMapping(value = "/canCheck", method = RequestMethod.GET)
+	public boolean canCheck(HttpServletRequest request, HttpSession session) {
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = bookingService.searchByUserWait(user);
+		
+		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getciDateTime());
+		return canCancel;
+	}
+
+
+	
 	// booking order page - 결제 확인 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
@@ -330,15 +342,16 @@ public class BookingController {
 	@RequestMapping(value = "/change", method = RequestMethod.POST)
 	public String changeBridge(HttpServletRequest request, HttpSession session, @RequestParam("point") String point) {
 		User user = (User)session.getAttribute("sUserId");
-		Booking oldBook = (Booking)session.getAttribute("oldBook"); session.removeAttribute("oldBook");
-		Booking newBook = (Booking)session.getAttribute("newBook"); session.removeAttribute("newBook");
+		Booking oldBook = (Booking)session.getAttribute("oldBook");
+		Booking newBook = (Booking)session.getAttribute("newBook");
 
 		Payment oldPayment = paymentService.selectPayment(oldBook);									// 이전 결제
 		int paidMoney = oldPayment.getAmount();														// 이전 결제 지불 금액
 		int addedCharge = bookingService.getAmount(newBook) - bookingService.getAmount(oldBook);	// 추가요금
 		
 		// validation check
-		int usePoint = Integer.parseInt(point);
+		String pointNums = point.replaceAll("[^0-9]","");
+		int usePoint = Integer.parseInt(pointNums);
 		if(user.getPoints() < usePoint || usePoint < 0) {
 			return "?error=point";
 		}
