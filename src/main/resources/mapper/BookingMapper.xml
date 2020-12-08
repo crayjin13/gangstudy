@@ -44,7 +44,7 @@
 	<select id="selectByDateTimeFirst" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
-	  WHERE <![CDATA[ (TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') > #{dateTime} AND (STATE!='cancel' OR STATE!='error')) ]]>
+	  WHERE <![CDATA[ (TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') > #{dateTime} AND (STATE='uncharge' OR STATE='wait')) ]]>
 	  ORDER BY CHECK_IN
 	</select>
 	
@@ -91,7 +91,7 @@
 	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
 	  FROM BOOKING_TB
 	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') != #{date}
-	  		AND (STATE!='cancel' OR STATE!='error')
+	  		AND (STATE='uncharge' OR STATE='wait')
 	  		AND BOOK_NO != #{book_no}
 	  
 	</select>

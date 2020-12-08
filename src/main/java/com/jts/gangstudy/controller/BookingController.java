@@ -329,15 +329,16 @@ public class BookingController {
 	@RequestMapping(value = "/change", method = RequestMethod.POST)
 	public String changeBridge(HttpServletRequest request, HttpSession session, @RequestParam("point") String point) {
 		User user = (User)session.getAttribute("sUserId");
-		Booking oldBook = (Booking)session.getAttribute("oldBook"); session.removeAttribute("oldBook");
-		Booking newBook = (Booking)session.getAttribute("newBook"); session.removeAttribute("newBook");
+		Booking oldBook = (Booking)session.getAttribute("oldBook");
+		Booking newBook = (Booking)session.getAttribute("newBook");
 
 		Payment oldPayment = paymentService.selectPayment(oldBook);									// 이전 결제
 		int paidMoney = oldPayment.getAmount();														// 이전 결제 지불 금액
 		int addedCharge = bookingService.getAmount(newBook) - bookingService.getAmount(oldBook);	// 추가요금
 		
 		// validation check
-		int usePoint = Integer.parseInt(point);
+		String pointNums = point.replaceAll("[^0-9]","");
+		int usePoint = Integer.parseInt(pointNums);
 		if(user.getPoints() < usePoint || usePoint < 0) {
 			return "?error=point";
 		}
