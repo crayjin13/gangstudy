@@ -35,7 +35,9 @@
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="apacheDataSource" />
-  		<property value="classpath:/mapper/*Mapper.xml" name="mapperLocations" />
+  		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"  />
+        <!-- mybatis-config.xml이 스프링 시작될때 같이 실행되도록 설정하기  -->
+        <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
 	</bean>
 	
 	<!-- AOP annotation을사용할때 설정(자동프록시 생성) -->

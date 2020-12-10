@@ -45,13 +45,8 @@ public class RemoteGangController {
 	public void reserve(HttpServletRequest request,
 			@RequestParam("ipAdress") String ipAdress, @RequestParam("portNumber") String portNumber, 
 			@RequestParam("message") String message, @RequestParam("reserveTime") String reserveTime) {
-		Command command = new Command(ipAdress, portNumber, message, reserveTime);
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
-		LocalTime time = LocalTime.parse(reserveTime, formatter);
-		
-		if(time.getSecond() == 0) {
-			reserveTime = time.toString() + ":00";
-		}
+		LocalTime time = LocalTime.parse(reserveTime);
+		Command command = new Command(ipAdress, portNumber, message, time);
 		mapper.insertCommand(command);
 	}
 
@@ -72,17 +67,12 @@ public class RemoteGangController {
 	public void cornTrigger() {
 		LocalTime now = LocalTime.now();
 		List<Command> list = mapper.selectAll();
-		String message = "";
 		for(Command command : list) {
-			int hour = Integer.parseInt(command.getHour());
-			int minute = Integer.parseInt(command.getMinute());
-			int second = Integer.parseInt(command.getSecond());
-			
-			LocalTime time = LocalTime.of(hour, minute, second);
+			LocalTime time = command.getReserveTime();
 			Duration duration = Duration.between(now, time);
 			
 			if(Math.abs(duration.getSeconds()) <= 1) {
-				message = sendMessage(command.getIpAdress(), command.getPortNumber(), command.getMessage());
+				String message = sendMessage(command.getIpAdress(), command.getPortNumber(), command.getMessage());
 			}
 		}
 	}

@@ -1,22 +1,26 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 
 public class Command {
 	private int command_no;
 	private String ipAdress;
 	private String portNumber;
 	private String message;
-	private String reserveTime;
-	public Command(BigDecimal command_no, String ipAdress, String portNumber, String message, String reserveTime) {
+	private LocalTime reserveTime;
+	
+	public Command(BigDecimal command_no, String ipAdress, String portNumber, String message, Timestamp reserveTime) {
 		super();
 		this.command_no = command_no.intValue();
 		this.ipAdress = ipAdress;
 		this.portNumber = portNumber;
 		this.message = message;
-		this.reserveTime = reserveTime;
+		this.reserveTime = reserveTime.toLocalDateTime().toLocalTime();
 	}
-	public Command(String ipAdress, String portNumber, String message, String reserveTime) {
+	
+	public Command(String ipAdress, String portNumber, String message, LocalTime reserveTime) {
 		super();
 		this.ipAdress = ipAdress;
 		this.portNumber = portNumber;
@@ -41,24 +45,14 @@ public class Command {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getReserveTime() {
+	public LocalTime getReserveTime() {
 		return reserveTime;
 	}
-	public void setReserveTime(String reserveTime) {
+	public void setReserveTime(LocalTime reserveTime) {
 		this.reserveTime = reserveTime;
 	}
 	public int getCommand_no() {
 		return command_no;
-	}
-
-	public String getHour() {
-		return reserveTime.substring(0, 2);
-	}
-	public String getMinute() {
-		return reserveTime.substring(3, 5);
-	}
-	public String getSecond() {
-		return reserveTime.substring(6, 8);
 	}
 	
 }
