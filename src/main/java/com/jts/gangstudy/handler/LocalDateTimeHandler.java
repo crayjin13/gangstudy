@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
-public class CustomDateHandler extends BaseTypeHandler<LocalDateTime> {
+public class LocalDateTimeHandler extends BaseTypeHandler<LocalDateTime> {
 
 	@Override
 	public void setNonNullParameter(PreparedStatement ps, int i, LocalDateTime parameter, JdbcType jdbcType)

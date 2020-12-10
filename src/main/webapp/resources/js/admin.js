@@ -91,9 +91,16 @@ function getReserveList() {
 		}
 	});
 }
+
+String.prototype.string = function (len) { var s = '', i = 0; while (i++ < len) { s += this; } return s; };
+String.prototype.zf = function (len) { return "0".string(len - this.length) + this; };
+Number.prototype.zf = function (len) { return this.toString().zf(len); };
 function appendChildTo(target, data) {
 	var li = document.createElement('li');
-  	li.appendChild(document.createTextNode(data.ipAdress+', '+data.portNumber+', '+data.message+', '+data.reserveTime));
+	var time = data.reserveTime;
+	var date = new Date(0, 0, 0, time.hour, time.minute, time.second, 0);
+  	li.appendChild(document.createTextNode(data.ipAdress+', '+data.portNumber+', '+data.message+', '+
+											date.getHours().zf(2)+':'+date.getMinutes().zf(2)+':'+date.getSeconds().zf(2)));
 
 	var button = document.createElement('button');
 	button.innerHTML = '제거';
@@ -102,5 +109,4 @@ function appendChildTo(target, data) {
 	li.appendChild(button);
 	
 	target.appendChild(li);
-	
 }

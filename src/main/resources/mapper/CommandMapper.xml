@@ -2,14 +2,15 @@
 <mapper namespace="com.jts.gangstudy.mapper.CommandMapper">
 	<!-- 전체 내용 조회 -->
 	<select id="selectAll" resultType="com.jts.gangstudy.domain.Command">
-	  SELECT COMMAND_NO, IPADRESS, PORT, MESSAGE, TO_CHAR(RESERVE_TIME, 'HH24:MI:SS') AS RESERVE_TIME FROM COMMAND_TB
+	  SELECT *
+	  FROM COMMAND_TB
 	</select>
 	
 	<!-- 명령어 추가 -->
 	<insert id="insertCommand" parameterType="com.jts.gangstudy.domain.Command">
 	  INSERT INTO COMMAND_TB
 	  (IPADRESS, PORT, MESSAGE, RESERVE_TIME) VALUES
-	  (#{ipAdress}, #{portNumber}, #{message}, TO_DATE(#{reserveTime},'HH24:MI:SS'))
+	  (#{ipAdress}, #{portNumber}, #{message}, #{reserveTime})
 	</insert>
 	
 	<!-- 명령어 삭제 -->

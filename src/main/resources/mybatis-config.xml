@@ -2,6 +2,6 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeHandlers>
-		<typeHandler handler="com.jts.gangstudy.handler.CustomDateHandler" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
+		<typeHandler handler="com.jts.gangstudy.handler.LocalDateTimeHandler" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
 	</typeHandlers>
 </configuration>
