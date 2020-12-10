@@ -156,13 +156,13 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="" class="text-muted"> </a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="" class="text-muted">Datatables.net</a>
+												<a href="" class="text-muted"></a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="" class="text-muted">Data sources</a>
+												<a href="" class="text-muted"></a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="" class="text-muted">Javascript</a>
+												<a href="" class="text-muted"></a>
 											</li>
 										</ul>
 										<!--end::Breadcrumb-->
