@@ -1,6 +1,8 @@
 package com.jts.gangstudy.controller;
 
 import com.jts.gangstudy.controller.UserLoginCheck;
+import com.jts.gangstudy.domain.Booking;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,23 +38,15 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session, Model model) {
 		ModelAndView mav = new ModelAndView("pages/index");
-		String startDate = (String)session.getAttribute("startDate");
-		String startTime = (String)session.getAttribute("startTime");
-		String endDate = (String)session.getAttribute("endDate");
-		String endTime = (String)session.getAttribute("endTime");
-		String people = (String)session.getAttribute("people");
+		Booking book = (Booking)session.getAttribute("book");
 		
-		if(startDate != null && startTime != null && endDate != null && endTime != null && people != null) {
-			mav.addObject("startDate", startDate)
-				.addObject("startTime", startTime)
-				.addObject("endDate", endDate)
-				.addObject("endTime", endTime)
-				.addObject("people", people);
-			session.removeAttribute("startDate");
-			session.removeAttribute("startTime");
-			session.removeAttribute("endDate");
-			session.removeAttribute("endTime");
-			session.removeAttribute("people");
+		if(book != null) {
+			mav.addObject("startDate", book.getCheck_in().toLocalDate())
+				.addObject("startTime", book.getCheck_in().toLocalTime())
+				.addObject("endDate", book.getCheck_out().toLocalDate())
+				.addObject("endTime", book.getCheck_out().toLocalTime())
+				.addObject("people", book.getPeople());
+			session.removeAttribute("book");
 		}
 		return mav;
 	}      

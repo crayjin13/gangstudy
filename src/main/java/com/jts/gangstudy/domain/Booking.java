@@ -1,6 +1,7 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -8,8 +9,8 @@ public class Booking {
 	private int book_no;
 	private int user_no;
 	private int room_no;
-	private String check_in;
-	private String check_out;
+	private LocalDateTime check_in;
+	private LocalDateTime check_out;
 	private int people;
 	private String state;			// 'uncharge', 'wait', 'use', 'clear', 'cancel', 'error'
 	private String request_dt;
@@ -18,20 +19,21 @@ public class Booking {
 		super();
 	}
 	
-	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, String check_in, String check_out, BigDecimal people,
+	// MyBatis용 생성자
+	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, Date check_in, Date check_out, BigDecimal people,
 			String state, String request_dt) {
 		super();
 		this.book_no = book_no.intValue();
 		this.user_no = user_no.intValue();
 		this.room_no = room_no.intValue();
-		this.check_in = check_in;
-		this.check_out = check_out;
+		this.check_in = check_in.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		this.check_out = check_out.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		this.people = people.intValue();
 		this.state = state;
 		this.request_dt = request_dt;
 	}
 	
-	public Booking(int book_no, int user_no, int room_no, String check_in, String check_out, int people,
+	public Booking(int book_no, int user_no, int room_no, LocalDateTime check_in, LocalDateTime check_out, int people,
 			String state, String request_dt) {
 		super();
 		this.book_no = book_no;
@@ -43,7 +45,7 @@ public class Booking {
 		this.state = state;
 		this.request_dt = request_dt;
 	}
-	public Booking(int user_no, int room_no, String check_in, String check_out, int people,
+	public Booking(int user_no, int room_no, LocalDateTime check_in, LocalDateTime check_out, int people,
 			String state) {
 		super();
 		this.user_no = user_no;
@@ -54,6 +56,17 @@ public class Booking {
 		this.state = state;
 	}
 
+	public String toString() {
+		return "book_no:"+this.book_no+" , " + 
+				"user_no:"+this.user_no+" , " + 
+				"room_no:"+this.room_no+" , " + 
+				"check_in:"+this.check_in+" , " + 
+				"check_out:"+this.check_out+" , " + 
+				"people:"+this.people+" , " + 
+				"state:"+this.state+" , " + 
+				"request_dt:"+this.request_dt;
+	}
+	
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
@@ -62,20 +75,20 @@ public class Booking {
 		this.room_no = room_no;
 	}
 
-	public void setCheck_in(String check_in) {
+	public void setCheck_in(LocalDateTime check_in) {
 		this.check_in = check_in;
 	}
 
-	public void setCheck_out(String check_out) {
+	public void setCheck_out(LocalDateTime check_out) {
 		this.check_out = check_out;
 	}
 	
 	public void setCheck_in(String startDate, String startTime) {
-		this.check_in = startDate + " " + startTime;
+		this.check_in = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime));
 	}
 
 	public void setCheck_out(String endDate, String endTime) {
-		this.check_out = endDate + " " + endTime;
+		this.check_out = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.parse(endTime));
 	}
 
 	public void setPeople(int people) {
@@ -105,11 +118,11 @@ public class Booking {
 		return room_no;
 	}
 
-	public String getCheck_in() {
+	public LocalDateTime getCheck_in() {
 		return check_in;
 	}
 
-	public String getCheck_out() {
+	public LocalDateTime getCheck_out() {
 		return check_out;
 	}
 
@@ -135,37 +148,4 @@ public class Booking {
 		return true;
 	}
 
-	public LocalTime getciTime() {
-		return LocalTime.parse(check_in.substring(11, 16));
-	}
-	public LocalTime getcoTime() {
-		return LocalTime.parse(check_out.substring(11, 16));
-	}
-	
-	public LocalDate getciDate() {
-		return LocalDate.parse(check_in.substring(0, 10));
-	}
-	public LocalDate getcoDate() {
-		return LocalDate.parse(check_out.substring(0, 10));
-	}
-	
-	public LocalDateTime getciDateTime() {
-		return LocalDateTime.of(getciDate(), getciTime());
-	}
-	public LocalDateTime getcoDateTime() {
-		return LocalDateTime.of(getcoDate(), getcoTime());
-	}
-	
-	public String getFormattedCI(String form) {
-		LocalDateTime ci = getciDateTime();
-		return ci.format(DateTimeFormatter.ofPattern(form));
-	}
-	public String getFormattedCO(String form) {
-		LocalDateTime co = getcoDateTime();
-		return co.format(DateTimeFormatter.ofPattern(form));
-	}
-	
-	public Duration getDuration() {
-		return Duration.between(getciDateTime(), getcoDateTime());
-	}
 }

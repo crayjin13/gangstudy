@@ -325,8 +325,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors-->
-		<!--begin::Page Scripts(used by this page)-->
-		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/datatables/data-sources/javascript.js"></script>
+		<!--begin::Page Scripts(used by this page)-->		<script type="text/javascript"> var books='${books}' </script>		<script src="${pageContext.request.contextPath}/resources/js/check.js"></script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->
