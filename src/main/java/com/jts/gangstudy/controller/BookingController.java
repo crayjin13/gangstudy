@@ -1,6 +1,5 @@
 package com.jts.gangstudy.controller;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -43,7 +42,7 @@ public class BookingController {
 	@Scheduled(cron="0 */10 * * * *" )
 	public void bookTrigger() {
 		LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
-		
+		System.out.println("called");
 		// 사용하는 예약의 상태변경
 		List<Booking> usingList = bookingService.searchByDateTime(now);
 		for(Booking book : usingList) {

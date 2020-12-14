@@ -80,72 +80,17 @@
 	  WHERE USER_NO = TO_NUMBER(#{user_no}) AND STATE = #{state}
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- 날짜로 조회 -->
-	<select id="selectByDate" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
+	<!-- 날짜+시간으로 조회 -->
+	<select id="selectByDateTime" parameterType="java.time.LocalDateTime" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT *
 	  FROM BOOKING_TB
-	  WHERE CHECK_IN = #{date} OR CHECK_OUT = #{date})
-	  		AND (STATE='uncharge' OR STATE='wait')
-	</select>
-	
-	<!-- 날짜+시간으로 조회 -->
-	<select id="selectByDateTime" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
-	  FROM BOOKING_TB
-	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') = #{dateTime} OR TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') = #{dateTime}
-	</select>
-	
-	<!-- 날짜로 첫 예약 조회 -->
-	<select id="selectByDateTimeFirst" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
-	  FROM BOOKING_TB
-	  WHERE <![CDATA[ (TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') > #{dateTime} AND (STATE='uncharge' OR STATE='wait')) ]]>
-	  ORDER BY CHECK_IN
+	  WHERE CHECK_IN = #{dateTime} OR CHECK_OUT = #{dateTime}
 	</select>
 	
 	<!--  상태로 조회 -->
 	<select id="selectByState" parameterType="String" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT BOOK_NO, USER_NO, ROOM_NO,
-	  		TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT,
-	  		PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD HH24:MI') AS REQUEST_DT
+	  SELECT *
 	  FROM BOOKING_TB
 	  WHERE STATE = #{state}
-	</select>
-	
-	
-	<!-- 날짜를 걸친 예약 조회 -->
-	<select id="selectOvernightWithoutBookno" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT BOOK_NO, USER_NO, ROOM_NO, TO_CHAR(CHECK_IN, 'YYYY-MM-DD HH24:MI') AS CHECK_IN, TO_CHAR(CHECK_OUT, 'YYYY-MM-DD HH24:MI') AS CHECK_OUT, PEOPLE, STATE, TO_CHAR(REQUEST_DT, 'YYYY-MM-DD')
-	  FROM BOOKING_TB
-	  WHERE TO_CHAR(CHECK_IN, 'YYYY-MM-DD') = #{date} AND TO_CHAR(CHECK_OUT, 'YYYY-MM-DD') != #{date}
-	  		AND (STATE='uncharge' OR STATE='wait')
-	  		AND BOOK_NO != #{book_no}
-	  
 	</select>
 </mapper>
