@@ -131,6 +131,7 @@ var KTBootstrapTimepicker = function () {
         // minimum setup
         $('#kt_timepicker_1_validate, #kt_timepicker_2_validate, #kt_timepicker_3_validate').timepicker({
             minuteStep: 1,
+			secondStep: 1,
             showSeconds: true,
             showMeridian: false,
             snapToStep: true
