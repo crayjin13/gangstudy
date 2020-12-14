@@ -21,7 +21,7 @@ public interface UserMapper {
 	@Select("SELECT id FROM USER_TB WHERE email=#{email} and name=#{name}")
 	public User find_id(@Param("email") String email, @Param("name") String name);
 
-	// 占쏙옙橘占싫� 占쏙옙占쏙옙
+	// 비번 변경
 	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}") 
 	public boolean update_pw(@Param("id") String id);
 

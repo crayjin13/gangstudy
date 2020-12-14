@@ -64,14 +64,15 @@ public class UserController {
 	
 	
 
-	// 비번찾기 페이지 이동
+	// 비번찾기 페이지 이동 
 	@RequestMapping(value = "/findPw", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "text/plain; charset=UTF-8")
 	public String findPw() throws Exception {
 		return "findPw";
 	}
+	
 
-	/* 비밀번호 찾기 - id , email */
+	/* 비밀번호 찾기  */
 	@ResponseBody
 	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) throws Exception {
@@ -109,7 +110,7 @@ public class UserController {
 
 	}
 
-	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 */
+	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 ㄴㄴ 지금안쓰고있음 (js로 비번같은지 체크하는방식으로 하고있음) */
 	@UserLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
