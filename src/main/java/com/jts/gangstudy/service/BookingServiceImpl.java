@@ -179,71 +179,40 @@ public class BookingServiceImpl implements BookingService{
 		return true;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 날짜로 검색
-	@Override
-	public List<Booking> searchByDate(String date) {
-		List<Booking> books = mapper.selectByDate(date);
-		if(books == null) {
-			return new ArrayList<Booking>();
-		} else {
-			return books;
-		}
-	}
-
 	// 날짜+시간으로 검색
 	@Override
 	public List<Booking> searchByDateTime(LocalDateTime dateTime) {
-		String formatDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		return mapper.selectByDateTime(formatDateTime);
+		return mapper.selectByDateTime(dateTime);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	// 날짜로 첫 예약 검색
-	public Booking searchByDateTimeFist(LocalDateTime dateTime) {
-		String formatDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		List<Booking> books = mapper.selectByDateTimeFirst(formatDateTime);
-		if(books.size() == 0) {
-			return null;
-		} else {
-			return books.get(0);
-		}
-	}
+
+	
 	
 	// 상태로 검색
 	@Override

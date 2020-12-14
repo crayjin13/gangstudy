@@ -30,9 +30,6 @@ public interface BookingService {
 	
 	
 	
-	
-	// 날짜로 검색
-	public List<Booking> searchByDate(String date);
 	// 날짜+시간으로 검색
 	public List<Booking> searchByDateTime(LocalDateTime now);
 	// 상태로 검색
