@@ -45,7 +45,8 @@ public class RemoteGangController {
 	public void reserve(HttpServletRequest request,
 			@RequestParam("ipAdress") String ipAdress, @RequestParam("portNumber") String portNumber, 
 			@RequestParam("message") String message, @RequestParam("reserveTime") String reserveTime) {
-		LocalTime time = LocalTime.parse(reserveTime);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm:ss");
+		LocalTime time = LocalTime.parse(reserveTime, dtf);
 		Command command = new Command(ipAdress, portNumber, message, time);
 		mapper.insertCommand(command);
 	}
