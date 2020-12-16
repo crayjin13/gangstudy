@@ -39,14 +39,14 @@ public class BookingController {
 	private PaymentService paymentService;
 	
 	// 30분 간격으로 예약 시간이 되면 상태 변경
-	@Scheduled(cron="0 */10 * * * *" )
+	@Scheduled(cron="0 */30 * * * *" )
 	public void bookTrigger() {
 		LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
-		System.out.println("called");
+		
 		// 사용하는 예약의 상태변경
 		List<Booking> usingList = bookingService.searchByDateTime(now);
 		for(Booking book : usingList) {
-			if(now.isEqual(book.getCheck_in()) && book.getState().equals("wait")) {		// 예약시간이 되면 use로 변경
+			if(now.isEqual(book.getCheck_in()) && book.getState().equals("wait")) {			// 예약시간이 되면 use로 변경
 				bookingService.changeState(book, "use");
 				User user = userService.getUser(book.getUser_no());
 				Integer amount = paymentService.selectPayment(book).getAmount();
@@ -63,7 +63,7 @@ public class BookingController {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		for(Booking book : unchargeList) {
 			LocalDateTime requestDateTime = LocalDateTime.parse(book.getRequest_dt(), formatter).plusHours(9);
-			if(book.getCheck_in().isBefore(now)) {										// 지금보다 이전의 예약 제거
+			if(book.getCheck_in().isBefore(now)) {											// 지금보다 이전의 예약 제거
 				bookingService.removeBook(book);
 			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
 				bookingService.removeBook(book);
@@ -73,19 +73,18 @@ public class BookingController {
 	
 	// 예약가능한 시작시간
 	@ResponseBody
-	@RequestMapping(value = "/reqStartTime", method = RequestMethod.GET)
-	public List<String> reqStartTime(HttpServletRequest request, HttpSession session) {
-		User user = (User)session.getAttribute("sUserId");
-		String startDate = request.getParameter("startDate");
-		List<Booking> books = bookingService.searchAlreadyBooked(user, startDate);
+	@RequestMapping(value = "/startTime", method = RequestMethod.GET)
+	public List<String> startTime(HttpServletRequest request, HttpSession session, 
+			@RequestParam("startDate") String startDate, @RequestParam("book_no") Integer book_no) {
+		List<Booking> books = bookingService.searchAlreadyBooked(book_no, startDate);
 		List<String> times = bookingService.getStartTimes(books, startDate);
 		return times;
 	}
 
 	// 예약가능한 종료시간
 	@ResponseBody
-	@RequestMapping(value = "/reqEndTime", method = RequestMethod.GET)
-	public List<String> reqEndTime(HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "/endTime", method = RequestMethod.GET)
+	public List<String> endTime(HttpServletRequest request, HttpSession session) {
 		String startTime = request.getParameter("startTime");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
@@ -117,17 +116,26 @@ public class BookingController {
 		
 		JSONArray array = new JSONArray();
 		for(Booking book : books) {
-			Payment payment = paymentService.selectPayment(book);
+			int point = 0;
+			int amount = 0;
+			if(!book.getState().equals("uncharge")) {
+				Payment payment = paymentService.selectPayment(book);
+				point = payment.getPoint();
+				amount = payment.getAmount();
+			}
+			
 			array.put(
 					new JSONArray()
 					.put(book.getBook_no())
-					.put(book.getCheck_in().toString())
-					.put(book.getCheck_out().toString())
+					.put(book.getCheck_in().toLocalDate().toString() + " " +
+						book.getCheck_in().toLocalTime().toString())
+					.put(book.getCheck_out().toLocalDate().toString() + " " +
+						book.getCheck_out().toLocalTime().toString())
 					.put(bookingService.getTimeInterval(book))
 					.put(book.getPeople() + "명")
 					.put(book.getState())
-					.put(payment.getPoint())
-					.put(payment.getAmount())
+					.put(point)
+					.put(amount)
 					.put(new JSONObject()
 							.put("book_no", book.getBook_no())
 							.put("state", book.getState()))
@@ -162,10 +170,10 @@ public class BookingController {
 			// mav add
 			String timeInterval = bookingService.getTimeInterval(book);
 			
-			mav.addObject("startDateInput", book.getCheck_in().toLocalDate())
-			.addObject("startTimeInput", book.getCheck_in().toLocalTime())
-			.addObject("endDateInput", book.getCheck_out().toLocalDate())
-			.addObject("endTimeInput", book.getCheck_out().toLocalTime())
+			mav.addObject("startDate", book.getCheck_in().toLocalDate())
+			.addObject("startTime", book.getCheck_in().toLocalTime())
+			.addObject("endDate", book.getCheck_out().toLocalDate())
+			.addObject("endTime", book.getCheck_out().toLocalTime())
 			.addObject("people", book.getPeople())
 			.addObject("timeInterval", timeInterval)
 			.addObject("charge", charge)
@@ -181,7 +189,7 @@ public class BookingController {
 	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
 			@RequestParam("startDateInput") String startDate, 	@RequestParam("startTimeInput") String startTime,
 			@RequestParam("endDateInput") String endDate, 		@RequestParam("endTimeInput") String endTime,
-			@RequestParam("userCountInput") String people) {
+			@RequestParam("people") String people) {
 		ModelAndView mav = new ModelAndView("pages/makecart");
 		User user = (User)session.getAttribute("sUserId");
 		
@@ -219,7 +227,7 @@ public class BookingController {
 		.addObject("endDateTime", endDateTime)
 		.addObject("timeInterval", timeInterval)
 		.addObject("chargePerPeople", chargePerPeople)
-		.addObject("userCount", people)
+		.addObject("people", people)
 		.addObject("point", user.getPoints())
 		.addObject("charge", chargePerPeople*Integer.parseInt(people));
 		return mav;
@@ -329,7 +337,7 @@ public class BookingController {
 		mav.addObject("startDateTime", startDateTime)
 		.addObject("endDateTime", endDateTime)
 		.addObject("timeInterval", timeInterval)
-		.addObject("userCount", people)
+		.addObject("people", people)
 		.addObject("point", user.getPoints())
 		.addObject("cancelAmount", cancelAmount)
 		.addObject("addedAmount", addedAmount)

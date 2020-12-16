@@ -231,7 +231,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<th>종료시간</th>
 													<th>총 이용시간</th>
 													<th>인원수</th>
-													<th>1인 1시간 이용금액</th>
+													<th>예약상태</th>
 													<th>포인트 차감</th>
 													<th>결제한 금액</th>
 													<th>수정</th>

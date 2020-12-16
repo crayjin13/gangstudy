@@ -45,7 +45,7 @@ public class PaymentController {
 	// kakaoPay를 통한 취소 요청
 		@UserLoginCheck
 		@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-		public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 			User user = (User)session.getAttribute("sUserId");
 			Booking book = bookingService.searchByBookNo(book_no);
 			if(book==null) {
@@ -150,15 +150,22 @@ public class PaymentController {
 
 	// kakaopay실패 url
 	@RequestMapping(value = "/fail", method = RequestMethod.GET)
-	public String fail(HttpServletRequest request, HttpSession session) {
+	public ModelAndView fail(HttpServletRequest request, HttpSession session) {
 		Booking book = (Booking)session.getAttribute("book");
 		bookingService.removeBook(book);
+		ModelAndView mav = new ModelAndView("redirect:" + "/booking/make");
+		System.out.println("test : " + book.getCheck_in().toLocalDate());
+		mav.addObject("startDateInput", book.getCheck_in().toLocalDate().toString());
+		mav.addObject("startTimeInput", book.getCheck_in().toLocalTime().toString());
+		mav.addObject("endDateInput", book.getCheck_out().toLocalDate().toString());
+		mav.addObject("endTimeInput", book.getCheck_out().toLocalTime().toString());
+		mav.addObject("people", book.getPeople());
+		mav.addObject("msg", "결제가 취소되었습니다.");
 		session.removeAttribute("book");
 		session.removeAttribute("tid");
 		session.removeAttribute("usePoint");
 		session.removeAttribute("amount");
-		System.out.println("fail");
-		return "?payment=fail";
+		return mav;
 	}
 	
 	// 전액 취소 후 다시 예약 에서 취소 단계

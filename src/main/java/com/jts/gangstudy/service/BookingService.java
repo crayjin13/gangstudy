@@ -15,7 +15,7 @@ public interface BookingService {
 	// 상태 변경
 	public void changeState(Booking book, String state);
 
-	public List<Booking> searchAlreadyBooked(User user, String startDate);
+	public List<Booking> searchAlreadyBooked(Integer book_no, String startDate);
 	public Booking searchNextBook(User user, String startDate, String startTime, String endDate);
 	public List<Booking> searchByUser(User user); 
 	// 예약 번호로 검색
