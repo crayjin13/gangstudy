@@ -11,15 +11,16 @@ public interface BookingMapper {
 	public void deleteBook(int book_no);
 	public void updateState(HashMap<String, String> map);
 
+	public List<Booking> selectAll();
 	public List<Booking> selectAlreadyBooked(HashMap<String, Object> map);
 	public Booking selectNextBook(HashMap<String, Object> map);
 	public List<Booking> selectByUser(Integer user_no);
-	
-	
-	
-	
 	public List<Booking> selectByDateTime(LocalDateTime dateTime);
 	public List<Booking> selectByState(String state);
+	
+	
+	
+	
 	public List<Booking> selectByUserState(HashMap<String, String> map);
 	public Booking selectByBookNo(int book_no);
 	

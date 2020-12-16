@@ -154,14 +154,13 @@ public class BookingController {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = bookingService.searchByBookNo(book_no);
 		
-		
-		if(book == null) {	// 수정 불가능한 경우
-			mav.setViewName("/?book=null");
+		if(book == null || book.getUser_no() != user.getUser_no()) {
+			mav.setViewName("redirect:" + "/");
+			mav.addObject("msg", "잘못된 접근입니다.");
 		} else if(!book.getState().equals("wait")) {
-			mav.setViewName("/?book=notWait");
-		} else if(book.getUser_no() != user.getUser_no()) {
-			mav.setViewName("/?user_no=fail");
-		} else {			// 수정 가능한 경우
+			mav.setViewName("redirect:" + "/");
+			mav.addObject("msg", "수정이 불가능한 예약입니다.");
+		} else {
 			Payment payment = paymentService.selectPayment(book);
 			
 			int charge = bookingService.getAmount(book);
@@ -466,4 +465,30 @@ public class BookingController {
 		return "redirect:/booking/check";
 	}
 	
+
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public ModelAndView showAll() {
+		ModelAndView mav = new ModelAndView("pages/showAllBook");
+		List<Booking> books = bookingService.searchAll();
+		
+		JSONArray array = new JSONArray();
+		for(Booking book : books) {
+			String name = userService.getUser(book.getUser_no()).getName();
+			array.put(
+					new JSONArray()
+					.put(book.getBook_no())
+					.put(name)
+					.put(book.getCheck_in().toLocalDate().toString() + " " +
+						book.getCheck_in().toLocalTime().toString())
+					.put(book.getCheck_out().toLocalDate().toString() + " " +
+						book.getCheck_out().toLocalTime().toString())
+					.put(book.getPeople() + "명")
+					.put(book.getState())
+					.put(book.getRequest_dt())
+					);
+		}
+
+		mav.addObject("books", array);
+		return mav;
+	}
 }

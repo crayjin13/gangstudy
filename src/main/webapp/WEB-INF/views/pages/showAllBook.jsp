@@ -206,7 +206,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<span class="card-icon">
 												<i class="flaticon-notepad text-primary"></i>
 											</span>
-											<h3 class="card-label">예약확정</h3>
+											<h3 class="card-label">모든예약</h3>
 										</div>
 										<div class="card-toolbar">
 											<!--begin::Dropdown-->
@@ -226,15 +226,11 @@ License: You must have a valid license purchased only from themeforest(the above
 										<table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
 											<thead>
 												<tr>
-													<th>예약번호</th>
+													<th>예약번호</th>													<th>예약자 이름</th>
 													<th>시작시간</th>
-													<th>종료시간</th>
-													<th>총 이용시간</th>
-													<th>인원수</th>
+													<th>종료시간</th>													<th>인원수</th>
 													<th>예약상태</th>
-													<th>포인트 차감</th>
-													<th>결제한 금액</th>
-													<th>수정</th>
+													<th>요청시간</th>
 												</tr>
 											</thead>     
 										</table>   
@@ -325,7 +321,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors-->
-		<!--begin::Page Scripts(used by this page)-->		<script type="text/javascript"> var books='${books}' </script>		<script src="${pageContext.request.contextPath}/resources/js/bookingList.js"></script>
+		<!--begin::Page Scripts(used by this page)-->		<script type="text/javascript"> var books='${books}' </script>		<script src="${pageContext.request.contextPath}/resources/js/showAllBook.js"></script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

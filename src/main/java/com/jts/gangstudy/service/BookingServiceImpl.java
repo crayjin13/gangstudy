@@ -57,6 +57,11 @@ public class BookingServiceImpl implements BookingService{
 		mapper.updateState(map);
 	}
 	
+	// 모든 예약 검색
+	public List<Booking> searchAll() {
+		return mapper.selectAll();
+	}
+	
 	// 중복 검색
 	public int searchDuplicate(Booking book) {
 		HashMap<String, LocalDateTime> map = new HashMap<String, LocalDateTime>();
