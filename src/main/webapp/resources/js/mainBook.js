@@ -44,6 +44,8 @@ bookingButton.addEventListener("click", function() {
 })
 
 $(document).ready(function() {
+	if(msg != "") { alert(msg); }
+	
 	setDateRange(startPicker, new Date(), 7)
 	setDateRange(endPicker, new Date(), 7)
 	
