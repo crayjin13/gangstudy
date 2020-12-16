@@ -11,10 +11,11 @@ const bookingButton = document.getElementById("bookingButton")
 
 
 var url = new URL(window.location.href)
+var msg = url.searchParams.get("msg")
 var book_no = url.searchParams.get("book_no")
 
-var startURL = "/booking/startTime";
-var endURL = "/booking/endTime";
+var startURL = "/booking/startTime"
+var endURL = "/booking/endTime"
 
 function getStartData() {
 	return {
@@ -43,42 +44,42 @@ bookingButton.addEventListener("click", function() {
 })
 
 $(document).ready(function() {
-	setDateRange(startPicker, new Date(), 7);
-	setDateRange(endPicker, new Date(), 7);
+	setDateRange(startPicker, new Date(), 7)
+	setDateRange(endPicker, new Date(), 7)
 	
 	if(startDateInput.value!="") {
-		setDateRange(endPicker, new Date(startDateInput.value), 1);
+		setDateRange(endPicker, new Date(startDateInput.value), 1)
 		
 		requestTimes(startURL, getStartData(), startTimeInput, function() {
 			requestTimes(endURL, getEndData(), endTimeInput)
 		})
 		
-		people.value = people.getAttribute("people");
+		people.value = people.getAttribute("people")
 	} else {
-		startDateInput.value = "시작일을 선택해주세요.";
-		endDateInput.value = "시작일을 선택해주세요.";
+		startDateInput.value = "시작일을 선택해주세요."
+		endDateInput.value = "시작일을 선택해주세요."
 	}
-});
+})
 
 
 
 startDateInput.addEventListener("change", function() {
-	removeOptions(startTimeInput);
-	removeOptions(endTimeInput);
+	removeOptions(startTimeInput)
+	removeOptions(endTimeInput)
 	
 	// end date select option
-	var date = new Date(startDateInput.value);
-	endDateInput.value = getFormatDate(date);
-	setDateRange(endPicker, date, 1);
+	var date = new Date(startDateInput.value)
+	endDateInput.value = getFormatDate(date)
+	setDateRange(endPicker, date, 1)
 	
 	// start time select option
 	requestTimes(startURL, getStartData(), startTimeInput)
-});
+})
 
 endDateInput.addEventListener("change", function() {
 	if(startDateInput.value=="") {
-		var date = new Date(endDateInput.value);
-		startDateInput.value = getFormatDate(date);
+		var date = new Date(endDateInput.value)
+		startDateInput.value = getFormatDate(date)
 		requestTimes(startURL, getStartData(), startTimeInput)
 	} else if(startTimeInput.value=="") {
 		

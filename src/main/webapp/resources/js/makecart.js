@@ -8,6 +8,14 @@ const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
 const pointMax = document.getElementById("pointMax");
 const pointUse = document.getElementById("kt_touchspin");
 
+var url = new URL(window.location.href)
+var msg = url.searchParams.get("msg")
+
+$(document).ready(function() {
+	if(msg != "") {
+		alert(msg);
+	}
+})
 document.getElementById("payments").addEventListener("click", function() {
 	$.post("/booking/make", {
         people : people.value,
