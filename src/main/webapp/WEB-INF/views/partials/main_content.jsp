@@ -90,7 +90,7 @@
 										<input class="form-control" type="text" id="start-date-input" name="startDateInput"
 										value = ${startDate}>
 										<select class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm"
-										time = ${startTime}>
+										time = "${startTime}">
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
@@ -100,15 +100,15 @@
 										<input class="form-control" type="text" id="end-date-input" name="endDateInput"
 										value = ${endDate}>
 										<select class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm"
-										time = ${endTime}>
+										time = "${endTime}">
 											<option value="">날짜를 선택해주세요.</option>
 										</select>
 								</div>
 								
 								<div class="form-group cafe24">
 									<label for="exampleTextarea">인원수</label> <select
-										class="form-control" id="user-count-input" name="userCountInput"
-										people=${people}>
+										class="form-control" id="people-input" name="people"
+										people="${people}">
 										<option value="">인원을 선택해주세요.</option>
 										<option value="1">1</option>
 										<option value="2">2</option>

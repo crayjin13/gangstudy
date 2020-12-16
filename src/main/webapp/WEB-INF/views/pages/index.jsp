@@ -207,6 +207,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/pikaday.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/booking.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/mainBook.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/inappBridge.js"></script>
 	<!--end::Page Scripts-->

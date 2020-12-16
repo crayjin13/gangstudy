@@ -223,7 +223,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													   
 													
 														<input id="touchspin" type="text"
-															class="form-control" value=${userCount} name="demo"
+															class="form-control" value=${people} name="demo"
 															style="text-align: center; width:20px;">
 													</div> <!-- <a
 																href="javascript:;"
