@@ -72,11 +72,10 @@ public class BookingServiceImpl implements BookingService{
 
 	// 요청한 유저의 예약을 제외하고 존재하는 예약의 목록
 	@Override
-	public List<Booking> searchAlreadyBooked(User user, String startDate) {
+	public List<Booking> searchAlreadyBooked(Integer book_no, String startDate) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		Integer user_no = 0;
-		if(user != null) { user_no = user.getUser_no(); }
-		map.put("user_no", user_no);
+		if(book_no == null) { book_no = 0; }
+		map.put("book_no", book_no);
 		map.put("date", startDate);
 		List<Booking> books = mapper.selectAlreadyBooked(map);
 		if(books == null) {
