@@ -23,6 +23,12 @@
 	  WHERE BOOK_NO = #{book_no}
 	</select>
 	
+	<!-- 모든 예약 검색 -->
+	<select id="selectAll" resultType="com.jts.gangstudy.domain.Booking">
+	SELECT *
+	FROM BOOKING_TB
+	</select>
+	
 	<!-- 유저 번호로 조회 -->
 	<select id="selectByUser" parameterType="int" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT *
