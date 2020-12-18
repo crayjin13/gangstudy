@@ -41,8 +41,8 @@
 	<select id="selectAlreadyBooked" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT *
 	  FROM BOOKING_TB
-	  WHERE CHECK_IN  BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date}) + 0.99999 AND
-	  		CHECK_OUT BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date}) + 0.99999 AND
+	  WHERE CHECK_IN  BETWEEN TO_DATE(#{date}, 'YYYY-MM-DD') AND TO_DATE(#{date}, 'YYYY-MM-DD') + 0.99999 AND
+	  		CHECK_OUT BETWEEN TO_DATE(#{date}, 'YYYY-MM-DD') AND TO_DATE(#{date}, 'YYYY-MM-DD') + 0.99999 AND
 	  		BOOK_NO != #{book_no} AND
 	  		(STATE='uncharge' OR STATE='wait' OR STATE='use')
 	</select>
