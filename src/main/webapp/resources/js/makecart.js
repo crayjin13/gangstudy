@@ -12,7 +12,7 @@ var url = new URL(window.location.href)
 var msg = url.searchParams.get("msg")
 
 $(document).ready(function() {
-	if(msg != "") {
+	if(msg != null) {
 		alert(msg);
 	}
 })

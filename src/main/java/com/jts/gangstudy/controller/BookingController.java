@@ -466,29 +466,5 @@ public class BookingController {
 	}
 	
 
-	@RequestMapping(value = "/books", method = RequestMethod.GET)
-	public ModelAndView showAll() {
-		ModelAndView mav = new ModelAndView("pages/showAllBook");
-		List<Booking> books = bookingService.searchAll();
-		
-		JSONArray array = new JSONArray();
-		for(Booking book : books) {
-			String name = userService.getUser(book.getUser_no()).getName();
-			array.put(
-					new JSONArray()
-					.put(book.getBook_no())
-					.put(name)
-					.put(book.getCheck_in().toLocalDate().toString() + " " +
-						book.getCheck_in().toLocalTime().toString())
-					.put(book.getCheck_out().toLocalDate().toString() + " " +
-						book.getCheck_out().toLocalTime().toString())
-					.put(book.getPeople() + "명")
-					.put(book.getState())
-					.put(book.getRequest_dt())
-					);
-		}
-
-		mav.addObject("books", array);
-		return mav;
-	}
+	
 }
