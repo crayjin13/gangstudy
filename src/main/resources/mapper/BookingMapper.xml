@@ -41,8 +41,8 @@
 	<select id="selectAlreadyBooked" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT *
 	  FROM BOOKING_TB
-	  WHERE CHECK_IN  BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date}) + 0.99999 AND
-	  		CHECK_OUT BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date}) + 0.99999 AND
+	  WHERE CHECK_IN  BETWEEN TO_DATE(#{date}, 'YYYY-MM-DD') AND TO_DATE(#{date}, 'YYYY-MM-DD') + 0.99999 AND
+	  		CHECK_OUT BETWEEN TO_DATE(#{date}, 'YYYY-MM-DD') AND TO_DATE(#{date}, 'YYYY-MM-DD') + 0.99999 AND
 	  		BOOK_NO != #{book_no} AND
 	  		(STATE='uncharge' OR STATE='wait' OR STATE='use')
 	</select>
@@ -54,7 +54,8 @@
 	  FROM BOOKING_TB
 	  <![CDATA[
 	  WHERE CHECK_IN > #{startDateTime} AND
-	  		CHECK_OUT > #{endDate} AND CHECK_OUT < TO_DATE(#{endDate}) + 1 AND
+	  		CHECK_OUT > TO_DATE(#{endDate}, 'YYYY-MM-DD') AND
+			CHECK_OUT < TO_DATE(#{endDate}, 'YYYY-MM-DD') + 1 AND
 	  		USER_NO != #{user_no} AND
 	  		(STATE='uncharge' OR STATE='wait')
         	ORDER BY CHECK_IN

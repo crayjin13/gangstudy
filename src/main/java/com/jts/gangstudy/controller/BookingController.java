@@ -60,9 +60,8 @@ public class BookingController {
 		
 		// 결제 미완료 등으로 남겨진 에약의 제거
 		List<Booking> unchargeList = bookingService.searchByState("uncharge");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		for(Booking book : unchargeList) {
-			LocalDateTime requestDateTime = LocalDateTime.parse(book.getRequest_dt(), formatter).plusHours(9);
+			LocalDateTime requestDateTime = book.getCheck_in().plusHours(9);
 			if(book.getCheck_in().isBefore(now)) {											// 지금보다 이전의 예약 제거
 				bookingService.removeBook(book);
 			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
