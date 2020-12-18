@@ -72,6 +72,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
 			<div class="aside aside-left d-flex aside-fixed" id="kt_aside">
+			<%@ include file="/WEB-INF/views/partials/_aside2.jsp"%>
 				<!--begin::Primary-->
 				<div
 					class="aside-primary d-flex flex-column align-items-center flex-row-auto">
@@ -169,7 +170,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Card-->
 					<div class="card card-custom gutter-b example example-compact">
 						<div class="card-header">
-							<h3 class="card-title cafe24">갱스터디 관리자 리모컨트롤 페이지</h3>
+							<h3 class="card-title cafe24">갱스터디 매장 리모컨트롤러 </h3>
 							<div class="card-toolbar">
 								<div class="example-tools justify-content-center"></div>
 							</div>
