@@ -7,12 +7,11 @@ const endTimeInput = document.getElementById("end-time-input")
 const people = document.getElementById("people-input")
 const bookingButton = document.getElementById("bookingButton")
 
+//
+//
 
-
-
-var url = new URL(window.location.href)
-var msg = url.searchParams.get("msg")
-var book_no = url.searchParams.get("book_no")
+var msg = getParam("msg")
+var book_no = getParam("book_no")
 
 var startURL = "/booking/startTime"
 var endURL = "/booking/endTime"
@@ -44,7 +43,7 @@ bookingButton.addEventListener("click", function() {
 })
 
 $(document).ready(function() {
-	if(msg != null) { alert(msg); }
+	if(msg != "") { alert(msg); }
 	
 	setDateRange(startPicker, new Date(), 7)
 	setDateRange(endPicker, new Date(), 7)

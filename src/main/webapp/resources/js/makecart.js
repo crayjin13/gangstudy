@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 const totalAmount = document.getElementById("totalAmount");
 const people = document.getElementById("touchspin");
 const chargePerPeople = document.getElementById("chargePerPeople");
@@ -8,11 +6,14 @@ const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
 const pointMax = document.getElementById("pointMax");
 const pointUse = document.getElementById("kt_touchspin");
 
-var url = new URL(window.location.href)
-var msg = url.searchParams.get("msg")
+//
+//
+//
+
+var msg = getParam("msg")
 
 $(document).ready(function() {
-	if(msg != null) {
+	if(msg != "") {
 		alert(msg);
 	}
 })

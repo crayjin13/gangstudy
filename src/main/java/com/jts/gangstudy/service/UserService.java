@@ -26,7 +26,10 @@ public interface UserService {
 	User getUser(int user_no);
 
 	/*********************************************/
-
+	
+	// 모든 유저 검색
+	public List<User> selectAll();
+	
 	// 占싸깍옙占쏙옙
 	User signIn(String id, String pw) throws Exception;
 
@@ -67,4 +70,6 @@ public interface UserService {
 	boolean plusPoints(User user, float point);
 	
 	boolean minusPoints(User user, float point);
+
+	boolean deleteUser(Integer user_no);
 }

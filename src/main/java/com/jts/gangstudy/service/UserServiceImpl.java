@@ -60,6 +60,11 @@ public class UserServiceImpl implements UserService {
 
 	///////////////////////// *************************////////////////////////////////
 
+	@Override
+	public List<User> selectAll() {
+		return userDao.selectAll();
+	}
+	
 	// �α���
 	@Override
 	public User signIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
@@ -156,6 +161,16 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		user.setPoints(user.getPoints() - point);
 		return userDao.updatePoints(user.getUser_no(), user.getPoints() - point);
+	}
+
+
+
+
+
+
+	@Override
+	public boolean deleteUser(Integer user_no) {
+		return userDao.deleteUser(user_no);
 	}
 
 	

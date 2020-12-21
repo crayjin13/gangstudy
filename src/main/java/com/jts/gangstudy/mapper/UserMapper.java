@@ -13,6 +13,10 @@ import com.jts.gangstudy.domain.User;
 @Mapper
 public interface UserMapper {
 	
+	// 모든 유저 정보
+	@Select("SELECT * FROM USER_TB WHERE id != #{id}")
+	public List<User> selectAll(@Param("id") String id);
+	
 	// 회占쏙옙 占쏙옙호占쏙옙 占싻깍옙
 		@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE user_no=#{user_no}")
 		public User getUser(@Param("user_no") int user_no);
@@ -66,8 +70,6 @@ public interface UserMapper {
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{phone, jdbcType=VARCHAR},#{id, jdbcType=VARCHAR},#{pw, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{bod, jdbcType=VARCHAR},#{gender, jdbcType=VARCHAR})")
 	public boolean insertUser(User user);
 	   
-
-      
    
 	@Insert("INSERT INTO USER_TB(name, id, pw)"
 			+ " VALUES (#{name, jdbcType=VARCHAR},#{id},#{pw})")
@@ -77,4 +79,7 @@ public interface UserMapper {
 	@Update("UPDATE USER_TB SET points=#{points} WHERE user_no=#{user_no}")
 	public boolean updatePoints(@Param("user_no") Integer user_no, @Param("points") Float points);
 
+	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#' WHERE user_no=#{user_no}")
+	public boolean deleteByUserNo(Integer user_no);
+	
 }

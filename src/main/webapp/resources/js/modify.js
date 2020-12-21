@@ -10,8 +10,8 @@ const modifyButton = document.getElementById("modify")
 const startTimeValue = document.getElementById("startTimeValue")
 const endTimeValue = document.getElementById("endTimeValue")
 
-var url = new URL(window.location.href)
-var book_no = url.searchParams.get("book_no")
+//
+var book_no = getParam("book_no")
 
 var startURL = "/booking/startTime";
 var endURL = "/booking/endTime";
