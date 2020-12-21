@@ -25,6 +25,9 @@ public interface UserDao {
 
 	/*****************************************************/
 	
+	// 모든 유저 검색
+	public List<User> selectAll();
+	
 	//占쏙옙占쏙옙 占쏙옙占� 
 	User getUser(int user_no);
 
@@ -64,4 +67,6 @@ public interface UserDao {
 	User temporaryPw(String pw, String id);
 	
 	boolean updatePoints(int user_no, Float points);
+
+	boolean deleteUser(Integer user_no);
 }

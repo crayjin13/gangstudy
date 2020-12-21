@@ -25,6 +25,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public List<User> selectAll() {
+		String id = "#";
+		return userMapper.selectAll(id);
+	}
+	
+	@Override
 	public User selectById(String id) {
 		// TODO Auto-generated method stub
 		return userMapper.selectById(id);
@@ -112,6 +118,11 @@ public class UserDaoImpl implements UserDao {
 	public boolean updatePoints(int user_no, Float points) {
 		// TODO Auto-generated method stub
 		return userMapper.updatePoints(user_no, points);
+	}
+
+	@Override
+	public boolean deleteUser(Integer user_no) {
+		return userMapper.deleteByUserNo(user_no);
 	}
 
 }
