@@ -95,6 +95,26 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <script src="/js/cbpHorizontalMenu.min.js"></script>
 
+		<!-- Global site tag (gtag.js) - Google Analytics 구글 -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166780031-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-166780031-1');
+		</script>
+		<!-- NAVER Analytics 네이버서비스 -->
+		<script type="text/javascript" src="http://wcs.naver.net/wcslog.js"></script>
+		<script type="text/javascript">
+			if(!wcs_add) var wcs_add = {};
+			wcs_add["wa"] = "2c6acdbed3f912";
+			if(window.wcs) {
+			  wcs_do();
+			}
+
+		</script>
+
+
 
 	<jsp:include page="/WEB-INF/views/layout.jsp" flush="true" />
 
