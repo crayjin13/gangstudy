@@ -114,7 +114,30 @@ var KTDatatablesDataSourceHtml = function() {
 					render: function(data, type, full, meta) {
 						return '\
 							<div class="d-flex align-items-center">\
-								<a href="javascript:modify('+data.user_no+');" class="btn btn-sm btn-clean btn-icon mr-1" title="Edit details">\
+								<div class="dropdown dropdown-inline mr-1">\
+									<a class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">\
+										<i class="la la-cog"></i>\
+									</a>\
+									<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">\
+										<!--begin::Star Rating-->\
+										<div class="rating">\
+											<fieldset class="rating" id='+data.user_no+'>\
+												<input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" onclick="rateUser(5, '+data.user_no+')"></label>\
+												<input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" onclick="rateUser(4.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" onclick="rateUser(4, '+data.user_no+')"></label>\
+												<input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" onclick="rateUser(3.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" onclick="rateUser(3, '+data.user_no+')"></label>\
+												<input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" onclick="rateUser(2.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" onclick="rateUser(2, '+data.user_no+')"></label>\
+												<input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" onclick="rateUser(1.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" onclick="rateUser(1, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" onclick="rateUser(0.5, '+data.user_no+')"></label>\
+											</fieldset>\
+										</div>\
+										<!--end::Star Rating-->\
+									</div>\
+								</div>\
+								<a onclick="javascript:noteUser('+data.user_no+');" class="btn btn-sm btn-clean btn-icon mr-1" title="Edit details">\
 									<i class="la la-edit"></i>\
 								</a>\
 								<a href="javascript:deleteUser('+data.user_no+');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
@@ -139,18 +162,36 @@ var KTDatatablesDataSourceHtml = function() {
 
 }();
 
+
 jQuery(document).ready(function() {
 	KTDatatablesDataSourceHtml.init();
+	
 });
-
 
 /***/ })
 
 /******/ });
 //# sourceMappingURL=javascript.js.map
 
-function modify(user_no) {
-	window.location.href = '/booking/modify' + '?book_no='+book_no
+function noteUser(user_no) {
+	var note = prompt("메모를 입력해주세요.");
+	if(note == null) {
+	} else {
+		$.get("/admin/noteUser", {
+			user_no : user_no,
+			note : note
+		},function(jqXHR) {
+			// always
+		},'text' /* xml, text, script, html */)
+		.done(function(response) {
+			window.location.reload()
+		})
+		.fail(function(jqXHR) {
+			alert('메모 변경 실패')
+		})
+		.always(function(jqXHR) {
+		});
+	}
 }
 
 function deleteUser(user_no) {
@@ -161,11 +202,28 @@ function deleteUser(user_no) {
 			// always
 		},'text' /* xml, text, script, html */)
 		.done(function(response) {
-			console.log(response);
+			window.location.reload()
 		})
 		.fail(function(jqXHR) {
+			alert('탈퇴 처리 실패')
 		})
 		.always(function(jqXHR) {
 		});
 	}
+}
+function rateUser(rate, user_no) {
+	$.get("/admin/rateUser", {
+		user_no : user_no,
+		rate : rate
+	},function(jqXHR) {
+		// always
+	},'text' /* xml, text, script, html */)
+	.done(function(response) {
+		window.location.reload()
+	})
+	.fail(function(jqXHR) {
+		alert('평점 변경 실패')
+	})
+	.always(function(jqXHR) {
+	});
 }

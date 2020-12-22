@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%@ page language="java" pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%@ page language="java" pageEncoding="UTF-8"%><!DOCTYPE html>
 <!--
 Template Name: Metronic - Bootstrap 4 HTML, React, Angular 9 & VueJS Admin Dashboard Theme
 Author: KeenThemes
@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>회원내역 | gangstudy</title>
+		<title>예약내역 | gangstudy</title>
 		<meta name="description" content="Javascript sourced data examples" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -35,9 +35,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
-		<!--end::Layout Themes-->		<!--begin::Star Rating-->		<link href="${pageContext.request.contextPath}/resources/assets/css/starrating.css" rel="stylesheet" type="text/css" />
-		<!--end::Star Rating-->		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
-	<style>  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;}</style>	</head>
+		<!--end::Layout Themes-->
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
+	<style>  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;}</style>	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading" >
@@ -84,7 +84,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!--begin::Page-->
 			<div class="d-flex flex-row flex-column-fluid page">
 				<!--begin::Aside-->
-				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">				<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>   
+				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">				<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>   
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
@@ -110,7 +110,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 					<!--end::Brand-->
 					<!--begin::Aside Menu-->
-			
+
 					<!--end::Aside Menu-->
 				</div>
 				<!--end::Aside-->
@@ -125,15 +125,15 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Header Menu-->
 								<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
 									<!--begin::Header Nav-->
-	
+
 									<!--end::Header Nav-->
 								</div>
 								<!--end::Header Menu-->
 							</div>
 							<!--end::Header Menu Wrapper-->
-							<!--begin::Topbar-->							  							
+							<!--begin::Topbar-->							  							
 							<!--end::Topbar-->
-					
+
 						</div>
 						<!--end::Container-->
 					</div>
@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Page Heading-->
 									<div class="d-flex align-items-baseline flex-wrap mr-5">
 										<!--begin::Page Title-->
-										<h5 class="text-dark font-weight-bold my-1 mr-5"> 회원 내역</h5>
+										<h5 class="text-dark font-weight-bold my-1 mr-5"> 예약 내역</h5>
 										<!--end::Page Title-->
 										<!--begin::Breadcrumb-->
 										<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -171,7 +171,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<!--end::Info-->
 								<!--begin::Toolbar-->  
-			
+
 								<!--end::Toolbar-->
 							</div>
 						</div>
@@ -180,6 +180,25 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="d-flex flex-column-fluid">
 							<!--begin::Container-->
 							<div class="container">
+								<!--begin::Notice-->
+								<div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+									<div class="alert-icon">
+										<span class="svg-icon svg-icon-primary svg-icon-xl">
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Tools/Compass.svg-->
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+													<rect x="0" y="0" width="24" height="24" />
+													<path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3" />
+													<path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero" />
+												</g>
+											</svg>
+											<!--end::Svg Icon-->
+										</span>
+									</div>
+									<div class="alert-text">
+									<a class="font-weight-bold" href="https://datatables.net/examples/data_sources/js_array.html" target="_blank">here</a>.</div>
+								</div>
+								<!--end::Notice-->
 								<!--begin::Card-->
 								<div class="card card-custom">
 									<div class="card-header">
@@ -187,19 +206,19 @@ License: You must have a valid license purchased only from themeforest(the above
 											<span class="card-icon">
 												<i class="flaticon-notepad text-primary"></i>
 											</span>
-											<h3 class="card-label">회원목록</h3>
+											<h3 class="card-label">예약확정</h3>
 										</div>
 										<div class="card-toolbar">
 											<!--begin::Dropdown-->
 											<div class="dropdown dropdown-inline mr-2">
-											<!-- 버튼 혹시필요할떄 쓰기 																							<button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<!-- 버튼 혹시필요할떄 쓰기 																							<button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 												Export</button> -->
 												<!--begin::Dropdown Menu-->
-									     
+
 												<!--end::Dropdown Menu-->
 											</div>
 											<!--end::Dropdown-->
-											
+
 										</div>
 									</div>
 									<div class="card-body">
@@ -207,15 +226,15 @@ License: You must have a valid license purchased only from themeforest(the above
 										<table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
 											<thead>
 												<tr>
-													<th>유저번호</th>
-													<th>아이디</th>
-													<th>이름</th>
-													<th>전화번호</th>
-													<th>이메일</th>
-													<th>생일</th>
-													<th>성별</th>
-													<th>포인트</th>
-													<th>평점</th>													<th>비고</th>													<th>수정</th>
+													<th>예약번호</th>
+													<th>시작시간</th>
+													<th>종료시간</th>
+													<th>총 이용시간</th>
+													<th>인원수</th>
+													<th>1인 1시간 이용금액</th>
+													<th>포인트 차감</th>
+													<th>결제한 금액</th>
+													<th>수정</th>
 												</tr>
 											</thead>     
 										</table>   
@@ -230,7 +249,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-					<div>	<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>	</div>
+					<div>	<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>	</div>
 					<!--end::Footer-->
 				</div>
 				<!--end::Wrapper-->
@@ -290,9 +309,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 		<!--end::Scrolltop-->
 		<!--begin::Sticky Toolbar-->
-	
+
 		<!--begin::Demo Panel-->
-	
+
 		<!--end::Demo Panel-->
 		<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
 		<!--begin::Global Config(global config for global JS scripts)-->
@@ -306,8 +325,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors-->
-		<!--begin::Page Scripts(used by this page)-->		<script type="text/javascript"> var users='${users}' </script>		<script src="${pageContext.request.contextPath}/resources/js/showAllUser.js"></script>
+		<!--begin::Page Scripts(used by this page)-->
+		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/datatables/data-sources/javascript.js"></script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->
-</html>
+</html> 

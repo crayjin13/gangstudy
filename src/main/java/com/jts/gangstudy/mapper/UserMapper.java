@@ -81,5 +81,11 @@ public interface UserMapper {
 
 	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#' WHERE user_no=#{user_no}")
 	public boolean deleteByUserNo(Integer user_no);
+
+	@Update("UPDATE USER_TB SET note=#{note} WHERE user_no=#{user_no}")
+	public boolean updateNote(@Param("user_no") Integer user_no, @Param("note") String note);
+
+	@Update("UPDATE USER_TB SET rate=#{rate} WHERE user_no=#{user_no}")
+	public boolean updateRate(@Param("user_no") Integer user_no, @Param("rate") Float rate);
 	
 }

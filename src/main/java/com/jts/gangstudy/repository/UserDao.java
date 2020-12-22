@@ -69,4 +69,8 @@ public interface UserDao {
 	boolean updatePoints(int user_no, Float points);
 
 	boolean deleteUser(Integer user_no);
+
+	boolean updateNote(Integer user_no, String note);
+
+	boolean updateRate(Integer user_no, Float rate);
 }
