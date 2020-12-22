@@ -84,15 +84,6 @@ License: You must have a valid license purchased only from themeforest(the above
 </head>
 
 <!--end::Head-->
-
-
-
-<!--begin::Body-->
-
-
-<body id="kt_body"
-	class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-
 <script src="/js/cbpHorizontalMenu.min.js"></script>
 
 		<!-- Global site tag (gtag.js) - Google Analytics 구글 -->
@@ -113,6 +104,15 @@ License: You must have a valid license purchased only from themeforest(the above
 			}
 
 		</script>
+
+
+<!--begin::Body-->
+
+
+<body id="kt_body"
+	class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+
+
 
 
 
