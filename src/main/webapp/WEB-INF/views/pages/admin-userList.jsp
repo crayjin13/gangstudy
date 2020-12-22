@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>관리자 입장 예약내역 | Gangstudy</title>
+		<title>관리자 입장 회원목록 | Gangstudy</title>
 		<meta name="description" content="Javascript sourced data examples" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -84,7 +84,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!--begin::Page-->
 			<div class="d-flex flex-row flex-column-fluid page">
 				<!--begin::Aside-->
-				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">				<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>   
+				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">				<%@ include file="/WEB-INF/views/partials/_aside2.jsp"%>   
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Page Heading-->
 									<div class="d-flex align-items-baseline flex-wrap mr-5">
 										<!--begin::Page Title-->
-										<h5 class="text-dark font-weight-bold my-1 mr-5"> 예약 내역</h5>
+										<h5 class="text-dark font-weight-bold my-1 mr-5">전체 회원 목록</h5>
 										<!--end::Page Title-->
 										<!--begin::Breadcrumb-->
 										<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -156,13 +156,13 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="" class="text-muted"> </a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="" class="text-muted">Datatables.net</a>
+												<a href="" class="text-muted">  </a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="" class="text-muted">Data sources</a>
-											</li>
+												<a href="" class="text-muted">  </a>
+											</li>     
 											<li class="breadcrumb-item">
-												<a href="" class="text-muted">Javascript</a>
+												<a href="" class="text-muted">  </a>
 											</li>
 										</ul>
 										<!--end::Breadcrumb-->
@@ -181,23 +181,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--begin::Container-->
 							<div class="container">
 								<!--begin::Notice-->
-								<div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
-									<div class="alert-icon">
-										<span class="svg-icon svg-icon-primary svg-icon-xl">
-											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Tools/Compass.svg-->
-											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect x="0" y="0" width="24" height="24" />
-													<path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3" />
-													<path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero" />
-												</g>
-											</svg>
-											<!--end::Svg Icon-->
-										</span>
-									</div>
-									<div class="alert-text">
-									<a class="font-weight-bold" href="https://datatables.net/examples/data_sources/js_array.html" target="_blank">here</a>.</div>
-								</div>
+								      
 								<!--end::Notice-->
 								<!--begin::Card-->
 								<div class="card card-custom">
@@ -206,7 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<span class="card-icon">
 												<i class="flaticon-notepad text-primary"></i>
 											</span>
-											<h3 class="card-label">예약확정</h3>
+											<h3 class="card-label">갱스터디 회원 목록 </h3>
 										</div>
 										<div class="card-toolbar">
 											<!--begin::Dropdown-->
@@ -226,15 +210,15 @@ License: You must have a valid license purchased only from themeforest(the above
 										<table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
 											<thead>
 												<tr>
-													<th>Record ID</th>
-													<th>Order ID</th>
-													<th>Country</th>
-													<th>Ship City</th>
-													<th>Ship Name</th>
-													<th>Ship Address</th>
-													<th>Company Email</th>
-													<th>Company Agent</th>
-													<th>Actions</th>
+													<th>회원번호</th>
+													<th>이름</th>
+													<th>아이디</th>
+													<th>이메일</th>
+													<th>생년월일</th>
+													<th>성별</th>
+													<th>평점</th>
+													<th>노트</th>
+													<th>수정사항</th>
 												</tr>
 											</thead>
 										</table>
@@ -1450,31 +1434,14 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided</div>
 									</div>
 									<!--end::Message Out-->
-								</div>
+								</div>     
 								<!--end::Messages-->
 							</div>
 							<!--end::Scroll-->
 						</div>
-						<!--end::Body-->
-						<!--begin::Footer-->
-						<div class="card-footer align-items-center">
-							<!--begin::Compose-->
-							<textarea class="form-control border-0 p-0" rows="2" placeholder="Type a message"></textarea>
-							<div class="d-flex align-items-center justify-content-between mt-5">
-								<div class="mr-3">
-									<a href="#" class="btn btn-clean btn-icon btn-md mr-1">
-										<i class="flaticon2-photograph icon-lg"></i>
-									</a>
-									<a href="#" class="btn btn-clean btn-icon btn-md">
-										<i class="flaticon2-photo-camera icon-lg"></i>
-									</a>
-								</div>
-								<div>
-									<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
-								</div>
-							</div>
-							<!--begin::Compose-->
-						</div>
+						<!--end::Body-->            
+						<!--begin::Footer-->           
+						<div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">						<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>					</div>
 						<!--end::Footer-->
 					</div>
 					<!--end::Card-->
@@ -1536,7 +1503,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors-->
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/datatables/data-sources/javascript.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/admin-userList.js"></script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

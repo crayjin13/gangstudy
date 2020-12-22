@@ -136,20 +136,38 @@
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">로그인 
 										</span></a></li>
 										<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/edit-user"
+									data-menu-toggle="hover"><a href="/admin-userList"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원목록
 										</span></a></li>
+										
 
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a
-									href="/booking/check" class="menu-link "> <i
+									href="/admin-bookinglist" class="menu-link "> <i
 										class="menu-bullet menu-bullet-line"><span></span></i> <span
 										class="menu-text font-weight-boldest font-size-h3 cafe24">예약목록</span></a>
 								</li>
 
-							
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/admin-blackList"
+									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+										<span
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">블랙고객
+										</span></a></li>
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/admin-charts"
+									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+										<span
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">통계
+										</span></a></li>
+							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/admin-timeline"
+									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+										<span
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">시스템 로그
+										</span></a></li>
 								
 
 	<%
