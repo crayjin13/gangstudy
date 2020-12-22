@@ -83,15 +83,31 @@ public class AdminController {
 	
 	// 회원 탈퇴
 	@ResponseBody
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public boolean deleteUser(@RequestParam("user_no") Integer user_no)
-			throws Exception {
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+	public boolean deleteUser(@RequestParam("user_no") Integer user_no) {
 		boolean delete = userService.deleteUser(user_no);
-		if (delete) {    
-			System.out.println("유저 탈퇴 성공");
-		} else {
-			System.out.println("탈퇴 실패");
-		}
 		return delete;
+	}
+	
+	// 메모 변경
+	@ResponseBody
+	@RequestMapping(value = "/noteUser", method = RequestMethod.GET)
+	public boolean noteUser(@RequestParam("user_no") Integer user_no, @RequestParam("note") String note) {
+		boolean update = userService.updateNote(user_no, note);
+		return update;
+	}
+	
+	// 평점 변경
+	@ResponseBody
+	@RequestMapping(value = "/rateUser", method = RequestMethod.GET)
+	public boolean rateUser(@RequestParam("user_no") Integer user_no, @RequestParam("rate") String rate) {
+		boolean update = userService.updateRate(user_no, Float.parseFloat(rate));
+		return update;
+	}
+		
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ModelAndView test() {
+		ModelAndView mav = new ModelAndView("notyet/testList");
+		return mav;
 	}
 }
