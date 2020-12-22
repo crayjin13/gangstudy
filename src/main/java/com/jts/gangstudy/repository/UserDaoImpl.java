@@ -124,5 +124,15 @@ public class UserDaoImpl implements UserDao {
 	public boolean deleteUser(Integer user_no) {
 		return userMapper.deleteByUserNo(user_no);
 	}
+	@Override
+	public boolean updateNote(Integer user_no, String note) {
+		// TODO Auto-generated method stub
+		return userMapper.updateNote(user_no, note);
+	}
+	@Override
+	public boolean updateRate(Integer user_no, Float rate) {
+		// TODO Auto-generated method stub
+		return userMapper.updateRate(user_no, rate);
+	}
 
 }

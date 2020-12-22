@@ -11,7 +11,7 @@ public class User {
 	private String email;
 	private Date bod;
 	private String gender;
-	private Integer rate;
+	private Float rate;
 	private Float points;
 	private String note;
 	private String retired;
@@ -23,7 +23,7 @@ public class User {
 	
 	
 	
-	public User(String name, Integer rate, Booking booking) {
+	public User(String name, Float rate, Booking booking) {
 		super();
 		this.name = name;
 		this.rate = rate;
@@ -54,7 +54,7 @@ public class User {
 
 
 	public User(Integer user_no, String name, String phone, String id, String pw, String email, Date bod,
-			String gender, Integer rate, Float points, String note) {
+			String gender, Float rate, Float points, String note) {
 		super();
 		this.user_no = user_no;
 		this.name = name;
@@ -96,7 +96,7 @@ public class User {
 
 
 
-	public User(String name, String phone, String id, String pw, String email, Date bod, String gender, Integer rate,
+	public User(String name, String phone, String id, String pw, String email, Date bod, String gender, Float rate,
 			Float points, String note) {
 		super();
 		this.name = name;
@@ -225,13 +225,13 @@ public class User {
 
 
 
-	public Integer getRate() {
+	public Float getRate() {
 		return rate;
 	}
 
 
 
-	public void setRate(Integer rate) {
+	public void setRate(Float rate) {
 		this.rate = rate;
 	}
 

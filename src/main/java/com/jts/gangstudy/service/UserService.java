@@ -72,4 +72,8 @@ public interface UserService {
 	boolean minusPoints(User user, float point);
 
 	boolean deleteUser(Integer user_no);
+
+	boolean updateNote(Integer user_no, String note);
+
+	boolean updateRate(Integer user_no, float rate);
 }

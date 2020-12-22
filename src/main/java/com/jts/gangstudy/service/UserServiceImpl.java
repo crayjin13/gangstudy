@@ -173,6 +173,24 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUser(user_no);
 	}
 
+
+
+
+
+	@Override
+	public boolean updateNote(Integer user_no, String note) {
+		return userDao.updateNote(user_no, note);
+	}
+
+
+
+
+
+	@Override
+	public boolean updateRate(Integer user_no, float rate) {
+		return userDao.updateRate(user_no, rate);
+	}
+
 	
 
 }
