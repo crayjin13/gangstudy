@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>예약내역 | gangstudy</title>
+		<title>회원내역 | gangstudy</title>
 		<meta name="description" content="Javascript sourced data examples" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -35,8 +35,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
-		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
+		<!--end::Layout Themes-->		<!--begin::Star Rating-->		<link href="${pageContext.request.contextPath}/resources/assets/css/starrating.css" rel="stylesheet" type="text/css" />
+		<!--end::Star Rating-->		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
 	<style>  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;}</style>	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Page Heading-->
 									<div class="d-flex align-items-baseline flex-wrap mr-5">
 										<!--begin::Page Title-->
-										<h5 class="text-dark font-weight-bold my-1 mr-5"> 예약 내역</h5>
+										<h5 class="text-dark font-weight-bold my-1 mr-5"> 회원 내역</h5>
 										<!--end::Page Title-->
 										<!--begin::Breadcrumb-->
 										<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -187,7 +187,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<span class="card-icon">
 												<i class="flaticon-notepad text-primary"></i>
 											</span>
-											<h3 class="card-label">예약확정</h3>
+											<h3 class="card-label">회원목록</h3>
 										</div>
 										<div class="card-toolbar">
 											<!--begin::Dropdown-->
