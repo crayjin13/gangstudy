@@ -577,6 +577,8 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<!--end::Global Theme Bundle-->
+	
+	<script src="${pageContext.request.contextPath}/resources/js/booking.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/makecart.js"></script>
 	<!--begin:: I'm port -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
