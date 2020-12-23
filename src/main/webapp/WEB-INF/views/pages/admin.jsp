@@ -282,29 +282,6 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Form--> 
 									<form class="form2">    
 									<!--      간판 시작              -->
-
-									<div class="form-group row">
-										<label class="col-form-label text-right col-lg-3 col-sm-12">연결할
-											IP 주소 </label>
-
-										<div class="col-lg-4 col-md-9 col-sm-12">
-											<input id="ipInput" type="text" class="form-control"
-												value="211.201.46.200" name="demo0" />
-
-										</div>
-									</div>
-
-
-									<div class="form-group row">
-										<label class="col-form-label text-right col-lg-3 col-sm-12">연결할
-											PORT </label>
-
-										<div class="col-lg-4 col-md-9 col-sm-12">
-											<input id="portInput" type="text" class="form-control"
-												value="1200" name="demo0" />
-										</div>
-									</div>
-
 									<div class="form-group row">
 										<label class="col-form-label text-right col-lg-3 col-sm-12">간판
 											키는 명령어 옵션 </label>
