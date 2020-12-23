@@ -104,7 +104,7 @@ public class BookingController {
 		return canCancel;
 	}
 
-	// booking order page - 결제 확인 페이지
+	// bookingList page - 예약 목록
 	@UserLoginCheck
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
 	public ModelAndView bookCheck(HttpServletRequest request, HttpSession session) {
