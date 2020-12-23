@@ -136,7 +136,7 @@
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">로그인 
 										</span></a></li>
 										<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/admin-userList"
+									data-menu-toggle="hover"><a href="/admin/users"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">회원목록
