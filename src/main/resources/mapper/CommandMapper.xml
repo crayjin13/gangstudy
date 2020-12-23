@@ -9,8 +9,8 @@
 	<!-- 명령어 추가 -->
 	<insert id="insertCommand" parameterType="com.jts.gangstudy.domain.Command">
 	  INSERT INTO COMMAND_TB
-	  (IPADRESS, PORT, MESSAGE, RESERVE_TIME) VALUES
-	  (#{ipAdress}, #{portNumber}, #{message}, #{reserveTime})
+	  (MESSAGE, RESERVE_TIME) VALUES
+	  (#{message}, #{reserveTime})
 	</insert>
 	
 	<!-- 명령어 삭제 -->
