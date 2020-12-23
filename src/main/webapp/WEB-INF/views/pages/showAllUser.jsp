@@ -84,7 +84,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!--begin::Page-->
 			<div class="d-flex flex-row flex-column-fluid page">
 				<!--begin::Aside-->
-				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">				<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>   
+				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">				<%@ include file="/WEB-INF/views/partials/_aside2.jsp"%>   
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
