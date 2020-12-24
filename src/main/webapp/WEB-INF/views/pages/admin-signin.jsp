@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signin-->                
 						<div class="login-form">
 							<!--begin::Form-->
-							<form   id="admin_signin" action="/jts" >
+							<form  id="admin_signin" action="/jts" method="POST" >
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">								
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">관리자 로그인</h3>

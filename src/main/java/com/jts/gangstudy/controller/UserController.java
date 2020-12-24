@@ -272,7 +272,7 @@ public class UserController {
  
 	// 회원가입
 	@ResponseBody
-	@RequestMapping(value = "/signUp", method = {RequestMethod.GET, RequestMethod.POST} , produces = "text/plain; charset=UTF-8")
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String signUp(User user) throws Exception {
 
 		System.out.println(user);

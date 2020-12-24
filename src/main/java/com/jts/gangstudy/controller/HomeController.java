@@ -82,10 +82,6 @@ public class HomeController {
 	
 	
 
-	
-	  
-	
-	
 	@RequestMapping(value = "/admin-signin", method = RequestMethod.GET)
 	public String adminSingin() {
 		return "pages/admin-signin";
@@ -110,14 +106,19 @@ public class HomeController {
 	public String adminbooking() {
 		return "pages/admin-bookinglist";
 	}
+	    
+	  
+	
+
 	@RequestMapping(value = "/html", method = RequestMethod.GET)
 	public String html() {
 		return "notyet/html";
 	}
 	
-	@RequestMapping(value = "/faq", method = RequestMethod.GET)
-	public String faq() {
-		return "pages/faq";
+	
+	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
+	public String admin() {
+		return "pages/admin";
 	}
 	
 	
@@ -133,29 +134,6 @@ public class HomeController {
 	
 	
 	
-	 /**
-     * Tiles를 사용하지 않은 일반적인 형태
-     */    
-    @RequestMapping("/test.do")
-    public String test() {
-        return "test";
-    }    
-    
-    /**
-     * Tiles를 사용(header, left, footer 포함)
-     */        
-    @RequestMapping("/testPage.do")
-    public String testPage() {
-        return "test.page";
-    }
-    
-    /**
-     * Tiles를 사용(header, left, footer 제외)
-     */    
-    @RequestMapping("/testPart.do")
-    public String testPart() {
-        return "test.part";
-    }        
-	
+
 	
 }

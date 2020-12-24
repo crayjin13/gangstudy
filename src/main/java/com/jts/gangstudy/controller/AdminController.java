@@ -41,13 +41,17 @@ public class AdminController {
 	private UserService userService;
 	@Autowired
 	private BookingService bookingService;
-	
+	    
 
 	Logger logger;
 	
+	
+	
+	
+	
 	/* 관리자 로그인 */
 	@ResponseBody
-	@RequestMapping(value = "/sign_in_admin", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain; charset=UTF-8")
+	@RequestMapping(value = "/sign_in_admin", method =  RequestMethod.POST, produces = "text/plain; charset=UTF-8")
 	public String sign_in_admin(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
 			Model model, HttpServletRequest request) throws Exception {
 		System.out.println(" 관계자 아이디비번값받기  " + "id:" + id + " pw:" + pw);
@@ -60,7 +64,7 @@ public class AdminController {
 			User signInuser = userService.signIn(id, pw);
 			System.out.println();
 			if (signInuser != null) {
-				System.out.println(" 濡� 洹� �씤 �꽦 怨�");
+				System.out.println(" 성공");
 				session.setAttribute("id", id);
 				session.setAttribute("name", user.getName());
 
