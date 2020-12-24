@@ -24,7 +24,7 @@
 										<!--begin::Page Title-->
 										
 										<h5 class="text-dark font-weight-bold my-1 mr-5">  </h5> 
-										<p style="font-size:18px; color: darkgray; font-family: 'Cafe24Oneprettynight'; "> 24시 365일 운영하는 무인 스터디카페<p>
+										<p style="font-size:18px; color: darkgray; font-family: 'Cafe24Oneprettynight'; "> 스터디카페<p>
 
 										<!--end::Page Title-->
 									</div>

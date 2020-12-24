@@ -9,10 +9,11 @@ $(function() {
 		console.log("---- 로그인 값이 들어오는가  ---" + mlafArray);
 		$.ajax({
 			url : 'sign_in_admin',
-			method : 'get',
+			method : 'GET',
 			data : mlafArray,
 			dataType : 'text',
 			success : function(textData) {
+				console.log("ajax 타는지");
 				if (textData.trim() == "true") {
 
 					location.href = '/jts';
