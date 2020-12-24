@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.exception.PasswordMismatchException;
+import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.domain.Booking;
 
 public interface UserService {
@@ -30,34 +32,43 @@ public interface UserService {
 	// 모든 유저 검색
 	public List<User> selectAll();
 	
-	// 占싸깍옙占쏙옙
+	// 로그인
 	User signIn(String id, String pw) throws Exception;
+	
+	// 관리자 로그인
+	User adminsignIn(String id, String pw) throws Exception;
+	
+	
 
-	// 회占쏙옙 占쏙옙占쏙옙 Create
+	// 회원가입
 	boolean insertUser(User user);
 
-	// 회占쏙옙 占쏙옙占싱듸옙占� 占싯삼옙
+	// 아이디로 선택 
 	User selectById(String id) throws Exception;
+	
+	
+	// 관리자 찾기  
+	User selectAdmin(String id) throws Exception;
 
-	// 회占쏙옙 占쏙옙占쏙옙
+	// 회원 수정
 	boolean updateUser(User user);
 
-	// 占쏙옙占싱듸옙 占쌩븝옙체크
+	// 아이디중복체크
 	boolean idDuplicateCheck(String id);
 
-	// 占쏙옙橘占싫� 占쏙옙치占쏙옙占쏙옙 체크
+	// 비번체크
 	boolean pwMatch(String pw);
 
-	// 회占쏙옙 탈占쏙옙
+	// 회원탈퇴
 	boolean deleteUser(String id, String pw);
 
-	// 占쏙옙占싱듸옙 찾占쏙옙
+	// 아이디 찾기
 	User findId(String email, String name);
 
-	// 占쏙옙橘占싫� 찾占쏙옙
+	// 비번찾기
 	User findPw(String id, String email);
 
-	// 占쌈시븝옙橘占싫� 占쌩깍옙
+	// 임시비번
 	User temporaryPw(String pw, String id);
 
 	User User(String name, String phone, String id, String pw, String email, String bod, String gender, int rate,
@@ -76,4 +87,6 @@ public interface UserService {
 	boolean updateNote(Integer user_no, String note);
 
 	boolean updateRate(Integer user_no, float rate);
+
+
 }
