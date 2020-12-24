@@ -26,58 +26,7 @@ import com.jts.gangstudy.domain.Command;
 import com.jts.gangstudy.mapper.CommandMapper;
 
 @Controller
-@RequestMapping("/remote")
 public class RemoteGangController {
-	private final String ipAdress = "211.201.46.200";
-	private final String portNumber = "1200";
-
-	@Autowired
-	private CommandMapper mapper;
-	
-	@ResponseBody
-	@RequestMapping(value = "/sign", method = RequestMethod.GET)
-	public String sign(HttpServletRequest request, @RequestParam("message") String message) {
-		return sendMessage(ipAdress, portNumber, message);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/insertCommand", method = RequestMethod.GET)
-	public void reserve(HttpServletRequest request,
-			@RequestParam("ipAdress") String ipAdress, @RequestParam("portNumber") String portNumber, 
-			@RequestParam("message") String message, @RequestParam("reserveTime") String reserveTime) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm:ss");
-		LocalTime time = LocalTime.parse(reserveTime, dtf);
-		Command command = new Command(ipAdress, portNumber, message, time);
-		mapper.insertCommand(command);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/removeCommand", method = RequestMethod.GET)
-	public void delete(HttpServletRequest request, @RequestParam("command_no") String command_no) {
-		mapper.deleteCommand(Integer.parseInt(command_no));
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/reqCommandList", method = RequestMethod.GET)
-	public List<Command> reqCommandList(HttpServletRequest request) {
-		List<Command> commands = mapper.selectAll();
-		return commands;
-	}
-	
-	@Scheduled(cron="*/1 * * * * *" )
-	public void cornTrigger() {
-		LocalTime now = LocalTime.now();
-		List<Command> list = mapper.selectAll();
-		for(Command command : list) {
-			LocalTime time = command.getReserveTime();
-			Duration duration = Duration.between(now, time);
-			
-			if(Math.abs(duration.getSeconds()) <= 1) {
-				String message = sendMessage(command.getIpAdress(), command.getPortNumber(), command.getMessage());
-			}
-		}
-	}
-	
 	public String sendMessage(String ip, String port, String message) {
 		int portNumber = Integer.parseInt(port);
 		byte[] buf = null;

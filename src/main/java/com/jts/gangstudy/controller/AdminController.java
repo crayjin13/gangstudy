@@ -1,5 +1,7 @@
 package com.jts.gangstudy.controller;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,18 +25,24 @@ import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.Command;
 import com.jts.gangstudy.service.UserService;
+import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	
+	
+	@Autowired
+	private AdminService adminService;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private BookingService bookingService;
 	
+
 	Logger logger;
 	
 	/* 관리자 로그인 */
@@ -76,6 +84,7 @@ public class AdminController {
 		return forwardPath;
 	}
 	
+
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ModelAndView showBooks() {
@@ -153,7 +162,35 @@ public class AdminController {
 		boolean update = userService.updateRate(user_no, Float.parseFloat(rate));
 		return update;
 	}
-		
+	
+	@ResponseBody
+	@RequestMapping(value = "/addCommand", method = RequestMethod.GET)
+	public void addCommand(HttpServletRequest request, @RequestParam("message") String msg, @RequestParam("time") String time) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm:ss");
+		LocalTime localTime = LocalTime.parse(time, dtf);
+		Command command = new Command(msg, localTime);
+		adminService.insertCommand(command);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/removeCommand", method = RequestMethod.GET)
+	public void removeCommand(HttpServletRequest request, @RequestParam("command_no") String command_no) {
+		adminService.deleteCommand(Integer.parseInt(command_no));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getCommands", method = RequestMethod.GET)
+	public List<Command> getCommands(HttpServletRequest request) {
+		return adminService.selectAll();
+	}
+	
+	// 리모컨 기능
+	@ResponseBody
+	@RequestMapping(value = "/remote", method = RequestMethod.GET)
+	public void remote(HttpServletRequest request, @RequestParam("message") String message) {
+		adminService.sendMessage(message);
+	}
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView test() {
 		ModelAndView mav = new ModelAndView("notyet/testList");

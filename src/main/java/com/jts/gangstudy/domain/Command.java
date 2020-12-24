@@ -6,38 +6,20 @@ import java.time.LocalTime;
 
 public class Command {
 	private int command_no;
-	private String ipAdress;
-	private String portNumber;
 	private String message;
 	private LocalTime reserveTime;
 	
-	public Command(BigDecimal command_no, String ipAdress, String portNumber, String message, Timestamp reserveTime) {
+	public Command(BigDecimal command_no, String message, Timestamp reserveTime) {
 		super();
 		this.command_no = command_no.intValue();
-		this.ipAdress = ipAdress;
-		this.portNumber = portNumber;
 		this.message = message;
 		this.reserveTime = reserveTime.toLocalDateTime().toLocalTime();
 	}
 	
-	public Command(String ipAdress, String portNumber, String message, LocalTime reserveTime) {
+	public Command(String message, LocalTime reserveTime) {
 		super();
-		this.ipAdress = ipAdress;
-		this.portNumber = portNumber;
 		this.message = message;
 		this.reserveTime = reserveTime;
-	}
-	public String getIpAdress() {
-		return ipAdress;
-	}
-	public void setIpAdress(String ipAdress) {
-		this.ipAdress = ipAdress;
-	}
-	public String getPortNumber() {
-		return portNumber;
-	}
-	public void setPortNumber(String portNumber) {
-		this.portNumber = portNumber;
 	}
 	public String getMessage() {
 		return message;

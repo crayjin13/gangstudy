@@ -14,7 +14,7 @@ function sendMessage(){
 	var message = '<C01' + this.getAttribute('data-value') + '>';
 	outlog.textContent = outlog.textContent + message;
 	$.ajax({
-		url : '/remote/sign',
+		url : '/admin/remote',
 		type : 'GET',
 		data : {
 				 'message' : message
@@ -30,7 +30,7 @@ function sendMessage(){
 function removeReserve(){
 	var command_no = this.getAttribute('command_no');
 	$.ajax({
-		url : '/remote/removeCommand',
+		url : '/admin/removeCommand',
 		type : 'GET',
 		data : {
 				 'command_no' : command_no
@@ -46,13 +46,11 @@ function removeReserve(){
 
 document.getElementById('saveCommand').addEventListener('click', function() {
 	$.ajax({
-		url : '/remote/insertCommand',
+		url : '/admin/addCommand',
 		type : 'GET',
 		data : {
-				 'ipAdress' 	: document.getElementById('ipInput').value,
-				 'portNumber' 	: document.getElementById('portInput').value,
-				 'message' 		: document.getElementById('messageInput').value,
-				 'reserveTime' 	: document.getElementById('kt_timepicker_1_validate').value,
+				 'message' 	: document.getElementById('messageInput').value,
+				 'time' 	: document.getElementById('kt_timepicker_1_validate').value
 			   },
 		success : function() {
 			getReserveList();
@@ -72,7 +70,7 @@ var command_list = document.getElementById('command_list');
 function getReserveList() {
 	while ( command_list.hasChildNodes() ) { command_list.removeChild( command_list.firstChild ); }
 	$.ajax({
-		url : '/remote/reqCommandList',
+		url : '/admin/getCommands',
 		type : 'GET',
 		data : {
 					//nothing
@@ -99,7 +97,7 @@ function appendChildTo(target, data) {
 	var li = document.createElement('li');
 	var time = data.reserveTime;
 	var date = new Date(0, 0, 0, time.hour, time.minute, time.second, 0);
-  	li.appendChild(document.createTextNode(data.ipAdress+', '+data.portNumber+', '+data.message+', '+
+  	li.appendChild(document.createTextNode(data.message+', '+
 											date.getHours().zf(2)+':'+date.getMinutes().zf(2)+':'+date.getSeconds().zf(2)));
 
 	var button = document.createElement('button');
