@@ -119,10 +119,7 @@ public class HomeController {
 	public String faq() {
 		return "pages/faq";
 	}
-	@RequestMapping(value = "/jts", method = RequestMethod.GET)
-	public String admin() {
-		return "pages/admin";
-	}
+	
 	
 	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
 	public String privacyPolicy() {

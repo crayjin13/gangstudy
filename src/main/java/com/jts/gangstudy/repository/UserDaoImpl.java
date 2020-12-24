@@ -134,5 +134,10 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return userMapper.updateRate(user_no, rate);
 	}
+	@Override
+	public User selectAdmin(String id) {
+		// 관리자 찾기
+		return userMapper.selectAdmin(id);
+	}
 
 }

@@ -65,19 +65,35 @@ public class UserServiceImpl implements UserService {
 		return userDao.selectAll();
 	}
 	
-	// �α���
+	// 회원 로그인
 	@Override
 	public User signIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
 		User user = userDao.selectById(id);
 		if (user == null) {
-			throw new UserNotFoundException(id + "�� ���� ���̵� �Դϴ�.");
+			throw new UserNotFoundException(id + "찾을수없는 유저입니다.");
 		}
 		if (!user.isMatchPassword(pw)) {
-			throw new PasswordMismatchException("�н����尡 ��ġ���� �ʽ��ϴ�.");
+			throw new PasswordMismatchException("정보가 일치하지않습니다.");
+		}
+		return user;
+	}
+	// 관리자 로그인
+	@Override
+	public User adminsignIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
+		User user = userDao.selectAdmin(id);
+		if (user == null) {
+			throw new UserNotFoundException(id + "없는유저.");
+		}
+		if (!user.isMatchPassword(pw)) {
+			throw new PasswordMismatchException("�정보가 일치하지않습니다.");
 		}
 		return user;
 	}
 
+	
+	
+	
+	
 	@Override
 	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
@@ -91,6 +107,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User selectById(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.selectById(id);
+	}
+	@Override
+	public User selectAdmin(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return userDao.selectById(id);
 	}
@@ -190,6 +211,12 @@ public class UserServiceImpl implements UserService {
 	public boolean updateRate(Integer user_no, float rate) {
 		return userDao.updateRate(user_no, rate);
 	}
+
+
+
+
+
+	
 
 	
 

@@ -28,16 +28,20 @@ public interface UserDao {
 	// 모든 유저 검색
 	public List<User> selectAll();
 	
-	//占쏙옙占쏙옙 占쏙옙占� 
+	// 회원번호로 유저찾기 
 	User getUser(int user_no);
 
-	// 회占쏙옙 占쏙옙占쏙옙 Create
+	// 회원가입
 	boolean insertUser(User user);
 	
+	//카카오유저가입
 	boolean insertKakaoUser(User user);
 
-	// 회占쏙옙 占쏙옙占싱듸옙占� 占싯삼옙
+	// 아이디로찾기
 	User selectById(String id);
+
+	// 관리자 찾기
+	User selectAdmin(String id);
 
 	/* 占쏙옙占쏙옙 占쏙옙활占쏙옙화 (mRetire ON --> OFF) */
 	boolean deleteMember(String pw, String email, String retire);
@@ -45,25 +49,25 @@ public interface UserDao {
 	/* 占쏙옙占쏙옙 활占쏙옙화 (mRetire OFF --> ON) */
 	boolean accountOn(String mRetire, String mEmail);
 
-	// 회占쏙옙 占쏙옙占쏙옙
+	// 유저수정
 	boolean updateUser(User user);
 
-	// 占쏙옙占싱듸옙 占쌩븝옙체크
+	// 아이디중복체크
 	boolean idDuplicateCheck(String id);
 
-	// 占쏙옙橘占싫� 占쏙옙치占쏙옙占쏙옙 체크
+	// 비번체크
 	boolean pwMatch(String pw);
 
-	// 회占쏙옙 탈占쏙옙
+	// 유저탈퇴
 	boolean deleteUser(String id, String pw);
 
-	// 占쏙옙占싱듸옙 찾占쏙옙
+	// 아이디찾기 
 	User findId(String email, String name);
 
-	// 占쏙옙橘占싫� 찾占쏙옙
+	// 비번찾기
 	User findPw(String id, String email);
 
-	// 占쌈시븝옙橘占싫� 占쌩깍옙
+	// 임시비번
 	User temporaryPw(String pw, String id);
 	
 	boolean updatePoints(int user_no, Float points);
