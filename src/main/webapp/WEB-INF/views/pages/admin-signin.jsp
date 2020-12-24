@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signin-->                
 						<div class="login-form">
 							<!--begin::Form-->
-							<form   id="admin_signin" action="/" method="post">
+							<form   id="admin_signin" action="/jts" >
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">								
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">관리자 로그인</h3>
@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Form group-->
 								<div class="form-group">
 									<label class="font-size-h6 font-weight-bolder cafe24 text-dark">관리자 아이디</label>
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="aid" type="text" name="aid" autocomplete="off" />
+									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="id" type="text" name="id" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
@@ -73,14 +73,14 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label class="font-size-h6 font-weight-bolder cafe24 text-dark pt-5">관리자 비밀번호</label>
 										<a href="/forgot" class="text-primary cafe24 font-size-h6 font-weight-bolder text-hover-primary pt-5">비밀번호 찾기</a>
 									</div>
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="apw" type="password" name="apw" autocomplete="off" />
+									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" id="pw" type="password" name="pw" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Action-->  
 								<div class="pb-lg-0 pb-5">
-									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-3" name="loginbtn">로그인 </button>
+									<button type="submit"  id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder cafe24 font-size-h6 px-8 py-4 my-3 mr-3" name="adminlogin">로그인 </button>
 									
-									<!--  <span class="svg-icon svg-icon-md">
+									<!--  id="kt_login_singin_form_submit_button"  <span class="svg-icon svg-icon-md">
 										begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/social-icons/google.svg
 										 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 											<path d="M19.9895 10.1871C19.9895 9.36767 19.9214 8.76973 19.7742 8.14966H10.1992V11.848H15.8195C15.7062 12.7671 15.0943 14.1512 13.7346 15.0813L13.7155 15.2051L16.7429 17.4969L16.9527 17.5174C18.879 15.7789 19.9895 13.221 19.9895 10.1871Z" fill="#4285F4" />
@@ -116,7 +116,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>		
 		<!--end::Global Theme Bundle-->		<!--begin::Page Scripts(used by this page)-->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wUser.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wAdmin.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/custom/login/login-4.js"></script>
 		<!--end::Page Scripts-->
 	</body>

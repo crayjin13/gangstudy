@@ -2,7 +2,7 @@
   $(function(){
 	  $('#pay').on('click',function(e){
         var IMP = window.IMP; // 생략가능
-        IMP.init('imp63891351'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        IMP.init('imp20137588'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
        
              
