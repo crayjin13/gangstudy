@@ -38,6 +38,7 @@ public class ListenerRunnable implements Runnable {
 			bufferedReader.close();
 			socket.close();
 		} catch(IOException e) {
+			System.out.println("exception log");
 			e.printStackTrace();
 		} finally {
 			try {

@@ -79,7 +79,7 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 
 	@Override
 	public void sendMessage(String message) {
-		if(socket == null) {
+		if(!socket.isConnected()) {
 			createSocket();
 		}
 		printWriter.println(message);
