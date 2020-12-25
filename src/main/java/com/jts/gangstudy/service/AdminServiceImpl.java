@@ -31,15 +31,12 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	@Autowired
 	private CommandMapper mapper;
 	
-	// 서버 시작시 실행 (1번)
-	@PostConstruct
-	public void init() {
+	public void createSocket() {
 		InetSocketAddress isa = null;					// studyroom address
-		
-		System.out.println("AdminService PostConstruct init start");
 		try {
 			isa = new InetSocketAddress(ip, port);
 			socket = new Socket();						// socket 생성
+			socket.setKeepAlive(true);
 			socket.connect(isa);						// studyroom 연결
 			printWriter = new PrintWriter(socket.getOutputStream(), true);
 			
@@ -51,6 +48,13 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 		} finally {
 			
 		}
+	}
+	
+	// 서버 시작시 실행 (1번)
+	@PostConstruct
+	public void init() {
+		System.out.println("AdminService PostConstruct init start");
+		createSocket();
 	}
 	
 	// 서버 종료시 실행 (1번)
@@ -75,6 +79,9 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 
 	@Override
 	public void sendMessage(String message) {
+		if(!socket.isConnected()) {
+			createSocket();
+		}
 		printWriter.println(message);
 	}
 
