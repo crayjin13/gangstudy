@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
+	
 	// 관리자 로그인
 	@Override
 	public User adminsignIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
@@ -85,7 +86,7 @@ public class UserServiceImpl implements UserService {
 			throw new UserNotFoundException(id + "없는유저.");
 		}
 		if (!user.isMatchPassword(pw)) {
-			throw new PasswordMismatchException("�정보가 일치하지않습니다.");
+			throw new PasswordMismatchException("정보가 일치하지않습니다.");
 		}
 		return user;
 	}

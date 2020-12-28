@@ -108,13 +108,13 @@ public class HomeController {
 	}
 	    
 	  
-	
+	     
 
 	@RequestMapping(value = "/html", method = RequestMethod.GET)
 	public String html() {
 		return "notyet/html";
 	}
-	
+	  
 	
 	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
 	public String admin() {
