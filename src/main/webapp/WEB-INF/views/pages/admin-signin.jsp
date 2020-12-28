@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../../">
 		<meta charset="utf-8" />				
-		<title>로그인 | Gangstudy</title>
+		<title>관리자 로그인 | Gangstudy</title>
 		<meta name="description" content="Singin page example" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://gagnstudy.com" />
@@ -38,7 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Body-->
 	<body id="kt_body" class="header-mobile-fixed subheader-enabled aside-enabled aside-secondary-enabled page-loading">
 		<!--begin::Main-->
-												<!--begin::Header Mobile-->		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">			<!--begin::Logo-->			<a href="index.html">				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />			</a>			<!--end::Logo-->			<!--begin::Toolbar-->			<div class="d-flex align-items-center">				<!--begin::Aside Mobile Toggle-->				<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">					<span></span>				</button>				<!--end::Aside Mobile Toggle-->	<!--begin::Topbar Mobile Toggle-->				<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">					<span class="svg-icon svg-icon-xl">						<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/User.svg-->												<!--end::Svg Icon-->					</span>				</button>				<!--end::Topbar Mobile Toggle-->			</div>			<!--end::Toolbar-->		</div>		<!--end::Header Mobile-->		<div class="d-flex flex-column flex-root">			<!--begin::Page-->			<div class="d-flex flex-row flex-column-fluid page">				<!--begin::Aside-->	<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>				<!--end::Aside-->											
+												<!--begin::Header Mobile-->		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">			<!--begin::Logo-->			<a href="/">				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />			</a>			<!--end::Logo-->			<!--begin::Toolbar-->			<div class="d-flex align-items-center">				<!--begin::Aside Mobile Toggle-->				<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">					<span></span>				</button>				<!--end::Aside Mobile Toggle-->	<!--begin::Topbar Mobile Toggle-->				<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">					<span class="svg-icon svg-icon-xl">						<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/User.svg-->												<!--end::Svg Icon-->					</span>				</button>				<!--end::Topbar Mobile Toggle-->			</div>			<!--end::Toolbar-->	</div>			<!--end::Header Mobile-->		<div class="d-flex flex-column flex-root">			<!--begin::Page-->			<div class="d-flex flex-row flex-column-fluid page">				<!--begin::Aside-->	<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>				<!--end::Aside-->											
 			<!--begin::Login-->
 			<div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid">
 				<!--begin::Content-->
@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signin-->                
 						<div class="login-form">
 							<!--begin::Form-->
-							<form  id="admin_signin" action="/jts" method="POST" >
+							<form  id="kt_login_singin_form" action="/jts" method="POST" >
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">								
 									<h3 class="font-weight-bolder text-dark cafe24 font-size-h2 font-size-h1-lg">관리자 로그인</h3>

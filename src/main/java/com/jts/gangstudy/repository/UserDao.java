@@ -43,10 +43,10 @@ public interface UserDao {
 	// 관리자 찾기
 	User selectAdmin(String id);
 
-	/* 占쏙옙占쏙옙 占쏙옙활占쏙옙화 (mRetire ON --> OFF) */
+	/*  */
 	boolean deleteMember(String pw, String email, String retire);
 
-	/* 占쏙옙占쏙옙 활占쏙옙화 (mRetire OFF --> ON) */
+	/*  */
 	boolean accountOn(String mRetire, String mEmail);
 
 	// 유저수정
