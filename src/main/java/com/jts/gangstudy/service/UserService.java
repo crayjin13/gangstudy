@@ -24,6 +24,7 @@ public interface UserService {
 	// 회占쏙옙占쏙옙 占싯삼옙
 	List<User> findUserList(String search);
 	
+	User getUserByNo(int user_no);
 	
 	User getUser(int user_no);
 
@@ -35,8 +36,7 @@ public interface UserService {
 	// 로그인
 	User signIn(String id, String pw) throws Exception;
 	
-	// 관리자 로그인
-	User adminsignIn(String id, String pw) throws Exception;
+
 	
 	
 

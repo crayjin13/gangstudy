@@ -60,46 +60,6 @@ public class UserController {
 	}
 	
 
-	/* 관리자 로그인 */
-	@ResponseBody
-	@RequestMapping(value = "/sign_in_admin", method =  RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String sign_in_admin(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
-			Model model, HttpServletRequest request) throws Exception {
-		System.out.println(" 관계자 아이디비번값받기  " + "id:" + id + " pw:" + pw);
-		String forwardPath = "";
-		// String a= request.getSession().getServletContext().getRealPath("/");
-		User user = userService.selectAdmin(id);
-		System.out.println("있는관리자인지."+user);
-
-		try {
-			User signInuser = userService.adminsignIn(id, pw);
-			System.out.println();
-			if (signInuser != null) {
-				System.out.println(" 성공");
-				session.setAttribute("id", id);
-				session.setAttribute("name", user.getName());
-
-				session.setAttribute("sUserId", signInuser);
-				forwardPath = "true";
-
-			} else {
-
-				forwardPath = "false3";
-			}
-		} catch (UserNotFoundException e) {
-			forwardPath = "false1";
-			e.printStackTrace();
-		} catch (PasswordMismatchException e) {
-			forwardPath = "false2";
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-			forwardPath = "false";
-		}
-		return forwardPath;
-	}
-	
-	
 	
 
 	// 비번찾기 페이지 이동 

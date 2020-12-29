@@ -122,16 +122,27 @@ var KTDatatablesDataSourceHtml = function() {
 										<!--begin::Star Rating-->\
 										<div class="rating">\
 											<fieldset class="rating" id='+data.user_no+'>\
-												<input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" onclick="rateUser(5, '+data.user_no+')"></label>\
-												<input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" onclick="rateUser(4.5, '+data.user_no+')"></label>\
-												<input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" onclick="rateUser(4, '+data.user_no+')"></label>\
-												<input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" onclick="rateUser(3.5, '+data.user_no+')"></label>\
-												<input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" onclick="rateUser(3, '+data.user_no+')"></label>\
-												<input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" onclick="rateUser(2.5, '+data.user_no+')"></label>\
-												<input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" onclick="rateUser(2, '+data.user_no+')"></label>\
-												<input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" onclick="rateUser(1.5, '+data.user_no+')"></label>\
-												<input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" onclick="rateUser(1, '+data.user_no+')"></label>\
-												<input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" onclick="rateUser(0.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star5" name="rating" value="5" /><label class="full" title="5점" for="star5" onclick="rateUser(5, '+data.user_no+')"></label>\
+												<input type="radio" id="star4half" name="rating" value="4.5" /><label title="4.5점"  class="half" for="star4half" onclick="rateUser(4.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star4" name="rating" value="4" /><label class="full" title="4점" for="star4" onclick="rateUser(4, '+data.user_no+')"></label>\
+												<input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" title="3.5점" for="star3half" onclick="rateUser(3.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star3" name="rating" value="3" /><label class="full" title="3점" for="star3" onclick="rateUser(3, '+data.user_no+')"></label>\
+												<input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" title="2.5점" for="star2half" onclick="rateUser(2.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star2" name="rating" value="2" /><label class="full" title="2점" for="star2" onclick="rateUser(2, '+data.user_no+')"></label>\
+												<input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" title="1.5점" for="star1half" onclick="rateUser(1.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="1" /><label class="full" title="1점" for="star1" onclick="rateUser(1, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" title="0.5점" for="starhalf" onclick="rateUser(0.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="0" /><label class="full" title="보통" for="star1" onclick="rateUser(0, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="-0.5" /><label class="half" title="블랙리스트 -0.5" for="starhalf" onclick="rateUser(-0.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="-1"  /><label class="full" title="블랙리스트 -1" for="star1" onclick="rateUser(-1, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="-1.5" /><label class="half" title="블랙리스트 -1.5" for="starhalf" onclick="rateUser(-1.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="-2" /><label class="full" title="블랙리스트 -2" for="star1" onclick="rateUser(-2, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="-2.5" /><label class="half" title="블랙리스트 -2.5" for="starhalf" onclick="rateUser(-2.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="-3" /><label class="full" title="블랙리스트 -3" for="star1" onclick="rateUser(-3, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="-3.5" /><label class="half" title="블랙리스트 -3.5" for="starhalf" onclick="rateUser(-3.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="-4" /><label class="full" title="블랙리스트 -4" for="star1" onclick="rateUser(-4, '+data.user_no+')"></label>\
+												<input type="radio" id="starhalf" name="rating" value="-4.5" /><label class="half" title="블랙리스트 -4.5" for="starhalf" onclick="rateUser(-4.5, '+data.user_no+')"></label>\
+												<input type="radio" id="star1" name="rating" value="-5" /><label class="full" title="블랙리스트 -5" for="star1" onclick="rateUser(-5, '+data.user_no+')"></label>\
 											</fieldset>\
 										</div>\
 										<!--end::Star Rating-->\

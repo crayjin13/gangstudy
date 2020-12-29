@@ -25,6 +25,10 @@ public interface UserDao {
 
 	/*****************************************************/
 	
+	// 블랙고객 
+	
+	public List<User>blackList();
+	
 	// 모든 유저 검색
 	public List<User> selectAll();
 	
@@ -77,4 +81,6 @@ public interface UserDao {
 	boolean updateNote(Integer user_no, String note);
 
 	boolean updateRate(Integer user_no, Float rate);
+
+	User getUserByNo(int user_no);
 }

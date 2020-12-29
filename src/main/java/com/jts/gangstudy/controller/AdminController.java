@@ -2,6 +2,8 @@ package com.jts.gangstudy.controller;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -49,8 +51,83 @@ public class AdminController {
 	
 	
 	
+	
 
+	/* 관리자 로그인 */
+	@ResponseBody
+	@RequestMapping(value = "/sign_in_admin", method =  RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String sign_in_admin(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
+			Model model, HttpServletRequest request) throws Exception {
+		System.out.println(" 관계자 아이디비번값받기  " + "id:" + id + " pw:" + pw);
+		String forwardPath = "";
+		// String a= request.getSession().getServletContext().getRealPath("/");
+		User user = userService.selectAdmin(id);
+		System.out.println("있는관리자인지."+user);
 
+		try {
+			User signInuser = adminService.adminsignIn(id, pw);
+			System.out.println();
+			if (signInuser != null) {
+				System.out.println(" 성공");
+				session.setAttribute("id", id);
+				session.setAttribute("name", user.getName());
+
+				session.setAttribute("sUserId", signInuser);
+				forwardPath = "true";
+
+			} else {
+
+				forwardPath = "false3";
+			}
+		} catch (UserNotFoundException e) {
+			forwardPath = "false1";
+			e.printStackTrace();
+		} catch (PasswordMismatchException e) {
+			forwardPath = "false2";
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "false";
+		}
+		return forwardPath;
+	}
+	
+	
+	
+	
+	// 블랙리스트 
+	
+	@ResponseBody
+	@RequestMapping(value = "/blackList", method = RequestMethod.GET )
+	public ModelAndView blackList(){
+		
+		ModelAndView mav = new ModelAndView();
+		List<User> blackList = adminService.blackList();
+		JSONArray array = new JSONArray();
+		for(User user : blackList) {
+				array.put(
+						new JSONArray()
+						.put(user.getUser_no())
+						.put(user.getName())
+						.put(user.getId())
+						.put(user.getPhone())
+						.put(user.getEmail())
+						.put(user.getBod())
+						.put(user.getGender())
+						.put(user.getRate())
+						.put(user.getNote())
+						.put(new JSONObject().put("user_no", user.getUser_no()) )
+						);
+			}
+
+			mav.addObject("blackList", array);
+			mav.setViewName("pages/admin.blackList");
+			
+			return mav;
+	}
+		
+			
+		// 예약목록
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ModelAndView showBooks() {
@@ -68,7 +145,7 @@ public class AdminController {
 						book.getCheck_in().toLocalTime().toString())
 					.put(book.getCheck_out().toLocalDate().toString() + " " +
 						book.getCheck_out().toLocalTime().toString())
-					.put(book.getPeople() + "紐�")
+					.put(book.getPeople() + "명")
 					.put(book.getState())
 					.put(book.getRequest_dt())
 					);
@@ -77,6 +154,8 @@ public class AdminController {
 		mav.addObject("books", array);
 		return mav;
 	}
+	
+	// 회원목록
 	
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public ModelAndView showUsers() {
@@ -105,7 +184,7 @@ public class AdminController {
 		return mav;
 	}
 	
-	// �쉶�썝 �깉�눜
+	// 유저 강제 탈퇴
 	@ResponseBody
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
 	public boolean deleteUser(@RequestParam("user_no") Integer user_no) {
@@ -113,7 +192,7 @@ public class AdminController {
 		return delete;
 	}
 	
-	// 硫붾え 蹂�寃�
+	// 유저 비고사항 적기
 	@ResponseBody
 	@RequestMapping(value = "/noteUser", method = RequestMethod.GET)
 	public boolean noteUser(@RequestParam("user_no") Integer user_no, @RequestParam("note") String note) {
@@ -121,7 +200,7 @@ public class AdminController {
 		return update;
 	}
 	
-	// �룊�젏 蹂�寃�
+	// 유저 평가하기 
 	@ResponseBody
 	@RequestMapping(value = "/rateUser", method = RequestMethod.GET)
 	public boolean rateUser(@RequestParam("user_no") Integer user_no, @RequestParam("rate") String rate) {
