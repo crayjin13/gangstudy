@@ -5,22 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.logging.Logger;
 
 public class ListenerRunnable implements Runnable {
 	
-	private Socket socket;
 	private String msg;
-	
 	private BufferedReader bufferedReader = null;		// 입력 담당 객체
 	
-	public ListenerRunnable(Socket socket) {
-		this.socket = socket;
-		
-		try {
-			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+	private Logger logger = null;
+	
+	
+	public ListenerRunnable(BufferedReader bufferedReader, Logger logger) throws IOException  {
+		this.bufferedReader = bufferedReader;
+		this.logger = logger;
 	}
 	
 	@Override
@@ -29,31 +27,14 @@ public class ListenerRunnable implements Runnable {
 		try {
 			while(true) {
 				msg = bufferedReader.readLine();
-				System.out.println("From StudyRoom : " + msg);
-				if (msg.equals("listener close")) {
-					System.out.println("now disconnted");
-					break;
+				if(!msg.equals("socket connect")) {
+					System.out.println("From StudyRoom : " + msg);
+					logger.info(msg);
 				}
 			}
-			bufferedReader.close();
-			socket.close();
-		} catch(IOException e) {
-			System.out.println("exception log");
-			e.printStackTrace();
-		} finally {
-			try {
-				bufferedReader.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			} 
-			
-			if(socket != null) {
-				try {
-					socket.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} 
-			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException ListenerRunnable. ");
 		}
 	}
 
