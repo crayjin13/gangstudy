@@ -116,10 +116,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String admin() {
-		return "pages/admin";
-	}
+
 	
 	
 	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)

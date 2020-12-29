@@ -88,7 +88,10 @@ public class AdminController {
 		return forwardPath;
 	}
 	
-
+	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
+	public String admin() {
+		return "pages/admin";
+	}
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ModelAndView showBooks() {
