@@ -61,8 +61,6 @@ public class UserController {
 	
 
 	
-	
-	
 
 	// 비번찾기 페이지 이동 
 	@RequestMapping(value = "/findPw", method = { RequestMethod.GET,

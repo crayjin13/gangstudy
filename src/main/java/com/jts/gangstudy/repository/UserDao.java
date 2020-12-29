@@ -25,6 +25,10 @@ public interface UserDao {
 
 	/*****************************************************/
 	
+	// 블랙고객 
+	
+	public List<User>blackList();
+	
 	// 모든 유저 검색
 	public List<User> selectAll();
 	
@@ -43,10 +47,10 @@ public interface UserDao {
 	// 관리자 찾기
 	User selectAdmin(String id);
 
-	/* 占쏙옙占쏙옙 占쏙옙활占쏙옙화 (mRetire ON --> OFF) */
+	/*  */
 	boolean deleteMember(String pw, String email, String retire);
 
-	/* 占쏙옙占쏙옙 활占쏙옙화 (mRetire OFF --> ON) */
+	/*  */
 	boolean accountOn(String mRetire, String mEmail);
 
 	// 유저수정
@@ -77,4 +81,6 @@ public interface UserDao {
 	boolean updateNote(Integer user_no, String note);
 
 	boolean updateRate(Integer user_no, Float rate);
+
+	User getUserByNo(int user_no);
 }

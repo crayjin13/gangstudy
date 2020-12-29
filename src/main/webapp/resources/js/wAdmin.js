@@ -5,11 +5,11 @@ $(function() {
 	
 	// *********** 관리자 로그인 처리 *****************
 	$("button[name=adminlogin]").click(function() {
-		var mlafArray = $('#admin_signin').serialize();
+		var mlafArray = $('#kt_login_singin_form').serialize();
 		console.log("---- 로그인 값이 들어오는가  ---" + mlafArray);
 		$.ajax({
-			url : 'sign_in_admin',
-			method : 'GET',
+			url : '/admin/sign_in_admin',
+			method : 'POST',
 			data : mlafArray,
 			dataType : 'text',
 			success : function(textData) {
@@ -31,7 +31,7 @@ $(function() {
 				}
 			}
 		});
-	});
+	});         
 	
 	
 	
