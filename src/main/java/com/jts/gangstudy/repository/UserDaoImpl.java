@@ -15,6 +15,23 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private UserMapper userMapper;
 
+	
+	
+	
+	@Override
+	public User selectAdmin(String id) {
+		// 관리자 찾기
+		return userMapper.selectAdmin(id);
+	}
+	
+	@Override
+	public List<User> blackList() {
+		// 블랙리스트
+		return userMapper.blackList();
+	}
+
+	
+	
 	@Override
 	public boolean insertUser(User user) {
 		return userMapper.insertUser(user);
@@ -134,10 +151,11 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return userMapper.updateRate(user_no, rate);
 	}
-	@Override
-	public User selectAdmin(String id) {
-		// 관리자 찾기
-		return userMapper.selectAdmin(id);
-	}
 
+	@Override
+	public User getUserByNo(int user_no) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserByno(user_no);
+	}
+	
 }

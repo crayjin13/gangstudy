@@ -36,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />		<link href="${pageContext.request.contextPath}/resources/assets/css/starrating.css" rel="stylesheet" type="text/css" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -45,8 +45,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="index.html">
-				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-light.png" />
+			<a href="/">
+				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -212,7 +212,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<tr>
 													<th>회원번호</th>
 													<th>이름</th>
-													<th>아이디</th>
+													<th>아이디</th>													<th>핸드폰</th>
 													<th>이메일</th>
 													<th>생년월일</th>
 													<th>성별</th>
@@ -1502,7 +1502,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Page Vendors-->
-		<!--begin::Page Scripts(used by this page)-->
+		<!--begin::Page Scripts(used by this page)-->		<script type="text/javascript"> var blackList='${blackList}' </script>
 		<script src="${pageContext.request.contextPath}/resources/js/admin-blackList.js"></script>
 		<!--end::Page Scripts-->
 	</body>

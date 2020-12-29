@@ -78,18 +78,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	// 관리자 로그인
-	@Override
-	public User adminsignIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
-		User user = userDao.selectAdmin(id);
-		if (user == null) {
-			throw new UserNotFoundException(id + "없는유저.");
-		}
-		if (!user.isMatchPassword(pw)) {
-			throw new PasswordMismatchException("정보가 일치하지않습니다.");
-		}
-		return user;
-	}
+	
 
 	
 	
@@ -211,6 +200,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateRate(Integer user_no, float rate) {
 		return userDao.updateRate(user_no, rate);
+	}
+
+
+
+
+
+	@Override
+	public User getUserByNo(int user_no) {
+		// TODO Auto-generated method stub
+		return userDao.getUserByNo(user_no);
 	}
 
 

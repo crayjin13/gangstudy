@@ -23,6 +23,24 @@ public class User {
 	
 	
 	
+	
+	// 블랙리스트 뽑을때 
+	public User(Integer user_no, String name, String id, String email, Date bod, String gender, Float rate,
+			String note) {
+		super();
+		this.user_no = user_no;
+		this.name = name;
+		this.id = id;
+		this.email = email;
+		this.bod = bod;
+		this.gender = gender;
+		this.rate = rate;
+		this.note = note;
+	}
+
+
+
+
 	public User(String name, Float rate, Booking booking) {
 		super();
 		this.name = name;

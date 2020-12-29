@@ -17,8 +17,18 @@ public interface UserMapper {
 	@Select("SELECT * FROM USER_TB WHERE id != #{id}")
 	public List<User> selectAll(@Param("id") String id);
 	
+	//블랙리스트 
+	
+	@Select("SELECT user_no, id, name, phone, email, bod, gender, rate, note FROM USER_TB WHERE rate <=-0.5 and id!='#' ")
+	public List<User> blackList();
+	
+	
+	@Select("SELECT user_no, id, name, phone, email, bod, gender, rate, note FROM USER_TB WHERE user_no=#{user_no} and id!='#'")
+	public User getUserByno(@Param("user_no") int user_no);
+	
+	
 	// 유저넘버로얻기
-		@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE user_no=#{user_no}")
+		@Select("SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE user_no=#{user_no} ")
 		public User getUser(@Param("user_no") int user_no);
 
 	// 아이디찾기
@@ -29,7 +39,7 @@ public interface UserMapper {
 	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}") 
 	public boolean update_pw(@Param("id") String id);
 
-	// 비번찾기
+	// 비번찾기  
 	@Select("SELECT pw FROM USER_TB WHERE id=#{id} and email=#{email}")
 	public User findPw(@Param("id") String id, @Param("email") String email);
 

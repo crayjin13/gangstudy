@@ -17,7 +17,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Command;
+import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.exception.PasswordMismatchException;
+import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.mapper.CommandMapper;
+import com.jts.gangstudy.repository.UserDao;
 import com.jts.gangstudy.thread.ListenerRunnable;
 
 @Service
@@ -28,6 +32,10 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	private Socket socket = null;						// aws socket(client)
 	private PrintWriter printWriter = null;				// 출력 담당 객체
 
+	
+	@Autowired
+	private UserDao userDao;
+	
 	@Autowired
 	private CommandMapper mapper;
 	
@@ -49,6 +57,28 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 			
 		}
 	}
+	
+	
+	// 관리자 로그인
+		@Override
+		public User adminsignIn(String id, String pw) throws Exception, PasswordMismatchException, UserNotFoundException {
+			User user = userDao.selectAdmin(id);
+			if (user == null) {
+				throw new UserNotFoundException(id + "없는유저.");
+			}
+			if (!user.isMatchPassword(pw)) {
+				throw new PasswordMismatchException("정보가 일치하지않습니다.");
+			}
+			return user;
+		}
+	
+		@Override
+		public List<User> blackList() {
+			// 블랙리스트
+			return userDao.blackList();
+		}
+		
+		
 	
 	// 서버 시작시 실행 (1번)
 	@PostConstruct
@@ -100,4 +130,7 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	public List<Command> selectAll() {
 		return mapper.selectAll();
 	}
+
+
+	
 }

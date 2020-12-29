@@ -37,7 +37,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->		<!--begin::Star Rating-->		<link href="${pageContext.request.contextPath}/resources/assets/css/starrating.css" rel="stylesheet" type="text/css" />
 		<!--end::Star Rating-->		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
-	<style>  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;}</style>	</head>
+	<style> /*  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;} */</style>	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading" >
@@ -45,8 +45,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="index.html">
-				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-light.png" />
+			<a href="/">
+				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -89,7 +89,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="index.html" class="brand-logo">
-							<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-light.png" />
+							<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->
