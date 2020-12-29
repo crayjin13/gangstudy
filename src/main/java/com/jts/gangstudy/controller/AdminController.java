@@ -50,8 +50,11 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String admin() {
-		return "pages/admin";
+	public ModelAndView admin() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("pages/admin");
+		mav.addObject("commands", adminService.selectRemoteLogs());
+		return mav;
 	}
 	
 	
@@ -230,7 +233,7 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/getCommands", method = RequestMethod.GET)
 	public List<Command> getCommands(HttpServletRequest request) {
-		return adminService.selectAll();
+		return adminService.selectCommands();
 	}
 	
 	// 리모컨 기능
