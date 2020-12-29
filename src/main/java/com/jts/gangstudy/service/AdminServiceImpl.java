@@ -15,16 +15,18 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Command;
+import com.jts.gangstudy.domain.RemoteLog;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.mapper.CommandMapper;
+import com.jts.gangstudy.mapper.RemoteLogMapper;
 import com.jts.gangstudy.repository.UserDao;
-import com.jts.gangstudy.thread.ListenerRunnable;
 
 @Service
 public class AdminServiceImpl implements AdminService, ApplicationListener<ContextClosedEvent> {
@@ -40,7 +42,9 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	private UserDao userDao;
 	
 	@Autowired
-	private CommandMapper mapper;
+	private CommandMapper commandMapper;
+	@Autowired
+	private RemoteLogMapper remoteLogMapper;
 	
 	public void createSocket() {
 		InetSocketAddress isa = null;					// studyroom address
@@ -53,16 +57,29 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 			printWriter = new PrintWriter(socket.getOutputStream(), true);
 			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			runnable = new ListenerRunnable(bufferedReader);	// runnable 생성
-			Thread thread = new Thread(runnable);		// thread 생성
-			thread.start();								// thread 시작
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			
 		}
 	}
-	
+
+	@Async("logExecutor")
+	public void threadListen() {
+		String msg;
+		System.out.println("Thread Start");
+		try {
+			while(true) {
+				msg = bufferedReader.readLine();
+				if(!msg.equals("socket connect")) {
+					System.out.println("From StudyRoom : " + msg);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException ListenerRunnable. ");
+		}
+	}
 	
 	// 관리자 로그인
 		@Override
@@ -115,7 +132,7 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	@Scheduled(cron="*/1 * * * * *" )
 	public void cornTrigger() {
 		LocalTime now = LocalTime.now();
-		List<Command> list = mapper.selectAll();
+		List<Command> list = commandMapper.selectAll();
 		for(Command command : list) {
 			LocalTime time = command.getReserveTime();
 			Duration duration = Duration.between(now, time);
@@ -140,20 +157,25 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 
 	@Override
 	public void insertCommand(Command command) {
-		mapper.insertCommand(command);
+		commandMapper.insertCommand(command);
 	}
-
 	@Override
 	public void deleteCommand(Integer command_no) {
-		mapper.deleteCommand(command_no);
+		commandMapper.deleteCommand(command_no);
 		
 	}
-
 	@Override
-	public List<Command> selectAll() {
-		return mapper.selectAll();
+	public List<Command> selectCommands() {
+		return commandMapper.selectAll();
 	}
 
 
-	
+	@Override
+	public void insertRemoteLogs(RemoteLog remoteLog) {
+		remoteLogMapper.insertLog(remoteLog);
+	}
+	public List<RemoteLog> selectRemoteLogs() {
+		return remoteLogMapper.selectAll();
+	}
+
 }
