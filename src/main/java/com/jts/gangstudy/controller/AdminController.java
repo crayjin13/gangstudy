@@ -49,6 +49,10 @@ public class AdminController {
 	
 	
 	
+	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
+	public String admin() {
+		return "pages/admin";
+	}
 	
 	
 	
