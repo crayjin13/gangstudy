@@ -64,22 +64,6 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 		}
 	}
 
-	@Async("logExecutor")
-	public void threadListen() {
-		String msg;
-		System.out.println("Thread Start");
-		try {
-			while(true) {
-				msg = bufferedReader.readLine();
-				if(!msg.equals("socket connect")) {
-					System.out.println("From StudyRoom : " + msg);
-				}
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("IOException ListenerRunnable. ");
-		}
-	}
 	
 	// 관리자 로그인
 		@Override
@@ -142,6 +126,7 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 			}
 		}
 	}
+	
 	@Scheduled(cron="0 */1 * * * *" )
 	public void cronSocketConnect() {
 		printWriter.println("socket connect");
