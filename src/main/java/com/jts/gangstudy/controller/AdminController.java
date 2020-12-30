@@ -48,7 +48,7 @@ public class AdminController {
 	Logger logger;
 	
 	
-	
+	/*  정영씨 관리자 페이지 에러나서 주석처리해놨어요 ! 
 	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
@@ -56,6 +56,15 @@ public class AdminController {
 		mav.addObject("commands", adminService.selectRemoteLogs());
 		return mav;
 	}
+	
+	*/
+	
+	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
+	public String admin() {
+		return "pages/admin";
+	}
+	
+	
 	
 	
 	

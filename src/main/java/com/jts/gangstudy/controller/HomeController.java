@@ -117,6 +117,8 @@ public class HomeController {
 	  
 
 	
+
+	
 	
 	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
 	public String privacyPolicy() {
