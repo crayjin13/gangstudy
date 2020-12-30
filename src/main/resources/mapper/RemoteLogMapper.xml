@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jts.gangstudy.mapper.RemoteLogMapper">
+	<!-- 전체 내용 조회 -->
+	<select id="selectAll" resultType="com.jts.gangstudy.domain.RemoteLog">
+	  SELECT *
+	  FROM REMOTELOG_TB
+	</select>
+	
+	<!-- 로그 추가 -->
+	<insert id="insertLog" parameterType="com.jts.gangstudy.domain.RemoteLog">
+	  INSERT INTO REMOTELOG_TB
+	  (MESSAGE, LOG_DT, LOG_TYPE) VALUES
+	  (#{message}, #{log_dt}, #{log_type})
+	</insert>
+</mapper>
