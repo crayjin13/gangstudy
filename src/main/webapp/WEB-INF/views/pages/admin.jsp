@@ -450,7 +450,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</button>
 									<br>
 									<div id="outlog" class="log">송신:</div>
-									<div id="inlog" class="log">수신:</div>
+									<div id="inlog" class="log">수신:${commands}</div>
 
 								</div>
 

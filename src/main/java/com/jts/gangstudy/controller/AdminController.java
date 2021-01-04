@@ -52,7 +52,7 @@ public class AdminController {
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pages/admin");
-//		mav.addObject("commands", adminService.selectRemoteLogs());
+		mav.addObject("commands", adminService.selectRemoteLogs());
 		return mav;
 	}
 	
