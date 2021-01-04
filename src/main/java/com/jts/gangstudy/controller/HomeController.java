@@ -50,14 +50,7 @@ public class HomeController {
 		}
 		return mav;
 	}      
-	  
-	
-	
-	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String admin() {
-		return "pages/admin";
-	}
-	
+
 
 	
 	@RequestMapping(value = "/forgot", method = RequestMethod.GET)
