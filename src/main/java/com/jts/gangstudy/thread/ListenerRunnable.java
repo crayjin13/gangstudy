@@ -3,7 +3,6 @@ package com.jts.gangstudy.thread;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-
 // not used
 public class ListenerRunnable implements Runnable {
 	
