@@ -1,6 +1,7 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.*;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ public class RemoteLog {
 	private LocalDateTime log_dt;
 	private LogType log_type;
 	
-	public RemoteLog(BigDecimal log_no, String message, Date log_dt, String log_type) {
+	public RemoteLog(BigDecimal log_no, String message, Timestamp log_dt, String log_type) {
 		super();
 		this.log_no = log_no.intValue();
 		this.message = message;
