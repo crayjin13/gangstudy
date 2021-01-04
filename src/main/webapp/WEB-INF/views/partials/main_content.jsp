@@ -32,14 +32,14 @@
 				<!--begin::Card-->
 				<div class="card card-custom gutter-b example example-compact">
 					<div class="card-header">
-						<h3 class="card-title">
+						<h1 class="card-title">
 							<!-- 글쓰고 싶으면 여기에 -->
 							시범운영중이며 2시간 무료 이용가능합니다. <br>
 							홈페이지 리뉴얼중입니다. <br>
 							예약은 하단의 "카톡으로 문의하기"를 클릭하시면 도와드리겠습니다.
-						</h3>   
-							
-
+						</h1>   
+							     
+     
 					
 
 							<img src="${pageContext.request.contextPath}/resources/images/freeevent.PNG"   style="max-width:60%; height:auto;" >
@@ -130,7 +130,7 @@
 
 
 									<input type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 cafe24" onClick="location.href='/notice'" value="이용하기"/>
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 cafe24" onClick="location.href='/notice'" value="이용안내"/>
 								    
 								</div>
 
