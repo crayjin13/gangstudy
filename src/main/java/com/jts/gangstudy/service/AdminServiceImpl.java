@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -27,16 +27,17 @@ import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.mapper.CommandMapper;
 import com.jts.gangstudy.mapper.RemoteLogMapper;
 import com.jts.gangstudy.repository.UserDao;
+import com.jts.gangstudy.thread.ListenerRunnable;
 
 @Service
 public class AdminServiceImpl implements AdminService, ApplicationListener<ContextClosedEvent> {
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
 	
-	private Runnable runnable = null;					// runnable
 	private Socket socket = null;						// aws socket(client)
 	private PrintWriter printWriter = null;				// 출력 담당 객체
 	private BufferedReader bufferedReader = null;		// 입력 담당 객체
+	ListenerRunnable listenerRunnable = null;
 	
 	@Autowired
 	private UserDao userDao;
@@ -47,23 +48,21 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	private RemoteLogMapper remoteLogMapper;
 	
 	public void createSocket() {
-		InetSocketAddress isa = null;					// studyroom address
+		InetSocketAddress isa = null;
 		
 		try {
 			isa = new InetSocketAddress(ip, port);
-			socket = new Socket();						// socket 생성
+			socket = new Socket();								// socket 생성
 			socket.setKeepAlive(true);
-			socket.connect(isa);						// studyroom 연결
+			socket.connect(isa);								// studyroom 연결
 			printWriter = new PrintWriter(socket.getOutputStream(), true);
 			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			
 		}
 	}
-
 	
 	// 관리자 로그인
 		@Override
@@ -113,6 +112,7 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 		}
 	}
 	
+	// scheduled threads
 	@Scheduled(cron="*/1 * * * * *" )
 	public void cornTrigger() {
 		LocalTime now = LocalTime.now();
@@ -126,10 +126,27 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 			}
 		}
 	}
-	
 	@Scheduled(cron="0 */1 * * * *" )
 	public void cronSocketConnect() {
 		printWriter.println("socket connect");
+	}
+	@Scheduled(fixedDelay = 2000)
+	public void socketListener() {
+		System.out.println("ListenerRunnable start");
+		String msg = null;
+		try {
+			while(true) {
+				msg = bufferedReader.readLine();
+				if(!msg.equals("socket connect")) {
+					System.out.println("From StudyRoom : " + msg);
+					RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
+					remoteLogMapper.insertLog(log);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException ListenerRunnable. ");
+		}
 	}
 	
 	@Override
@@ -159,7 +176,7 @@ public class AdminServiceImpl implements AdminService, ApplicationListener<Conte
 	public void insertRemoteLogs(RemoteLog remoteLog) {
 		remoteLogMapper.insertLog(remoteLog);
 	}
-	public List<RemoteLog> selectRemoteLogs() {
+	public List<RemoteLog> selectRemoteLogs() {	
 		return remoteLogMapper.selectAll();
 	}
 
