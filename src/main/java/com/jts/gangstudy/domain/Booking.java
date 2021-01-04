@@ -3,7 +3,6 @@ package com.jts.gangstudy.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 
 public class Booking {
 	private int book_no;
@@ -12,7 +11,17 @@ public class Booking {
 	private LocalDateTime check_in;
 	private LocalDateTime check_out;
 	private int people;
-	private String state;			// 'uncharge', 'wait', 'use', 'clear', 'cancel', 'error'
+	private State state;
+	
+	public enum State {
+		uncharge,
+		wait,
+		use,
+		clear,
+		cancel,
+		error;
+	}
+	
 	private String request_dt;
 
 	public Booking() {
@@ -29,7 +38,7 @@ public class Booking {
 		this.check_in = check_in.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		this.check_out = check_out.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		this.people = people.intValue();
-		this.state = state;
+		this.state = State.valueOf(state);
 		this.request_dt = request_dt;
 	}
 	
@@ -42,7 +51,7 @@ public class Booking {
 		this.check_in = check_in;
 		this.check_out = check_out;
 		this.people = people;
-		this.state = state;
+		this.state = State.valueOf(state);
 		this.request_dt = request_dt;
 	}
 	public Booking(int user_no, int room_no, LocalDateTime check_in, LocalDateTime check_out, int people,
@@ -53,7 +62,7 @@ public class Booking {
 		this.check_in = check_in;
 		this.check_out = check_out;
 		this.people = people;
-		this.state = state;
+		this.state = State.valueOf(state);
 	}
 
 	public String toString() {
@@ -99,7 +108,7 @@ public class Booking {
 	}
 
 	public void setState(String state) {
-		this.state = state;
+		this.state = State.valueOf(state);
 	}
 
 	public void setRequest_dt(String request_dt) {
@@ -131,7 +140,7 @@ public class Booking {
 	}
 
 	public String getState() {
-		return state;
+		return state.toString();
 	}
 
 	public String getRequest_dt() {
