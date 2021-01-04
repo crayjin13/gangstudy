@@ -2,10 +2,8 @@ package com.jts.gangstudy.thread;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
 
+// not used
 public class ListenerRunnable implements Runnable {
 	
 	private String msg;

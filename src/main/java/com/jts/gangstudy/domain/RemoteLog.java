@@ -1,8 +1,7 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.Date;
 
 public class RemoteLog {
@@ -11,12 +10,12 @@ public class RemoteLog {
 	private LocalDateTime log_dt;
 	private LogType log_type;
 	
-	public RemoteLog(BigDecimal log_no, String message, Date log_dt, LogType log_type) {
+	public RemoteLog(BigDecimal log_no, String message, Date log_dt, String log_type) {
 		super();
 		this.log_no = log_no.intValue();
 		this.message = message;
 		this.log_dt = log_dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-		this.log_type = log_type;
+		this.log_type = LogType.valueOf(log_type);
 	}
 	public RemoteLog(String message, LocalDateTime time, LogType type) {
 		super();
