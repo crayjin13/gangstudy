@@ -450,7 +450,13 @@ License: You must have a valid license purchased only from themeforest(the above
 									</button>
 									<br>
 									<div id="outlog" class="log">송신:</div>
-									<div id="inlog" class="log">수신:${commands}</div>
+									<div id="inlog" class="log">수신:<br>
+									<c:forEach items="${dateTimes}" varStatus="status">
+										시간 : <c:out value="${dateTimes[status.index]}" />
+										  내용 : <c:out value="${messages[status.index]}" />
+										  종류 : <c:out value="${logTypes[status.index]}" /><br>
+									</c:forEach>
+									</div>
 
 								</div>
 

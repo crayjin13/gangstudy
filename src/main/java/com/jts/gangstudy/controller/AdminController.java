@@ -28,6 +28,7 @@ import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Command;
+import com.jts.gangstudy.domain.RemoteLog;
 import com.jts.gangstudy.service.UserService;
 import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
@@ -52,7 +53,20 @@ public class AdminController {
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pages/admin");
-		mav.addObject("commands", adminService.selectRemoteLogs());
+		List<RemoteLog> remoteLogs = adminService.selectRemoteLogs();
+		List<String> dateTimes = new ArrayList<String>();
+		List<String> messages = new ArrayList<String>();
+		List<String> logTypes = new ArrayList<String>();
+		
+		for(RemoteLog log : remoteLogs) {
+			dateTimes.add(log.getMessage());
+			messages.add(log.getTime().toString());
+			logTypes.add(log.getType().toString());
+		}
+		
+		mav.addObject("dateTimes", dateTimes);
+		mav.addObject("messages", messages);
+		mav.addObject("logTypes", logTypes);
 		return mav;
 	}
 	
