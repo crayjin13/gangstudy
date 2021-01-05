@@ -16,7 +16,7 @@ $(function() {
 				console.log("ajax 타는지");
 				if (textData.trim() == "true") {
 
-					location.href = '/jts';
+					location.href = '/admin/jts';
 
 				} else if (textData.trim() == "false1") {
 					alert('아이디를 다시 확인해주세요');
