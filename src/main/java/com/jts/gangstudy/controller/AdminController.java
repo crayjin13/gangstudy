@@ -260,7 +260,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView test() {
-		ModelAndView mav = new ModelAndView("notyet/testList");
+		ModelAndView mav = new ModelAndView("notyet/SocketTest");
 		return mav;
 	}
 }
