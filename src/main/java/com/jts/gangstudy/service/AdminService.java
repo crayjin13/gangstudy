@@ -1,5 +1,6 @@
 package com.jts.gangstudy.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.jts.gangstudy.domain.Command;
@@ -21,4 +22,6 @@ public interface AdminService {
 	User adminsignIn(String id, String pw) throws Exception;
 	
 	public List<User> blackList();
+
+	public List<RemoteLog> selectRemoteLogsByDate(LocalDate now);
 }
