@@ -4,6 +4,15 @@
 	<select id="selectAll" resultType="com.jts.gangstudy.domain.RemoteLog">
 	  SELECT *
 	  FROM REMOTELOG_TB
+	  ORDER BY LOG_DT
+	</select>
+	
+	<!-- 지정된 날짜 조회 -->
+	<select id="selectByDate" resultType="com.jts.gangstudy.domain.RemoteLog">
+	  SELECT *
+	  FROM REMOTELOG_TB
+	  WHERE LOG_DT BETWEEN #{date} AND #{date} + 0.99999
+	  ORDER BY LOG_DT
 	</select>
 	
 	<!-- 로그 추가 -->
