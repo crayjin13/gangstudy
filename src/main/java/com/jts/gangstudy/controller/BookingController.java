@@ -272,7 +272,7 @@ public class BookingController {
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
 	}
-	// booking shop page - 결제 요청 시 (다날 페이)
+	// booking shop page - 결제 전  (다날 페이)
 	@UserLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/paybyDanal", method = RequestMethod.POST)
@@ -288,6 +288,9 @@ public class BookingController {
 			return "?error=people";
 		}
 		
+		/*
+		 * int bookno = book.getBook_no(); String bookNo = String.valueOf(bookno);
+		 */
 		
 		int usePoint = Integer.parseInt(point);
 		int charge = bookingService.getAmount(book);
@@ -314,7 +317,8 @@ public class BookingController {
 		session.setAttribute("usePoint", usePoint);
 		
 		// 결제 페이지(선택페이지)로 이동
-		return "/payment/beready";
+		System.out.println("1차 페이매소드 ");
+		return "";
 	}
 
 	
@@ -334,6 +338,8 @@ public class BookingController {
 		if(payment != null) {
 			bookingService.changeState(book, "wait");
 			session.removeAttribute("book");
+			
+			System.out.println("3차 페이매소드 ");
 			return "redirect:" + "/booking/check";
 		} else {
 			return "?booking=fail";

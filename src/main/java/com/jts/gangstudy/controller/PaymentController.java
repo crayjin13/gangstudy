@@ -158,6 +158,7 @@ public class PaymentController {
 	
 		// 대기중인 예약 시간초과 예외처리
 		if(bookingService.searchByBookNo(book.getBook_no()) == null) {
+			
 			return "redirect:" + "/?payment=timeout";
 		}
 		
@@ -168,7 +169,7 @@ public class PaymentController {
 		payment.setAmount(amount-usePoint);
 		payment.setPoint(usePoint);
 		payment.setPg_name("Danal");
-		payment.setTid("merchant_1609830778221");
+		payment.setTid("merchant_1609838722443");
 		payment.setPay_type("card");
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());
@@ -181,6 +182,7 @@ public class PaymentController {
 		session.removeAttribute("amount");
 		
 		// 완료 페이지로 이동한다.
+		System.out.println("2차 페이매소드 ");
 		return "redirect:" + "/booking/complete";
 	}
 	
