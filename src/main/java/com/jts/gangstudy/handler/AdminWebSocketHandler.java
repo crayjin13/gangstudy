@@ -51,7 +51,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 					msg = bufferedReader.readLine();
 					System.out.println("From StudyRoom : " + msg);
 					RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
-//					adminService.insertRemoteLogs(log);
+					adminService.insertRemoteLogs(log);
 					
 					// 모든 유저에게 방금 들어온 로그를 보내기.
 					for(WebSocketSession session : sessionList) {
