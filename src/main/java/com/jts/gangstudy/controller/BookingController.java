@@ -272,7 +272,60 @@ public class BookingController {
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
 	}
+	// booking shop page - 결제 전  (다날 페이)
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value = "/paybyDanal", method = RequestMethod.POST)
+	public String paybyDanal(HttpServletRequest request, HttpSession session,
+			@RequestParam("people") String peoples, @RequestParam("point") String point) {
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = (Booking)session.getAttribute("book");
+		
+		
+		// validation check
+		int people = Integer.parseInt(peoples);
+		if(people < 1 || people > 6) {
+			return "?error=people";
+		}
+		
+		/*
+		 * int bookno = book.getBook_no(); String bookNo = String.valueOf(bookno);
+		 */
+		
+		int usePoint = Integer.parseInt(point);
+		int charge = bookingService.getAmount(book);
+		if(usePoint > user.getPoints() || usePoint < 0) {
+			return "?error=point";
+		}
+		if(charge > 0 && charge < usePoint) {
+			return "?error=usePoint";
+		}
+		if(bookingService.allowsBooking(book) == false) {
+			return "?error=date";
+		}
+		// point로 전액 결제 시 결제요금 청구 안함.
+		
+		// insert DB
+		book.setPeople(people);
+		String result = bookingService.insertBook(book); 
+		if(result.equals("duplicate")) {
+			return "?booking=duplicate";
+		}
+		
+		// session registry
+		session.setAttribute("amount", charge);
+		session.setAttribute("usePoint", usePoint);
+		
+		// 결제 페이지(선택페이지)로 이동
+		System.out.println("1차 페이매소드 ");
+		return "";
+	}
 
+	
+	
+	
+	
+	
 	// 예약 완료 처리
 	@UserLoginCheck
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
@@ -285,6 +338,8 @@ public class BookingController {
 		if(payment != null) {
 			bookingService.changeState(book, "wait");
 			session.removeAttribute("book");
+			
+			System.out.println("3차 페이매소드 ");
 			return "redirect:" + "/booking/check";
 		} else {
 			return "?booking=fail";

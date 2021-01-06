@@ -147,6 +147,45 @@ public class PaymentController {
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/complete";
 	}
+	@UserLoginCheck
+	@RequestMapping(value = "/beready", method = RequestMethod.GET)
+	public String beready(HttpServletRequest request, HttpSession session) {
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = (Booking)session.getAttribute("book");
+		/* String tid = (String)session.getAttribute("merchant_uid"); */
+		int amount = (int)session.getAttribute("amount");
+		int usePoint = (int)session.getAttribute("usePoint");
+	
+		// 대기중인 예약 시간초과 예외처리
+		if(bookingService.searchByBookNo(book.getBook_no()) == null) {
+			
+			return "redirect:" + "/?payment=timeout";
+		}
+		
+		// 결제 완료 요청    
+		
+		// 결제 정보를 저장한다.
+		Payment payment = new Payment();
+		payment.setAmount(amount-usePoint);
+		payment.setPoint(usePoint);
+		payment.setPg_name("Danal");
+		payment.setTid("merchant_1609838722443");
+		payment.setPay_type("card");
+		payment.setState("paid");
+		payment.setBook_no(book.getBook_no());
+		paymentService.insertPayment(payment);
+		
+		userService.minusPoints(user, usePoint);
+		
+		session.removeAttribute("tid");
+		session.removeAttribute("usePoint");
+		session.removeAttribute("amount");
+		
+		// 완료 페이지로 이동한다.
+		System.out.println("2차 페이매소드 ");
+		return "redirect:" + "/booking/complete";
+	}
+	
 
 	// kakaopay실패 url
 	@RequestMapping(value = "/fail", method = RequestMethod.GET)
