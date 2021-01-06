@@ -87,8 +87,8 @@
 	</mvc:annotation-driven>
 	
 	<!-- WebSocket -->
-	<beans:bean name="webSocketHandler" class="com.jts.gangstudy.handler.WebSocketHandler" />
+	<beans:bean name="webSocketHandler" class="com.jts.gangstudy.handler.AdminWebSocketHandler" />
 	<websocket:handlers>
-		<websocket:mapping path="/socket1" handler="webSocketHandler"/>
+		<websocket:mapping path="/websocket" handler="webSocketHandler"/>
 	</websocket:handlers>
 </beans:beans>
