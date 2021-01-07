@@ -1,11 +1,10 @@
-var wsUri = "ws://localhost:8080/websocket";
+var wsUri = "ws://gangstudy.com/websocket";
 var webSocket;
 var clientWebSocket = {
 	openSocket : function() {
         webSocket = new WebSocket(wsUri);
         webSocket.onopen = function(evt) {
         	// Socket Open
-			writeToScreen("WebSocket Connection opened!");
         };
         webSocket.onmessage = function(evt) {
         	// 서버로 부터 메시지 수신
@@ -19,7 +18,6 @@ var clientWebSocket = {
         
         webSocket.onclose = function(event) {
         	// Socket 닫힘
-        	writeToScreen("Server Connection closed");
 	   };        
 	},
 	doSend : function(message) {
