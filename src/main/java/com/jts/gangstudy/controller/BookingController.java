@@ -191,6 +191,7 @@ public class BookingController {
 		ModelAndView mav = new ModelAndView("pages/makecart");
 		User user = (User)session.getAttribute("sUserId");
 		
+		
 		Booking book = new Booking();
 		book.setCheck_in(startDate, startTime);
 		book.setCheck_out(endDate, endTime);
@@ -272,7 +273,7 @@ public class BookingController {
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
 	}
-	// booking shop page - 결제 전  (다날 페이)
+	// booking shop page - 결제 버튼클릭시   (다날 페이)
 	@UserLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/paybyDanal", method = RequestMethod.POST)
@@ -327,7 +328,7 @@ public class BookingController {
 	
 	
 	// 예약 완료 처리
-	@UserLoginCheck
+	@UserLoginCheck //예약완료되었습니다 알럿 확인 클릭시 
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
 		// 요청된 예약에 대해 예약번호를 얻고
