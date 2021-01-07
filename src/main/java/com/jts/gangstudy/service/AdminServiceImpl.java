@@ -93,7 +93,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	@Override
 	public void sendMessage(String message) {
-		if(!socket.isConnected() || socket.isClosed()) {
+		if(socket == null || !socket.isConnected() || socket.isClosed()) {
 			createSocket();
 		}
 		printWriter.println(message);
