@@ -156,11 +156,16 @@ public class PaymentController {
 		int amount = (int)session.getAttribute("amount");
 		int usePoint = (int)session.getAttribute("usePoint");
 	
+		
+		
 		// 대기중인 예약 시간초과 예외처리
 		if(bookingService.searchByBookNo(book.getBook_no()) == null) {
 			
 			return "redirect:" + "/?payment=timeout";
 		}
+		
+		int bookno = book.getBook_no();
+		String bookNo = String.valueOf(bookno);
 		
 		// 결제 완료 요청    
 		
@@ -169,7 +174,7 @@ public class PaymentController {
 		payment.setAmount(amount-usePoint);
 		payment.setPoint(usePoint);
 		payment.setPg_name("Danal");
-		payment.setTid("merchant_1609838722443");
+		payment.setTid(bookNo);
 		payment.setPay_type("card");
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());
