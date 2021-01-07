@@ -12,7 +12,7 @@ Renew Support: https://1.envato.market/EA4JP
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
 <html lang="en">
-	<!--begin::Head-->
+	<!--begin::Head-->  
 	<head><base href="../../../">
 		<meta charset="utf-8" />
 		<title>예약내역 | gangstudy</title>

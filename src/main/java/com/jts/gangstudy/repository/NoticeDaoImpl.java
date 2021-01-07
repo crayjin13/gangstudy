@@ -2,8 +2,10 @@ package com.jts.gangstudy.repository;
 
 import java.util.List;
 
-import com.jts.gangstudy.domain.Notice;
+import org.springframework.stereotype.Repository;
 
+import com.jts.gangstudy.domain.Notice;
+@Repository
 public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
