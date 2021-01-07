@@ -70,12 +70,6 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
             throws Exception {
 		sessionList.add(session);
 		log.info(session.getId() + " 연결됨");
-		
-		// 해당 날의 이전 로그 불러와서 올려놓기.
-		List<RemoteLog> logs = adminService.selectRemoteLogsByDate(LocalDate.now());
-		for(RemoteLog log : logs) {
-			session.sendMessage(new TextMessage(parseJSONLog(log).toString()));
-		}
     }
     // 웹소켓 클라이언트가 텍스트 메세지 전송시 호출되는 메소드
     // WebSocketSession session : 전송 주체 정보가 담긴 세션
@@ -84,13 +78,22 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     protected void handleTextMessage(
             WebSocketSession session, TextMessage message) throws Exception {
 		log.info("["+session.getId()+"]: " + message.getPayload());
-        session.sendMessage(new TextMessage("[echo]: " + message.getPayload()));
+//        session.sendMessage(new TextMessage("[echo]: " + message.getPayload()));
+		
+		// 오늘 날짜의 로그 요청시.
+		List<RemoteLog> logs = adminService.selectRemoteLogsByDate(LocalDate.now());
+		if(message.getPayload().equals("request today info")) {
+			for(RemoteLog log : logs) {
+				session.sendMessage(new TextMessage(parseJSONLog(log).toString()));
+			}
+		}
     }
     // 웹소켓이 연결이 종료되면 호출되는 함수
     @Override
     public void afterConnectionClosed(
             WebSocketSession session, CloseStatus status) throws Exception {
 		log.info(session.getId() + " 연결 끊김");
+		sessionList.remove(session);
     }
 
 
