@@ -174,7 +174,7 @@ public class PaymentController {
 		payment.setAmount(amount-usePoint);
 		payment.setPoint(usePoint);
 		payment.setPg_name("Danal");
-		payment.setTid(bookNo);
+		payment.setTid(bookNo); // merchant_uid = book_no and  tid는 NOT NULL 제약조건
 		payment.setPay_type("card");
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());
