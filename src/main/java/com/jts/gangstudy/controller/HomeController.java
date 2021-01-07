@@ -84,10 +84,7 @@ public class HomeController {
 	public String adminSingin() {
 		return "pages/admin-signin";
 	}
-	@RequestMapping(value = "/admin-timeline", method = RequestMethod.GET)
-	public String admintimeline() {
-		return "pages/admin-timeline";
-	}
+
 	@RequestMapping(value = "/admin-charts", method = RequestMethod.GET)
 	public String adminChart() {
 		return "pages/admin-charts";

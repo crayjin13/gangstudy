@@ -229,6 +229,12 @@ public class AdminController {
 		boolean update = userService.updateRate(user_no, Float.parseFloat(rate));
 		return update;
 	}
+
+	// 로그 기록
+	@RequestMapping(value = "/timeline", method = RequestMethod.GET)
+	public String admintimeline() {
+		return "pages/admin-timeline";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/addCommand", method = RequestMethod.GET)
