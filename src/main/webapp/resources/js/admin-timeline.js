@@ -5,6 +5,7 @@ var clientWebSocket = {
         webSocket = new WebSocket(wsUri);
         webSocket.onopen = function(evt) {
         	// Socket Open
+			webSocket.send("request today info")
         };
         webSocket.onmessage = function(evt) {
         	// 서버로 부터 메시지 수신

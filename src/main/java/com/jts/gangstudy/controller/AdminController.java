@@ -53,20 +53,6 @@ public class AdminController {
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pages/admin");
-		List<RemoteLog> remoteLogs = adminService.selectRemoteLogs();
-		List<String> dateTimes = new ArrayList<String>();
-		List<String> messages = new ArrayList<String>();
-		List<String> logTypes = new ArrayList<String>();
-		
-		for(RemoteLog log : remoteLogs) {
-			dateTimes.add(log.getMessage());
-			messages.add(log.getTime().toString());
-			logTypes.add(log.getType().toString());
-		}
-		
-		mav.addObject("dateTimes", dateTimes);
-		mav.addObject("messages", messages);
-		mav.addObject("logTypes", logTypes);
 		return mav;
 	}
 	

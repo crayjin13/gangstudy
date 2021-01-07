@@ -3,7 +3,49 @@ var inlog = document.getElementById('inlog');
 var messageSelect = document.getElementById('messageSelect');
 var signbtns = document.getElementsByClassName('signbtn');
 
+var wsUri = "ws://gangstudy.com/websocket";
+var webSocket;
+var clientWebSocket = {
+	openSocket : function() {
+        webSocket = new WebSocket(wsUri);
+        webSocket.onopen = function(evt) {
+        	// Socket Open
+        };
+        webSocket.onmessage = function(evt) {
+        	// 서버로 부터 메시지 수신
+	    	clientWebSocket.handleMessage(evt.data);
+        };
+
+        webSocket.onerror = function(evt) {
+        	// Socket Error 발생
+			alert(evt)
+        };
+        
+        webSocket.onclose = function(event) {
+        	// Socket 닫힘
+	   };        
+	},
+	doSend : function(message) {
+		// 서버로 메시지 전송
+		webSocket.send(message);
+	},
+	handleMessage : function (data) {
+		// 메시지 처리
+		if(data != null){
+			$("#serverMessage").val(data);
+			writeToScreen(data);
+		}
+	}
+}
+
+function writeToScreen(message) {
+	var jm = JSON.parse(message)
+	var symbolMessage = jm.message.toString().replace("&#60;", "<").replace("&#62;", ">")
+	var logText = '[' + jm.time + ']' + symbolMessage + '(' + jm.type + ')'
+	inlog.textContent = inlog.textContent + logText;
+}
 $(document).ready(function() {
+	clientWebSocket.openSocket();
 	getReserveList();
 	for (var i = 0; i < signbtns.length; i++) {
 	     signbtns[i].addEventListener('click', sendMessage);
@@ -20,7 +62,6 @@ function sendMessage(){
 				 'message' : message
 			   },
 		success : function(response) {
-			inlog.textContent = inlog.textContent + response;
 		},
 		error : function(){
 			alert('script error(ajax sign btn)');
