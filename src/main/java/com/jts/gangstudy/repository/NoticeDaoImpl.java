@@ -1,4 +1,4 @@
-package com.jts.gangstudy.repository;
+/*package com.jts.gangstudy.repository;
 
 import java.util.List;
 
@@ -45,3 +45,4 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 }
+*/

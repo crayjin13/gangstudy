@@ -1,4 +1,4 @@
-package com.jts.gangstudy.repository;
+/*package com.jts.gangstudy.repository;
 
 import java.util.List;
 
@@ -6,22 +6,22 @@ import com.jts.gangstudy.domain.Notice;
 
 public interface NoticeDao {
 
-	//±ÛÀÛ¼º
+	//ï¿½ï¿½ï¿½Û¼ï¿½
 	int insert(Notice notice);
 	
-	//±Û »èÁ¦
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int delete(Integer nNo);
 	
-	//±Û¼öÁ¤
+	//ï¿½Û¼ï¿½ï¿½ï¿½
 	int update(Notice notice);
 	
-	//±Û¸ñ·Ï 
+	//ï¿½Û¸ï¿½ï¿½ 
 	List<Notice> selectList();
 	
-	//ÀÛ¼ºÀÚ¿¡µû¸¥ ±Û 
+	//ï¿½Û¼ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
 	List<Notice> ListById(String admin_id);
 	
-	//±ÛÁ¶È¸¼ö 
+	//ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ 
 	int viewCount(Integer notice_no);
 	
 	
@@ -29,3 +29,4 @@ public interface NoticeDao {
 	
 	
 }
+*/
