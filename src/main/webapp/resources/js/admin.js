@@ -3,7 +3,7 @@ var inlog = document.getElementById('inlog');
 var messageSelect = document.getElementById('messageSelect');
 var signbtns = document.getElementsByClassName('signbtn');
 
-var wsUri = "ws://localhost:8080/websocket";
+var wsUri = "ws://gangstudy.com/websocket";
 var webSocket;
 var clientWebSocket = {
 	openSocket : function() {
