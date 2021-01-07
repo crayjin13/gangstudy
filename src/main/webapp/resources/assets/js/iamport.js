@@ -12,19 +12,22 @@
             point : pointUse.value
     	},function(jqXHR) {        
     		// always
+    		
     	},'text' /* xml, text, script, html*/ )
     	.done(function(data) {
     		merchant_uid = data;     
-    	});    
+    	  
     	         
-             console.log("1ck ");   
+             console.log(data);    
+             
         
-        IMP.request_pay({
+             // begin: IMP.request_pay 다날  결제화면으로 넘어가는 부분 
+        IMP.request_pay({  
             pg : 'Danal',
             pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
+            merchant_uid : merchant_uid  /* + new Date().getTime()*/,
             name : '갱스터디',
-            amount : document.getElementById("totalAmount").textContent,
+            amount : document.getElementById("totalAmount").textContent,     
             buyer_email : '' ,
             buyer_name : document.getElementById("name").textContent, 
             buyer_tel :'' ,
@@ -37,7 +40,7 @@
                     url: "/payment/beready", //cross-domain error가 발생하지 않도록 주의해주세요
                     type: 'GET',
                     dataType: 'json',
-                    data: {                 
+                    data: {                   
                         imp_uid : rsp.imp_uid
                         //기타 필요한 데이터가 있으면 추가 전달
                     }
@@ -52,6 +55,7 @@
                         msg += '\결제 금액 : ' + rsp.paid_amount;
                         msg += '카드 승인번호 : ' + rsp.apply_num;
                         
+                        console.log(rsp.merchant_uid);
                         alert(msg);
                     } else {
                     	msg = +rsp.error_msg;
@@ -76,7 +80,10 @@
                // location.href="<%=request.getContextPath()%>/order/payFail";
                 alert(msg);
             }
-        });
-	  });
+        });   // end: IMP.request_pay 다날  결제화면 종료
+        
+    	});  // end: 비동기 $.post( paybydanal) 매소드 종료 
+        
+	  });   // end: #pay button 클릭했을떄 실행되는 메소드 
 
     });

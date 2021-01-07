@@ -25,6 +25,8 @@ License: You must have a valid license purchased only from themeforest(the above
     font-weight: normal;
     font-style: normal;
 }
+     
+
 </style>
 
 <!--begin::Head-->
@@ -175,7 +177,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--begin::Page Layout-->
 							<div class="d-flex flex-row">
 								<!--begin::Aside-->
-
+ 
 								<!--end::Aside-->
 								<!--begin::Layout-->
 								<div class="flex-row-fluid ml-lg-8">
@@ -185,8 +187,16 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="card-header flex-wrap border-0 pt-6 pb-0">
 											<h3 class="card-title align-items-start flex-column">
 												<span
-													class="card-label font-weight-bolder font-size-h3 text-dark">결제정보</span>
-											</h3>
+													class="card-label font-weight-bolder font-size-h3 text-dark">
+			
+				<i class="la la-user"></i><input type="text" name="name" value="${sUserId.name}" readonly
+					placeholder="수정불가" id="name" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:30%;"> 
+			 님의  결제정보</span>        
+		               
+			                   
+			    
+			
+											</h3>          
 											<!--begin::Logo-->
 											<a href="/"> <img alt="Logo"
 												src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png"
@@ -257,7 +267,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																name="demo0" placeholder="Select time" readonly
 																style="text-align: center; width:120%;" /></td>
 
-															<td class="text-right align-middle font-weight-bolder">
+															<td class="text-right align-middle font-weight-bolder" id="startDateTime">
 																시작:<br/>${startDateTime}
 															</td>     
 
@@ -322,9 +332,9 @@ License: You must have a valid license purchased only from themeforest(the above
 										type="datetime-local" id="example-datetime-local-input" style="text-align:center; width:100px;">
 								</div>
 																</td> -->
-															<td class="text-right align-middle font-weight-bolder">
+															<td class="text-right align-middle font-weight-bolder" id="endDateTime">
 																 종료:<br/>${endDateTime}
-															</td>
+															</td>  
 														</tr>      
 														<tr>
 															<td class="d-flex align-items-center font-weight-bolder">
@@ -377,14 +387,17 @@ License: You must have a valid license purchased only from themeforest(the above
 															</td>
 															<td colspan="1" class="border-0 text-right pt-10">
 
-																<button class="btn btn-light-primary font-weight-bolder px-8" id="pay">다날 결제 </button>
+																<button class="btn btn-light-primary font-weight-bolder px-8" id="pay" name="danal">다날 결제 </button>
 															</td>
 														</tr>
 														<!--end::Cart Footer-->     
 													</tbody>
 												</table>
+											
+											<h1><b>  죄송하지만 지금은 홈페이지 리뉴얼중입니다. 예약&결제는 메인화면의 "카톡으로 문의하기" 를 이용해 주세요 감사합니다. </b></h1>
+												
 											</div>
-											<!--end::Shopping Cart-->
+											<!--end::Shopping Cart-->       
 										</div>
 									</div>
 									<!--end::Section-->
