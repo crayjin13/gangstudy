@@ -52,7 +52,7 @@ public class AdminController {
 	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("pages/admin");
+		mav.setViewName("admin/adminMain");
 		return mav;
 	}
 	
@@ -129,7 +129,7 @@ public class AdminController {
 			}
 
 			mav.addObject("blackList", array);
-			mav.setViewName("pages/admin.blackList");
+			mav.setViewName("admin/blackList");
 			
 			return mav;
 	}
@@ -139,7 +139,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ModelAndView showBooks() {
-		ModelAndView mav = new ModelAndView("pages/showAllBook");
+		ModelAndView mav = new ModelAndView("pages/bookingList");
 		List<Booking> books = bookingService.searchAll();
 		
 		JSONArray array = new JSONArray();
@@ -167,7 +167,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public ModelAndView showUsers() {
-		ModelAndView mav = new ModelAndView("pages/showAllUser");
+		ModelAndView mav = new ModelAndView("admin/userList");
 		List<User> users = userService.selectAll();
 		
 		JSONArray array = new JSONArray();
@@ -219,7 +219,7 @@ public class AdminController {
 	// 로그 기록
 	@RequestMapping(value = "/timeline", method = RequestMethod.GET)
 	public String admintimeline() {
-		return "pages/admin-timeline";
+		return "admin/timeline";
 	}
 	
 	@ResponseBody
