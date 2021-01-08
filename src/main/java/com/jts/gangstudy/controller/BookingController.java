@@ -108,7 +108,7 @@ public class BookingController {
 	@UserLoginCheck
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
 	public ModelAndView bookCheck(HttpServletRequest request, HttpSession session) {
-		ModelAndView mav = new ModelAndView("pages/bookingList");
+		ModelAndView mav = new ModelAndView("booking/bookingList");
 		
 		User user = (User)session.getAttribute("sUserId");
 		List<Booking> books = bookingService.searchByUser(user);
