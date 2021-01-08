@@ -139,7 +139,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ModelAndView showBooks() {
-		ModelAndView mav = new ModelAndView("pages/bookingList");
+		ModelAndView mav = new ModelAndView("admin/bookingList");
 		List<Booking> books = bookingService.searchAll();
 		
 		JSONArray array = new JSONArray();
