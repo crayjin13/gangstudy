@@ -49,7 +49,8 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			try {
 				while(true) {
 					msg = bufferedReader.readLine();
-					System.out.println("From StudyRoom : " + msg);
+					if(msg.equals("keep alive")) continue;
+					System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
 					RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
 					adminService.insertRemoteLogs(log);
 					
@@ -60,7 +61,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				System.err.println("socket IO Exception.");
+				System.err.println("["+LocalDateTime.now()+"]"+"socket IO Exception.");
 			}
 		}
 	}
@@ -77,7 +78,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     @Override
     protected void handleTextMessage(
             WebSocketSession session, TextMessage message) throws Exception {
-		log.info("["+session.getId()+"]: " + message.getPayload());
+		log.info("["+LocalDateTime.now()+"]"+"["+session.getId()+"]: " + message.getPayload());
 //        session.sendMessage(new TextMessage("[echo]: " + message.getPayload()));
 		
 		// 오늘 날짜의 로그 요청시.
@@ -92,7 +93,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     @Override
     public void afterConnectionClosed(
             WebSocketSession session, CloseStatus status) throws Exception {
-		log.info(session.getId() + " 연결 끊김");
+		log.info("["+LocalDateTime.now()+"]"+session.getId() + " 연결 끊김");
 		sessionList.remove(session);
     }
 
@@ -100,7 +101,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     // 객체 생성 시
     @Override
 	public void afterPropertiesSet() throws Exception {
-		System.out.println("AdminWebSocketHandler::afterPropertiesSet");
+		System.out.println("["+LocalDateTime.now()+"]"+"AdminWebSocketHandler::afterPropertiesSet");
 		createSocket();
 		ListenerThread thread = new ListenerThread();
 		thread.start();
@@ -108,7 +109,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     // 객체 소멸 시
 	@Override
 	public void destroy() throws Exception {
-		System.out.println("AdminWebSocketHandler::destroy");
+		System.out.println("["+LocalDateTime.now()+"]"+"AdminWebSocketHandler::destroy");
 		printWriter.close();
 		try {
 			bufferedReader.close();
