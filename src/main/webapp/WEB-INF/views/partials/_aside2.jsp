@@ -110,7 +110,7 @@
 						class="menu-icon ki ki-bold-more-hor icon-md"></i>
 					</li>
 					<li class="menu-item menu-item-submenu" aria-haspopup="true"
-						data-menu-toggle="hover"><a href="javascript:;"
+						data-menu-toggle="hover">  <a href="/admin/jts"
 						class="menu-link menu-toggle">  <!-- span class="menu-text"> Gang Students </span> <i
 							class="menu-arrow"></i> -->
 					</a>
@@ -135,6 +135,14 @@
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">로그인 
 										</span></a></li>
+								<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/admin/jts"
+									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+										<span
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">관리자 메인 
+										</span></a></li>
+										
+										
 										<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/admin/users"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
@@ -174,7 +182,12 @@
 		// 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.    
 		} else {
 	%>
-								
+									<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/admin/jts"
+									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
+										<span
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">관리자 메인 
+										</span></a></li>
 
 									
 										<li class="menu-item menu-item-submenu" aria-haspopup="true"
