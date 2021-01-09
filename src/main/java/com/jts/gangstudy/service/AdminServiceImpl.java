@@ -74,6 +74,11 @@ public class AdminServiceImpl implements AdminService {
 			}
 		}
 	}
+	@Scheduled(cron="0 */1 * * * *" )
+	public void cronSocketConnect() {
+		sendMessage("keep alive");
+	}
+	
 	// 소켓 생성
 	public void createSocket() {
 		InetSocketAddress isa = null;
