@@ -19,21 +19,23 @@
 	<!-- 상태 변경 -->
 	<select id="updateState" parameterType="hashmap">
 	  UPDATE BOOKING_TB
-	  SET STATE = #{state}
+	  SET STATE = #{state} 
 	  WHERE BOOK_NO = #{book_no}
 	</select>
 	
 	<!-- 모든 예약 검색 -->
-	<select id="selectAll" resultType="com.jts.gangstudy.domain.Booking">
+	<select id="selectAll" resultType="com.jts.gangstudy.domain.Booking">  
 	SELECT *
 	FROM BOOKING_TB
+	ORDER BY book_no DESC 
 	</select>
 	
 	<!-- 유저 번호로 조회 -->
 	<select id="selectByUser" parameterType="int" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT *
 	  FROM BOOKING_TB
-	  WHERE USER_NO = #{user_no}
+	  WHERE USER_NO = #{user_no} 
+	  ORDER BY book_no DESC 
 	</select>
 	
 	<!-- 요청한 유저의 예약을 제외하고 uncharge, wait, use 상태인 예약
