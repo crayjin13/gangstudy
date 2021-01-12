@@ -102,26 +102,7 @@ public class BookingController {
 		
 		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
 		return canCancel;
-		
 	}
-	
-	
-	// pg사가 다날인지 카카오인지 체크 
-	@ResponseBody
-	@RequestMapping(value = "/pgCheck", method = RequestMethod.GET)
-	public boolean whichPg(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-		
-		int pgDanalCheck = paymentService.pgDanalCheck(book_no);
-		
-		if(pgDanalCheck==1) {
-			return true;
-		}else {
-			return false;
-		}
-		
-	}
-	
-	
 
 	// bookingList page - 예약 목록
 	@UserLoginCheck

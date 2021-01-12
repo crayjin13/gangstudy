@@ -10,6 +10,4 @@ public interface PaymentService {
 	public Payment selectPayment(Booking book);
 	public void changeState(Payment payment, String state);
 	public String getDeviceType(HttpServletRequest request);
-	
-	public int pgDanalCheck(int book_no);
 }
