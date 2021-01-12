@@ -1,5 +1,12 @@
 package com.jts.gangstudy.controller;
 
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -11,15 +18,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
+
 import com.jts.gangstudy.service.KakaoPayService;
 import com.jts.gangstudy.service.PaymentService;
 import com.jts.gangstudy.service.UserService;
+
+
+
+
 
 @Controller
 @RequestMapping("/payment")
@@ -32,6 +46,10 @@ public class PaymentController {
 	private BookingService bookingService;
 	@Autowired
 	private KakaoPayService kakaoPayService;
+	
+	
+	
+	
 
 	// 결제 수단 선택
 	@UserLoginCheck
@@ -42,58 +60,81 @@ public class PaymentController {
 		return mav;
 	}
 	
-	// kakaoPay를 통한 취소 요청
-		@UserLoginCheck
-		@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-			User user = (User)session.getAttribute("sUserId");
-			Booking book = bookingService.searchByBookNo(book_no);
-			if(book==null) {
-				return "redirect:" + "/?book=null";
-			} else if(!book.getState().equals("wait")) {
-				return "redirect:" + "/?book=notWait";
-			} else if(book.getUser_no() != user.getUser_no()) {
-				return "redirect:" + "/?user_no=fail";
-			}
-			boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
-			if(!canCancel) {
-				return "redirect:" + "/?cancel=timeout";
-			}
-			Payment payment = paymentService.selectPayment(book);
-			
-			String tid = payment.getTid();
-			Integer paidMoney = payment.getAmount();
-			
-			HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString());	// 취소 요청
 
-			if(map==null) {
-				return "redirect:" + "/?cancel=fail";
-			}
-			if(map.get("status").equals("PART_CANCEL_PAYMENT") ||
-					   map.get("status").equals("CANCEL_PAYMENT")) {							// 취소 성공
-				// 이전 결제 정보 취소 처리
-				paymentService.changeState(payment, "cancelled");
-				// 기존 예약을 취소로 변경
-				bookingService.changeState(book, "cancel");
-				return "redirect:" + "/";
-			}
-			return "redirect:" + "/?cancel=fail";
+	
+	
+	
+	// kakaoPay를 통한 취소 요청
+	@UserLoginCheck
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+		User user = (User) session.getAttribute("sUserId");
+		Booking book = bookingService.searchByBookNo(book_no);
+		if (book == null) {
+			return "redirect:" + "/?book=null";
+		} else if (!book.getState().equals("wait")) {
+			return "redirect:" + "/?book=notWait";
+		} else if (book.getUser_no() != user.getUser_no()) {
+			return "redirect:" + "/?user_no=fail";
+		}
+		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
+		if (!canCancel) {
+			return "redirect:" + "/?cancel=timeout";
 		}
 		
 		
+		Payment payment = paymentService.selectPayment(book);
+		
+		if(payment.getPg_name().equals("kakaopay")) {
+			// 카카오페이 취소 요청
+			 
+						String tid = payment.getTid();
+						Integer paidMoney = payment.getAmount();
+						HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString()); // 취소 요청
+						if (map == null) {
+							return "redirect:" + "/?cancel=fail";
+						}
+						if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) { // 취소
+																																// 성공
+							// 이전 결제 정보 취소 처리
+							paymentService.changeState(payment, "cancelled");
+							// 기존 예약을 취소로 변경
+							bookingService.changeState(book, "cancel");
+							return "redirect:" + "/";
+						}
+
+						return "redirect:" + "/?cancel=fail";
+			
+			
+		}else {
+			// 아임포트를 통한  다날페이 취소 요청 
+			
+			
+			
+		return "redirect:" +"/token";	
+		
+			
+		}
+		
+		
+	
+			
+			
+			
+			
+		
+	}
 		
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 	// KakaoPay를 통한 결제 요청
 	@UserLoginCheck
 	@RequestMapping(value = "/kakaopay", method = RequestMethod.GET)
@@ -149,7 +190,7 @@ public class PaymentController {
 	}
 	@UserLoginCheck
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
-	public String beready(HttpServletRequest request, HttpSession session) {
+	public String beready( HttpServletRequest request, HttpSession session  ) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		/* String tid = (String)session.getAttribute("merchant_uid"); */
