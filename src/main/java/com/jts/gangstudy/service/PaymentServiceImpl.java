@@ -51,4 +51,10 @@ public class PaymentServiceImpl implements PaymentService {
 		}
 		return deviceType;
 	}
+
+	@Override
+	public int pgDanalCheck(int book_no) {
+		
+		return mapper.pgDanalCheck(book_no);
+	}
 }
