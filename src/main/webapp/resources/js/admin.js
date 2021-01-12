@@ -3,41 +3,6 @@ var inlog = document.getElementById('inlog');
 var messageSelect = document.getElementById('messageSelect');
 var signbtns = document.getElementsByClassName('signbtn');
 
-var wsUri = "ws://gangstudy.com/websocket";
-var webSocket;
-var clientWebSocket = {
-	openSocket : function() {
-        webSocket = new WebSocket(wsUri);
-        webSocket.onopen = function(evt) {
-        	// Socket Open
-        };
-        webSocket.onmessage = function(evt) {
-        	// 서버로 부터 메시지 수신
-	    	clientWebSocket.handleMessage(evt.data);
-        };
-
-        webSocket.onerror = function(evt) {
-        	// Socket Error 발생
-			alert(evt)
-        };
-        
-        webSocket.onclose = function(event) {
-        	// Socket 닫힘
-	   };        
-	},
-	doSend : function(message) {
-		// 서버로 메시지 전송
-		webSocket.send(message);
-	},
-	handleMessage : function (data) {
-		// 메시지 처리
-		if(data != null){
-			$("#serverMessage").val(data);
-			writeToScreen(data);
-		}
-	}
-}
-
 function writeToScreen(message) {
 	var jm = JSON.parse(message)
 	var symbolMessage = jm.message.toString().replace("&#60;", "<").replace("&#62;", ">")
@@ -45,7 +10,6 @@ function writeToScreen(message) {
 	inlog.textContent = inlog.textContent + logText;
 }
 $(document).ready(function() {
-	clientWebSocket.openSocket();
 	getReserveList();
 	for (var i = 0; i < signbtns.length; i++) {
 	     signbtns[i].addEventListener('click', sendMessage);
@@ -130,6 +94,23 @@ function getReserveList() {
 		}
 	});
 }
+
+document.getElementById('testSend').addEventListener('click', function() {
+	$.ajax({
+		url : '/remote/send',
+		type : 'GET',
+		data : {
+				 'ipAdress' 	: document.getElementById('testIP').value,
+				 'portNumber' 	: document.getElementById('testPort').value,
+				 'message' 		: document.getElementById('testMessage').value
+			   },
+		success : function(response) {
+		},
+		error : function(){
+			alert('testSend >> ajax error');
+		}
+	})
+})
 
 String.prototype.string = function (len) { var s = '', i = 0; while (i++ < len) { s += this; } return s; };
 String.prototype.zf = function (len) { return "0".string(len - this.length) + this; };

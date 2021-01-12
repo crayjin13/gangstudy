@@ -3,6 +3,7 @@ package com.jts.gangstudy.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -26,36 +27,29 @@ import com.jts.gangstudy.domain.Command;
 import com.jts.gangstudy.mapper.CommandMapper;
 
 @Controller
+@RequestMapping("/remote")
 public class RemoteGangController {
-	public String sendMessage(String ip, String port, String message) {
+	
+	@ResponseBody
+	@RequestMapping(value = "/send", method = RequestMethod.GET)
+	public void sign(HttpServletRequest request, @RequestParam("ipAdress") String ipAdress,
+			@RequestParam("portNumber") String portNumber, @RequestParam("message") String message) {
+		sendMessage(ipAdress, portNumber, message);
+	}
+	
+	public void sendMessage(String ip, String port, String message) {
 		int portNumber = Integer.parseInt(port);
-		byte[] buf = null;
-        byte[] temp = null;
         try (Socket socket = new Socket()) {
                 InetSocketAddress ipep = new InetSocketAddress(ip, portNumber);
                 socket.connect(ipep);
-                System.out.println("socket connected IP address =" + socket.getRemoteSocketAddress().toString());
-
-                OutputStream send = socket.getOutputStream();
-                InputStream recv = socket.getInputStream();
-
-                buf = new byte[1024];
-                buf = message.getBytes();
-                send.write(buf);
-                System.out.println("send: " + new String(buf));
-
-                buf = new byte[1024];
-                int bytes = recv.read(buf);
-                temp = new byte[bytes];
-                temp = Arrays.copyOf(buf, bytes);
-                System.out.println("recv: " + new String(temp));
-
+                PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
+        		printWriter.println(message);
+        		printWriter.close();
                 socket.close();
         } catch (UnknownHostException e) {
                 e.printStackTrace();
         } catch (IOException e) {
                 e.printStackTrace();
         }
-        return new String(temp);
 	}
 }

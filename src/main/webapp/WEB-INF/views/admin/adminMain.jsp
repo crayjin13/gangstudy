@@ -489,9 +489,53 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						<!--end::Form-->
 					</div>
-					<!--end::Card-->
-					<!--begin::Card-->
-
+					
+			        <!--begin::Card-->
+					<div class="card card-custom gutter-b example example-compact">
+						<div class="card-header">
+							<h3 class="card-title cafe24"> 테스트 소켓 데이터 송신 </h3>
+							<div class="card-toolbar">
+								<div class="example-tools justify-content-center"></div>
+							</div>
+						</div>  
+						<div class="card-body">
+							<form class="form2" id="socketTestForm">
+								<div class="form-group row">
+									<label class="col-form-label text-right col-lg-3 col-sm-12">
+										전송할 IP </label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<input id="testIP" type="text" class="form-control" value="222.117.228.95"/>
+									</div>
+								</div>
+								
+								<div class="form-group row">
+									<label class="col-form-label text-right col-lg-3 col-sm-12">
+										전송할 PORT </label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<input id="testPort" type="text" class="form-control" value="80"/>
+									</div>
+								</div>
+								
+								<div class="form-group row">
+									<label class="col-form-label text-right col-lg-3 col-sm-12">
+										전송할 데이터 </label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<input id="testMessage" type="text" class="form-control"/>
+									</div>
+								</div>
+								
+								<div class="col-lg-4 col-md-9 col-sm-12 ml-lg-auto">
+									<button id="testSend" type="button" class="btn btn-dark mr-2">송신</button>
+								</div>
+							</form>
+						</div>
+						<div class="card-footer">
+							<div class="row">
+								<div class="col-lg-9 ml-lg-auto">
+								</div>
+							</div>
+						</div>
+					</div>
 					<!--end::Card-->
 				</div>
 				<!--end::Container-->
@@ -680,6 +724,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-timepicker.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-switch.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/webSocket.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
 	<!--end::Page Scripts-->
