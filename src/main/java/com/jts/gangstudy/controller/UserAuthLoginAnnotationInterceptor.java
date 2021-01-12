@@ -47,7 +47,7 @@ public class UserAuthLoginAnnotationInterceptor extends HandlerInterceptorAdapte
 			return true;
 		}
 		// 5. @UserLoginCheck가 있는 경우이므로, 세션이 있는지 체크
-		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck 있는 경우");
+//		System.out.println("### AuthLoginAnnotationInterceptor.preHandle() @UserLoginCheck 있는 경우");
 
 		// session 객체를 가져옴
 		HttpSession session = request.getSession();
