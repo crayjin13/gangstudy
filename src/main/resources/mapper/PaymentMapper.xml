@@ -20,4 +20,15 @@
 	  SET STATE = #{state}
 	  WHERE PAY_NO = #{pay_no}
 	</select>
+	
+	
+	<!-- PG 다날 체크  -->
+	<select id="pgDanalCheck" parameterType="int">
+	 SELECT COUNT(*) as pgDanalCheck
+	 FROM PAYMENT_TB
+	 WHERE BOOK_NO = #{book_no} and PG_NM = 'Danal'
+	</select>
+	
+	
+	
 </mapper>
