@@ -75,6 +75,7 @@ $(function() {
 					// 실패시 이동할 페이지
 					// location.href="<%=request.getContextPath()%>/order/payFail";
 					alert(msg);
+					window.location.href = '/';
 				}
 			}); // end: IMP.request_pay 다날 결제화면 종료   
 

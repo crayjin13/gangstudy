@@ -267,72 +267,23 @@ function modify(book_no) {
 }
 
 function cancel(book_no) {
-	if (confirm('예약을 취소하시겠습니까?')) {
+	if(confirm('예약을 취소하시겠습니까?')) {
 		$.get("/booking/canCheck", {
-					book_no : book_no
-				}, function(jqXHR) {
-					// always
-				}, 'text' /* xml, text, script, html */)
-				.done(
-						function(canCheck) {
-							if (canCheck) {
-
-								$(function() {
-										// 다날페이인지 카카오페이인지 구분  
-									$.ajax({
-												url : '/booking/pgCheck',
-												method : 'POST',
-												data : fpwArray,
-												dataType : 'json',
-												success : function(data) {
-													console.log("pgcheck 매소드 타는지 체크");
-
-													if (data == true) {
-														console.log("다날입니다.");
-														// 다날일경우 
-														
-														function cancelPay() {
-														      jQuery.ajax({
-														        "url": "http://www.myservice.com/payments/cancel",
-														        "type": "POST",
-														        "contentType": "application/json",
-														        "data": JSON.stringify({
-														          "merchant_uid": "mid_" + new Date().getTime(), // 주문번호
-														          "cancel_request_amount": 2000, // 환불금액
-														          "reason": "테스트 결제 환불" // 환불사유
-														         
-														        }),
-														        "dataType": "json"
-														      });
-														    }
-															
-															
-															
-															
-															
-															
-															
-															
-															
-													} else {
-														//카카오일경우
-														console.log("카카오입니다.")
-														
-														window.location.href = '/payment/cancel'
-																+ '?book_no='
-																+ book_no
-														alert('예약이 취소되었습니다.')
-													}
-												}
-											});
-
-								});
-
-							} else {
-								alert('24시간 이내에는 예약을 취소할 수 없습니다.')
-							}
-						}).fail(function(jqXHR) {
-				}).always(function(jqXHR) {
-				});
+			book_no : book_no
+		},function(jqXHR) {
+			// always
+		},'text' /* xml, text, script, html */)
+		.done(function(canCheck) {
+			if(canCheck) {
+				window.location.href = '/payment/cancel' + '?book_no='+book_no
+				alert('예약이 취소되었습니다.')
+			} else {
+				alert('24시간 이내에는 예약을 취소할 수 없습니다.')
+			}
+		})
+		.fail(function(jqXHR) {
+		})
+		.always(function(jqXHR) {
+		});
 	}
 }
