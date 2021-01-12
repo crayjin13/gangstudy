@@ -49,7 +49,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			try {
 				while(true) {
 					msg = bufferedReader.readLine();
-					if(msg.equals("keep alive")) continue;
+					if(msg == null || msg.equals("keep alive")) continue;
 					System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
 					RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
 					adminService.insertRemoteLogs(log);
