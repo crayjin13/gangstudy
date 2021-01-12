@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../">
 		<meta charset="utf-8" />
-		<title>Apexcharts | Keenthemes</title>
+		<title>Apexcharts | Gangstudy</title>
 		<meta name="description" content="Apexcharts examples" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -23,17 +23,17 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
-		<link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/favicon.ico" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -43,7 +43,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="index.html">
-				<img alt="Logo" src="assets/media/logos/logo-light.png" />
+				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-light.png" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -61,7 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<!--begin::Topbar Mobile Toggle-->
 				<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 					<span class="svg-icon svg-icon-xl">
-						<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
+						<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/User.svg-->
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -86,13 +86,13 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="index.html" class="brand-logo">
-							<img alt="Logo" src="assets/media/logos/logo-light.png" />
+							<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-light.png" />
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->
 						<button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
 							<span class="svg-icon svg-icon svg-icon-xl">
-								<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
+								<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Navigation/Angle-double-left.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<polygon points="0 0 24 0 24 24 0 24" />
@@ -115,7 +115,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item" aria-haspopup="true">
 									<a href="index.html" class="menu-link">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Design/Layers.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24" />
@@ -135,7 +135,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -824,7 +824,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Barcode-read.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Shopping/Barcode-read.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -1261,7 +1261,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Design/Bucket.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -1304,7 +1304,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Code/Compiling.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -1371,7 +1371,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Settings-1.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -1446,7 +1446,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item" aria-haspopup="true">
 									<a target="_blank" href="https://preview.keenthemes.com/metronic/demo1/builder.html" class="menu-link">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Library.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -1466,7 +1466,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Design/PenAndRuller.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -1913,7 +1913,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-left-panel-2.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Layout/Layout-left-panel-2.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2124,7 +2124,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-horizontal.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Layout/Layout-horizontal.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2413,7 +2413,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Files/Upload.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Files/Upload.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2467,7 +2467,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Box2.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Shopping/Box2.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2582,7 +2582,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Files/Pictures1.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Files/Pictures1.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2723,7 +2723,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-arrange.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Layout/Layout-arrange.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2806,7 +2806,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Devices/Diagnostics.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Devices/Diagnostics.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2914,7 +2914,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Attachment2.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -2986,7 +2986,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Select.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Design/Select.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24" />
@@ -3053,7 +3053,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu menu-item-open menu-item-here" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Media/Equalizer.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -3144,7 +3144,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Book-open.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Book-open.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -3195,7 +3195,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Mirror.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Mirror.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -3345,7 +3345,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item" aria-haspopup="true">
 														<a href="index.html" class="menu-link">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Briefcase.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Clothes/Briefcase.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3361,7 +3361,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Code/Compiling.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3380,7 +3380,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Code/CMD.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Code/CMD.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3448,7 +3448,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 														<a href="#" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-box.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Mail-box.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3509,7 +3509,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Spam.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Spam.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3544,7 +3544,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<li class="menu-item" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Briefcase.svg-->
+																			<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Clothes/Briefcase.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -3560,7 +3560,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<li class="menu-item" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Crown.svg-->
+																			<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Clothes/Crown.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<polygon points="0 0 24 0 24 24 0 24" />
@@ -3576,7 +3576,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<li class="menu-item" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Lock-overturning.svg-->
+																			<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Code/Lock-overturning.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -3592,7 +3592,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<li class="menu-item" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Thumbtack.svg-->
+																			<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Thumbtack.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -3608,7 +3608,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<li class="menu-item" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link">
 																		<span class="svg-icon menu-icon">
-																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Outgoing-box.svg-->
+																			<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Outgoing-box.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																					<rect x="0" y="0" width="24" height="24" />
@@ -3797,7 +3797,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Safe-chat.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Safe-chat.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3813,7 +3813,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Send.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Send.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3873,7 +3873,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-at.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Mail-at.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3888,7 +3888,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Chat-locked.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Chat-locked.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3907,7 +3907,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 														<a href="javascript:;" class="menu-link menu-toggle">
 															<span class="svg-icon menu-icon">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -3977,7 +3977,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
 											<span class="svg-icon svg-icon-xl svg-icon-primary">
-												<!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+												<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Search.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24" />
@@ -3999,7 +3999,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<div class="input-group-prepend">
 														<span class="input-group-text">
 															<span class="svg-icon svg-icon-lg">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+																<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Search.svg-->
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
@@ -4034,7 +4034,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
 											<span class="svg-icon svg-icon-xl svg-icon-primary">
-												<!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+												<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Code/Compiling.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24" />
@@ -4052,7 +4052,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
 										<form>
 											<!--begin::Header-->
-											<div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(assets/media/misc/bg-1.jpg)">
+											<div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(${pageContext.request.contextPath}/resources/assets/media/misc/bg-1.jpg)">
 												<!--begin::Title-->
 												<h4 class="d-flex flex-center rounded-top">
 													<span class="text-white">User Notifications</span>
@@ -4086,7 +4086,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-primary mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-primary">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Library.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4113,7 +4113,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-warning mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-warning">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4140,7 +4140,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-success mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-success">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4167,7 +4167,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-danger mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-danger">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Attachment2.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4196,7 +4196,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-info mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-info">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Shield-user.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4224,7 +4224,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-danger mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-danger">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Mail-notification.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4251,7 +4251,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="symbol symbol-40 symbol-light-success mr-5">
 																<span class="symbol-label">
 																	<span class="svg-icon svg-icon-lg svg-icon-success">
-																		<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg-->
+																		<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Design/Bucket.svg-->
 																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																				<rect x="0" y="0" width="24" height="24" />
@@ -4492,7 +4492,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
 											<span class="svg-icon svg-icon-xl svg-icon-primary">
-												<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+												<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Media/Equalizer.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24" />
@@ -4510,7 +4510,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Dropdown-->
 									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
 										<!--begin:Header-->
-										<div class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(assets/media/misc/bg-1.jpg)">
+										<div class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(${pageContext.request.contextPath}/resources/assets/media/misc/bg-1.jpg)">
 											<h4 class="text-white font-weight-bold">Quick Actions</h4>
 											<span class="btn btn-success btn-sm font-weight-bold font-size-sm mt-2">23 tasks pending</span>
 										</div>
@@ -4521,7 +4521,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-6">
 												<a href="#" class="d-block py-10 px-5 text-center bg-hover-light border-right border-bottom">
 													<span class="svg-icon svg-icon-3x svg-icon-success">
-														<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Euro.svg-->
+														<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Shopping/Euro.svg-->
 														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 															<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																<rect x="0" y="0" width="24" height="24" />
@@ -4540,7 +4540,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-6">
 												<a href="#" class="d-block py-10 px-5 text-center bg-hover-light border-bottom">
 													<span class="svg-icon svg-icon-3x svg-icon-success">
-														<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
+														<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Mail-attachment.svg-->
 														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 															<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																<rect x="0" y="0" width="24" height="24" />
@@ -4559,7 +4559,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-6">
 												<a href="#" class="d-block py-10 px-5 text-center bg-hover-light border-right">
 													<span class="svg-icon svg-icon-3x svg-icon-success">
-														<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Box2.svg-->
+														<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Shopping/Box2.svg-->
 														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 															<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																<rect x="0" y="0" width="24" height="24" />
@@ -4578,7 +4578,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-6">
 												<a href="#" class="d-block py-10 px-5 text-center bg-hover-light">
 													<span class="svg-icon svg-icon-3x svg-icon-success">
-														<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
+														<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group.svg-->
 														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 															<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																<polygon points="0 0 24 0 24 24 0 24" />
@@ -4603,7 +4603,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="topbar-item">
 									<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1" id="kt_quick_cart_toggle">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Shopping/Cart3.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -4620,7 +4620,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="topbar-item">
 									<div class="btn btn-icon btn-clean btn-lg mr-1" id="kt_quick_panel_toggle">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -4637,7 +4637,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="topbar-item">
 									<div class="btn btn-icon btn-clean btn-lg mr-1" data-toggle="modal" data-target="#kt_chat_modal">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -4655,7 +4655,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Toggle-->
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-											<img class="h-20px w-20px rounded-sm" src="assets/media/svg/flags/226-united-states.svg" alt="" />
+											<img class="h-20px w-20px rounded-sm" src="${pageContext.request.contextPath}/resources/assets/media/svg/flags/226-united-states.svg" alt="" />
 										</div>
 									</div>
 									<!--end::Toggle-->
@@ -4667,7 +4667,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<li class="navi-item">
 												<a href="#" class="navi-link">
 													<span class="symbol symbol-20 mr-3">
-														<img src="assets/media/svg/flags/226-united-states.svg" alt="" />
+														<img src="${pageContext.request.contextPath}/resources/assets/media/svg/flags/226-united-states.svg" alt="" />
 													</span>
 													<span class="navi-text">English</span>
 												</a>
@@ -4677,7 +4677,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<li class="navi-item active">
 												<a href="#" class="navi-link">
 													<span class="symbol symbol-20 mr-3">
-														<img src="assets/media/svg/flags/128-spain.svg" alt="" />
+														<img src="${pageContext.request.contextPath}/resources/assets/media/svg/flags/128-spain.svg" alt="" />
 													</span>
 													<span class="navi-text">Spanish</span>
 												</a>
@@ -4687,7 +4687,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<li class="navi-item">
 												<a href="#" class="navi-link">
 													<span class="symbol symbol-20 mr-3">
-														<img src="assets/media/svg/flags/162-germany.svg" alt="" />
+														<img src="${pageContext.request.contextPath}/resources/assets/media/svg/flags/162-germany.svg" alt="" />
 													</span>
 													<span class="navi-text">German</span>
 												</a>
@@ -4697,7 +4697,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<li class="navi-item">
 												<a href="#" class="navi-link">
 													<span class="symbol symbol-20 mr-3">
-														<img src="assets/media/svg/flags/063-japan.svg" alt="" />
+														<img src="${pageContext.request.contextPath}/resources/assets/media/svg/flags/063-japan.svg" alt="" />
 													</span>
 													<span class="navi-text">Japanese</span>
 												</a>
@@ -4707,7 +4707,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<li class="navi-item">
 												<a href="#" class="navi-link">
 													<span class="symbol symbol-20 mr-3">
-														<img src="assets/media/svg/flags/195-france.svg" alt="" />
+														<img src="${pageContext.request.contextPath}/resources/assets/media/svg/flags/195-france.svg" alt="" />
 													</span>
 													<span class="navi-text">French</span>
 												</a>
@@ -4774,7 +4774,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="left">
 										<a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="svg-icon svg-icon-success svg-icon-2x">
-												<!--begin::Svg Icon | path:assets/media/svg/icons/Files/File-plus.svg-->
+												<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Files/File-plus.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<polygon points="0 0 24 0 24 24 0 24" />
@@ -4851,7 +4851,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="alert alert-custom alert-white alert-shadow fade show gutter-b" role="alert">
 									<div class="alert-icon">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Tools/Compass.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -5158,7 +5158,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<!--begin::Header-->
 				<div class="d-flex align-items-center mt-5">
 					<div class="symbol symbol-100 mr-5">
-						<div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
+						<div class="symbol-label" style="background-image:url('${pageContext.request.contextPath}/resources/assets/media/users/300_21.jpg')"></div>
 						<i class="symbol-badge bg-success"></i>
 					</div>
 					<div class="d-flex flex-column">
@@ -5169,7 +5169,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<span class="navi-link p-0 pb-2">
 									<span class="navi-icon mr-1">
 										<span class="svg-icon svg-icon-lg svg-icon-primary">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Mail-notification.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -5199,7 +5199,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="symbol symbol-40 bg-light mr-3">
 								<div class="symbol-label">
 									<span class="svg-icon svg-icon-md svg-icon-success">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/General/Notification2.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Notification2.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -5225,7 +5225,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="symbol symbol-40 bg-light mr-3">
 								<div class="symbol-label">
 									<span class="svg-icon svg-icon-md svg-icon-warning">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Chart-bar1.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Shopping/Chart-bar1.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -5252,7 +5252,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="symbol symbol-40 bg-light mr-3">
 								<div class="symbol-label">
 									<span class="svg-icon svg-icon-md svg-icon-danger">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/Files/Selected-file.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Files/Selected-file.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<polygon points="0 0 24 0 24 24 0 24" />
@@ -5277,7 +5277,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="symbol symbol-40 bg-light mr-3">
 								<div class="symbol-label">
 									<span class="svg-icon svg-icon-md svg-icon-primary">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Mail-opened.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -5310,7 +5310,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="d-flex align-items-center bg-light-warning rounded p-5 gutter-b">
 						<span class="svg-icon svg-icon-warning mr-5">
 							<span class="svg-icon svg-icon-lg">
-								<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+								<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Library.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
@@ -5332,7 +5332,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
 						<span class="svg-icon svg-icon-success mr-5">
 							<span class="svg-icon svg-icon-lg">
-								<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
+								<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
@@ -5354,7 +5354,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="d-flex align-items-center bg-light-danger rounded p-5 gutter-b">
 						<span class="svg-icon svg-icon-danger mr-5">
 							<span class="svg-icon svg-icon-lg">
-								<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+								<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
@@ -5376,7 +5376,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="d-flex align-items-center bg-light-info rounded p-5">
 						<span class="svg-icon svg-icon-info mr-5">
 							<span class="svg-icon svg-icon-lg">
-								<!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg-->
+								<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Attachment2.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
@@ -5434,7 +5434,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<a href="#" class="symbol symbol-70 flex-shrink-0">
-							<img src="assets/media/stock-600x400/img-1.jpg" title="" alt="" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/stock-600x400/img-1.jpg" title="" alt="" />
 						</a>
 					</div>
 					<!--end::Item-->
@@ -5459,7 +5459,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<a href="#" class="symbol symbol-70 flex-shrink-0">
-							<img src="assets/media/stock-600x400/img-2.jpg" title="" alt="" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/stock-600x400/img-2.jpg" title="" alt="" />
 						</a>
 					</div>
 					<!--end::Item-->
@@ -5484,7 +5484,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<a href="#" class="symbol symbol-70 flex-shrink-0">
-							<img src="assets/media/stock-600x400/img-3.jpg" title="" alt="" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/stock-600x400/img-3.jpg" title="" alt="" />
 						</a>
 					</div>
 					<!--end::Item-->
@@ -5509,7 +5509,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<a href="#" class="symbol symbol-70 flex-shrink-0">
-							<img src="assets/media/stock-600x400/img-4.jpg" title="" alt="" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/stock-600x400/img-4.jpg" title="" alt="" />
 						</a>
 					</div>
 					<!--end::Item-->
@@ -5534,7 +5534,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<a href="#" class="symbol symbol-70 flex-shrink-0">
-							<img src="assets/media/stock-600x400/img-8.jpg" title="" alt="" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/stock-600x400/img-8.jpg" title="" alt="" />
 						</a>
 					</div>
 					<!--end::Item-->
@@ -5593,7 +5593,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+										<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -5607,7 +5607,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
+										<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -5621,7 +5621,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
+										<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -5635,7 +5635,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
+										<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -5649,7 +5649,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center flex-wrap">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
+										<img src="${pageContext.request.contextPath}/resources/assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -5668,7 +5668,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center bg-light-warning rounded p-5 mb-5">
 								<span class="svg-icon svg-icon-warning mr-5">
 									<span class="svg-icon svg-icon-lg">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Home/Library.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -5690,7 +5690,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center bg-light-success rounded p-5 mb-5">
 								<span class="svg-icon svg-icon-success mr-5">
 									<span class="svg-icon svg-icon-lg">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Write.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -5712,7 +5712,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center bg-light-danger rounded p-5 mb-5">
 								<span class="svg-icon svg-icon-danger mr-5">
 									<span class="svg-icon svg-icon-lg">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Group-chat.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -5734,7 +5734,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="d-flex align-items-center bg-light-info rounded p-5">
 								<span class="svg-icon svg-icon-info mr-5">
 									<span class="svg-icon svg-icon-lg">
-										<!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg-->
+										<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/Attachment2.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<rect x="0" y="0" width="24" height="24" />
@@ -6101,7 +6101,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="dropdown dropdown-inline">
 									<button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<span class="svg-icon svg-icon-lg">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
+											<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Communication/Add-user.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24" />
@@ -6208,7 +6208,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="d-flex flex-column mb-5 align-items-start">
 										<div class="d-flex align-items-center">
 											<div class="symbol symbol-circle symbol-40 mr-3">
-												<img alt="Pic" src="assets/media/users/300_12.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_12.jpg" />
 											</div>
 											<div>
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -6226,7 +6226,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
 											</div>
 											<div class="symbol symbol-circle symbol-40 ml-3">
-												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_21.jpg" />
 											</div>
 										</div>
 										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.</div>
@@ -6236,7 +6236,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="d-flex flex-column mb-5 align-items-start">
 										<div class="d-flex align-items-center">
 											<div class="symbol symbol-circle symbol-40 mr-3">
-												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_21.jpg" />
 											</div>
 											<div>
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -6254,7 +6254,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
 											</div>
 											<div class="symbol symbol-circle symbol-40 ml-3">
-												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_21.jpg" />
 											</div>
 										</div>
 										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">You’ll receive notifications for all issues, pull requests!</div>
@@ -6264,7 +6264,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="d-flex flex-column mb-5 align-items-start">
 										<div class="d-flex align-items-center">
 											<div class="symbol symbol-circle symbol-40 mr-3">
-												<img alt="Pic" src="assets/media/users/300_12.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_12.jpg" />
 											</div>
 											<div>
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -6283,7 +6283,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
 											</div>
 											<div class="symbol symbol-circle symbol-40 ml-3">
-												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_21.jpg" />
 											</div>
 										</div>
 										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Discover what students who viewed Learn Figma - UI/UX Design. Essential Training also viewed</div>
@@ -6293,7 +6293,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="d-flex flex-column mb-5 align-items-start">
 										<div class="d-flex align-items-center">
 											<div class="symbol symbol-circle symbol-40 mr-3">
-												<img alt="Pic" src="assets/media/users/300_12.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_12.jpg" />
 											</div>
 											<div>
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -6311,7 +6311,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
 											</div>
 											<div class="symbol symbol-circle symbol-40 ml-3">
-												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+												<img alt="Pic" src="${pageContext.request.contextPath}/resources/assets/media/users/300_21.jpg" />
 											</div>
 										</div>
 										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided</div>
@@ -6352,7 +6352,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop">
 			<span class="svg-icon">
-				<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
+				<!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Navigation/Up-2.svg-->
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<polygon points="0 0 24 0 24 24 0 24" />
@@ -6413,7 +6413,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 1</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo offcanvas-demo-active">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo1.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo1.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo1/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6423,7 +6423,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 2</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo2.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo2.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo2/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6433,7 +6433,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 3</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo3.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo3.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo3/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6443,7 +6443,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 4</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo4.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo4.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo4/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6453,7 +6453,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 5</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo5.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo5.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo5/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6463,7 +6463,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 6</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo6.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo6.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo6/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6473,7 +6473,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 7</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo7.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo7.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo7/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6483,7 +6483,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 8</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo8.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo8.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo8/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6493,7 +6493,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 9</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo9.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo9.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo9/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6503,7 +6503,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 10</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo10.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo10.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo10/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6513,7 +6513,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 11</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo11.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo11.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo11/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6523,7 +6523,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 12</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo12.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo12.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo12/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6533,7 +6533,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 13</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo13.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo13.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="../theme/html/demo13/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
@@ -6543,7 +6543,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 14</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo14.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo14.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6552,7 +6552,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 15</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo15.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo15.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6561,7 +6561,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 16</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo16.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo16.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6570,7 +6570,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 17</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo17.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo17.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6579,7 +6579,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 18</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo18.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo18.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6588,7 +6588,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 19</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo19.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo19.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6597,7 +6597,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 20</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo20.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo20.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6606,7 +6606,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 21</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo21.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo21.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6615,7 +6615,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 22</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo22.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo22.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6624,7 +6624,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 23</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo23.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo23.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6633,7 +6633,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 24</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo24.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo24.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6642,7 +6642,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 25</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo25.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo25.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6651,7 +6651,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 26</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo26.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo26.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6660,7 +6660,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 27</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo27.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo27.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6669,7 +6669,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 28</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo28.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo28.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6678,7 +6678,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 29</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo29.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo29.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6687,7 +6687,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<h5 class="font-weight-bold mb-4 text-center">Demo 30</h5>
 					<div class="overlay rounded-lg mb-8 offcanvas-demo">
 						<div class="overlay-wrapper rounded-lg">
-							<img src="assets/media/demos/demo30.png" alt="" class="w-100" />
+							<img src="${pageContext.request.contextPath}/resources/assets/media/demos/demo30.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
 							<a href="#" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow disabled opacity-90">Coming soon</a>
@@ -6709,12 +6709,12 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#3699FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#E4E6EF", "dark": "#181C32" }, "light": { "white": "#ffffff", "primary": "#E1F0FF", "secondary": "#EBEDF3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#3F4254", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#EBEDF3", "gray-300": "#E4E6EF", "gray-400": "#D1D3E0", "gray-500": "#B5B5C3", "gray-600": "#7E8299", "gray-700": "#5E6278", "gray-800": "#3F4254", "gray-900": "#181C32" } }, "font-family": "Poppins" };</script>
 		<!--end::Global Config-->
 		<!--begin::Global Theme Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="assets/js/pages/features/charts/apexcharts.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/assets/js/pages/features/charts/apexcharts.js"></script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->
