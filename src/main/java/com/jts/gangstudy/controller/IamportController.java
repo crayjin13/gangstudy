@@ -8,16 +8,14 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
 import java.util.logging.Logger;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +24,7 @@ import com.jts.gangstudy.service.UserService;
 import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.PaymentService;
+import com.jts.gangstudy.service.UserService;
 
 @RestController
 public class IamportController {
@@ -47,36 +46,35 @@ public class IamportController {
 	
 	
 
+	@ExceptionHandler
 	@RequestMapping(value = "/token", method = RequestMethod.POST)
-	public String getToken(HttpServletRequest request
-
-			, HttpServletResponse response
-
-			, JSONObject json
-
-			, String requestURL) throws Exception {
+	public String getToken(String imp_key, String imp_secret) throws Exception {
 
 		// requestURL 아임포트 고유키, 시크릿 키 정보를 포함하는 url 정보
 
-		String imp_key = URLEncoder.encode("9522889134837493", "UTF-8");
+		 imp_key = URLEncoder.encode("9522889134837493", "UTF-8");
 
-		String imp_secret = URLEncoder
+		 imp_secret = URLEncoder
 				.encode("lL7KMseL1s1SiV1BoVVbnTxCWEXEfNwAyEll6z68271k33VsYRDmLbZHPWm5JTFix1DEBKMESOYVRUnQ", "UTF-8");
-
+		 JSONObject json = new JSONObject();
+		
+		
 		json.put("imp_key", imp_key);
 
 		json.put("imp_secret", imp_secret);
 
-		String _token = getToken(request, response, json, requestURL);
+		String _token = "";
+		
+		//String _token = getToken(request, response, json, requestURL);
 
 		try {
 
 			String requestString = "";
-			
+			String requestURL = "";
 			requestURL = "https://api.iamport.kr/users/getToken";
 			
 			URL url = new URL(requestURL);
-
+  
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
 			connection.setDoOutput(true);
@@ -111,14 +109,15 @@ public class IamportController {
 
 				requestString = sb.toString();
 
-			}
+			} 
 
 			os.flush();
 
 			connection.disconnect(); 
 
 			JSONParser jsonParser = new JSONParser();
-
+			
+			
 			JSONObject jsonObj = (JSONObject) jsonParser.parse(requestString);
 
 			if ((Long) jsonObj.get("code") == 0) {
