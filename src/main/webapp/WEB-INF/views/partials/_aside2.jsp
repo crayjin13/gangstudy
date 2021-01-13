@@ -164,12 +164,12 @@
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">블랙고객
 										</span></a></li>
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+						<!-- 	<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/admin-charts"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">통계
-										</span></a></li>
+										</span></a></li> -->
 							<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/admin/timeline"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
@@ -211,12 +211,12 @@
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">블랙고객
 										</span></a></li>
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"
+							<!-- <li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/admin-charts"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
 										class="menu-text  font-weight-boldest font-size-h3 cafe24">통계
-										</span></a></li>
+										</span></a></li> -->
 							<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/admin-timeline"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
