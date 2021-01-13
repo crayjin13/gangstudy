@@ -97,6 +97,11 @@ function getFormatDate(date){
 	return year + "-" + month + "-" + day
 }
 
+function getTimeObject(time){
+	var arr = time.split(":")
+	return { hour:arr[0], minute:arr[1] }
+}
+
 function setDateRange(target, minDate, offset) {
 	var maxDate = new Date()
 	maxDate.setDate(minDate.getDate()+offset)
