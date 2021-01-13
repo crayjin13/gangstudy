@@ -21,6 +21,7 @@ import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.service.BookingService;
+import com.jts.gangstudy.service.IamportService;
 
 import com.jts.gangstudy.service.KakaoPayService;
 import com.jts.gangstudy.service.PaymentService;
@@ -42,7 +43,8 @@ public class PaymentController {
 	@Autowired
 	private KakaoPayService kakaoPayService;
 	
-	
+	@Autowired
+	private IamportService iamportService;
 	
 	
 
@@ -63,6 +65,8 @@ public class PaymentController {
 	@UserLoginCheck
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+		System.out.println("예약번호["+book_no+"] 예약 취소 요청");
+		
 		User user = (User) session.getAttribute("sUserId");
 		Booking book = bookingService.searchByBookNo(book_no);
 		if (book == null) {
@@ -76,39 +80,55 @@ public class PaymentController {
 		if (!canCancel) {
 			return "redirect:" + "/?cancel=timeout";
 		}
-		
-		
-		Payment payment = paymentService.selectPayment(book);
-		
-		if(payment.getPg_name().equals("kakaopay")) {
-			// 카카오페이 취소 요청
-			 
-						String tid = payment.getTid();
-						Integer paidMoney = payment.getAmount();
-						HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString()); // 취소 요청
-						if (map == null) {
-							return "redirect:" + "/?cancel=fail";
-						}
-						if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) { // 취소
-																																// 성공
-							// 이전 결제 정보 취소 처리
-							paymentService.changeState(payment, "cancelled");
-							// 기존 예약을 취소로 변경
-							bookingService.changeState(book, "cancel");
-							return "redirect:" + "/";
-						}
 
-						return "redirect:" + "/?cancel=fail";
-			
-			
-		}else {
-			// 아임포트를 통한  다날페이 취소 요청 
-			
-			
-			
-		return "redirect:" +"/token";	
-		
-			
+		Payment payment = paymentService.selectPayment(book);
+
+		if (payment.getPg_name().equals("kakaopay")) {
+			System.out.println("카카오페이 취소요청 매소드 ");
+			// 카카오페이 취소 요청
+
+			String tid = payment.getTid();
+			Integer paidMoney = payment.getAmount();
+			HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString()); // 취소 요청
+			if (map == null) {
+				return "redirect:" + "/?cancel=fail";
+			}
+			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) { // 취소
+																													// 성공
+				// 이전 결제 정보 취소 처리
+				paymentService.changeState(payment, "cancelled");
+				// 기존 예약을 취소로 변경
+				bookingService.changeState(book, "cancel");
+				return "redirect:" + "/";
+			}
+
+			return "redirect:" + "/?cancel=fail";
+
+		} else {
+			System.out.println("아임포트(다날) 취소 요청 매소드 ");
+			// 아임포트를 통한 다날페이 취소 요청
+
+			String tid = payment.getTid();
+			Integer cancel_amount = payment.getAmount();
+			try {
+				HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
+				if (map == null) {
+					return "redirect:" + "/?cancel=fail";
+				}else {
+				// 성공
+// 이전 결제 정보 취소 처리
+				paymentService.changeState(payment, "cancelled");
+// 기존 예약을 취소로 변경
+				bookingService.changeState(book, "cancel");
+				return "redirect:" + "/";
+				}
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+
+			return "redirect:" + "/?cancel=fail";
+
 		}
 		
 		
