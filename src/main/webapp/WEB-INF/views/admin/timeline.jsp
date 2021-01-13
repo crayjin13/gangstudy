@@ -644,7 +644,6 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Theme Bundle-->
-		<script src="${pageContext.request.contextPath}/resources/js/webSocket.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/admin-timeline.js"></script>
 	</body>
 	<!--end::Body-->
