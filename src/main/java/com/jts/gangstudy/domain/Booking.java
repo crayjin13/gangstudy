@@ -22,7 +22,7 @@ public class Booking {
 		error;
 	}
 	
-	private String request_dt;
+	private LocalDateTime request_dt;
 
 	public Booking() {
 		super();
@@ -30,7 +30,7 @@ public class Booking {
 	
 	// MyBatis용 생성자
 	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, Date check_in, Date check_out, BigDecimal people,
-			String state, String request_dt) {
+			String state, LocalDateTime request_dt) {
 		super();
 		this.book_no = book_no.intValue();
 		this.user_no = user_no.intValue();
@@ -42,18 +42,6 @@ public class Booking {
 		this.request_dt = request_dt;
 	}
 	
-	public Booking(int book_no, int user_no, int room_no, LocalDateTime check_in, LocalDateTime check_out, int people,
-			String state, String request_dt) {
-		super();
-		this.book_no = book_no;
-		this.user_no = user_no;
-		this.room_no = room_no;
-		this.check_in = check_in;
-		this.check_out = check_out;
-		this.people = people;
-		this.state = State.valueOf(state);
-		this.request_dt = request_dt;
-	}
 	public Booking(int user_no, int room_no, LocalDateTime check_in, LocalDateTime check_out, int people,
 			String state) {
 		super();
@@ -111,10 +99,6 @@ public class Booking {
 		this.state = State.valueOf(state);
 	}
 
-	public void setRequest_dt(String request_dt) {
-		this.request_dt = request_dt;
-	}
-
 	public int getBook_no() {
 		return book_no;
 	}
@@ -143,7 +127,7 @@ public class Booking {
 		return state.toString();
 	}
 
-	public String getRequest_dt() {
+	public LocalDateTime getRequest_dt() {
 		return request_dt;
 	}
 	
