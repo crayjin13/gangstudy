@@ -20,9 +20,8 @@ public class RemoteGangController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/send", method = RequestMethod.GET)
-	public void sign(HttpServletRequest request, @RequestParam("ipAdress") String ipAdress,
+	public String sign(HttpServletRequest request, @RequestParam("ipAdress") String ipAdress,
 			@RequestParam("portNumber") String portNumber, @RequestParam("message") String message) {
-		System.out.print("test");
 		int port = Integer.parseInt(portNumber);
         try (Socket socket = new Socket()) {
                 InetSocketAddress ipep = new InetSocketAddress(ipAdress, port);
@@ -31,10 +30,12 @@ public class RemoteGangController {
         		printWriter.println(message);
         		printWriter.close();
                 socket.close();
+                return message;
         } catch (UnknownHostException e) {
                 e.printStackTrace();
         } catch (IOException e) {
                 e.printStackTrace();
         }
+        return "fail";
 	}
 }

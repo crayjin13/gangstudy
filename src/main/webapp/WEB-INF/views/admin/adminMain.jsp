@@ -725,8 +725,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-switch.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/webSocket.js"></script>
-	<script
 		src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
 	<!--end::Page Scripts-->
 </body>
