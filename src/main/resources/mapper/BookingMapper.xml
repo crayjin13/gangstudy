@@ -52,16 +52,20 @@
 	<!-- 요청한 유저의 예약을 제외하고 uncharge, wait 상태인 예약
 		 요청한 유저가 예약할 수 있는 종료 시간 -->
 	<select id="selectNextBook" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT *
-	  FROM BOOKING_TB
-	  <![CDATA[
-	  WHERE CHECK_IN > #{startDateTime} AND
-	  		CHECK_OUT > TO_DATE(#{endDate}, 'YYYY-MM-DD') AND
-			CHECK_OUT < TO_DATE(#{endDate}, 'YYYY-MM-DD') + 1 AND
-	  		USER_NO != #{user_no} AND
-	  		(STATE='uncharge' OR STATE='wait')
-        	ORDER BY CHECK_IN
-	  ]]>
+	  SELECT TB.*
+	  FROM(
+		  SELECT *
+		  FROM BOOKING_TB
+		  <![CDATA[
+		  WHERE CHECK_IN > #{startDateTime} AND
+		  		CHECK_OUT > TO_DATE(#{endDate}, 'YYYY-MM-DD') AND
+				CHECK_OUT < TO_DATE(#{endDate}, 'YYYY-MM-DD') + 1 AND
+		  		USER_NO != #{user_no} AND
+		  		(STATE='uncharge' OR STATE='wait')
+	        	ORDER BY CHECK_IN
+		  ]]>
+		  )TB
+	  WHERE ROWNUM = 1
 	</select>
 	
 	<!-- 예약 번호로 조회 -->
