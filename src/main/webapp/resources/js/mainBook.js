@@ -82,9 +82,13 @@ endDateInput.addEventListener("change", function() {
 		var date = new Date(endDateInput.value)
 		startDateInput.value = getFormatDate(date)
 		requestTimes(startURL, getStartData(), startTimeInput)
-	} else if(startTimeInput.value=="") {
-		
 	} else {
+		var time = getTimeObject(startTimeInput.value)
+		if(time.hour >= 22) {
+			var date = new Date(startDateInput.value)
+			date.setDate(date.getDate()+1)
+			endDateInput.value = getFormatDate(date)
+		}
 		requestTimes(endURL, getEndData(), endTimeInput)
 	}
 });
@@ -94,6 +98,7 @@ startTimeInput.addEventListener("change", function() {
 		removeOptions(endTimeInput)
 		return
 	} else {
+		if(startTimeInput.value)
 		requestTimes(endURL, getEndData(), endTimeInput)
 	}
 });

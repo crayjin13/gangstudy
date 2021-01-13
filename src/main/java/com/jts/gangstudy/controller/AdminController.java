@@ -2,15 +2,12 @@ package com.jts.gangstudy.controller;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Command;
-import com.jts.gangstudy.domain.RemoteLog;
 import com.jts.gangstudy.service.UserService;
 import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;

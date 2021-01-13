@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jts.gangstudy.service.UserService;
 import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.PaymentService;

@@ -32,3 +32,4 @@ function writeToScreen(message) {
 	
 	timeline.scrollTop = timeline.scrollHeight;
 }
+webSocket.send("request today info")
