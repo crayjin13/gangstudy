@@ -62,6 +62,8 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				System.err.println("["+LocalDateTime.now()+"]"+"socket IO Exception.");
+			} catch (NullPointerException e2) {
+				System.err.println("["+LocalDateTime.now()+"]"+e2);
 			}
 		}
 	}
