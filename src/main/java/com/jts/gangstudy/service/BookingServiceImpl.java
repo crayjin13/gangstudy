@@ -137,7 +137,7 @@ public class BookingServiceImpl implements BookingService{
 		Integer user_no = 0;
 		if(user != null) { user_no = user.getUser_no(); }
 		map.put("user_no", user_no);
-		map.put("startDateTime", LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime).plusMinutes(minimumSize)));
+		map.put("startDateTime", LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime)).plusMinutes(minimumSize));
 		map.put("endDate", endDate);
 		return  mapper.selectNextBook(map);
 	}
