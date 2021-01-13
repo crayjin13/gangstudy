@@ -1,12 +1,7 @@
 package com.jts.gangstudy.controller;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import java.io.IOException;
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -190,7 +185,7 @@ public class PaymentController {
 	}
 	@UserLoginCheck
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
-	public String beready( HttpServletRequest request, HttpSession session  ) {
+	public String beready( HttpServletRequest request, HttpSession session ,@RequestParam("imp_uid") String imp_uid ) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		/* String tid = (String)session.getAttribute("merchant_uid"); */
@@ -205,8 +200,6 @@ public class PaymentController {
 			return "redirect:" + "/?payment=timeout";
 		}
 		
-		int bookno = book.getBook_no();
-		String bookNo = String.valueOf(bookno);
 		
 		// 결제 완료 요청    
 		
@@ -215,7 +208,7 @@ public class PaymentController {
 		payment.setAmount(amount-usePoint);
 		payment.setPoint(usePoint);
 		payment.setPg_name("Danal");
-		payment.setTid(bookNo); // merchant_uid = book_no and  tid는 NOT NULL 제약조건
+		payment.setTid(imp_uid); // merchant_uid = book_no and  tid는 NOT NULL 제약조건
 		payment.setPay_type("card");
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());
