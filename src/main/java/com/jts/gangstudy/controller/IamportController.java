@@ -23,32 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jts.gangstudy.service.UserService;
-import com.siot.IamportRestClient.request.AgainPaymentData;
-import com.siot.IamportRestClient.request.AuthData;
-import com.siot.IamportRestClient.request.CancelData;
-import com.siot.IamportRestClient.request.OnetimePaymentData;
-import com.siot.IamportRestClient.request.PrepareData;
-import com.siot.IamportRestClient.request.ScheduleData;
-import com.siot.IamportRestClient.request.UnscheduleData;
-import com.siot.IamportRestClient.request.escrow.EscrowLogisData;
-import com.siot.IamportRestClient.response.AccessToken;
-import com.siot.IamportRestClient.response.BillingCustomer;
-import com.siot.IamportRestClient.response.Certification;
-import com.siot.IamportRestClient.response.IamportResponse;
-import com.siot.IamportRestClient.response.PagedDataList;
-import com.siot.IamportRestClient.response.Payment;
-import com.siot.IamportRestClient.response.PaymentBalance;
-import com.siot.IamportRestClient.response.Prepare;
-import com.siot.IamportRestClient.response.Schedule;
-import com.siot.IamportRestClient.response.escrow.EscrowLogisInvoice;
-
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-
 import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.PaymentService;
