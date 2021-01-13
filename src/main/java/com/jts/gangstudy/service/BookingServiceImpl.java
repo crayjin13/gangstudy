@@ -139,7 +139,7 @@ public class BookingServiceImpl implements BookingService{
 		map.put("user_no", user_no);
 		map.put("startDateTime", LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime)).plusMinutes(minimumSize));
 		map.put("endDate", endDate);
-		return  mapper.selectNextBook(map);
+		return mapper.selectNextBook(map);
 	}
 	
 	// 종료시간 목록
