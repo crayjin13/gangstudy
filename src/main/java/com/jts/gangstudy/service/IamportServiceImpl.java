@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,6 +26,8 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -50,6 +52,7 @@ public class IamportServiceImpl implements IamportService {
 	@Override
 	public HashMap<String, String> cancel(String tid, String amount) throws Exception {
 		
+		HashMap<String, String> map = new HashMap<String, String>();
 		
 
 		String imp_key = URLEncoder.encode("9522889134837493", "UTF-8");
@@ -60,39 +63,47 @@ public class IamportServiceImpl implements IamportService {
 
 		System.out.println(access_token + "토큰값 잘 오나 확인 From IamportServiceimpl.cancel 매소드");
 
-		HashMap<String, String> map = new HashMap<String, String>();
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-			URI uri = new URI("https://api.iamport.kr/payments/cancel");
-			
+			URI uri = new URI("https://api.iamport.kr/payments/cancel");  //step 4 아임포트 REST API 환불
 			uri = new URIBuilder(uri)
 					.addParameter("merchant_uid", tid)
 					.addParameter("amount", amount)
+					//checksum은 우리 서버가 기록하고 있는 환불가능금액과 아임포트 서버가 기록하고 있는 환불가능금액의 일치여부를 체크
 					.addParameter("checksum", amount) 
-					//우리 서버가 기록하고 있는 환불가능금액과 아임포트 서버가 기록하고 있는 환불가능금액의 일치여부를 체크
-					.addParameter("tax_free", "0")
 					.build();
 
 			HttpPost httpPost = new HttpPost(uri);
 			httpPost.addHeader("Authorization", access_token);
+			httpPost.addHeader("merchant_uid", tid);
 
 			String json = null;
-			
+			JSONObject jsonObj = null;
 			try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
 				json = EntityUtils.toString(response.getEntity());
 				JSONParser jsonParser = new JSONParser();
-				JSONObject jsonobj = (JSONObject) jsonParser.parse(json);
+				 jsonObj = (JSONObject) jsonParser.parse(json);
 			
-				System.out.println(json);  
+				System.out.println(json +" json으로 돌려 받은 값");  
+				System.out.println(jsonObj + " jsonobj로 돌려 받은값 ");
+				String canceled_uid = (String)jsonObj.get("merchant_uid");
 				
-			 String checksum =	(String)jsonobj.get("checksum");
-			 String cancelTid =	(String)jsonobj.get("tid"); // imp_uid 아임포트에서 주는 고유번호 
-			
-			
+				Integer code = ((Long) jsonObj.get("code")).intValue();
+				//(Integer)Object <-- 오브젝트를 인티저로 바로 형변환하다가
+				// java.lang.Long cannot be cast to java.lang.Integer error 가 나서 Long 으로 변경후 넣어줌.
 				
-				map.put("checksum", checksum);
-				map.put("tid", cancelTid);
+				String message =  (String)jsonObj.get("message");
+			
+			 	
+				map.put("tid", canceled_uid);
+				map.put("code",Integer.toString(code));
+				map.put("message", message);
+				
+				
+				
+				System.err.println("at IamportServiceimpl.cancel api response msg : " +message);
 				
 				return map;
+				
 			} catch (org.json.JSONException e) {
 				System.err.println("at IamportServiceimpl.cancel JSONException : " + e);
 				
