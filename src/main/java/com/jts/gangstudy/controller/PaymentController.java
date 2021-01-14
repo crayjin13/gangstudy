@@ -60,13 +60,12 @@ public class PaymentController {
 
 	
 	
-	
 	// kakaoPay를 통한 취소 요청
 	@UserLoginCheck
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-		System.out.println("예약번호["+book_no+"] 예약 취소 요청");
-		
+		System.out.println("예약번호[" + book_no + "] 예약 취소 요청");
+
 		User user = (User) session.getAttribute("sUserId");
 		Booking book = bookingService.searchByBookNo(book_no);
 		if (book == null) {
@@ -83,7 +82,7 @@ public class PaymentController {
 
 		Payment payment = paymentService.selectPayment(book);
 
-		if (payment.getPg_name().equals("kakaopay")) {
+		if (payment.getPg_name().equals("KakaoPay")) { 
 			System.out.println("카카오페이 취소요청 매소드 ");
 			// 카카오페이 취소 요청
 
@@ -107,20 +106,34 @@ public class PaymentController {
 		} else {
 			System.out.println("아임포트(다날) 취소 요청 매소드 ");
 			// 아임포트를 통한 다날페이 취소 요청
-
+			
 			String tid = payment.getTid();
 			Integer cancel_amount = payment.getAmount();
 			try {
 				HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
 				if (map == null) {
+					System.out.println("map이 null 일때 from 아임포트 ");
 					return "redirect:" + "/?cancel=fail";
-				}else {
-				// 성공
+				} else {
+					if (map.get("code").equals("0")) {
+						System.out.println(" code가 0 일때 성공 ");
+
+				
+						
 // 이전 결제 정보 취소 처리
-				paymentService.changeState(payment, "cancelled");
+						paymentService.changeState(payment, "cancelled");
 // 기존 예약을 취소로 변경
-				bookingService.changeState(book, "cancel");
-				return "redirect:" + "/";
+						bookingService.changeState(book, "cancel");
+						return "redirect:" + "/";
+
+					} else {
+						// 코드가 0이 아니면 message 확인
+
+						System.out.println(" # 결제 환불 되지 않는 이유:  " + map.get("message"));
+						return "redirect:" + "/";
+
+					}
+
 				}
 			} catch (Exception e) {
 
@@ -130,16 +143,8 @@ public class PaymentController {
 			return "redirect:" + "/?cancel=fail";
 
 		}
-		
-		
-	
-			
-			
-			
-			
-		
+
 	}
-		
 		
 		
 		
