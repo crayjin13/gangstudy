@@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -28,10 +29,6 @@ import com.jts.gangstudy.repository.UserDao;
 public class AdminServiceImpl implements AdminService {
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
-
-	private Socket socket = null;						// 서버 소켓(스터디룸에 접속할 클라이언트)
-	private PrintWriter printWriter = null;				// 출력 담당 객체
-	private BufferedReader bufferedReader = null;		// 입력 담당 객체
 	
 	@Autowired
 	private UserDao userDao;
@@ -78,30 +75,27 @@ public class AdminServiceImpl implements AdminService {
 	public void cronSocketConnect() {
 		sendMessage("keep alive");
 	}
-	
-	// 소켓 생성
-	public void createSocket() {
-		InetSocketAddress isa = null;
-		
-		try {
-			isa = new InetSocketAddress(ip, port);
-			socket = new Socket();								// socket 생성
-			socket.setKeepAlive(true);
-			socket.connect(isa);								// studyroom 연결
-			printWriter = new PrintWriter(socket.getOutputStream(), true);
-			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			
-		}
-	}
 	@Override
 	public void sendMessage(String message) {
-		if(socket == null || !socket.isConnected() || socket.isClosed()) {
-			createSocket();
+		System.out.println("["+ LocalDateTime.now() +"]socket send message : " + message);
+		
+		Socket socket = null;
+		InetSocketAddress isa = null;
+		PrintWriter printWriter = null;
+		BufferedReader bufferedReader = null;
+		
+		socket = new Socket();
+		isa = new InetSocketAddress(ip, port);
+		try {
+			socket.connect(isa);
+			printWriter = new PrintWriter(socket.getOutputStream(), true);
+			printWriter.println(message);
+			socket.close();
+			printWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		printWriter.println(message);
 	}
 
 	@Override
