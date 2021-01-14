@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,8 +26,6 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -53,7 +51,6 @@ public class IamportServiceImpl implements IamportService {
 	public HashMap<String, String> cancel(String tid, String amount) throws Exception {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
-		
 
 		String imp_key = URLEncoder.encode("9522889134837493", "UTF-8");
 
@@ -62,6 +59,7 @@ public class IamportServiceImpl implements IamportService {
 		String access_token = iamportService.getToken(imp_key, imp_secret);
 
 		System.out.println(access_token + "토큰값 잘 오나 확인 From IamportServiceimpl.cancel 매소드");
+
 // 토큰값 받음
 		
 			JSONObject json = new JSONObject();
