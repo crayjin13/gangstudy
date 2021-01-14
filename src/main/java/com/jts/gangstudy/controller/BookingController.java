@@ -106,20 +106,7 @@ public class BookingController {
 	}
 	
 	
-	// pg사가 다날인지 카카오인지 체크 
-	@ResponseBody
-	@RequestMapping(value = "/pgCheck", method = RequestMethod.GET)
-	public boolean whichPg(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-		
-		int pgDanalCheck = paymentService.pgDanalCheck(book_no);
-		
-		if(pgDanalCheck==1) {
-			return true;
-		}else {
-			return false;
-		}
-		
-	}
+	
 	
 	
 
