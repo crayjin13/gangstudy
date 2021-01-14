@@ -65,7 +65,6 @@ public class PaymentController {
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 		System.out.println("예약번호[" + book_no + "] 예약 취소 요청");
-
 		User user = (User) session.getAttribute("sUserId");
 		Booking book = bookingService.searchByBookNo(book_no);
 		if (book == null) {
@@ -106,12 +105,13 @@ public class PaymentController {
 		} else {
 			System.out.println("아임포트(다날) 취소 요청 매소드 ");
 			// 아임포트를 통한 다날페이 취소 요청
-			
+      
 			String tid = payment.getTid();
 			Integer cancel_amount = payment.getAmount();
 			try {
 				HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
 				if (map == null) {
+
 					System.out.println("map이 null 일때 from 아임포트 ");
 					return "redirect:" + "/?cancel=fail";
 				} else {
