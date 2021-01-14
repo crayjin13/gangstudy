@@ -14,7 +14,7 @@
 	<logger name="com.jts.gangstudy">
 		<level value="debug" />
 	</logger>
-	<logger name="com.jts.gangstudy.mapper.CommandMapper.selectAll">
+	<logger name="com.jts.gangstudy.mapper">
 		<level value="info" />
 	</logger>
 	

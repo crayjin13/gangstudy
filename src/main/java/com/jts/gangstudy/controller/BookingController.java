@@ -93,16 +93,19 @@ public class BookingController {
 		return times;
 	}
 	
-	// 예약 취소가 가능한 시간인지 확인
+	// 예약 취소가 가능한 조건인지 확인
 	@ResponseBody
-	@RequestMapping(value = "/canCheck", method = RequestMethod.GET)
-	public boolean canCheck(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+	@RequestMapping(value = "/cancelCheck", method = RequestMethod.GET)
+	public String canCheck(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = bookingService.searchByBookNo(book_no);
 		
 		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
-		return canCancel;
-		
+		if(!canCancel) {
+			return "late";
+		} else {
+			return "ok";
+		}
 	}
 	
 	
