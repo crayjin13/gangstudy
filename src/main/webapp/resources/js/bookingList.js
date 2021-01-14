@@ -268,16 +268,16 @@ function modify(book_no) {
 
 function cancel(book_no) {
 	if(confirm('예약을 취소하시겠습니까?')) {
-		$.get("/booking/canCheck", {
+		$.get("/booking/cancelCheck", {
 			book_no : book_no
 		},function(jqXHR) {
 			// always
 		},'text' /* xml, text, script, html */)
-		.done(function(canCheck) {
-			if(canCheck) {
+		.done(function(response) {
+			if(response=="ok") {
 				window.location.href = '/payment/cancel' + '?book_no='+book_no
 				alert('예약이 취소되었습니다.')
-			} else {
+			} else if(response=="late"){
 				alert('24시간 이내에는 예약을 취소할 수 없습니다.')
 			}
 		})
