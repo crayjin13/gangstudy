@@ -130,7 +130,7 @@ public class PaymentController {
 						// 코드가 0이 아니면 message 확인
 
 						System.out.println(" # 결제 환불 되지 않는 이유:  " + map.get("message"));
-						return map.get("message");
+						return "redirect:" + "/";
 
 					}
 
