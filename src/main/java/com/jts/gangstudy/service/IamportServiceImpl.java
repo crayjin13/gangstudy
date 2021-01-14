@@ -62,29 +62,91 @@ public class IamportServiceImpl implements IamportService {
 		String access_token = iamportService.getToken(imp_key, imp_secret);
 
 		System.out.println(access_token + "토큰값 잘 오나 확인 From IamportServiceimpl.cancel 매소드");
+// 토큰값 받음
+		
+			JSONObject json = new JSONObject();
+			
+			
+			json.put("merchant_uid", tid);
 
-		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-			URI uri = new URI("https://api.iamport.kr/payments/cancel");  //step 4 아임포트 REST API 환불
-			uri = new URIBuilder(uri)
-					.addParameter("merchant_uid", tid)
-					.addParameter("amount", amount)
-					//checksum은 우리 서버가 기록하고 있는 환불가능금액과 아임포트 서버가 기록하고 있는 환불가능금액의 일치여부를 체크
-					.addParameter("checksum", amount) 
-					.build();
+			json.put("amount", amount);
+			json.put("checksum", amount);
+			//checksum은 우리 서버가 기록하고 있는 환불가능금액과 아임포트 서버가 기록하고 있는 환불가능금액의 일치여부를 체크
 
-			HttpPost httpPost = new HttpPost(uri);
-			httpPost.addHeader("Authorization", access_token);
-			httpPost.addHeader("merchant_uid", tid);
+			String _token = "";
+			
+			//String _token = getToken(request, response, json, requestURL);
 
-			String json = null;
-			JSONObject jsonObj = null;
-			try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-				json = EntityUtils.toString(response.getEntity());
+			try {
+
+				String requestString = "";
+				String requestURL = "";
+				requestURL = "https://api.iamport.kr/payments/cancel";
+				
+				
+				URL url = new URL(requestURL);
+	  
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+				connection.setDoOutput(true);
+
+				connection.setInstanceFollowRedirects(false);
+
+				connection.setRequestMethod("POST");
+
+				connection.setRequestProperty("Content-Type", "application/json");
+				
+				connection.addRequestProperty("Authorization", access_token);
+			
+			
+			
+			
+			//환불요청 
+			
+				OutputStream os = connection.getOutputStream();
+
+				os.write(json.toString().getBytes());
+
+				connection.connect();
+
+				StringBuilder sb = new StringBuilder();
+
+				if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+
+					BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+
+					String line = null;
+
+					while ((line = br.readLine()) != null) {
+
+						sb.append(line + "\n");
+
+					}
+
+					br.close();
+
+					requestString = sb.toString();
+
+				} 
+
+				os.flush();
+
+				connection.disconnect(); 
+
 				JSONParser jsonParser = new JSONParser();
-				 jsonObj = (JSONObject) jsonParser.parse(json);
+				
+				
+				JSONObject jsonObj = (JSONObject) jsonParser.parse(requestString);
+			
+			
+			
+		
 			
 				System.out.println(json +" json으로 돌려 받은 값");  
 				System.out.println(jsonObj + " jsonobj로 돌려 받은값 ");
+				
+				
+				
 				String canceled_uid = (String)jsonObj.get("merchant_uid");
 				
 				Integer code = ((Long) jsonObj.get("code")).intValue();
@@ -92,31 +154,25 @@ public class IamportServiceImpl implements IamportService {
 				// java.lang.Long cannot be cast to java.lang.Integer error 가 나서 Long 으로 변경후 넣어줌.
 				
 				String message =  (String)jsonObj.get("message");
-			
-			 	
+				
+				
 				map.put("tid", canceled_uid);
 				map.put("code",Integer.toString(code));
 				map.put("message", message);
 				
-				
-				
-				System.err.println("at IamportServiceimpl.cancel api response msg : " +message);
+				if ((Long) jsonObj.get("code") == 0) {
+						System.out.println("환불가능합니다. ");
+
+				}
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+			}
 				
 				return map;
-				
-			} catch (org.json.JSONException e) {
-				System.err.println("at IamportServiceimpl.cancel JSONException : " + e);
-				
-				return null;
-			}
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return map;
+
 	}
 	
 	
