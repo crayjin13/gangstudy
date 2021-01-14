@@ -33,6 +33,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 	
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
+	private InetSocketAddress isa = null;
 
 	private Socket socket = null;						// 서버 소켓(스터디룸에 접속할 클라이언트)
 	private PrintWriter printWriter = null;				// 출력 담당 객체
@@ -40,23 +41,49 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 	
 	@Autowired
 	private AdminService adminService;
+
+	
+	// 소켓 생성
+	public void connectSocket() {
+		
+		try {
+			socket = new Socket();								// socket 생성
+			socket.setKeepAlive(true);
+			socket.connect(isa);								// studyroom 연결
+			printWriter = new PrintWriter(socket.getOutputStream(), true);
+			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			
+		}
+	}
 	
 	class ListenerThread extends Thread {
 		@Override
 		public void run() {
 			System.out.println("ListenerThread start");
 			String msg = null;
+			connectSocket();
 			try {
 				while(true) {
 					msg = bufferedReader.readLine();
-					if(msg == null || msg.equals("keep alive") || msg.equals("")) continue;
-					System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
-					RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
-					adminService.insertRemoteLogs(log);
-					
-					// 모든 유저에게 방금 들어온 로그를 보내기.
-					for(WebSocketSession session : sessionList) {
-						session.sendMessage(new TextMessage(parseJSONLog(log).toString()));
+					if(msg == null) {
+						socket.close();
+						printWriter.close();
+						bufferedReader.close();
+						connectSocket();
+					} else if(msg.equals("keep alive")) {
+						continue;
+					} else {
+						System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
+						RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
+						adminService.insertRemoteLogs(log);
+						
+						// 모든 유저에게 방금 들어온 로그를 보내기.
+						for(WebSocketSession session : sessionList) {
+							session.sendMessage(new TextMessage(parseJSONLog(log).toString()));
+						}
 					}
 				}
 			} catch (IOException e) {
@@ -146,7 +173,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     @Override
 	public void afterPropertiesSet() throws Exception {
 		System.out.println("["+LocalDateTime.now()+"]"+"AdminWebSocketHandler::afterPropertiesSet");
-		createSocket();
+		isa = new InetSocketAddress(ip, port);
 		ListenerThread thread = new ListenerThread();
 		thread.start();
 	}
@@ -168,24 +195,6 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-	}
-	
-	// 소켓 생성
-	public void createSocket() {
-		InetSocketAddress isa = null;
-		
-		try {
-			isa = new InetSocketAddress(ip, port);
-			socket = new Socket();								// socket 생성
-			socket.setKeepAlive(true);
-			socket.connect(isa);								// studyroom 연결
-			printWriter = new PrintWriter(socket.getOutputStream(), true);
-			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			
 		}
 	}
 	
