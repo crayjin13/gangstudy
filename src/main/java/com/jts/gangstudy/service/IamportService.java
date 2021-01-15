@@ -19,7 +19,7 @@ public interface IamportService {
 
 
 
-	HashMap<String, String> cancel(String tid, String amount) throws Exception;
+	HashMap<String, String> cancel(String tid, String amount);
 	
 	
 	

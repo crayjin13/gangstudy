@@ -275,29 +275,15 @@ function cancel(book_no) {
 		},'text' /* xml, text, script, html */)
 		.done(function(response) {    
 			if(response=="ok") {
-				
-			
-				
 				$.get("/payment/cancel/", {
 					book_no : book_no
 				},function(jqXHR) {
 					// always
 				},'text' /* xml, text, script, html */)
-				.done(function(response) {    
-					if(response=="good") {
-		
-						location.href = '/';
-						alert('예약이 취소되었습니다.');    
-					
-					
-					} else{
-						alert('죄송합니다. 취소불가 상태입니다.  카카오톡으로 문의 부탁드립니다.');
-						location.href = '/';
-					}
+				.done(function(message) {    
+					alert(message);    
+					location.href = '/booking/check';
 				})
-				
-				
-			
 			} else if(response=="late"){
 				alert('24시간 이내에는 예약을 취소할 수 없습니다.')
 			}
