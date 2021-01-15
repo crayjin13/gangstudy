@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -59,24 +59,26 @@ public class PaymentController {
 	
 
 	
-	
-	// kakaoPay를 통한 취소 요청
+	     
+	// 예약 취소 요청
 	@UserLoginCheck
+	@ResponseBody   
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 		System.out.println("예약번호[" + book_no + "] 예약 취소 요청");
 		User user = (User) session.getAttribute("sUserId");
+		String m = "";
 		Booking book = bookingService.searchByBookNo(book_no);
 		if (book == null) {
-			return "redirect:" + "/?book=null";
+		//	return "redirect:" + "/?book=null";
 		} else if (!book.getState().equals("wait")) {
 			return "redirect:" + "/?book=notWait";
 		} else if (book.getUser_no() != user.getUser_no()) {
-			return "redirect:" + "/?user_no=fail";
+		//	return "redirect:" + "/?user_no=fail";
 		}
 		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
 		if (!canCancel) {
-			return "redirect:" + "/?cancel=timeout";
+		//	return "redirect:" + "/?cancel=timeout";
 		}
 
 		Payment payment = paymentService.selectPayment(book);
@@ -89,7 +91,7 @@ public class PaymentController {
 			Integer paidMoney = payment.getAmount();
 			HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString()); // 취소 요청
 			if (map == null) {
-				return "redirect:" + "/?cancel=fail";
+		//		return "redirect:" + "/?cancel=fail";
 			}
 			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) { // 취소
 																													// 성공
@@ -97,10 +99,10 @@ public class PaymentController {
 				paymentService.changeState(payment, "cancelled");
 				// 기존 예약을 취소로 변경
 				bookingService.changeState(book, "cancel");
-				return "redirect:" + "/";
+			m = "good";
 			}
 
-			return "redirect:" + "/?cancel=fail";
+			//return "redirect:" + "/?cancel=fail";
 
 		} else {
 			System.out.println("아임포트(다날) 취소 요청 매소드 ");
@@ -113,36 +115,38 @@ public class PaymentController {
 				if (map == null) {
 
 					System.out.println("map이 null 일때 from 아임포트 ");
-					return "redirect:" + "/?cancel=fail";
+				//	return "redirect:" + "/?cancel=fail";
 				} else {
 					if (map.get("code").equals("0")) {
 						System.out.println(" code가 0 일때 성공 ");
-
-				
+  
+				  
 						
 // 이전 결제 정보 취소 처리
 						paymentService.changeState(payment, "cancelled");
 // 기존 예약을 취소로 변경
 						bookingService.changeState(book, "cancel");
-						return "redirect:" + "/";
+						
+						m = "good";   
 
 					} else {
 						// 코드가 0이 아니면 message 확인
 
 						System.out.println(" # 결제 환불 되지 않는 이유:  " + map.get("message"));
-						return "redirect:" + "/";
+						 m = "unavailable";
 
 					}
 
+					
 				}
-			} catch (Exception e) {
+			} catch (Exception e) {    
 
 				e.printStackTrace();
 			}
 
-			return "redirect:" + "/?cancel=fail";
 
 		}
+		return m;
 
 	}
 		
@@ -210,7 +214,8 @@ public class PaymentController {
 	}
 	@UserLoginCheck
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
-	public String beready( HttpServletRequest request, HttpSession session ,@RequestParam("imp_uid") String imp_uid ) {
+	public String beready( HttpServletRequest request, HttpSession session ) {
+		//,@RequestParam("imp_uid") String imp_uid  아임포트 고유번호 불러오고싶을때 파라미터에넣기 
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		/* String tid = (String)session.getAttribute("merchant_uid"); */
@@ -224,7 +229,8 @@ public class PaymentController {
 			
 			return "redirect:" + "/?payment=timeout";
 		}
-		
+		int bookno = book.getBook_no();
+		String book_No = String.valueOf(bookno);
 		
 		// 결제 완료 요청    
 		
@@ -233,7 +239,8 @@ public class PaymentController {
 		payment.setAmount(amount-usePoint);
 		payment.setPoint(usePoint);
 		payment.setPg_name("Danal");
-		payment.setTid(imp_uid); // merchant_uid = book_no and  tid는 NOT NULL 제약조건
+	//	payment.setTid(imp_uid); // imp_uid로 할때 
+		payment.setTid(book_No); // merchant_uid 지금 cancel할때 merchant_uid로 불러오기해놓음. iamportServiceimpl.cancel
 		payment.setPay_type("card");
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());

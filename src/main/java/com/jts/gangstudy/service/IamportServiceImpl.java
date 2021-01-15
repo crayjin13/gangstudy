@@ -65,7 +65,7 @@ public class IamportServiceImpl implements IamportService {
 			JSONObject json = new JSONObject();
 			
 			
-			json.put("merchant_uid", tid);
+			json.put("merchant_uid", tid);  // PaymentController.beready 안에 결제할떄 imp_uid 보내는지 merchant_uid 보내는지 확인할것. 
 
 			json.put("amount", amount);
 			json.put("checksum", amount);
