@@ -65,89 +65,59 @@ public class PaymentController {
 	@ResponseBody   
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-		System.out.println("예약번호[" + book_no + "] 예약 취소 요청");
 		User user = (User) session.getAttribute("sUserId");
-		String m = "";
+		final String cancelMessage = "예약이 취소되었습니다.";
+		
+		// 잘못된 경로로 요청된 예약에 대한 예외처리
 		Booking book = bookingService.searchByBookNo(book_no);
 		if (book == null) {
-		//	return "redirect:" + "/?book=null";
+			return "해당하는 예약이 없습니다.";
 		} else if (!book.getState().equals("wait")) {
-			return "redirect:" + "/?book=notWait";
+			return "취소 불가능한 예약입니다.";
 		} else if (book.getUser_no() != user.getUser_no()) {
-		//	return "redirect:" + "/?user_no=fail";
+			return "잘못된 예약 요청입니다.";
 		}
 		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
 		if (!canCancel) {
-		//	return "redirect:" + "/?cancel=timeout";
+			return "24시간 이내에는 예약을 취소할 수 없습니다.";
 		}
 
+		// 결제 취소 처리
 		Payment payment = paymentService.selectPayment(book);
-
-		if (payment.getPg_name().equals("KakaoPay")) { 
-			System.out.println("카카오페이 취소요청 매소드 ");
-			// 카카오페이 취소 요청
-
-			String tid = payment.getTid();
-			Integer paidMoney = payment.getAmount();
-			HashMap<String, String> map = kakaoPayService.cancel(tid, paidMoney.toString()); // 취소 요청
+		String tid = payment.getTid();
+		Integer cancel_amount = payment.getAmount();
+		
+		if (payment.getPg_name().equals("KakaoPay")) { 	// 카카오페이
+			HashMap<String, String> map = kakaoPayService.cancel(tid, cancel_amount.toString());
 			if (map == null) {
-		//		return "redirect:" + "/?cancel=fail";
+				return "결제 취소 오류(카카오페이)";
 			}
-			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) { // 취소
-																													// 성공
+			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) {
 				// 이전 결제 정보 취소 처리
 				paymentService.changeState(payment, "cancelled");
 				// 기존 예약을 취소로 변경
 				bookingService.changeState(book, "cancel");
-			m = "good";
+				return cancelMessage;
 			}
-
-			//return "redirect:" + "/?cancel=fail";
-
-		} else {
-			System.out.println("아임포트(다날) 취소 요청 매소드 ");
-			// 아임포트를 통한 다날페이 취소 요청
-      
-			String tid = payment.getTid();
-			Integer cancel_amount = payment.getAmount();
-			try {
-				HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
-				if (map == null) {
-
-					System.out.println("map이 null 일때 from 아임포트 ");
-				//	return "redirect:" + "/?cancel=fail";
-				} else {
-					if (map.get("code").equals("0")) {
-						System.out.println(" code가 0 일때 성공 ");
-  
-				  
-						
-// 이전 결제 정보 취소 처리
-						paymentService.changeState(payment, "cancelled");
-// 기존 예약을 취소로 변경
-						bookingService.changeState(book, "cancel");
-						
-						m = "good";   
-
-					} else {
-						// 코드가 0이 아니면 message 확인
-
-						System.out.println(" # 결제 환불 되지 않는 이유:  " + map.get("message"));
-						 m = "unavailable";
-
-					}
-
-					
+			System.out.println(" # 카카오페이 결제 환불 되지 않는 이유:  " + map.get("status"));
+			return "결제 취소 실패(카카오페이)";
+		} else {										// 다날
+			HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
+			if (map == null) {
+				System.out.println("결제 취소 오류(아임포트)");
+			} else {
+				if (map.get("code").equals("0")) {
+					// 이전 결제 정보 취소 처리
+					paymentService.changeState(payment, "cancelled");
+					// 기존 예약을 취소로 변경
+					bookingService.changeState(book, "cancel");
+					return cancelMessage;
 				}
-			} catch (Exception e) {    
-
-				e.printStackTrace();
 			}
-
-
+			// 코드가 0이 아니면 message 확인
+			System.out.println(" # 아임포트 결제 환불 되지 않는 이유:  " + map.get("message"));
+			return "결제 취소 실패(아임포트)";
 		}
-		return m;
-
 	}
 		
 		
