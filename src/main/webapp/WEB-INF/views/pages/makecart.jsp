@@ -374,19 +374,12 @@ License: You must have a valid license purchased only from themeforest(the above
 																class="border-0 text-muted text-right pt-0"></td>
 														</tr>
 														<tr>
-															<td colspan="2" class="border-0 pt-10">
+															<td colspan="3" class="border-0 pt-10">
 																<form><a href="/" class="btn btn-secondary font-weight-bolder px-8">다시 설정하기  </a></form>
 															</td>
 															<td colspan="1" class="border-0 text-right pt-10">
-															<a
-
-																class="btn btn-light-warnning font-weight-bolder px-8"
-																id="payments">카카오 페이 결제 </a>
-
-																
-															</td>
-															<td colspan="1" class="border-0 text-right pt-10">
-
+																<a class="btn btn-light-warnning font-weight-bolder " id="payments">
+																<img src="${pageContext.request.contextPath}/resources/images/payment_icon_yellow_small.png"></a>
 																<button class="btn btn-light-primary font-weight-bolder px-8" id="pay" name="danal">다날 결제 </button>
 															</td>
 														</tr>
