@@ -91,4 +91,10 @@
 	<websocket:handlers>
 		<websocket:mapping path="/websocket" handler="webSocketHandler"/>
 	</websocket:handlers>
+	
+	<!-- testSocket -->
+	<beans:bean name="testSocketHandler" class="com.jts.gangstudy.handler.WebSocketHandler" />
+	<websocket:handlers>
+		<websocket:mapping path="/testsocket" handler="testSocketHandler"/>
+	</websocket:handlers>
 </beans:beans>
