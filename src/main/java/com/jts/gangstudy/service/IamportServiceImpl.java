@@ -73,8 +73,7 @@ public class IamportServiceImpl implements IamportService {
 			json.put("checksum", amount);
 			//checksum은 우리 서버가 기록하고 있는 환불가능금액과 아임포트 서버가 기록하고 있는 환불가능금액의 일치여부를 체크
 	
-			String _token = "";
-			//String _token = getToken(request, response, json, requestURL);
+			
 
 			String requestString = "";
 			String requestURL = "";
