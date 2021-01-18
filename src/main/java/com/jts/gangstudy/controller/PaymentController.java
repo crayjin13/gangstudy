@@ -63,7 +63,7 @@ public class PaymentController {
 	// 예약 취소 요청
 	@UserLoginCheck
 	@ResponseBody   
-	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 		User user = (User) session.getAttribute("sUserId");
 		final String cancelMessage = "예약이 취소되었습니다.";
