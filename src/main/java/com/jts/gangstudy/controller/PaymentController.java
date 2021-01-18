@@ -106,7 +106,7 @@ public class PaymentController {
 			if (map == null) {
 				System.out.println("결제 취소 오류(아임포트)");
 			} else {
-				if (map.get("code").equals("0")) {
+				if (map.get("code").equals("0")) {  
 					// 이전 결제 정보 취소 처리
 					paymentService.changeState(payment, "cancelled");
 					// 기존 예약을 취소로 변경
@@ -116,7 +116,7 @@ public class PaymentController {
 			}
 			// 코드가 0이 아니면 message 확인
 			System.out.println(" # 아임포트 결제 환불 되지 않는 이유:  " + map.get("message"));
-			return "결제 취소 실패(아임포트)";
+			return "(아임포트) 환불 불가 이유: "+ map.get("message") ;
 		}
 	}
 		
@@ -182,7 +182,7 @@ public class PaymentController {
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/complete";
 	}
-	@UserLoginCheck
+	@UserLoginCheck // 리스폰스바디 붙이면 wait으로 변경안되는문제생김. booking/complete는 responseBOdy가아니기때문에
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
 	public String beready( HttpServletRequest request, HttpSession session ) {
 		//,@RequestParam("imp_uid") String imp_uid  아임포트 고유번호 불러오고싶을때 파라미터에넣기 
