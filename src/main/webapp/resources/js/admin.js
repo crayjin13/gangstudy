@@ -32,7 +32,6 @@ var clientWebSocket = {
 	handleMessage : function (data) {
 		// 메시지 처리
 		if(data != null){
-			$("#serverMessage").val(data);
 			writeToScreen(data);
 		}
 	}
@@ -46,6 +45,7 @@ function writeToScreen(message) {
 
 $(document).ready(function() {
 	clientWebSocket.openSocket();
+	testClientWebSocket.openSocket();
 	getReserveList();
 	for (var i = 0; i < signbtns.length; i++) {
 	     signbtns[i].addEventListener('click', sendMessage);
@@ -130,25 +130,6 @@ function getReserveList() {
 		}
 	});
 }
-
-document.getElementById('testSend').addEventListener('click', function() {
-	$.ajax({
-		url : '/remote/send',
-		type : 'GET',
-		data : {
-				 'ipAdress' 	: document.getElementById('testIP').value,
-				 'portNumber' 	: document.getElementById('testPort').value,
-				 'message' 		: document.getElementById('testMessage').value
-			   },
-		success : function(response) {
-			if(response == "fail") alert("전송 실패")
-			else alert("전송한 메세지 : " + response)
-		},
-		error : function(){
-			alert('testSend >> ajax error');
-		}
-	})
-})
 
 String.prototype.string = function (len) { var s = '', i = 0; while (i++ < len) { s += this; } return s; };
 String.prototype.zf = function (len) { return "0".string(len - this.length) + this; };

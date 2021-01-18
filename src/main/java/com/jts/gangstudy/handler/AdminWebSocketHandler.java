@@ -94,51 +94,10 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			}
 		}
 	}
-	
-	class TestListenerThread extends Thread {
-		@Override
-		public void run() {
-			System.out.println("TestListenerThread start");
-			Socket testSocket = null;
-			InetSocketAddress isa = null;
-			PrintWriter testPrintWriter = null;
-			BufferedReader testBufferedReader = null;
-			try {
-				isa = new InetSocketAddress("222.117.228.95", 80);
-				testSocket = new Socket();
-				testSocket.setKeepAlive(true);
-				testSocket.connect(isa);
-				testPrintWriter = new PrintWriter(testSocket.getOutputStream(), true);
-				testBufferedReader = new BufferedReader(new InputStreamReader(testSocket.getInputStream()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				
-			}
-			String msg = null;
-			try {
-				while(true) {
-					msg = testBufferedReader.readLine();
-					System.out.println("["+LocalDateTime.now()+"]" + "From TestSocket : " + msg);
-					
-					// 모든 유저에게 방금 들어온 로그를 보내기.
-					JSONObject obj = new JSONObject()
-							.append("time", LocalDateTime.now())
-							.append("message", msg)
-							.append("type", "test");
-					for(WebSocketSession session : sessionList) {
-						session.sendMessage(new TextMessage(obj.toString()));
-					}
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.err.println("["+LocalDateTime.now()+"]"+"testSocket IO Exception.");
-			}
-		}
-	}
+
 	// 웹소켓이 연결되면 호출되는 함수
-    @Override
-    public void afterConnectionEstablished(WebSocketSession session) 
+	@Override
+	public void afterConnectionEstablished(WebSocketSession session) 
             throws Exception {
 		sessionList.add(session);
 		log.info(session.getId() + " 연결됨");
