@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->  
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>예약내역 | gangstudy</title>    		<!-- 	<META HTTP-EQUIV="refresh" CONTENT="3"> -->
+		<title>예약내역 | gangstudy</title>    		 	<META HTTP-EQUIV="refresh" CONTENT="3"> 
 		<meta name="description" content="Javascript sourced data examples" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
