@@ -257,8 +257,8 @@ License: You must have a valid license purchased only from themeforest(the above
 						</form>
 						<!--end::Form-->
 						
-						    
-         <!--begin::Card-->
+					</div>
+         			<!--begin::Card-->
 					<div class="card card-custom gutter-b example example-compact">
 						<div class="card-header">
 							<h3 class="card-title cafe24">갱스터디 간판 </h3>
@@ -528,6 +528,8 @@ License: You must have a valid license purchased only from themeforest(the above
 									<button id="testSend" type="button" class="btn btn-dark mr-2">송신</button>
 								</div>
 							</form>
+							<div id="testlog" class="log">수신:<br>
+							</div>
 						</div>
 						<div class="card-footer">
 							<div class="row">
@@ -724,6 +726,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-timepicker.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/pages/crud/forms/widgets/bootstrap-switch.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/testWebSocket.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
 	<!--end::Page Scripts-->
