@@ -37,7 +37,7 @@ pointMaxUseBtn.addEventListener("click", function() {
 	if(parseInt(pointMax.textContent) > parseInt(totalAmount.textContent)) {
 		pointUse.value = totalAmount.textContent;
 	} else {
-		pointUse.value = pointMax.textContent;
+		pointUse.value = parseInt(pointMax.textContent);
 	}
 	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 });
