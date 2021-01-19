@@ -34,8 +34,7 @@ $(function() {
 					// [1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 					console.log('2 차 지나고 ');
 					jQuery.ajax({
-						url : "/payment/beready", // cross-domain error가 발생하지
-													// 않도록 주의해주세요
+						url : "/payment/beready", // cross-domain error가 발생하지 않도록 주의해주세요
 						type : 'GET',   
 						dataType : 'json',
 						data : {
@@ -52,8 +51,8 @@ $(function() {
 							msg += '카드 승인번호 : ' + rsp.apply_num;   
 							
 							alert(msg);        
-							
-							alert("결제가 완료되었습니다.");  
+							      
+						
 						} else {               
 							msg = +rsp.error_msg;
 							alert(msg);
@@ -61,11 +60,11 @@ $(function() {
 							// [4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 		    				}    
 					});  
-					// 성공시 이동할 페이지       
-					//location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
+					// 성공시 이동할 페이지           
+					alert("결제가 완료되었습니다.");      
 					window.location.href = '/booking/check';    
 				} else {                   
-					msg = '결제에 실패하였습니다.';
+					msg = '결제에 실패하였습니다.';  
 					msg += '에러내용 : ' + rsp.error_msg;
 					// window.location.href='/';
 					// 실패시 이동할 페이지
