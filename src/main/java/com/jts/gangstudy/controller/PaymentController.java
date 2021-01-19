@@ -223,8 +223,8 @@ public class PaymentController {
 		session.removeAttribute("amount");
 		  
 		// 완료 페이지로 이동한다.
-		
-		
+		  
+		        
 		//// 예약 번호로 된 결제가 있는지 확인한다.
 		Payment payment1 = paymentService.selectPayment(book);
 		if(payment1 != null) {
@@ -233,7 +233,10 @@ public class PaymentController {
 			session.removeAttribute("book");
 			
 			System.out.println("2+3차 페이매소드 ");
-			return "redirect:" + "/booking/check";
+			
+			return "";
+			     
+	
 		
 		} else {
 			return "?booking=fail";
