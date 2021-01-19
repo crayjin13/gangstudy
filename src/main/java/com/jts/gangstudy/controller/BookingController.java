@@ -194,30 +194,39 @@ public class BookingController {
 	// booking shop page - 결제 직전 페이지
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
-			@RequestParam("startDateInput") String startDate, 	@RequestParam("startTimeInput") String startTime,
-			@RequestParam("endDateInput") String endDate, 		@RequestParam("endTimeInput") String endTime,
-			@RequestParam("people") String people) {
+			@RequestParam(value="startDateInput", required = false) String startDate,
+			@RequestParam(value="startTimeInput", required = false) String startTime,
+			@RequestParam(value="endDateInput",	  required = false) String endDate,
+			@RequestParam(value="endTimeInput",	  required = false) String endTime,
+			@RequestParam(value="people",		  required = false) String people) {
 		ModelAndView mav = new ModelAndView("pages/makecart");
 		User user = (User)session.getAttribute("sUserId");
+		Booking book = null;
 		
-		
-		Booking book = new Booking();
-		book.setCheck_in(startDate, startTime);
-		book.setCheck_out(endDate, endTime);
-		book.setPeople(people);
-		book.setRoom_no(room_no);
-		book.setState("uncharge");
+		if(session.getAttribute("book") != null) {	// 예약이 이미 존재하는 경우(뒤로가기 등)
+			book = (Booking)session.getAttribute("book");
+		} else {									// 처음 시도해서 예약이 없는 경우
+			book = new Booking();
+			book.setCheck_in(startDate, startTime);
+			book.setCheck_out(endDate, endTime);
+			book.setPeople(people);
+			book.setRoom_no(room_no);
+			book.setState("uncharge");
+		}
 				
 		// login check
+		// @UserLoginCheck 을 사용하지 않은 이유는
+		// 로그인 없이 요청하는 경우 먼저 요청한 예약을 저장해두기 위해서이다.
 		if(user == null) {
 			session.setAttribute("book", book);
 			mav.setViewName("redirect:/signin");
 			return mav;
+		} else {
+			book.setUser_no(user.getUser_no());
 		}
 		// registry booking in session
-
-		book.setUser_no(user.getUser_no());
 		session.setAttribute("book", book);
+		
 		// check a uncharge booking
 		List<Booking> books = bookingService.searchByUserState(user, "uncharge");
 		for(Booking item : books) {
@@ -235,9 +244,9 @@ public class BookingController {
 		.addObject("endDateTime", endDateTime)
 		.addObject("timeInterval", timeInterval)
 		.addObject("chargePerPeople", chargePerPeople)
-		.addObject("people", people)
+		.addObject("people", book.getPeople())
 		.addObject("point", user.getPoints())
-		.addObject("charge", chargePerPeople*Integer.parseInt(people));
+		.addObject("charge", chargePerPeople*book.getPeople());
 		return mav;
 	}
 

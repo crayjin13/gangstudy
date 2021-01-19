@@ -52,7 +52,9 @@ $(document).ready(function() {
 		setDateRange(endPicker, new Date(startDateInput.value), 1)
 		
 		requestTimes(startURL, getStartData(), startTimeInput, function() {
-			requestTimes(endURL, getEndData(), endTimeInput)
+			if(startTimeInput.value!="") {
+				requestTimes(endURL, getEndData(), endTimeInput)
+			}
 		})
 		
 		people.value = people.getAttribute("people")
