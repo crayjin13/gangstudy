@@ -341,10 +341,10 @@ public class BookingController {
 	
 	
 	
+	 
 	
-	
-	// 예약 완료 처리
-	@UserLoginCheck //예약완료되었습니다 알럿 확인 클릭시 
+	//  카카오페이 예약 완료 처리
+	@UserLoginCheck 
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
 		// 요청된 예약에 대해 예약번호를 얻고
@@ -355,15 +355,14 @@ public class BookingController {
 		if(payment != null) {
 			bookingService.changeState(book, "wait");
 			session.removeAttribute("book");
-			
-			System.out.println("3차 페이매소드 ");
 			return "redirect:" + "/booking/check";
 		} else {
 			return "?booking=fail";
 		}
 	}
-	
+	 
 
+	
 	
 	// booking modify page - 결제 직전 페이지
 	@UserLoginCheck

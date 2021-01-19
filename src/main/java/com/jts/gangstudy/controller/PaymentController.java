@@ -182,7 +182,7 @@ public class PaymentController {
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/complete";
 	}
-	@UserLoginCheck // 리스폰스바디 붙이면 wait으로 변경안되는문제생김. booking/complete는 responseBOdy가아니기때문에
+	@UserLoginCheck 
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
 	public String beready( HttpServletRequest request, HttpSession session ) {
 		//,@RequestParam("imp_uid") String imp_uid  아임포트 고유번호 불러오고싶을때 파라미터에넣기 
@@ -195,15 +195,15 @@ public class PaymentController {
 		
 		
 		// 대기중인 예약 시간초과 예외처리
-		if(bookingService.searchByBookNo(book.getBook_no()) == null) {
+			if(bookingService.searchByBookNo(book.getBook_no()) == null) {
 			
-			return "redirect:" + "/?payment=timeout";
-		}
+				return "redirect:" + "/?payment=timeout";
+			}
 		int bookno = book.getBook_no();
 		String book_No = String.valueOf(bookno);
 		
 		// 결제 완료 요청    
-		
+		       
 		// 결제 정보를 저장한다.
 		Payment payment = new Payment();
 		payment.setAmount(amount-usePoint);
@@ -221,10 +221,26 @@ public class PaymentController {
 		session.removeAttribute("tid");
 		session.removeAttribute("usePoint");
 		session.removeAttribute("amount");
-		
+		  
 		// 완료 페이지로 이동한다.
-		System.out.println("2차 페이매소드 ");
-		return "redirect:" + "/booking/complete";
+		
+		
+		//// 예약 번호로 된 결제가 있는지 확인한다.
+		Payment payment1 = paymentService.selectPayment(book);
+		if(payment1 != null) {
+			// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
+			bookingService.changeState(book, "wait");
+			session.removeAttribute("book");
+			
+			System.out.println("2+3차 페이매소드 ");
+			return "redirect:" + "/booking/check";
+		
+		} else {
+			return "?booking=fail";
+		}
+		
+		
+		
 	}
 	
 
