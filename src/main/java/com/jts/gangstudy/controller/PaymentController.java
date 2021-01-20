@@ -91,7 +91,7 @@ public class PaymentController {
 			if (map == null) {
 				System.out.println("결제 취소 오류(아임포트)");
 			} else {
-				if (map.get("code").equals("0")) {
+				if (map.get("code").equals("0")) {  
 					// 이전 결제 정보 취소 처리
 					paymentService.changeState(payment, "cancelled");
 					// 기존 예약을 취소로 변경
@@ -101,7 +101,7 @@ public class PaymentController {
 			}
 			// 코드가 0이 아니면 message 확인
 			System.out.println(" # 아임포트 결제 환불 되지 않는 이유:  " + map.get("message"));
-			return "결제 취소 실패(아임포트)";
+			return "(아임포트) 환불 불가 이유: "+ map.get("message") ;
 		}
 	}
 		
@@ -168,7 +168,7 @@ public class PaymentController {
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/complete";
 	}
-	@UserLoginCheck
+	@UserLoginCheck 
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
 	public String beready( HttpServletRequest request, HttpSession session ) {
 		//,@RequestParam("imp_uid") String imp_uid  아임포트 고유번호 불러오고싶을때 파라미터에넣기 
@@ -181,15 +181,15 @@ public class PaymentController {
 		
 		
 		// 대기중인 예약 시간초과 예외처리
-		if(bookingService.searchByBookNo(book.getBook_no()) == null) {
+			if(bookingService.searchByBookNo(book.getBook_no()) == null) {
 			
-			return "redirect:" + "/?payment=timeout";
-		}
+				return "redirect:" + "/?payment=timeout";
+			}
 		int bookno = book.getBook_no();
 		String book_No = String.valueOf(bookno);
 		
 		// 결제 완료 요청    
-		
+		       
 		// 결제 정보를 저장한다.
 		Payment payment = new Payment();
 		payment.setAmount(amount-usePoint);
@@ -207,10 +207,29 @@ public class PaymentController {
 		session.removeAttribute("tid");
 		session.removeAttribute("usePoint");
 		session.removeAttribute("amount");
-		
+		  
 		// 완료 페이지로 이동한다.
-		System.out.println("2차 페이매소드 ");
-		return "redirect:" + "/booking/complete";
+		  
+		        
+		//// 예약 번호로 된 결제가 있는지 확인한다.
+		Payment payment1 = paymentService.selectPayment(book);
+		if(payment1 != null) {
+			// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
+			bookingService.changeState(book, "wait");
+			session.removeAttribute("book");
+			
+			System.out.println("2+3차 페이매소드 ");
+			
+			return "";
+			     
+	
+		
+		} else {
+			return "?booking=fail";
+		}
+		
+		
+		
 	}
 	
 
