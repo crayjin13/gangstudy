@@ -18,7 +18,7 @@ var clientWebSocket = {
 
         webSocket.onerror = function(evt) {
         	// Socket Error 발생
-			alert(evt)
+			inlog.textContent = inlog.textContent + "webSocket 연결 실패!";
         };
         
         webSocket.onclose = function(event) {
