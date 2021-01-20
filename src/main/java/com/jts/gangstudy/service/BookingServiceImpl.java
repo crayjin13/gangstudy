@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.Payment.State;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.mapper.BookingMapper;
 
@@ -49,10 +50,10 @@ public class BookingServiceImpl implements BookingService{
 
 	// 상태 변경
 	@Override
-	public void changeState(Booking book, String state) {
+	public void changeState(Booking book, Booking.State state) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("book_no", Integer.toString(book.getBook_no()));
-		map.put("state", state);
+		map.put("state", state.toString());
 		
 		mapper.updateState(map);
 	}

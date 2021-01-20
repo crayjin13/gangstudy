@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import com.jts.gangstudy.domain.Booking;
+import com.jts.gangstudy.domain.Booking.State;
 import com.jts.gangstudy.domain.User;
 
 
@@ -13,7 +14,7 @@ public interface BookingService {
 	// 예약 제거
 	public void removeBook(Booking book);
 	// 상태 변경
-	public void changeState(Booking book, String state);
+	public void changeState(Booking book, Booking.State cancel);
 
 	// 모든 예약 검색
 	public List<Booking> searchAll();

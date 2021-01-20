@@ -47,13 +47,13 @@ public class BookingController {
 		List<Booking> usingList = bookingService.searchByDateTime(now);
 		for(Booking book : usingList) {
 			if(now.isEqual(book.getCheck_in()) && book.getState().equals("wait")) {			// 예약시간이 되면 use로 변경
-				bookingService.changeState(book, "use");
+				bookingService.changeState(book, Booking.State.use);
 				User user = userService.getUser(book.getUser_no());
 				Integer amount = paymentService.selectPayment(book).getAmount();
 				
 				userService.plusPoints(user, (amount/100) * 5);
 			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals("use")) {	// 예약이 종료되면 clear로 변경
-				bookingService.changeState(book, "clear");
+				bookingService.changeState(book, Booking.State.clear);
 			}
 		}
 		
@@ -301,8 +301,8 @@ public class BookingController {
 		}
 		// point로 전액 결제 시 결제요금 청구 안함.
 		if(charge == usePoint) {
-			paymentService.insertByPoint(book, usePoint);
-			bookingService.changeState(book, "wait");
+			paymentService.payByPoint(book, usePoint);
+			bookingService.changeState(book, Booking.State.wait);
 			return "/booking/check";
 		}
 		
@@ -387,7 +387,7 @@ public class BookingController {
 		session.removeAttribute("book");
 		// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
 		if(payment != null && payment.getState().equals("paid")) {
-			bookingService.changeState(book, "wait");
+			bookingService.changeState(book, Booking.State.wait);
 			return "redirect:" + "/booking/check";
 		} else {
 			return "?booking=fail";
@@ -477,11 +477,11 @@ public class BookingController {
 			return "?payment=cancelFail";
 		} else if (addedCharge == usePoint) {						// 추가금액을 포인트로 결제 or 변경 후 추가금액이 없음
 			// 이전 결제 취소
-			bookingService.changeState(oldBook, "cancel");
-			paymentService.changeState(oldPayment, "cancelled");
+			bookingService.changeState(oldBook, Booking.State.cancel);
+			paymentService.changeState(oldPayment, Payment.State.cancelled);
 			
 			// 기존 결제로 예약-결제추가
-			bookingService.changeState(newBook, "wait");
+			bookingService.changeState(newBook, Booking.State.wait);
 			String result = bookingService.insertBook(newBook);
 			if(result.equals("duplicate")) {
 				return "?booking=duplicate";
@@ -497,8 +497,8 @@ public class BookingController {
 			userService.minusPoints(user, usePoint);
 			return "/booking/check";
 		} else if(paidMoney == 0) {									// 예전 결제 금액이 0원 (포인트 처리 등) 추가금액 결제
-			bookingService.changeState(oldBook, "cancel");
-			paymentService.changeState(oldPayment, "cancel");
+			bookingService.changeState(oldBook, Booking.State.cancel);
+			paymentService.changeState(oldPayment, Payment.State.cancelled);
 			
 			// 추가 결제금액으로 예약-결제 추가
 			session.setAttribute("amount", addedCharge - usePoint);
@@ -548,7 +548,7 @@ public class BookingController {
 
 		// 결제 취소 성공시
 		// 기존 예약을 취소로 변경
-		bookingService.changeState(oldBook, "cancel");
+		bookingService.changeState(oldBook, Booking.State.cancel);
 		String result = bookingService.insertBook(newBook);
 		if(result.equals("duplicate")) {
 			return "?booking=duplicate";
@@ -557,7 +557,7 @@ public class BookingController {
 		paymentService.insertPayment(payment);
 
 		// 새 예약 등록
-		bookingService.changeState(newBook, "wait");
+		bookingService.changeState(newBook, Booking.State.wait);
 
 		session.removeAttribute("oldBook");
 		session.removeAttribute("newBook");

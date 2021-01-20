@@ -4,13 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
+import com.jts.gangstudy.domain.Payment.State;
 
 public interface PaymentService {
 	public void insertPayment(Payment payment);
 	public Payment selectPayment(Booking book);
-	public void changeState(Payment payment, String state);
+	void changeState(Payment payment, State state);
 	public String getDeviceType(HttpServletRequest request);
 	
 	public int pgDanalCheck(int book_no);
-	public void insertByPoint(Booking book, int usePoint);
+	public void payByPoint(Booking book, int usePoint);
+	public void cancelByPoint(Booking book, Payment payment);
 }

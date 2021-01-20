@@ -4,21 +4,36 @@ import java.math.BigDecimal;
 
 public class Payment {
 	private int pay_no;
+	private int book_no;
 	private int amount;
 	private int point;
-	private String pg_nm;
 	private String tid;
 	private String pay_type;
-	private String state;
-	private int book_no;
+	
+	private PGName pg_nm;
+	private State state;
+	
+	public enum PGName {
+		KakaoPay,
+		Danal,
+		PointOnly
+	}
+	
+	public enum State {
+		ready,
+		paid,
+		cancelled,
+		failed
+	}
+	
 	public Payment(BigDecimal amount, BigDecimal point, String pg_name, String tid, String pay_type, String state, BigDecimal book_no) {
 		super();
 		this.amount = amount.intValue();
 		this.point = point.intValue();
-		this.pg_nm = pg_name;
+		this.pg_nm = PGName.valueOf(pg_name);
 		this.tid = tid;
 		this.pay_type = pay_type;
-		this.state = state;
+		this.state = State.valueOf(state);
 		this.book_no = book_no.intValue();
 	}
 	public Payment() {
@@ -31,10 +46,10 @@ public class Payment {
 		this.amount = amount;
 	}
 	public String getPg_name() {
-		return pg_nm;
+		return pg_nm.toString();
 	}
 	public void setPg_name(String pg_name) {
-		this.pg_nm = pg_name;
+		this.pg_nm = PGName.valueOf(pg_name);
 	}
 	public String getTid() {
 		return tid;
@@ -48,11 +63,11 @@ public class Payment {
 	public void setPay_type(String pay_type) {
 		this.pay_type = pay_type;
 	}
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 	public void setState(String state) {
-		this.state = state;
+		this.state = State.valueOf(state);
 	}
 	public int getBook_no() {
 		return book_no;
@@ -74,5 +89,8 @@ public class Payment {
 	public String toString() {
 		return "Payment [pay_no=" + pay_no + ", amount=" + amount + ", point=" + point + ", pg_name=" + pg_nm
 				+ ", tid=" + tid + ", pay_type=" + pay_type + ", state=" + state + ", book_no=" + book_no + "]";
+	}
+	public void setState(State state) {
+		this.state = state;
 	}
 }

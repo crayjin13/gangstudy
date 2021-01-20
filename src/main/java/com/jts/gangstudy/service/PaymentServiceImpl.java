@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
+import com.jts.gangstudy.domain.Payment.State;
 import com.jts.gangstudy.mapper.PaymentMapper;
 
 @Service
@@ -31,10 +32,10 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public void changeState(Payment payment, String state) {
+	public void changeState(Payment payment, State state) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pay_no", Integer.toString(payment.getPay_no()));
-		map.put("state", state);
+		map.put("state", state.toString());
 		mapper.updateState(map);
 	}
 
@@ -60,7 +61,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 	@Override
-	public void insertByPoint(Booking book, int usePoint) {
+	public void payByPoint(Booking book, int usePoint) {
 		Payment payment = new Payment();
 		payment.setAmount(usePoint);
 		payment.setPoint(usePoint);
@@ -70,5 +71,11 @@ public class PaymentServiceImpl implements PaymentService {
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());
 		insertPayment(payment);
+	}
+
+	@Override
+	public void cancelByPoint(Booking book, Payment payment) {
+		changeState(payment, Payment.State.cancelled);
+		
 	}
 }
