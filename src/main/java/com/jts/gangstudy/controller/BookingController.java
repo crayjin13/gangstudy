@@ -224,8 +224,6 @@ public class BookingController {
 		} else {
 			book.setUser_no(user.getUser_no());
 		}
-		// registry booking in session
-		session.setAttribute("book", book);
 		
 		// check a uncharge booking
 		List<Booking> books = bookingService.searchByUserState(user, "uncharge");
@@ -247,6 +245,9 @@ public class BookingController {
 		.addObject("people", book.getPeople())
 		.addObject("point", user.getPoints())
 		.addObject("charge", chargePerPeople*book.getPeople());
+		
+		// session registry
+		session.setAttribute("book", book);
 		return mav;
 	}
 
@@ -360,10 +361,10 @@ public class BookingController {
 		// 예약 번호로 된 결제가 있는지 확인한다.
 		Booking book = (Booking)session.getAttribute("book");
 		Payment payment = paymentService.selectPayment(book);
+		session.removeAttribute("book");
 		// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
-		if(payment != null) {
+		if(payment != null && payment.getState().equals("paid")) {
 			bookingService.changeState(book, "wait");
-			session.removeAttribute("book");
 			return "redirect:" + "/booking/check";
 		} else {
 			return "?booking=fail";

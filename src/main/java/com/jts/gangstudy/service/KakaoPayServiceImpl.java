@@ -58,7 +58,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	private final static String vat_amount = "100";							// 상품 부가세 금액
 
 	@Override
-	public HashMap<String, String> ready(String deviceType, int amount) {
+	public HashMap<String, String> ready(String deviceType, int amount, int book_no) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			URI uri = new URI(ready);
@@ -67,6 +67,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 					.addParameter("partner_order_id", partner_order_id)
 					.addParameter("partner_user_id", partner_user_id)
 					.addParameter("item_name", "스터디룸 예약")
+					.addParameter("item_code", Integer.toString(book_no))
 					.addParameter("quantity", Integer.toString(1))
 					.addParameter("total_amount", Integer.toString(amount))
 					.addParameter("tax_free_amount", tax_free_amount)
@@ -82,7 +83,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			try(CloseableHttpResponse response = httpClient.execute(httpPost)) {
 		        String json = EntityUtils.toString(response.getEntity());
 		        JSONObject jsonObject = new JSONObject(json);
-		        System.out.println(json);
+		        System.out.println("#KakaoPayServiceImpl::ready:: " + json);
 		        /*
 		        String app_url = jsonObject.getString("next_redirect_app_url");			// 요청한 클라이언트(Client)가 모바일 앱일 경우
 		        String android_app_scheme = jsonObject.getString("android_app_scheme");	// 카카오페이 결제 화면으로 이동하는 Android 앱 스킴(Scheme)

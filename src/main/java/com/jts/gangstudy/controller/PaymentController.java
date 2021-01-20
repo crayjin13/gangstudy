@@ -42,24 +42,9 @@ public class PaymentController {
 	private BookingService bookingService;
 	@Autowired
 	private KakaoPayService kakaoPayService;
-	
 	@Autowired
 	private IamportService iamportService;
-	
-	
 
-	// 결제 수단 선택
-	@UserLoginCheck
-	@RequestMapping(value = "/choose", method = RequestMethod.GET)
-	public ModelAndView choose(HttpServletRequest request) {
-		// 여러 결제 수단이 있을때 브릿지 역할
-		ModelAndView mav = new ModelAndView("/payment/choose");
-		return mav;
-	}
-	
-
-	
-	     
 	// 예약 취소 요청
 	@UserLoginCheck
 	@ResponseBody   
@@ -121,42 +106,41 @@ public class PaymentController {
 	}
 		
 		
-		
-		
-
-
-
-
-
-
 	// KakaoPay를 통한 결제 요청
 	@UserLoginCheck
 	@RequestMapping(value = "/kakaopay", method = RequestMethod.GET)
 	public String kakaopay(HttpServletRequest request, HttpSession session) {
+		Booking book = (Booking)session.getAttribute("book");		// 사용한 포인트
 		int amount = (int)session.getAttribute("amount");			// 결제 비용
 		int usePoint = (int)session.getAttribute("usePoint");		// 사용한 포인트
 		String deviceType = paymentService.getDeviceType(request);	// 결제 요청 장비
 		
-		HashMap<String, String> map = kakaoPayService.ready(deviceType, amount-usePoint);
-		
+		HashMap<String, String> map = kakaoPayService.ready(deviceType, amount-usePoint, book.getBook_no());
+		if(map == null) {
+			return "?ready=fail";
+		}
 		session.setAttribute("tid", map.get("tid"));
+		session.setAttribute("book_no", book.getBook_no());
+		session.removeAttribute("book");
 		return "redirect:" + map.get("url");
 	}
 
-	// KakaoPay에서 결제 준비됨. 결제 처리하기
+	// KakaoPay에서 결제 준비상태. 결제 처리하기
 	@UserLoginCheck
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
 	public String complete(HttpServletRequest request, HttpSession session) {
 		User user = (User)session.getAttribute("sUserId");
-		Booking book = (Booking)session.getAttribute("book");
 		String tid = (String)session.getAttribute("tid");
+		int book_no = (int)session.getAttribute("book_no");
 		int amount = (int)session.getAttribute("amount");
 		int usePoint = (int)session.getAttribute("usePoint");
-
 		String pg_token = request.getParameter("pg_token");
-		// 대기중인 예약 시간초과 예외처리
-		if(bookingService.searchByBookNo(book.getBook_no()) == null) {
-			return "redirect:" + "/?payment=timeout";
+		
+		Booking book = bookingService.searchByBookNo(book_no);
+		
+		// 대기중인 예약이 존재하지 않는 경우(
+		if(book == null) {
+			return "redirect:" + "/?payment=BookIsNull";
 		}
 		
 		// 결제 완료 요청
@@ -174,8 +158,10 @@ public class PaymentController {
 		paymentService.insertPayment(payment);
 		
 		userService.minusPoints(user, usePoint);
-		
+
+		session.setAttribute("book", book);
 		session.removeAttribute("tid");
+		session.removeAttribute("book_no");
 		session.removeAttribute("usePoint");
 		session.removeAttribute("amount");
 		
