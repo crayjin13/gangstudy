@@ -301,7 +301,7 @@ public class BookingController {
 		}
 		// point로 전액 결제 시 결제요금 청구 안함.
 		if(charge == usePoint) {
-			paymentService.insertByPoint(book, usePoint);
+			paymentService.payByPoint(book, usePoint);
 			bookingService.changeState(book, "wait");
 			return "/booking/check";
 		}
@@ -478,7 +478,7 @@ public class BookingController {
 		} else if (addedCharge == usePoint) {						// 추가금액을 포인트로 결제 or 변경 후 추가금액이 없음
 			// 이전 결제 취소
 			bookingService.changeState(oldBook, "cancel");
-			paymentService.changeState(oldPayment, "cancelled");
+			paymentService.changeState(oldPayment, Payment.State.cancelled);
 			
 			// 기존 결제로 예약-결제추가
 			bookingService.changeState(newBook, "wait");
@@ -498,7 +498,7 @@ public class BookingController {
 			return "/booking/check";
 		} else if(paidMoney == 0) {									// 예전 결제 금액이 0원 (포인트 처리 등) 추가금액 결제
 			bookingService.changeState(oldBook, "cancel");
-			paymentService.changeState(oldPayment, "cancel");
+			paymentService.changeState(oldPayment, Payment.State.cancelled);
 			
 			// 추가 결제금액으로 예약-결제 추가
 			session.setAttribute("amount", addedCharge - usePoint);

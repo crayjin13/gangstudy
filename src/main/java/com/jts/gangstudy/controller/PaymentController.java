@@ -79,21 +79,21 @@ public class PaymentController {
 			}
 			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) {
 				// 이전 결제 정보 취소 처리
-				paymentService.changeState(payment, "cancelled");
+				paymentService.changeState(payment, Payment.State.cancelled);
 				// 기존 예약을 취소로 변경
 				bookingService.changeState(book, "cancel");
 				return cancelMessage;
 			}
 			System.out.println(" # 카카오페이 결제 환불 되지 않는 이유:  " + map.get("status"));
 			return "결제 취소 실패(카카오페이)";
-		} else {										// 다날 (아임포트)
+		} else if(payment.getPg_name().equals("Danal")) {										// 다날 (아임포트)
 			HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
 			if (map == null) {
 				System.out.println("결제 취소 오류(아임포트)");
 			} else {
 				if (map.get("code").equals("0")) {  //코드가 0일때 취소 가능.
 					// 이전 결제 정보 취소 처리
-					paymentService.changeState(payment, "cancelled");
+					paymentService.changeState(payment, Payment.State.cancelled);
 					// 기존 예약을 취소로 변경
 					bookingService.changeState(book, "cancel");
 					return cancelMessage;
@@ -102,6 +102,11 @@ public class PaymentController {
 			// 코드가 0이 아니면 message 확인
 			System.out.println(" # 아임포트 결제 환불 되지 않는 이유:  " + map.get("message"));
 			return "다날(Iamport) 환불 불가 이유: "+ map.get("message") ;
+		} else if(payment.getPg_name().equals("PointOnly")) {
+			paymentService.cancelByPoint(book, payment);
+			return cancelMessage;
+		} else {
+			return "잘못된 PG사 요청 오류";
 		}
 	}
 		
@@ -152,7 +157,7 @@ public class PaymentController {
 		payment.setPg_name("KakaoPay");
 		payment.setTid(tid);
 		payment.setPay_type(payInfo.get("pay_type"));
-		payment.setState("paid");
+		payment.setState(Payment.State.paid);
 		payment.setBook_no(book.getBook_no());
 		paymentService.insertPayment(payment);
 		
@@ -270,7 +275,7 @@ public class PaymentController {
 		}
 		if(map.get("status").equals("CANCEL_PAYMENT")) {									// 전액 취소 성공
 			// 이전 결제 정보 취소 처리
-			paymentService.changeState(payment, "cancelled");
+			paymentService.changeState(payment, Payment.State.cancelled);
 			// 기존 예약을 취소로 변경
 			bookingService.changeState(oldBook, "cancel");
 			String result = bookingService.insertBook(newBook);
@@ -301,7 +306,7 @@ public class PaymentController {
 		if(map.get("status").equals("PART_CANCEL_PAYMENT") ||
 		   map.get("status").equals("CANCEL_PAYMENT")) {									// 차액 취소 성공
 			// 이전 결제 정보 취소 처리
-			paymentService.changeState(paymentService.selectPayment(oldBook), "cancelled");
+			paymentService.changeState(paymentService.selectPayment(oldBook), Payment.State.cancelled);
 			
 			// 해당 결제 정보 저장
 			Payment payment = new Payment();
