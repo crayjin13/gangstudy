@@ -69,6 +69,9 @@ public class PaymentController {
 
 		// 결제 취소 처리
 		Payment payment = paymentService.selectPayment(book);
+		if(payment.getState() != Payment.State.paid) {
+			return "결제 상태 오류";
+		}
 		String tid = payment.getTid();
 		Integer cancel_amount = payment.getAmount();
 		
@@ -81,7 +84,7 @@ public class PaymentController {
 				// 이전 결제 정보 취소 처리
 				paymentService.changeState(payment, Payment.State.cancelled);
 				// 기존 예약을 취소로 변경
-				bookingService.changeState(book, "cancel");
+				bookingService.changeState(book, Booking.State.cancel);
 				return cancelMessage;
 			}
 			System.out.println(" # 카카오페이 결제 환불 되지 않는 이유:  " + map.get("status"));
@@ -95,7 +98,7 @@ public class PaymentController {
 					// 이전 결제 정보 취소 처리
 					paymentService.changeState(payment, Payment.State.cancelled);
 					// 기존 예약을 취소로 변경
-					bookingService.changeState(book, "cancel");
+					bookingService.changeState(book, Booking.State.cancel);
 					return cancelMessage;
 				}
 			}
@@ -104,6 +107,7 @@ public class PaymentController {
 			return "다날(Iamport) 환불 불가 이유: "+ map.get("message") ;
 		} else if(payment.getPg_name().equals("PointOnly")) {
 			paymentService.cancelByPoint(book, payment);
+			bookingService.changeState(book, Booking.State.cancel);
 			return cancelMessage;
 		} else {
 			return "잘못된 PG사 요청 오류";
@@ -218,7 +222,7 @@ public class PaymentController {
 		Payment payment1 = paymentService.selectPayment(book);
 		if(payment1 != null) {
 			// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
-			bookingService.changeState(book, "wait");
+			bookingService.changeState(book, Booking.State.wait);
 			session.removeAttribute("book");
 			
 			System.out.println("2+3차 페이매소드 ");
@@ -277,7 +281,7 @@ public class PaymentController {
 			// 이전 결제 정보 취소 처리
 			paymentService.changeState(payment, Payment.State.cancelled);
 			// 기존 예약을 취소로 변경
-			bookingService.changeState(oldBook, "cancel");
+			bookingService.changeState(oldBook, Booking.State.cancel);
 			String result = bookingService.insertBook(newBook);
 			if(result.equals("duplicate")) {
 				return "?booking=duplicate";

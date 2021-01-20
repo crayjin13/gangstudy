@@ -63,8 +63,8 @@ public class Payment {
 	public void setPay_type(String pay_type) {
 		this.pay_type = pay_type;
 	}
-	public String getState() {
-		return state.toString();
+	public State getState() {
+		return state;
 	}
 	public void setState(String state) {
 		this.state = State.valueOf(state);
