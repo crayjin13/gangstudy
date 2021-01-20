@@ -149,7 +149,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			        JSONObject card_info = jsonObject.getJSONObject("card_info");			// 결제 상세 정보, 결제수단이 카드일 경우만 포함
 		        }
 		        JSONObject amount = jsonObject.getJSONObject("amount");						// 결제 금액 정보
-		        String total = amount.getString("total");
+		        int total = amount.getInt("total");
 		        
 		        String item_name = jsonObject.getString("item_name");						// 상품 이름, 최대 100자
 		        String item_code = jsonObject.getString("item_code");						// 상품 코드, 최대 100자
@@ -159,7 +159,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 //		        String payload = jsonObject.getString("payload");							// 결제 승인 요청에 대해 저장한 값, 요청 시 전달된 내용
 
 		        map.put("pay_type", payment_method_type.toLowerCase());
-		        map.put("amount", total);
+		        map.put("amount", Integer.toString(total));
 		        
 		        return map;
 			}
