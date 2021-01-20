@@ -86,12 +86,12 @@ public class PaymentController {
 			}
 			System.out.println(" # 카카오페이 결제 환불 되지 않는 이유:  " + map.get("status"));
 			return "결제 취소 실패(카카오페이)";
-		} else {										// 다날
+		} else {										// 다날 (아임포트)
 			HashMap<String, String> map = iamportService.cancel(tid, cancel_amount.toString());
 			if (map == null) {
 				System.out.println("결제 취소 오류(아임포트)");
 			} else {
-				if (map.get("code").equals("0")) {  
+				if (map.get("code").equals("0")) {  //코드가 0일때 취소 가능.
 					// 이전 결제 정보 취소 처리
 					paymentService.changeState(payment, "cancelled");
 					// 기존 예약을 취소로 변경
@@ -101,7 +101,7 @@ public class PaymentController {
 			}
 			// 코드가 0이 아니면 message 확인
 			System.out.println(" # 아임포트 결제 환불 되지 않는 이유:  " + map.get("message"));
-			return "(아임포트) 환불 불가 이유: "+ map.get("message") ;
+			return "다날(Iamport) 환불 불가 이유: "+ map.get("message") ;
 		}
 	}
 		
