@@ -274,7 +274,6 @@ public class BookingController {
 			return "?error=people";
 		}
 		
-		
 		// 뒤로가기 등으로 세션에서 예약이 제거된 경우
 		if(book == null) {
 			book = bookingService.searchByBookNo(book_no);
@@ -290,8 +289,6 @@ public class BookingController {
 				return "?booking=duplicate";
 			}
 		}
-		// point로 전액 결제 시 결제요금 청구 안함.
-		
 		
 		
 		int usePoint = Integer.parseInt(point);
@@ -302,6 +299,13 @@ public class BookingController {
 		if(charge > 0 && charge < usePoint) {
 			return "?error=usePoint";
 		}
+		// point로 전액 결제 시 결제요금 청구 안함.
+		if(charge == usePoint) {
+			paymentService.insertByPoint(book, usePoint);
+			bookingService.changeState(book, "wait");
+			return "/booking/check";
+		}
+		
 		// session registry
 		session.setAttribute("amount", charge);
 		session.setAttribute("usePoint", usePoint);
@@ -309,6 +313,8 @@ public class BookingController {
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
 	}
+	
+	
 	// booking shop page - 결제 버튼클릭시   (다날 페이)
 	@UserLoginCheck
 	@ResponseBody

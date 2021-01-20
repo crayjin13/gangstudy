@@ -57,4 +57,18 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		return mapper.pgDanalCheck(book_no);
 	}
+
+
+	@Override
+	public void insertByPoint(Booking book, int usePoint) {
+		Payment payment = new Payment();
+		payment.setAmount(usePoint);
+		payment.setPoint(usePoint);
+		payment.setPg_name("PointOnly");
+		payment.setTid("PointOnly");
+		payment.setPay_type("point");
+		payment.setState("paid");
+		payment.setBook_no(book.getBook_no());
+		insertPayment(payment);
+	}
 }
