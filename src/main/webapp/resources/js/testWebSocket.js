@@ -14,7 +14,7 @@ var testClientWebSocket = {
 
         webSocket.onerror = function(evt) {
         	// Socket Error 발생
-			alert("test용 웹소켓 : " + evt)
+			testlog.textContent = testlog.textContent + "websocket.onerror!"
         };
         
         webSocket.onclose = function(event) {

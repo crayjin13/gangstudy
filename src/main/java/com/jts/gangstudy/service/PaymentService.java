@@ -12,4 +12,5 @@ public interface PaymentService {
 	public String getDeviceType(HttpServletRequest request);
 	
 	public int pgDanalCheck(int book_no);
+	public void insertByPoint(Booking book, int usePoint);
 }

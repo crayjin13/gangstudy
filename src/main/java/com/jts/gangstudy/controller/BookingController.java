@@ -213,11 +213,9 @@ public class BookingController {
 			@RequestParam(value="people",		  required = false) String people) {
 		ModelAndView mav = new ModelAndView("pages/makecart");
 		User user = (User)session.getAttribute("sUserId");
-		Booking book = null;
+		Booking book = (Booking)session.getAttribute("book");	// 기존 예약이 있으면 가져옴
 		
-		if(session.getAttribute("book") != null) {	// 예약이 이미 존재하는 경우(뒤로가기 등)
-			book = (Booking)session.getAttribute("book");
-		} else {									// 처음 시도해서 예약이 없는 경우
+		if(startDate != null) {	// 정상적인 요청시 예약 생성
 			book = new Booking();
 			book.setCheck_in(startDate, startTime);
 			book.setCheck_out(endDate, endTime);
@@ -225,11 +223,8 @@ public class BookingController {
 			book.setRoom_no(room_no);
 			book.setState("uncharge");
 		}
-				
-		// login check
-		// @UserLoginCheck 을 사용하지 않은 이유는
-		// 로그인 없이 요청하는 경우 먼저 요청한 예약을 저장해두기 위해서이다.
-		if(user == null) {
+		
+		if(user == null) {		// 로그인이 안되었을시
 			session.setAttribute("book", book);
 			mav.setViewName("redirect:/signin");
 			return mav;
@@ -237,7 +232,7 @@ public class BookingController {
 			book.setUser_no(user.getUser_no());
 		}
 		
-		// check a uncharge booking
+		// 메인페이지에서 예약 신청시 or 로그인시 처리해야 할 부분인거같음
 		List<Booking> books = bookingService.searchByUserState(user, "uncharge");
 		for(Booking item : books) {
 			bookingService.removeBook(item);
@@ -271,12 +266,31 @@ public class BookingController {
 			@RequestParam("people") String peoples, @RequestParam("point") String point) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
+		Integer book_no = (Integer)session.getAttribute("book_no");
+
 		// validation check
 		int people = Integer.parseInt(peoples);
 		if(people < 1 || people > 6) {
 			return "?error=people";
 		}
-
+		
+		// 뒤로가기 등으로 세션에서 예약이 제거된 경우
+		if(book == null) {
+			book = bookingService.searchByBookNo(book_no);
+			session.setAttribute("book", book);
+		} else {
+			if(bookingService.allowsBooking(book) == false) {
+				return "?error=date";
+			}
+			// insert DB
+			book.setPeople(people);
+			String result = bookingService.insertBook(book);
+			if(result.equals("duplicate")) {
+				return "?booking=duplicate";
+			}
+		}
+		
+		
 		int usePoint = Integer.parseInt(point);
 		int charge = bookingService.getAmount(book);
 		if(usePoint > user.getPoints() || usePoint < 0) {
@@ -285,16 +299,11 @@ public class BookingController {
 		if(charge > 0 && charge < usePoint) {
 			return "?error=usePoint";
 		}
-		if(bookingService.allowsBooking(book) == false) {
-			return "?error=date";
-		}
 		// point로 전액 결제 시 결제요금 청구 안함.
-		
-		// insert DB
-		book.setPeople(people);
-		String result = bookingService.insertBook(book);
-		if(result.equals("duplicate")) {
-			return "?booking=duplicate";
+		if(charge == usePoint) {
+			paymentService.insertByPoint(book, usePoint);
+			bookingService.changeState(book, "wait");
+			return "/booking/check";
 		}
 		
 		// session registry
@@ -304,6 +313,8 @@ public class BookingController {
 		// 결제 페이지(선택페이지)로 이동
 		return "/payment/kakaopay";
 	}
+	
+	
 	// booking shop page - 결제 버튼클릭시   (다날 페이)
 	@UserLoginCheck
 	@ResponseBody

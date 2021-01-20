@@ -121,7 +121,7 @@ public class PaymentController {
 		}
 		session.setAttribute("tid", map.get("tid"));
 		session.setAttribute("book_no", book.getBook_no());
-		session.removeAttribute("book");
+		session.removeAttribute("amount");
 		return "redirect:" + map.get("url");
 	}
 
@@ -132,7 +132,6 @@ public class PaymentController {
 		User user = (User)session.getAttribute("sUserId");
 		String tid = (String)session.getAttribute("tid");
 		int book_no = (int)session.getAttribute("book_no");
-		int amount = (int)session.getAttribute("amount");
 		int usePoint = (int)session.getAttribute("usePoint");
 		String pg_token = request.getParameter("pg_token");
 		
@@ -148,7 +147,7 @@ public class PaymentController {
 
 		// 결제 정보를 저장한다.
 		Payment payment = new Payment();
-		payment.setAmount(amount-usePoint);
+		payment.setAmount(Integer.parseInt(payInfo.get("amount")));
 		payment.setPoint(usePoint);
 		payment.setPg_name("KakaoPay");
 		payment.setTid(tid);
@@ -163,7 +162,6 @@ public class PaymentController {
 		session.removeAttribute("tid");
 		session.removeAttribute("book_no");
 		session.removeAttribute("usePoint");
-		session.removeAttribute("amount");
 		
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/complete";
