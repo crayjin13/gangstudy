@@ -263,8 +263,30 @@
 // # sourceMappingURL=javascript.js.map
 
 function modify(book_no) {
-	window.location.href = '/booking/modify' + '?book_no=' + book_no
+	book_no: book_no
+	var modifycheck = confirm('예약을 수정하시겠습니까?');
+	if (modifycheck) {    
+		$.get("/booking/danalCheck/", {
+			book_no : book_no
+		},function(jqXHR) {
+			// always          
+		},'text' /* xml, text, script, html */)
+		.done(function(res) {        
+			if(res=="true"){
+				alert("죄송합니다. " +
+					"현재 다날 결제건은 수정이 불가합니다." +
+					" 취소 후 재 예약 부탁드립니다.");
+				
+			}else {     
+			window.location.href = '/booking/modify' + '?book_no=' + book_no;
+			}
+		})     
+		
+		
+
+	}
 }
+
 
 function cancel(book_no) {
 	if(confirm('예약을 취소하시겠습니까?')) {

@@ -106,11 +106,23 @@ public class BookingController {
 		} else {
 			return "ok";
 		}
+	}    
+
+    
+	@ResponseBody
+	@RequestMapping(value = "danalCheck", method = RequestMethod.GET)
+	public String danalCheck(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+		
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = bookingService.searchByBookNo(book_no);
+		Payment payment = paymentService.selectPayment(book);
+		if(payment.getPg_name().equals("KakaoPay")) { 
+			return "false";
+		}else {
+			return "true";         
+		}
+		
 	}
-	
-	
-	
-	
 	
 
 	// bookingList page - 예약 목록

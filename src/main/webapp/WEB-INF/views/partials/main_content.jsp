@@ -2,16 +2,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-  img { display : block;
+img {
+	display: block;
+	margin: auto;
+}
 
-                    margin : auto;}
-
-
-@font-face { 
-    font-family: 'Cafe24Oneprettynight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 </style>
 
 <!--begin::Entry-->
@@ -28,32 +31,24 @@
 
 
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<!--begin::Card-->
 				<div class="card card-custom gutter-b example example-compact">
 					<div class="card-header">
-						<h1 class="card-title">
-							<!-- 글쓰고 싶으면 여기에 -->
-							시범운영중이며 2시간 무료 이용가능합니다. <br>
-							홈페이지 리뉴얼중입니다. <br>
-							예약은 하단의 "카톡으로 문의하기"를 클릭하시면 도와드리겠습니다.
-						</h1>   
-							     
-     
-					
+						<img
+							src="${pageContext.request.contextPath}/resources/images/freeevent.PNG"
+							style="max-width: 60%; height: auto;">
 
-							<img src="${pageContext.request.contextPath}/resources/images/freeevent.PNG"   style="max-width:60%; height:auto;" >
 
-					
- 
 
 					</div>
-					<!--begin::Form-->    
-					<form class="form" id="bookingForm" action="${pageContext.request.contextPath}/booking/make">
+					<!--begin::Form-->
+					<form class="form" id="bookingForm"
+						action="${pageContext.request.contextPath}/booking/make">
 						<div class="card-body">
 							<div class="card-footer">
 								<div class="form-group form-group-last">
-									<%--<div class="alert alert-custom alert-default" role="alert">
+									<div class="alert alert-custom alert-default" role="alert">
 										<div class="alert-icon">
 											<span class="svg-icon svg-icon-primary svg-icon-xl"> <!--begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/Tools/Compass.svg-->
 												<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -74,37 +69,51 @@
 											</span>
 											</span>
 										</div>
-										 <div class="alert-text">
-											갱스터디는
-											<code>24시간 언제든지</code>
-											원하는 시간에 자유롭게 이용할 수 있는 공간입니다.
-											<code>스터디, 사무 , 모임, 강의 녹화 </code>
-											등 원하시는 시간을 충분히 가질 수 있도록 도와드리겠습니다.
+										<div class="alert-text" style ="text-align: center "> 
+										
+        
+  
+											<h1 class="card-title cafe24">
+												<b> 시범 운영중이며 <code>2시간 무료</code> 이용 가능합니다. <code><br>  
+														홈페이지 리뉴얼</code>중입니다.<br> <code>예약</code>은 하단의 <code>"카톡으로
+														문의하기"</code>를 클릭 하시면 도와드리겠습니다.
+												</b>
+											</h1>
+										<%-- 	<br> 갱스터디는
+											<code>24시간 </code>
+											언제든지 원하는 시간에 자유롭게 이용할 수 있는 공간입니다.
+											<code>스터디, 사무 , 모임 </code>
+											등 원하시는 시간을 충분히 가질 수 있도록 도와드리겠습니다. <br>
+ --%> </div>
 
-										</div> --%>
-										</div>
+
+
+
+
+
+									</div>
 								</div>
-								
+
 								<div class="form-group cafe24">
-									<label> 시작 시간</label>
-										<input class="form-control" type="text" id="start-date-input" name="startDateInput" readonly
-										value = ${startDate}>
-										<select class="form-control" id="start-time-input" name="startTimeInput" form="bookingForm"
-										time = "${startTime}">
-											<option value="">날짜를 선택해주세요.</option>
-										</select>
+									<label> 시작 시간</label> <input class="form-control" type="text"
+										id="start-date-input" name="startDateInput" readonly
+										value=${startDate}> <select class="form-control"
+										id="start-time-input" name="startTimeInput" form="bookingForm"
+										time="${startTime}">
+										<option value="">날짜를 선택해주세요.</option>
+									</select>
 								</div>
-								
+
 								<div class="form-group cafe24">
-									<label> 종료 시간</label>
-										<input class="form-control" type="text" id="end-date-input" name="endDateInput" readonly
-										value = ${endDate}>
-										<select class="form-control" id="end-time-input" name="endTimeInput" form="bookingForm"
-										time = "${endTime}">
-											<option value="">날짜를 선택해주세요.</option>
-										</select>
+									<label> 종료 시간</label> <input class="form-control" type="text"
+										id="end-date-input" name="endDateInput" readonly
+										value=${endDate}> <select class="form-control"
+										id="end-time-input" name="endTimeInput" form="bookingForm"
+										time="${endTime}">
+										<option value="">날짜를 선택해주세요.</option>
+									</select>
 								</div>
-								
+
 								<div class="form-group cafe24">
 									<label for="exampleTextarea">인원수</label> <select
 										class="form-control" id="people-input" name="people"
@@ -112,42 +121,43 @@
 										<option value="">인원을 선택해주세요.</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
-										<option value="3">3</option>  
+										<option value="3">3</option>
 										<option value="4">4</option>
 										<option value="5">5</option>
 										<option value="6">6</option>
 									</select>
 								</div>
-								
+
 								<div class="form-group">
 
 
 									<button type="button"
-										class="btn btn-outline-primary btn-lg btn-block mr-2 cafe24 " id="bookingButton">예약
-										하기</button>
+										class="btn btn-outline-primary btn-lg btn-block mr-2 cafe24 "
+										id="bookingButton">예약 하기</button>
 								</div>
 								<div class="form-group">
 
 
 									<input type="button"
-										class="btn btn-outline-secondary btn-lg btn-block mr-2 cafe24" onClick="location.href='/notice'" value="이용안내"/>
-								    
+										class="btn btn-outline-secondary btn-lg btn-block mr-2 cafe24"
+										onClick="location.href='/notice'" value="이용안내" />
+
 								</div>
 
-								<div class="form-group cafe24">  
+								<div class="form-group cafe24">
 
 									<button type="button"
 										onclick="location.href='http://pf.kakao.com/_xbgCJxb'"
 										class="btn btn-outline-warning btn-lg btn-block mr-2 ">
 										카톡으로 문의하기</button>
-								</div>  
+								</div>
 								<!--begin: Code-->
 								<div class="example-code mt-10">
 									<div class="example-highlight"></div>
 								</div>
 								<!--end: Code-->
 							</div>
-						</form>
+					</form>
 					<!--end::Form-->
 				</div>
 				<!--end::Card-->
