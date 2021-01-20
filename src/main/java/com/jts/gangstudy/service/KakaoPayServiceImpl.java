@@ -136,25 +136,25 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		        
 		        System.out.println(json);
 		        /*
-		        String sid = jsonObject.getString("sid");							// 정기결제용 ID, 정기결제 CID로 단건결제 요청 시 발급
-		        String tid = jsonObject.getString("tid");								// 결제 고유 번호
-		        */
+		        String sid = jsonObject.getString("sid");									// 정기결제용 ID, 정기결제 CID로 단건결제 요청 시 발급
+		        String tid = jsonObject.getString("tid");									// 결제 고유 번호
 
-		        String aid = jsonObject.getString("aid");								// 요청 고유 번호
-		        String cid = jsonObject.getString("cid");								// 가맹점 코드
-		        String partner_order_id = jsonObject.getString("partner_order_id");		// 가맹점 주문번호, 최대 100자
-		        String partner_user_id = jsonObject.getString("partner_user_id");		// 가맹점 회원 id, 최대 100자
-		        String payment_method_type = jsonObject.getString("payment_method_type");		// 결제 수단, CARD 또는 MONEY 중 하나
+		        String aid = jsonObject.getString("aid");									// 요청 고유 번호
+		        String cid = jsonObject.getString("cid");									// 가맹점 코드
+		        String partner_order_id = jsonObject.getString("partner_order_id");			// 가맹점 주문번호, 최대 100자
+		        String partner_user_id = jsonObject.getString("partner_user_id");			// 가맹점 회원 id, 최대 100자
+		        */
+		        String payment_method_type = jsonObject.getString("payment_method_type");	// 결제 수단, CARD 또는 MONEY 중 하나
 		        if(payment_method_type.equals("CARD")) {
-			        JSONObject card_info = jsonObject.getJSONObject("card_info");		// 결제 상세 정보, 결제수단이 카드일 경우만 포함
+			        JSONObject card_info = jsonObject.getJSONObject("card_info");			// 결제 상세 정보, 결제수단이 카드일 경우만 포함
 		        }
-		        JSONObject amount = jsonObject.getJSONObject("amount");				// 결제 금액 정보
-		        String item_name = jsonObject.getString("item_name");				// 상품 이름, 최대 100자
-//		        String item_code = jsonObject.getString("item_code");				// 상품 코드, 최대 100자
-		        int quantity = jsonObject.getInt("quantity");						// 상품 수량
-		        String created_at = jsonObject.getString("created_at");				// 결제 준비 요청 시각
-		        String approved_at = jsonObject.getString("approved_at");			// 결제 승인 시각
-//		        String payload = jsonObject.getString("payload");					// 결제 승인 요청에 대해 저장한 값, 요청 시 전달된 내용
+		        JSONObject amount = jsonObject.getJSONObject("amount");						// 결제 금액 정보
+		        String item_name = jsonObject.getString("item_name");						// 상품 이름, 최대 100자
+		        String item_code = jsonObject.getString("item_code");						// 상품 코드, 최대 100자
+		        int quantity = jsonObject.getInt("quantity");								// 상품 수량
+		        String created_at = jsonObject.getString("created_at");						// 결제 준비 요청 시각
+		        String approved_at = jsonObject.getString("approved_at");					// 결제 승인 시각
+//		        String payload = jsonObject.getString("payload");							// 결제 승인 요청에 대해 저장한 값, 요청 시 전달된 내용
 
 		        map.put("pay_type", payment_method_type.toLowerCase());
 		        map.put("amount", amount.toString());
