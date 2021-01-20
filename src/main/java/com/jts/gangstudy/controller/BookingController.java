@@ -365,7 +365,6 @@ public class BookingController {
 		// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
 		if(payment != null && payment.getState().equals("paid")) {
 			bookingService.changeState(book, "wait");
-			System.out.println("3차 페이매소드 ");
 			return "redirect:" + "/booking/check";
 		} else {
 			return "?booking=fail";
