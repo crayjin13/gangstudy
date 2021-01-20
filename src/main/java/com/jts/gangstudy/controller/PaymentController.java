@@ -70,7 +70,7 @@ public class PaymentController {
 		// 결제 취소 처리
 		Payment payment = paymentService.selectPayment(book);
 		if(payment.getState() != Payment.State.paid) {
-			return "결제 상태 오류";
+			return "결제 상태 오류(상태:" + payment.getState()+")";
 		}
 		String tid = payment.getTid();
 		Integer cancel_amount = payment.getAmount();

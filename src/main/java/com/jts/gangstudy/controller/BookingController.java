@@ -386,11 +386,11 @@ public class BookingController {
 		Payment payment = paymentService.selectPayment(book);
 		session.removeAttribute("book");
 		// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
-		if(payment != null && payment.getState().equals("paid")) {
+		if(payment != null && payment.getState() == Payment.State.paid) {
 			bookingService.changeState(book, Booking.State.wait);
 			return "redirect:" + "/booking/check";
 		} else {
-			return "?booking=fail";
+			return "redirect:" + "/?booking=fail";
 		}
 	}
 	 
