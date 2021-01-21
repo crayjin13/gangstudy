@@ -30,6 +30,9 @@ public interface UserService {
 
 	/*********************************************/
 	
+	String getPw(String id);
+	
+	
 	// 모든 유저 검색
 	public List<User> selectAll();
 	
