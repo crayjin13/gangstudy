@@ -160,6 +160,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 
 		        map.put("pay_type", payment_method_type.toLowerCase());
 		        map.put("amount", Integer.toString(total));
+		        map.put("book_no", item_code);
 		        
 		        return map;
 			}
