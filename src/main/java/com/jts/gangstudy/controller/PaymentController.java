@@ -80,11 +80,14 @@ public class PaymentController {
 			if (map == null) {
 				return "결제 취소 오류(카카오페이)";
 			}
-			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) {
+			if (map.get("status").equals("PART_CANCEL_PAYMENT") ||
+				map.get("status").equals("CANCEL_PAYMENT")) {
 				// 이전 결제 정보 취소 처리
 				paymentService.changeState(payment, Payment.State.cancelled);
 				// 기존 예약을 취소로 변경
 				bookingService.changeState(book, Booking.State.cancel);
+				// 사용된 포인트 반환
+				userService.plusPoints(user, payment.getPoint());
 				return cancelMessage;
 			}
 			System.out.println(" # 카카오페이 결제 환불 되지 않는 이유:  " + map.get("status"));
@@ -99,6 +102,8 @@ public class PaymentController {
 					paymentService.changeState(payment, Payment.State.cancelled);
 					// 기존 예약을 취소로 변경
 					bookingService.changeState(book, Booking.State.cancel);
+					// 사용된 포인트 반환
+					userService.plusPoints(user, payment.getPoint());
 					return cancelMessage;
 				}
 			}
@@ -129,8 +134,6 @@ public class PaymentController {
 			return "?ready=fail";
 		}
 		session.setAttribute("tid", map.get("tid"));
-		session.setAttribute("book_no", book.getBook_no());
-		session.removeAttribute("amount");
 		return "redirect:" + map.get("url");
 	}
 
@@ -140,19 +143,18 @@ public class PaymentController {
 	public String complete(HttpServletRequest request, HttpSession session) {
 		User user = (User)session.getAttribute("sUserId");
 		String tid = (String)session.getAttribute("tid");
-		int book_no = (int)session.getAttribute("book_no");
 		int usePoint = (int)session.getAttribute("usePoint");
 		String pg_token = request.getParameter("pg_token");
 		
-		Booking book = bookingService.searchByBookNo(book_no);
-		
-		// 대기중인 예약이 존재하지 않는 경우(
-		if(book == null) {
-			return "redirect:" + "/?payment=BookIsNull";
-		}
-		
 		// 결제 완료 요청
 		HashMap<String, String> payInfo = kakaoPayService.getPayInfo(tid, pg_token);
+		Booking book = bookingService.searchByBookNo(Integer.parseInt(payInfo.get("book_no")));
+		// 결제 완료 처리를 위한 예약이 없는 경우
+		if(book == null) {
+			System.err.println("#PaymentController::complete::kakaopay book_no(or book) missing error");
+			kakaoPayService.cancel(tid, payInfo.get("amount"));
+			return "redirect:" + "/?payment=BookIsNull";
+		}
 
 		// 결제 정보를 저장한다.
 		Payment payment = new Payment();
@@ -167,10 +169,9 @@ public class PaymentController {
 		
 		userService.minusPoints(user, usePoint);
 
-		session.setAttribute("book", book);
 		session.removeAttribute("tid");
-		session.removeAttribute("book_no");
 		session.removeAttribute("usePoint");
+		session.removeAttribute("amount");
 		
 		// 완료 페이지로 이동한다.
 		return "redirect:" + "/booking/complete";

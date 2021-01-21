@@ -268,7 +268,6 @@ public class BookingController {
 			@RequestParam("pg_name") String pg_name) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
-		Integer book_no = (Integer)session.getAttribute("book_no");
 
 		// validation check
 		int people = Integer.parseInt(peoples);
@@ -278,8 +277,7 @@ public class BookingController {
 		
 		// 뒤로가기 등으로 세션에서 예약이 제거된 경우
 		if(book == null) {
-			book = bookingService.searchByBookNo(book_no);
-			session.setAttribute("book", book);
+			return "?error=bookIsNull";
 		} else {
 			if(bookingService.allowsBooking(book) == false) {
 				return "?error=date";
