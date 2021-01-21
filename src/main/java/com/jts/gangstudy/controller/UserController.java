@@ -4,11 +4,13 @@ import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +38,7 @@ public class UserController {
 	Logger logger;
 
 	
-	
+	// 유저 정보 수정 페이지 (세션값으로 값 불러옴) 
 	@UserLoginCheck
 	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
 	public String edituser() {
@@ -49,7 +51,79 @@ public class UserController {
 		return "pages/remo-control";
 	}
 	
+	
+	
+	// Spring security  비밀번호 암호화
+	
+	 @Inject
+	    PasswordEncoder passwordEncoder;
+	  
+	// 회원가입
+	@ResponseBody
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String signUp(User user) throws Exception {
 
+		
+		
+		String encodePw = passwordEncoder.encode(user.getPw());
+		
+		user.setPw(encodePw);
+		
+		boolean newUser = userService.insertUser(user);
+		
+		
+		
+		if (newUser) {
+			newUser = true;       
+		} else {
+			newUser = false;
+		}
+		  
+		System.out.println(" # 비밀번호 암호화 후 회원 가입 성공여부  [ "+newUser+" ]" );
+
+		return newUser + "";
+	}
+	
+	
+	
+	/* 로그인 */
+	@ResponseBody
+	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
+			Model model, HttpServletRequest request) throws Exception {
+		String forwardPath = "";
+		// String a= request.getSession().getServletContext().getRealPath("/");
+		User user = userService.selectById(id);
+		// logger.info("프로젝트 경로 찾기" + a);
+		try {
+			if (passwordEncoder.matches(pw, user.getPw())) {
+				System.out.println(" # 암호화된 비밀번호와 회원이 입력한 자신의 비밀번호가 일치함을 확인  ");
+				
+				// 암호화시킨 비밀번호와 클라이언트가 적은 raw 비밀번호가 같을 시 세션에 값 저장해줌.
+				User signInuser = userService.signIn(id, user.getPw());
+			     
+				session.setAttribute("id", id);
+				session.setAttribute("name", user.getName());
+				session.setAttribute("sUserId", signInuser);
+				forwardPath = "true";
+
+			} else {
+
+				forwardPath = "false3";
+			}
+		} catch (UserNotFoundException e) {
+			forwardPath = "false1";
+			e.printStackTrace();
+		} catch (PasswordMismatchException e) {
+			forwardPath = "false2";
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "false";
+		}
+		return forwardPath;
+	}
+	
 	
 
 	// 비번찾기 페이지 이동 
@@ -152,44 +226,9 @@ public class UserController {
 		return newId + "";
 	}
 
-	/* 로그인 */
-	@ResponseBody
-	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String sign_in_action_post(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session,
-			Model model, HttpServletRequest request) throws Exception {
-		System.out.println(" 로그인 아이디 비번 값 받기  " + "id:" + id + " pw:" + pw);
-		String forwardPath = "";
-		// String a= request.getSession().getServletContext().getRealPath("/");
-		User user = userService.selectById(id);
-		// logger.info("프로젝트 경로 찾기" + a);
-
-		try {
-			User signInuser = userService.signIn(id, pw);
-			System.out.println();
-			if (signInuser != null) {
-				System.out.println(" 로 그 인 성 공");
-				session.setAttribute("id", id);
-				session.setAttribute("name", user.getName());
-
-				session.setAttribute("sUserId", signInuser);
-				forwardPath = "true";
-
-			} else {
-
-				forwardPath = "false3";
-			}
-		} catch (UserNotFoundException e) {
-			forwardPath = "false1";
-			e.printStackTrace();
-		} catch (PasswordMismatchException e) {
-			forwardPath = "false2";
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-			forwardPath = "false";
-		}
-		return forwardPath;
-	}
+	
+	
+	 
 	/*
 	 * if(user.getmRetire()=="off"){ System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
 	 * //forwardPath = 계정 활성화 창으로 포워딩 }
@@ -258,22 +297,6 @@ public class UserController {
 	 * 
 	 */
  
-	// 회원가입
-	@ResponseBody
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String signUp(User user) throws Exception {
-
-		System.out.println(user);
-		boolean newUser = userService.insertUser(user);
-
-		if (newUser) {
-			newUser = true;      
-		} else {
-			newUser = false;
-		}
-		System.out.println(newUser);
-
-		return newUser + "";
-	}
+	
 
 }

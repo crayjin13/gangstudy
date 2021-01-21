@@ -4,6 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 
+
+
+
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -22,12 +25,18 @@
 		<filter-name>deviceResolverRequestFilter</filter-name>
 		<filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
 	</filter>
+	
+    
+	
 	<!-- The definition of the Root Spring Container shared by all Servlets 
 		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml
+					/WEB-INF/spring/security-context.xml
+		</param-value>
 	</context-param>
+<!-- 스프링시큐리티 추가함. -->
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>

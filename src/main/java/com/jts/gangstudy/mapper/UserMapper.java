@@ -13,6 +13,11 @@ import com.jts.gangstudy.domain.User;
 @Mapper
 public interface UserMapper {
 	
+	//인코딩된 패스워드 불러오기 
+	@Select("SELECT pw FROM USER_TB WHERE id = #{id}")
+	public String getPw(@Param("id") String id);
+	
+	
 	// 모든 유저 정보
 	@Select("SELECT * FROM USER_TB WHERE id != #{id}")
 	public List<User> selectAll(@Param("id") String id);
