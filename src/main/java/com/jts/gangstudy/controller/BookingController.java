@@ -481,7 +481,7 @@ public class BookingController {
 			paymentService.changeState(oldPayment, Payment.State.cancelled);
 			
 			// 기존 결제로 예약-결제추가
-			bookingService.changeState(newBook, Booking.State.wait);
+			newBook.setState(Booking.State.wait);
 			String result = bookingService.insertBook(newBook);
 			if(result.equals("duplicate")) {
 				return "?booking=duplicate";
