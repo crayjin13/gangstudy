@@ -6,9 +6,10 @@ $(function() {
 		const pointUse = document.getElementById("kt_touchspin");
 		const people = document.getElementById("touchspin");
 
-		$.post("/booking/paybyDanal", {
+		$.post("/booking/make", {
 			people : people.value,
-			point : pointUse.value
+			point : pointUse.value,
+			pg_name : "Danal"
 		}, function(jqXHR) {
 			// always
 

@@ -20,7 +20,8 @@ $(document).ready(function() {
 document.getElementById("payments").addEventListener("click", function() {
 	$.post("/booking/make", {
         people : people.value,
-        point : pointUse.value
+        point : pointUse.value,
+		pg_name : "KakaoPay"
 	},function(jqXHR) {
 		// always
 	},'text' /* xml, text, script, html */)

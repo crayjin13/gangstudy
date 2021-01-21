@@ -263,7 +263,9 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "/make", method = RequestMethod.POST)
 	public String makeSubmit(HttpServletRequest request, HttpSession session,
-			@RequestParam("people") String peoples, @RequestParam("point") String point) {
+			@RequestParam("people") String peoples,
+			@RequestParam("point") String point,
+			@RequestParam("pg_name") String pg_name) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
 		Integer book_no = (Integer)session.getAttribute("book_no");
@@ -303,6 +305,7 @@ public class BookingController {
 		if(charge == usePoint) {
 			paymentService.payByPoint(book, usePoint);
 			bookingService.changeState(book, Booking.State.wait);
+			userService.minusPoints(user, usePoint);
 			return "/booking/check";
 		}
 		
@@ -311,70 +314,17 @@ public class BookingController {
 		session.setAttribute("usePoint", usePoint);
 		
 		// 결제 페이지(선택페이지)로 이동
-		return "/payment/kakaopay";
+		if(pg_name.equals(Payment.PGName.KakaoPay.toString())) {
+			return "/payment/kakaopay";
+		} else if(pg_name.equals(Payment.PGName.Danal.toString())) {
+			/* 아임포트 merchant_uid에 우리 부킹넘버를 보내서 관리하기 편하기위함. 
+			   return으로 보내서 비동기방식으로 paybyDanal 매소드를 호출하였을시 
+			   js에서 결과값  전역변수에 저장가능 */
+			return String.valueOf(book.getBook_no());
+		} else {
+			return "?error=pg_name";
+		}
 	}
-	
-	
-	// booking shop page - 결제 버튼클릭시   (다날 페이)
-	@UserLoginCheck
-	@ResponseBody
-	@RequestMapping(value = "/paybyDanal", method = RequestMethod.POST)
-	public String paybyDanal(HttpServletRequest request, HttpSession session,
-			@RequestParam("people") String peoples, @RequestParam("point") String point) {
-		User user = (User)session.getAttribute("sUserId");
-		Booking book = (Booking)session.getAttribute("book");
-		
-		
-		// validation check
-		int people = Integer.parseInt(peoples);
-		if(people < 1 || people > 6) {
-			return "?error=people";
-		}
-		
-		
-		
-		int usePoint = Integer.parseInt(point);
-		int charge = bookingService.getAmount(book);
-		if(usePoint > user.getPoints() || usePoint < 0) {
-			return "?error=point";
-		}
-		if(charge > 0 && charge < usePoint) {
-			return "?error=usePoint";
-		}
-		if(bookingService.allowsBooking(book) == false) {
-			return "?error=date";
-		}
-		// point로 전액 결제 시 결제요금 청구 안함.
-		
-		// insert DB
-		book.setPeople(people);
-		String result = bookingService.insertBook(book); 
-		if(result.equals("duplicate")) {
-			return "?booking=duplicate";
-		}
-		
-		
-		
-		/* 아임포트 merchant_uid에 우리 부킹넘버를 보내서 관리하기 편하기위함. 
-		   return으로 보내서 비동기방식으로 paybyDanal 매소드를 호출하였을시 
-		   js에서 결과값  전역변수에 저장가능 */
-		  int bookno = book.getBook_no(); 
-		  String bookNo = String.valueOf(bookno);
-		 
-		
-		// session registry
-		session.setAttribute("amount", charge);
-		session.setAttribute("usePoint", usePoint);
-		
-		// 결제 페이지(선택페이지)로 이동
-		System.out.println("1차 페이매소드 ");
-		return bookNo;
-	}
-
-	
-	
-	
-	 
 	
 	//  카카오페이 예약 완료 처리
 	@UserLoginCheck 
@@ -481,7 +431,7 @@ public class BookingController {
 			paymentService.changeState(oldPayment, Payment.State.cancelled);
 			
 			// 기존 결제로 예약-결제추가
-			bookingService.changeState(newBook, Booking.State.wait);
+			newBook.setState(Booking.State.wait);
 			String result = bookingService.insertBook(newBook);
 			if(result.equals("duplicate")) {
 				return "?booking=duplicate";
