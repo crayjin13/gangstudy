@@ -80,11 +80,14 @@ public class PaymentController {
 			if (map == null) {
 				return "결제 취소 오류(카카오페이)";
 			}
-			if (map.get("status").equals("PART_CANCEL_PAYMENT") || map.get("status").equals("CANCEL_PAYMENT")) {
+			if (map.get("status").equals("PART_CANCEL_PAYMENT") ||
+				map.get("status").equals("CANCEL_PAYMENT")) {
 				// 이전 결제 정보 취소 처리
 				paymentService.changeState(payment, Payment.State.cancelled);
 				// 기존 예약을 취소로 변경
 				bookingService.changeState(book, Booking.State.cancel);
+				// 사용된 포인트 반환
+				userService.plusPoints(user, payment.getPoint());
 				return cancelMessage;
 			}
 			System.out.println(" # 카카오페이 결제 환불 되지 않는 이유:  " + map.get("status"));
@@ -99,6 +102,8 @@ public class PaymentController {
 					paymentService.changeState(payment, Payment.State.cancelled);
 					// 기존 예약을 취소로 변경
 					bookingService.changeState(book, Booking.State.cancel);
+					// 사용된 포인트 반환
+					userService.plusPoints(user, payment.getPoint());
 					return cancelMessage;
 				}
 			}
