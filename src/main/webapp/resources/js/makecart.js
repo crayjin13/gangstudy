@@ -14,6 +14,7 @@ var msg = getParam("msg")
 
 $(document).ready(function() {
 	if(msg != "") {
+		msg = decodeURI(msg).replace('+', ' ')
 		alert(msg);
 	}
 })
