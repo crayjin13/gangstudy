@@ -11,17 +11,17 @@
 	</insert>
 	
 	<!-- 예약 삭제 -->
-	<select id="deleteBook" parameterType="int" resultType="com.jts.gangstudy.domain.Booking">
+	<delete id="deleteBook" parameterType="int">
 	  DELETE FROM BOOKING_TB
 	  WHERE BOOK_NO = #{book_no}
-	</select>
+	</delete>
 	
 	<!-- 상태 변경 -->
-	<select id="updateState" parameterType="hashmap">
+	<update id="updateState" parameterType="hashmap">
 	  UPDATE BOOKING_TB
 	  SET STATE = #{state} 
 	  WHERE BOOK_NO = #{book_no}
-	</select>
+	</update>
 	
 	<!-- 모든 예약 검색 -->
 	<select id="selectAll" resultType="com.jts.gangstudy.domain.Booking">  

@@ -7,9 +7,9 @@ import java.util.List;
 import com.jts.gangstudy.domain.Booking;
 
 public interface BookingMapper {
-	public void insertBook(Booking book);
-	public void deleteBook(int book_no);
-	public void updateState(HashMap<String, String> map);
+	public int insertBook(Booking book);
+	public int deleteBook(int book_no);
+	public int updateState(HashMap<String, String> map);
 
 	public List<Booking> selectAll();
 	public List<Booking> selectAlreadyBooked(HashMap<String, Object> map);

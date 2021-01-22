@@ -12,9 +12,9 @@ public interface BookingService {
 	// 예약 추가(sync)
 	public String insertBook(Booking book);
 	// 예약 제거
-	public void removeBook(Booking book);
+	public int removeBook(Booking book);
 	// 상태 변경
-	public void changeState(Booking book, Booking.State cancel);
+	public int changeState(Booking book, Booking.State cancel);
 
 	// 모든 예약 검색
 	public List<Booking> searchAll();
