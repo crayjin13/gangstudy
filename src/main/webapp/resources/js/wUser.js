@@ -72,7 +72,7 @@ $(function() {
 					alert('비밀번호를 다시 확인해주세요');
 					password_check();
 				} else if (textData.trim() == "false3") {
-					alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.');
+					alert('죄송합니다. 비활성화된 계정입니다.');
 
 				}
 			}
