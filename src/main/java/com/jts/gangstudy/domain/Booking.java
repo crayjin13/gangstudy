@@ -54,14 +54,16 @@ public class Booking {
 	}
 
 	public String toString() {
-		return "book_no:"+this.book_no+" , " + 
-				"user_no:"+this.user_no+" , " + 
-				"room_no:"+this.room_no+" , " + 
-				"check_in:"+this.check_in+" , " + 
-				"check_out:"+this.check_out+" , " + 
-				"people:"+this.people+" , " + 
-				"state:"+this.state+" , " + 
-				"request_dt:"+this.request_dt;
+		return "{" + '\n' +
+				"\tbook_no\t\t:\t"		+	this.book_no	+ "," + '\n' +
+				"\tuser_no\t\t:\t"		+	this.user_no	+ "," + '\n' +
+				"\troom_no\t\t:\t"		+	this.room_no	+ "," + '\n' +
+				"\tcheck_in\t:\t"	+	this.check_in	+ "," + '\n' +
+				"\tcheck_out\t:\t"	+	this.check_out	+ "," + '\n' +
+				"\tpeople\t\t:\t"		+	this.people		+ "," + '\n' +
+				"\tstate\t\t:\t"		+	this.state		+ "," + '\n' +
+				"\trequest_dt\t:\t" 	+	this.request_dt	+ "," + '\n' +
+				"}";
 	}
 	
 	public void setUser_no(int user_no) {
