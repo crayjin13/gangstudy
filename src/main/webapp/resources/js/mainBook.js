@@ -39,6 +39,16 @@ var endPicker = getPikaday(endDateInput)
 
 
 bookingButton.addEventListener("click", function() {
+	$.ajax({
+		url : "/booking/remove_uncharge",
+		type : "GET",
+		success : function() {
+			console.log("ajax(remove_uncharge) success")
+		},
+		error : function(){
+			console.log("ajax(remove_uncharge) error")
+		}
+	})
 	validationCheck(startDateInput.value, startTimeInput.value, endDateInput.value, endTimeInput.value, people.value, bookingForm)
 })
 

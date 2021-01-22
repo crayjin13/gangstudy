@@ -44,18 +44,18 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 예약 제거
 	@Override
-	public void removeBook(Booking book) {
-		mapper.deleteBook(book.getBook_no());
+	public int removeBook(Booking book) {
+		return mapper.deleteBook(book.getBook_no());
 	}
 
 	// 상태 변경
 	@Override
-	public void changeState(Booking book, Booking.State state) {
+	public int changeState(Booking book, Booking.State state) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("book_no", Integer.toString(book.getBook_no()));
 		map.put("state", state.toString());
 		
-		mapper.updateState(map);
+		return mapper.updateState(map);
 	}
 	
 	// 모든 예약 검색
