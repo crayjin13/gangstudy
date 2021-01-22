@@ -66,6 +66,13 @@ function requestChange() {
 			        point : pointUse.value
 				},
 		success : function(url) {
+			if(url == '/booking/check') {
+				alert('추가된 금액이 없어 결제없이 변경됩니다.')
+			} else if(url == '/payment/cancelAndBooking') {
+				alert('추가 결제하기')
+			} else if(url == '/payment/cancelAndChange') {
+				alert(cancelAmount.textContent + '원 취소 후 ' + repayAmount.textContent + '원 결제하기')
+			}
 			window.location.href = url;
 		},
 		error:function(request,status,error){
