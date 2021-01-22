@@ -93,6 +93,23 @@ public class BookingController {
 		return times;
 	}
 	
+	// makeBook 요청 시 요청한 user의 uncharge 상태 예약 모두 제거
+	@ResponseBody
+	@RequestMapping(value="/remove_uncharge", method = RequestMethod.GET)
+	public void removeUnchargeBooks(HttpServletRequest request, HttpSession session) {
+		User user = (User)session.getAttribute("sUserId");
+		if(user==null) return;
+		List<Booking> books = bookingService.searchByUserState(user, "uncharge");
+		for(Booking book : books) {
+			int result = bookingService.removeBook(book);
+			if(result==0) {
+				System.err.println("#BookingController::removeUnchargeBooks:: remove fail");
+				System.err.println("#BookingController::removeUnchargeBooks:: book : " + book);
+				System.err.println("#BookingController::removeUnchargeBooks:: user_no : " + user.getUser_no());
+			}
+		}
+	}
+	
 	// 예약 취소가 가능한 조건인지 확인
 	@ResponseBody
 	@RequestMapping(value = "/cancelCheck", method = RequestMethod.GET)
@@ -230,12 +247,6 @@ public class BookingController {
 			return mav;
 		} else {
 			book.setUser_no(user.getUser_no());
-		}
-		
-		// 메인페이지에서 예약 신청시 or 로그인시 처리해야 할 부분인거같음
-		List<Booking> books = bookingService.searchByUserState(user, "uncharge");
-		for(Booking item : books) {
-			bookingService.removeBook(item);
 		}
 		
 		// mav add
