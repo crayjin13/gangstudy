@@ -157,5 +157,11 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return userMapper.getUserByno(user_no);
 	}
+
+	@Override
+	public String getPw(String id) {
+		// 암호화된 비번 불러와서 디코딩때 비교하기위함 
+		return userMapper.getPw(id);
+	}
 	
 }

@@ -25,6 +25,11 @@ public interface UserDao {
 
 	/*****************************************************/
 	
+	//인코딩된 패스워드 불러오기 
+	String getPw(String id);
+	
+	
+	
 	// 블랙고객 
 	
 	public List<User>blackList();

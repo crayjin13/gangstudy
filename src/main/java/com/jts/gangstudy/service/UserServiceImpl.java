@@ -216,6 +216,16 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public String getPw(String id) {
+		// TODO Auto-generated method stub
+		return userDao.getPw(id);
+	}
+
+
+
+
+
 	
 
 	
