@@ -71,9 +71,9 @@ $(function() {
 				} else if (textData.trim() == "false2") {
 					alert('비밀번호를 다시 확인해주세요');
 					password_check();
-				} else if (textData.trim() == "false3") {
-					alert('죄송합니다. 비활성화된 계정입니다.');
-
+				} else if (textData.trim() == "false") {
+					alert('정보를 다시 확인해 주세요');
+  
 				}
 			}
 		});
@@ -82,13 +82,9 @@ $(function() {
 	// ******* 회원 정보 수정 ********************
 	$("#modifybtn").click(function() {
 		var asArray = $('#kt_form').serialize();
-		var pw = $("#pw").val();
-		var pw2 = $("#pw2").val();
-		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
 		
-		if(pw==pw2){
-			console.log("값 비교"+pw,+pw2);
-			
+		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
+
 			$.ajax({    
 				url : 'modifyInfo',
 				method : 'POST',
@@ -96,23 +92,25 @@ $(function() {
 				dataType : 'text',
 				success : function(textData) {
 					console.log("succes 타는지");
-					if(pw===pw2){
-						console.log("if문 true 일떄 ");   
+					if("signin"){
+						console.log("정보수정 성공했음 ");   
 						alert('수정 되었습니다. 다시 로그인 해주세요');
 						location.href = '/signin';
 						
+					}else if("pwfalse") {
+						return;
+						alert(" 비밀번호가 일치하지 않습니다. ");
 					}else {
 						return;
-						alert("오류가 있습니다.");
+						alert(" 수정에 실패하였습니다. ");  
 					}
+					
+					
+					
 					
 				}
 			});
 			
-		}else {
-			console.log("틀린 값 비교"+pw,+pw2);
-			alert("비밀번호를 다시 체크해주세요");
-		}
 		});
 
 	 

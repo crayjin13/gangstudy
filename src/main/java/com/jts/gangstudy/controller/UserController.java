@@ -109,7 +109,7 @@ public class UserController {
 
 			} else {
 
-				forwardPath = "false3";
+				forwardPath = "false2";
 			}
 		} catch (UserNotFoundException e) {
 			forwardPath = "false1";
@@ -195,21 +195,36 @@ public class UserController {
 	public String modifyInfo(@RequestParam("name") String name, @RequestParam("phone") String phone,
 			@RequestParam(value = "id") String id, @RequestParam("pw") String pw, @RequestParam("email") String email,
 			@RequestParam("bod") Date bod, @RequestParam("gender") String gender, HttpSession session,
-			HttpServletRequest request) {
-		boolean updateUser = userService.updateUser(new User(name, phone, id, pw, email, bod, gender));
+			HttpServletRequest request) throws Exception {
 
-		System.out.println(updateUser);
+		User user = userService.selectById(id);  
+		// logger.info("프로젝트 경로 찾기" + a);
 
-		if (updateUser) {
-			System.out.println("유저 정보 수정 성공.");
-			updateUser = true;
+		if (passwordEncoder.matches(pw, user.getPw())) {
+			System.out.println(" # 회원이 입력한 비밀번호와 디코딩시킨 비밀번호 매치여부 = true ");
+
+			String encodedPw = passwordEncoder.encode(pw);
+			boolean updateUser = userService.updateUser(new User(name, phone, id, encodedPw, email, bod, gender));
+     
+			System.out.println(updateUser);  
+
+			if (updateUser) {
+				System.out.println("유저 정보 수정 성공.");
+				updateUser = true;
+				session.invalidate();
+				return updateUser + "signin";
+				
+			} else {
+				System.out.println("유저 정보 수정 안됨.");
+				updateUser = false;
+				return "false";
+			}
+			
 		} else {
-			System.out.println("유저 정보 수정 안됨.");
-			updateUser = false;
-		}
-		session.invalidate();
 
-		return updateUser + "signin";
+			return"pwfalse";
+		}
+
 	}
 
 	/* 아이디 중복 체크 */
