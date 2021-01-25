@@ -73,7 +73,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	@Scheduled(cron="0 */1 * * * *" )
 	public void cronSocketConnect() {
-		sendMessage("keep alive");
+//		sendMessage("keep alive");
 	}
 	@Override
 	public void sendMessage(String message) {
