@@ -9,7 +9,7 @@ var testClientWebSocket = {
         };
         webSocket.onmessage = function(evt) {
         	// 서버로 부터 메시지 수신
-	    	clientWebSocket.handleMessage(evt.data);
+	    	testClientWebSocket.handleMessage(evt.data);
         };
 
         webSocket.onerror = function(evt) {
