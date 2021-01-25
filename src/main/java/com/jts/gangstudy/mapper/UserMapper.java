@@ -41,9 +41,9 @@ public interface UserMapper {
 	public User find_id(@Param("email") String email, @Param("name") String name);
 
 
-	// 비번찾기  
-	@Select("SELECT pw FROM USER_TB WHERE id=#{id} and email=#{email}")
-	public User findPw(@Param("id") String id, @Param("email") String email);
+	// 비번찾기( 정보입력후 비번 변경 )       
+	@Select("SELECT user_no FROM USER_TB WHERE id=#{id} and email=#{email} and phone=#{phone}")   
+	public User findPw(@Param("id") String id, @Param("email") String email, @Param("phone") String phone);
 
 	//아이디로 찾기
 	@Select("SELECT user_no, name, phone, id, pw, email, bod, gender, rate, points, note FROM USER_TB WHERE id=#{id}")
@@ -55,8 +55,8 @@ public interface UserMapper {
 	
          
 	// 회원탈퇴
-	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#' WHERE id=#{id} and pw=#{pw}")
-	public boolean delete(@Param("id") String id, @Param("pw") String pw);
+	@Update("UPDATE USER_TB SET name='#',phone='#', id='#', pw='#', email='#' WHERE id=#{id} and email=#{email}")
+	public boolean delete(@Param("id") String id , @Param("email")String email);
 
 	// 유저수정
 	@Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender} WHERE id=#{id}")

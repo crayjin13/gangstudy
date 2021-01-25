@@ -137,56 +137,61 @@ public class UserController {
 	/* 비밀번호 찾기  */
 	@ResponseBody
 	@RequestMapping(value = "findPw_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email) throws Exception {
-		User findPw = userService.findPw(id, email);
-
+	public String findPw(@RequestParam("id") String id, @RequestParam("email") String email, @RequestParam("phone") String phone, @RequestParam("password") String password ) throws Exception {
+	
+		if(password == null) {
+			return "pwnull";
+		}else {
+		
+		
+		User findPw = userService.findPw(id, email, phone);  
 		if (findPw != null) {
-			System.out.println("## 회원의 비밀번호는:" + findPw.getPw() + "입니다.");
-			String pw = findPw.getPw();
-			return pw;
+			String newPw = passwordEncoder.encode(password);
+			boolean updatePw = userService.changePw(id, newPw);
+			if(updatePw) {
+				return "good";
+				
+			}
+			return "fail";
+		
+			     
 		}
-		return "";
+		return "false";
+		}
 	}
 
 	// 회원 탈퇴
 	@ResponseBody
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public  boolean deleteUser(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session)
-			throws Exception {
+	public boolean deleteUser(@RequestParam("id") String id, @RequestParam("Dpw") String Dpw,
+			@RequestParam("email") String email, HttpSession session) throws Exception {
 
-	   
+		User user = userService.selectById(id);
 
-		boolean delete = userService.deleteUser(id, pw);
-		if (delete) {    
-			System.out.println("유저 탈퇴 성공");
-			delete = true;
-			session.invalidate();    
-		} else {
-			System.out.println("탈퇴 실패");
-			delete = false;
+		if (user == null) {
+			System.out.println("아이디 Null ");
+			return false;
 		}
-		System.out.println("컨트롤러 타는지 "); 
-	   
 
-		return delete;
+		if (passwordEncoder.matches(Dpw, user.getPw())) {
+			System.out.println("탈퇴전 비번 매치 확인됨 ");
+
+			boolean delete = userService.deleteUser(id, email);
+			System.out.println(delete);
+			if (delete) {
+				System.out.println("유저 탈퇴 성공");
+				session.invalidate();
+				return true;
+			} else {
+				System.out.println("탈퇴 실패");
+				return false;
+			}
+		} else {
+			return false;
+		}
 
 	}
 
-	/* 비밀번호 일치 여부 체크 유저 정보 수정할때 ㄴㄴ 지금안쓰고있음 (js로 비번같은지 체크하는방식으로 하고있음) */
-	@UserLoginCheck
-	@ResponseBody
-	@RequestMapping(value = "/pw_Check", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
-	public String retirePwCheck(@RequestParam(value = "pw") String pw) {
-		boolean truePw = userService.pwMatch(pw);
-		if (truePw) {
-			System.out.println("## 비밀번호 일치 여부:" + truePw);
-			truePw = true;
-		} else {
-			System.out.println("## 비밀번호 불일치:" + truePw);
-
-		}
-		return truePw + "";
-	}
 
 	// 유저 정보 수정
 	@UserLoginCheck

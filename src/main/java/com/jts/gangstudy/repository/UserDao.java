@@ -71,13 +71,13 @@ public interface UserDao {
 	boolean pwMatch(String pw);
 
 	// 유저탈퇴
-	boolean deleteUser(String id, String pw);
+	boolean deleteUser(String id, String email);
 
 	// 아이디찾기 
 	User findId(String email, String name);
 
 	// 비번찾기
-	User findPw(String id, String email);
+	User findPw(String id, String email , String phone );
 
 	// 임시비번
 	User temporaryPw(String pw, String id);

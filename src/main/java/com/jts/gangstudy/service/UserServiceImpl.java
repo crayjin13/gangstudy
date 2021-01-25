@@ -125,9 +125,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteUser(String id, String pw) {
+	public boolean deleteUser(String id, String email) {
 		// TODO Auto-generated method stub
-		return userDao.deleteUser(id, pw);
+		return userDao.deleteUser(id, email);
 	}
 
 	@Override
@@ -137,9 +137,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findPw(String id, String email) {
+	public User findPw(String id, String email, String phone) {
 		// TODO Auto-generated method stub
-		return userDao.findPw(id, email);
+		return userDao.findPw(id, email, phone );
 	}
 
 	@Override
