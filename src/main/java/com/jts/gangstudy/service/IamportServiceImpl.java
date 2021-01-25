@@ -65,10 +65,10 @@ public class IamportServiceImpl implements IamportService {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}    
 // 토큰값 받음
 			JSONObject json = new JSONObject();
-			json.put("merchant_uid", tid);  // PaymentController.beready 안에 결제할떄 imp_uid 보내는지 merchant_uid 보내는지 확인할것. 
+			json.put("imp_uid", tid);  // PaymentController.beready 안에 결제할떄 imp_uid 보내는지 merchant_uid 보내는지 확인할것. 
 			json.put("amount", amount);
 			json.put("checksum", amount);
 			//checksum은 우리 서버가 기록하고 있는 환불가능금액과 아임포트 서버가 기록하고 있는 환불가능금액의 일치여부를 체크

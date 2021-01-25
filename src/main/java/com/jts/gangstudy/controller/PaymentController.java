@@ -178,7 +178,7 @@ public class PaymentController {
 	}
 	@UserLoginCheck 
 	@RequestMapping(value = "/beready", method = RequestMethod.GET)
-	public String beready( HttpServletRequest request, HttpSession session ) {
+	public String beready( HttpServletRequest request, HttpSession session ,@RequestParam("imp_uid") String imp_uid ) {
 		//,@RequestParam("imp_uid") String imp_uid  아임포트 고유번호 불러오고싶을때 파라미터에넣기 
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
@@ -193,18 +193,18 @@ public class PaymentController {
 			
 				return "redirect:" + "/?payment=timeout";
 			}
-		int bookno = book.getBook_no();
-		String book_No = String.valueOf(bookno);
-		
+		/* TID에 booking no 로 저장할때 
+		 * int bookno = book.getBook_no(); String book_No = String.valueOf(bookno);
+		 */
 		// 결제 완료 요청    
 		       
 		// 결제 정보를 저장한다.
 		Payment payment = new Payment();
-		payment.setAmount(amount-usePoint);
+		payment.setAmount(amount-usePoint);         
 		payment.setPoint(usePoint);
-		payment.setPg_name("Danal");
-	//	payment.setTid(imp_uid); // imp_uid로 할때 
-		payment.setTid(book_No); // merchant_uid 지금 cancel할때 merchant_uid로 불러오기해놓음. iamportServiceimpl.cancel
+		payment.setPg_name("Danal");  
+		payment.setTid(imp_uid); // imp_uid로 할때 
+		//payment.setTid(bookno); // merchant_uid 지금 cancel할때 merchant_uid로 불러오기해놓음. iamportServiceimpl.cancel
 		payment.setPay_type("card");
 		payment.setState("paid");
 		payment.setBook_no(book.getBook_no());
