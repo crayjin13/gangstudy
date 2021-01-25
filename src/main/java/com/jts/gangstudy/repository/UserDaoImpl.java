@@ -72,9 +72,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUser(String id, String pw) {
+	public boolean deleteUser(String id, String email) {
 		// TODO Auto-generated method stub
-		return userMapper.delete(id, pw);
+		return userMapper.delete(id, email);
 	}
 
 	@Override
@@ -82,12 +82,11 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return userMapper.find_id(email, name);
 	}
-
 	@Override
-	public User findPw(String id, String email) {
+	public User findPw(String id, String email, String phone) {
 		// TODO Auto-generated method stub
-		return userMapper.findPw(id, email);
-	}
+		return userMapper.findPw(id, email,phone);
+	}  
 
 	@Override
 	public User temporaryPw(String pw, String id) {

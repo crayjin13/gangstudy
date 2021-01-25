@@ -3,27 +3,27 @@ var twsUri = "ws://gangstudy.com/testsocket";
 var testWebSocket;
 var testClientWebSocket = {
 	openSocket : function() {
-        webSocket = new WebSocket(wsUri);
-        webSocket.onopen = function(evt) {
+        testWebSocket = new WebSocket(twsUri);
+        testWebSocket.onopen = function(evt) {
         	// Socket Open
         };
-        webSocket.onmessage = function(evt) {
+        testWebSocket.onmessage = function(evt) {
         	// 서버로 부터 메시지 수신
 	    	testClientWebSocket.handleMessage(evt.data);
         };
 
-        webSocket.onerror = function(evt) {
+        testWebSocket.onerror = function(evt) {
         	// Socket Error 발생
 			testlog.textContent = testlog.textContent + "websocket.onerror!"
         };
         
-        webSocket.onclose = function(event) {
+        testWebSocket.onclose = function(event) {
         	// Socket 닫힘
 	   };        
 	},
 	doSend : function(message) {
 		// 서버로 메시지 전송
-		webSocket.send(message);
+		testWebSocket.send(message);
 	},
 	handleMessage : function (data) {
 		// 메시지 처리
