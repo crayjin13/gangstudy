@@ -68,7 +68,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			try {
 				while(true) {
 					msg = bufferedReader.readLine();
-					if(msg == null) {
+					if(msg == null || msg.equals(null)) {
 						socket.close();
 						printWriter.close();
 						bufferedReader.close();
