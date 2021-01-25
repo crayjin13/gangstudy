@@ -51,12 +51,12 @@ License: You must have a valid license purchased only from themeforest(the above
 						</a>
 						<!--end::Logo--> 
 						<!--begin::Signin-->            
-						<div class="login-form">
+						<div class="login-form">     
 							<form class="form" id="kt_login_forgot_form" action="/" method="post">
 								<!--begin::Title-->
 								<div class="pb-5 pb-lg-15">
 									<h3 class="font-weight-bolder text-dark font-size-h2 cafe24 font-size-h1-lg"> 비밀번호 찾기</h3>
-									<p class="text-muted font-weight-bold cafe24 font-size-h4"> 아이디와 이메일을 적어주세요 </p>
+									<p class="text-muted font-weight-bold cafe24 font-size-h4"> 회원님의 정보와 새로운 비밀번호를 적어주세요. </p>
 								</div>
 								<!--end::Title-->
 								<!--begin::Form group-->
@@ -64,6 +64,11 @@ License: You must have a valid license purchased only from themeforest(the above
 									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="text" placeholder="id" id="id" name="id" autocomplete="off" />
 								</div>								<div class="form-group">
 									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="email" placeholder="Email" id="email" name="email" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="text" placeholder="phone" id="phone" name="phone" autocomplete="off" />								</div>
+								<div class="form-group">
+									<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="password" placeholder="새로 변경하고싶은 비밀번호를 적어주세요" id="password" name="password" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->

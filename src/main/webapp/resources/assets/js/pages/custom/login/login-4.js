@@ -228,7 +228,23 @@ var KTLogin = function() {
 									message: '이메일 형식에 맞게 적어주세요'
 								}
 							}
-						}
+						},
+		        phone: {
+		        	validators: { 
+		        		notEmpty: {
+		        			message: '휴대폰번호를 적어주세요 '
+		        		},
+		        		
+		        	}
+		        },
+		        password: {  
+		        	validators: {
+		        		notEmpty: {
+		        			message: '새로운 비밀번호를 적어주세요 '
+		        		},
+		        		
+		        	}
+		        },
 		            },
 		            plugins: {
 						trigger: new FormValidation.plugins.Trigger(),
