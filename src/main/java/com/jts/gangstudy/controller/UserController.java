@@ -199,6 +199,11 @@ public class UserController {
 
 		User user = userService.selectById(id);  
 		// logger.info("프로젝트 경로 찾기" + a);
+		
+		if(pw == null) {   
+			System.out.println("NULL 반환 "); 
+			return "null";
+		}
 
 		if (passwordEncoder.matches(pw, user.getPw())) {
 			System.out.println(" # 회원이 입력한 비밀번호와 디코딩시킨 비밀번호 매치여부 = true ");
@@ -206,17 +211,17 @@ public class UserController {
 			String encodedPw = passwordEncoder.encode(pw);
 			boolean updateUser = userService.updateUser(new User(name, phone, id, encodedPw, email, bod, gender));
      
-			System.out.println(updateUser);  
+			System.out.println(updateUser);       
 
 			if (updateUser) {
 				System.out.println("유저 정보 수정 성공.");
-				updateUser = true;
-				session.invalidate();
-				return updateUser + "signin";
 				
+				session.invalidate();
+				return "signin";
+				   
 			} else {
 				System.out.println("유저 정보 수정 안됨.");
-				updateUser = false;
+				
 				return "false";
 			}
 			
@@ -226,6 +231,46 @@ public class UserController {
 		}
 
 	}
+	
+	
+	/* 비번 수정  */
+	@UserLoginCheck
+	@ResponseBody
+	@RequestMapping(value = "/updatePw" , method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String updatePw(@RequestParam(value = "oldPw") String oldPw,@RequestParam(value = "newPw") String newPw, HttpSession session,
+			HttpServletRequest request) throws Exception {
+		
+		String id = (String)session.getAttribute("id");
+		
+		User user = userService.selectById(id); 
+		
+		if (passwordEncoder.matches(oldPw, user.getPw())) {
+			System.out.println("기존 비번이랑 같은지 체크 = TRUE --> 새로운 pw 받아서 인코딩후 업데이트 ");
+			
+			String pw = passwordEncoder.encode(newPw);
+			
+			boolean updatePw = userService.changePw(id, pw);
+			
+			if(updatePw) {
+				System.out.println("업뎃성공 ");
+				return "done";
+			}else {
+				System.out.println("업뎃실패 ");
+				return "fail";
+				
+			}  
+			
+		}else {
+			System.out.println("비번오류");
+			
+			return "pwUnmatch";
+		}
+		
+	
+		
+	}
+	
+	
 
 	/* 아이디 중복 체크 */
 	@ResponseBody

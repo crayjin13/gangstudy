@@ -226,6 +226,21 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public boolean changePw(String id, String pw) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.changePw(id, pw);
+	}
+
+
+
+
+
+
+
+
+
+
 	
 
 	

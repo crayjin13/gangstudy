@@ -40,8 +40,8 @@ public interface UserService {
 	User signIn(String id, String pw) throws Exception;
 	
 
-	
-	
+	//비밀번호 수정 
+	boolean changePw(String id, String pw) throws Exception;
 
 	// 회원가입
 	boolean insertUser(User user);
