@@ -13,7 +13,7 @@ import com.jts.gangstudy.domain.User;
 @Mapper
 public interface UserMapper {
 	
-	//인코딩된 패스워드 불러오기 
+	
 	@Select("SELECT pw FROM USER_TB WHERE id = #{id}")
 	public String getPw(@Param("id") String id);
 	
@@ -40,9 +40,6 @@ public interface UserMapper {
 	@Select("SELECT id FROM USER_TB WHERE email=#{email} and name=#{name}")
 	public User find_id(@Param("email") String email, @Param("name") String name);
 
-	// 비번 변경
-	@Update("UPDATE USER_TB SET pw=#{pw} where id=#{id}") 
-	public boolean update_pw(@Param("id") String id);
 
 	// 비번찾기  
 	@Select("SELECT pw FROM USER_TB WHERE id=#{id} and email=#{email}")
@@ -64,14 +61,21 @@ public interface UserMapper {
 	// 유저수정
 	@Update("UPDATE USER_TB SET name=#{name}, phone=#{phone},id=#{id},pw=#{pw},email=#{email},bod=#{bod},gender=#{gender} WHERE id=#{id}")
 	public boolean updateUser(User user);
-
-	// 중복체크
-	@Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
-	public boolean idDuplicateCheck(String id);
+  
+	//비번업뎃  
+	@Update("UPDATE USER_TB SET pw=#{pw} WHERE id=#{id}")
+	public boolean updatePw(@Param("id") String id, @Param("pw") String pw);
+	
 
 	// 비번매치
 	@Select("SELECT count(*) cnt FROM USER_TB WHERE pw=#{pw}")
 	public boolean pwMatch(@Param("pw") String pw);
+	
+	// 중복체크
+	@Select("SELECT count(*) cnt FROM USER_TB WHERE id=#{id}")
+	public boolean idDuplicateCheck(String id);
+
+
 
 	// 유저검색(관리자입장)
 	@Select("SELECT A.* FROM(SELECT user_no, name, phone, id, email, bod, gender, rate, points, note FROM USER_TB WHERE UPPER(ID) LIKE UPPER('%${search}%') or NAME LIKE '%${search}%' ORDER BY id ) A WHERE rownum <13")

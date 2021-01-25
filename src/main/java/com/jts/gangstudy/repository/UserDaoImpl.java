@@ -163,5 +163,15 @@ public class UserDaoImpl implements UserDao {
 		// 암호화된 비번 불러와서 디코딩때 비교하기위함 
 		return userMapper.getPw(id);
 	}
+
+	@Override
+	public boolean changePw(String id, String pw) {
+		// TODO Auto-generated method stub
+		return userMapper.updatePw(id, pw);
+	}
+
+	
+
+	
 	
 }

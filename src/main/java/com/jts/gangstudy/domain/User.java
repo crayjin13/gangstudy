@@ -24,6 +24,15 @@ public class User {
 	
 	
 	
+	public User(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
+	}
+
+
+
+
 	// 블랙리스트 뽑을때 
 	public User(Integer user_no, String name, String id, String email, Date bod, String gender, Float rate,
 			String note) {

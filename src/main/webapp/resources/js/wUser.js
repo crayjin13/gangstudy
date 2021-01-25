@@ -49,6 +49,42 @@ $(function() {
 			}
 		});
 	});
+	// ************** 비번 업뎃  *************     
+	$("#updatePw").click(function() {
+		var pws = $('#changePw').serialize();
+		console.log("값들어오는지 확인 " + pws);
+	
+		var newPw = $('#changePw [name="newPw"]').val();
+		var newPw2 = $('#changePw [name="newPw2"]').val();         
+
+		     
+		if(newPw == newPw2){
+	$.ajax({          
+			url : 'updatePw',
+			method : 'POST',              
+			data : pws,                     
+			dataType : 'text',             
+			success : function(textData) {
+				console.log(textData);
+				if (textData.trim() == "done") {
+					console.log("성공");
+					alert('비밀번호변경 성공');
+					location.href="/";
+					
+				} else if(textData.trim() == "pwUnmatch") {
+					console.log("비번변경실패 ");
+					alert('기존 비밀번호가 일치하지않습니다.');   
+				    
+				}else {
+					alert(' 변경에 실패하였습니다.')  
+				} 
+				
+			}
+		});
+		     }else {  
+		    	 alert('새 비밀번호가 서로 일치하는지 확인 해주세요.');
+		     }
+	});
 
 	// *********** 로그인 처리 *****************
 	$("button[name=loginbtn]").click(function() {
@@ -71,9 +107,9 @@ $(function() {
 				} else if (textData.trim() == "false2") {
 					alert('비밀번호를 다시 확인해주세요');
 					password_check();
-				} else if (textData.trim() == "false3") {
-					alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.');
-
+				} else if (textData.trim() == "false") {
+					alert('정보를 다시 확인해 주세요');
+  
 				}
 			}
 		});
@@ -81,38 +117,45 @@ $(function() {
 
 	// ******* 회원 정보 수정 ********************
 	$("#modifybtn").click(function() {
-		var asArray = $('#kt_form').serialize();
-		var pw = $("#pw").val();
-		var pw2 = $("#pw2").val();
+		var asArray = $('#kt_form').serialize();  
+	                
+		var pw = $('#kt_form [name="pw"]').val();    
+	            if(pw){         
 		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
-		
-		if(pw==pw2){
-			console.log("값 비교"+pw,+pw2);
-			
+
 			$.ajax({    
-				url : 'modifyInfo',
+				url : 'modifyInfo',   
 				method : 'POST',
 				data : asArray,
-				dataType : 'text',
-				success : function(textData) {
-					console.log("succes 타는지");
-					if(pw===pw2){
-						console.log("if문 true 일떄 ");   
+				dataType : 'text',  
+				success : function(textData) {              
+					console.log(textData);  
+					if(textData.trim() == "null"){      
+						
+						alert("기존 비밀번호를 입력해 주세요");
+					}else if(textData.trim() == "signin"){
+						console.log("정보수정 성공했음 ");   
 						alert('수정 되었습니다. 다시 로그인 해주세요');
 						location.href = '/signin';
 						
+					}else if(textData.trim() == "pwfalse") {
+						
+						alert(" 비밀번호가 일치하지 않습니다. ");
 					}else {
-						return;
-						alert("오류가 있습니다.");
+						
+						alert(" 수정에 실패하였습니다. ");  
 					}
 					
-				}
+					        
+					
+					
+				}     
 			});
+		
+	            }else {
+	            	alert("비밀번호를 입력해주세요.");
+	            }
 			
-		}else {
-			console.log("틀린 값 비교"+pw,+pw2);
-			alert("비밀번호를 다시 체크해주세요");
-		}
 		});
 
 	 

@@ -29,6 +29,9 @@ public interface UserDao {
 	String getPw(String id);
 	
 	
+	// 비번변경 
+	boolean changePw(String id , String pw);
+	
 	
 	// 블랙고객 
 	
