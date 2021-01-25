@@ -38,11 +38,13 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 				testBufferedReader = new BufferedReader(new InputStreamReader(testSocket.getInputStream()));
 			} catch (IOException e) {
 				e.printStackTrace();
+				System.out.println("###TestListenerThread connection fail");
+				return;
 			} finally {
 				
 			}
 
-			System.out.println("TestListenerThread start");
+			System.out.println("###TestListenerThread start");
 			String msg = null;
 			try {
 				while(true) {
