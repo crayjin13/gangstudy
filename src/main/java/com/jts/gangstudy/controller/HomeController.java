@@ -76,6 +76,11 @@ public class HomeController {
 		return "views/login";
 	}
 	
+	  
+	@RequestMapping(value = "/send", method = RequestMethod.POST)
+	public String send() {       
+		return "pages/send";         
+	}
 	
 	
 	

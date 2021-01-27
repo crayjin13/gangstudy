@@ -383,7 +383,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<button class="signbtn blueoff btn btn-light-warning "
 											data-value="52">
 											스터디<br>(STU OFF)
-										</button>
+										</button>   
 										<button class="signbtn blueoff btn btn-light-warning "
 											data-value="62">
 											URL주소<br>(URL OFF)
@@ -431,13 +431,14 @@ License: You must have a valid license purchased only from themeforest(the above
 											LED OFF<br>(OFF)
 										</button>
 										<br>
-										<button class="text redon btn btn-light-dark"
+										<button class="text redon btn btn-light-primary"
 											data-value="문자테스트">
-											문 자 테스트<br>(send)
+											문 자 테스트<br>(send)     
 										</button>
+									   
 										<button class="cancel redoff btn btn-light-dark"
 											data-value="문자예약취소">
-											문자 취소<br>(cancel)
+											문자 취소<br>(cancel)   
 										</button>
 										<button class="insidebtn redoff btn btn-light-dark"
 											data-value="62">
@@ -697,6 +698,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		src="${pageContext.request.contextPath}/resources/js/testWebSocket.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/wPurioText_API.js"></script>
 	<!--end::Page Scripts-->
 </body>
 <!--end::Body-->
