@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ import com.jts.gangstudy.repository.UserDao;
 public class AdminServiceImpl implements AdminService {
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
+	InetSocketAddress isa = new InetSocketAddress(ip, port);
 	
 	@Autowired
 	private UserDao userDao;
@@ -71,27 +73,59 @@ public class AdminServiceImpl implements AdminService {
 			}
 		}
 	}
-	@Scheduled(cron="0 */1 * * * *" )
+	
+	@Scheduled(cron="0 */10 * * * *" )
 	public void cronSocketConnect() {
-//		sendMessage("keep alive");
-	}
-	@Override
-	public void sendMessage(String message) {
-		System.out.println("["+ LocalDateTime.now() +"]socket send message : " + message);
-		
-		Socket socket = null;
-		InetSocketAddress isa = null;
 		PrintWriter printWriter = null;
 		BufferedReader bufferedReader = null;
+		Socket socket = new Socket();
 		
-		socket = new Socket();
-		isa = new InetSocketAddress(ip, port);
+		String message = "keep alive";
+		String index = Integer.toString(LocalDateTime.now().getMinute());
+		message = message.concat(index);
+		
+		String buffer;
+		
 		try {
 			socket.connect(isa);
+			socket.setSoTimeout(6000);
 			printWriter = new PrintWriter(socket.getOutputStream(), true);
+			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		
+			// send message
+			System.out.println("["+ LocalDateTime.now() +"]cronSocketConnect : " + message);
 			printWriter.println(message);
+			// read message
+			while((buffer = bufferedReader.readLine())!=null && !buffer.equals(message));
 			socket.close();
+			bufferedReader.close();
 			printWriter.close();
+			System.out.println("["+ LocalDateTime.now() +"]cornTrigger::close socket msg : " + message);
+		} catch (SocketTimeoutException t) {
+			System.out.println("["+ LocalDateTime.now() +"]cornTrigger::socket timeout exception msg : " + message);
+			System.err.println(t);
+			// 서버 무반응 문자 전송
+				
+		} catch (IOException e) {
+			System.out.println("["+ LocalDateTime.now() +"]cornTrigger::socket IO exception msg : " + message);
+			e.printStackTrace();
+			// 서버 에러 문자 전송
+			
+		}
+	}
+
+	@Override
+	public void sendMessage(String message) {
+		try {
+			Socket socket = new Socket();
+			socket.connect(isa);
+			PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
+			
+			// send message
+			System.out.println("["+ LocalDateTime.now() +"]AdminServiceImpl::sendMessage: " + message);
+			printWriter.println(message);
+			printWriter.close();
+			socket.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,4 +158,6 @@ public class AdminServiceImpl implements AdminService {
 	public List<RemoteLog> selectRemoteLogsByDate(LocalDate date) {
 		return remoteLogMapper.selectByDate(date);
 	}
+
+
 }
