@@ -33,7 +33,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 	
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
-	private InetSocketAddress isa = null;
+	private InetSocketAddress isa = new InetSocketAddress(ip, port);
 
 	private Socket socket = null;						// 서버 소켓(스터디룸에 접속할 클라이언트)
 	private PrintWriter printWriter = null;				// 출력 담당 객체
@@ -64,6 +64,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 		public void run() {
 			System.out.println("ListenerThread start");
 			String msg = null;
+		    String pattern = "keep alive[0-9][0-9]?";
 			connectSocket();
 			try {
 				while(true) {
@@ -73,8 +74,14 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 						printWriter.close();
 						bufferedReader.close();
 						connectSocket();
-					} else if(msg.equals("keep alive")) {
+					} else if(msg.matches(pattern)) {
 						continue;
+					} else if(msg.equals("<M1>")) {
+						// 문자 요청
+					} else if(msg.equals("<M2>")) {
+						// 문자 요청
+					} else if(msg.equals("<M3>")) {
+						// 문자 요청
 					} else {
 						System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
 						RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
@@ -132,7 +139,6 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     @Override
 	public void afterPropertiesSet() throws Exception {
 		System.out.println("["+LocalDateTime.now()+"]"+"AdminWebSocketHandler::afterPropertiesSet");
-		isa = new InetSocketAddress(ip, port);
 		ListenerThread thread = new ListenerThread();
 		thread.start();
 	}
