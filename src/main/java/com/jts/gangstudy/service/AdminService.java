@@ -24,4 +24,6 @@ public interface AdminService {
 	public List<User> blackList();
 
 	public List<RemoteLog> selectRemoteLogsByDate(LocalDate now);
+	
+	public void MMSCall(String msg);
 }
