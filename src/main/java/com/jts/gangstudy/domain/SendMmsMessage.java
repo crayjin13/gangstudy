@@ -28,7 +28,7 @@ public class SendMmsMessage {
 // String CANCEL_API_URL = "https://message.ppurio.com/api/cancel_utf8_xml.php";   // UTF-8 인코딩과 XML 응답용 호출 페이지
 
     // application이 사용하는 character set에 따라 변경 ex> EUC-KR, UTF-8
-    private String charset = "EUC-KR";
+    private String charset = "UTF-8";
     private final String boundary;
     private static final String LINE_FEED = "\r\n";
 
