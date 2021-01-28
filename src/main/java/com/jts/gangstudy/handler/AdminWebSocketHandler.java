@@ -25,6 +25,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.jts.gangstudy.domain.RemoteLog;
+import com.jts.gangstudy.domain.SendMmsMessage;
 import com.jts.gangstudy.service.AdminService;
 
 public class AdminWebSocketHandler extends TextWebSocketHandler implements InitializingBean, DisposableBean {
@@ -78,10 +79,16 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 						continue;
 					} else if(msg.equals("<M1>")) {
 						// 문자 요청
+						String text = "[* 갱스터디 *] M1 !  즉시 지원 바랍니다. ";   // [필수] 문자내용 - 이름(names)값이 있다면 [*이름*]가 치환되서 발송됨
+						adminService.MMSCall(text);
 					} else if(msg.equals("<M2>")) {
 						// 문자 요청
+						String text = "[* 갱스터디 *] M2 !  즉시 지원 바랍니다. ";   // [필수] 문자내용 - 이름(names)값이 있다면 [*이름*]가 치환되서 발송됨
+						adminService.MMSCall(text);
 					} else if(msg.equals("<M3>")) {
 						// 문자 요청
+						String text = "[* 갱스터디 *] M3 !  즉시 지원 바랍니다. ";   // [필수] 문자내용 - 이름(names)값이 있다면 [*이름*]가 치환되서 발송됨
+						adminService.MMSCall(text);
 					} else {
 						System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
 						RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
@@ -101,7 +108,9 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			}
 		}
 	}
-
+	
+	
+	
 	// 웹소켓이 연결되면 호출되는 함수
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) 
