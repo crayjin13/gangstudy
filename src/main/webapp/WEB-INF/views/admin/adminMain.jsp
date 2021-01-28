@@ -482,6 +482,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-lg-4 col-md-9 col-sm-12">
 												<input id="testIP" type="text" class="form-control" value="222.117.228.95"/>
 											</div>
+											<p>스터디룸 :  211.201.46.200 </p>
 										</div>
 										
 										<div class="form-group row">
@@ -490,6 +491,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="col-lg-4 col-md-9 col-sm-12">
 												<input id="testPort" type="text" class="form-control" value="80"/>
 											</div>
+											<p>스터디룸 :  1200</p>
 										</div>
 										
 										<div class="form-group row">
@@ -515,8 +517,73 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 							</div>
 		
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+											        <!--begin::Card-->
+							<div class="card card-custom gutter-b example example-compact">
+								<div class="card-header">
+									<h3 class="card-title cafe24"> 문자연동 번호 변경  </h3>
+									<div class="card-toolbar">
+										<div class="example-tools justify-content-center"></div>
+									</div>
+								</div>  
+								<div class="card-body">
+								     
+								
+									<form class="form2" id="mms" method="post">
+									 		
+										<div class="form-group row">
+											<label class="col-form-label text-right col-lg-3 col-sm-12">
+												발신자 번호 </label>
+											<div class="col-lg-4 col-md-9 col-sm-12">
+												<input id="sender" name="sender" type="text" class="form-control" placeholder = " 갱스터디폰번호 01021367733"/>
+											</div>  
+										</div>
+										
+										<div class="form-group row">   
+					   						<label class="col-form-label text-right col-lg-3 col-sm-12">         
+												수신자 번호 </label>
+				     							<div class="col-lg-4 col-md-9 col-sm-12">
+												<input id="recipient" name = "recipient" type="text" class="form-control" placeholder = " '-'없이 숫자만 적어주세요 01093705565"/>
+											<p>수신번호 - 여러명일 경우 |로 구분 "010********|010********|010********"</p>
+											</div>
+										</div>  
+										    
+										<div class="col-lg-4 col-md-9 col-sm-12 ml-lg-auto">
+											<button id="mmsBtn" type="button" class="btn btn-dark mr-2">변경</button>
+										</div>
+									</form>
+									    
+								</div>
+								<div class="card-footer">
+									<div class="row">
+										<div class="col-lg-9 ml-lg-auto">
+										</div>
+									</div>
+								</div>
+							</div>
+		
+						</div>        
+						<!--  end: card  -->
+						
+						
+						
 						</div>
 						<!--end::Container-->
+		
 					</div>
 					<!--end::Entry-->
 				</div>
