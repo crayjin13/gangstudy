@@ -26,4 +26,9 @@ public interface AdminService {
 	public List<RemoteLog> selectRemoteLogsByDate(LocalDate now);
 	
 	public void MMSCall(String msg);
+
+	public  int mmsnumberchange(String sender, String recipient) ;
+	
+	
+	
 }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-
+  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,11 @@ import com.jts.gangstudy.repository.UserDao;
 
 @Service
 public class AdminServiceImpl implements AdminService {
+	
+	static String senders = "01021367733";
+	 static String recipients = "01093705565";
+	
+	
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
 	InetSocketAddress isa = new InetSocketAddress(ip, port);
@@ -115,12 +120,17 @@ public class AdminServiceImpl implements AdminService {
 			
 		}
 	}
+	
+	
+	
 
+	
+	// 뿌리오 문자 연동 API 
 	@Override
 	public void MMSCall(String msg) {
 		String userid = "neojts";           // [필수] 뿌리오 아이디             
-		String callback = "01021367733";    // [필수] 발신번호 - 숫자만
-		String phone = "01036372943";       // [필수] 수신번호 - 여러명일 경우 |로 구분 "010********|010********|010********"
+		String callback = AdminServiceImpl.senders;    // [필수] 발신번호 - 숫자만
+		String phone = AdminServiceImpl.recipients;       // [필수] 수신번호 - 여러명일 경우 |로 구분 "010********|010********|010********"
 		String names = "";            // [선택] 이름 - 여러명일 경우 |로 구분 "홍길동|이순신|김철수"
 		String appdate = "";  // [선택] 예약발송 (현재시간 기준 10분이후 예약가능)
 		String subject = "뿌리오 문자 api 테스트";          // [선택] 제목 (30byte)
@@ -186,6 +196,15 @@ public class AdminServiceImpl implements AdminService {
 	public List<RemoteLog> selectRemoteLogsByDate(LocalDate date) {
 		return remoteLogMapper.selectByDate(date);
 	}
+
+	@Override
+	public int mmsnumberchange(String sender, String recipient) {
+		AdminServiceImpl.senders = sender;
+		AdminServiceImpl.recipients = recipient;
+		return 1;
+	}
+
+	
 
 
 }
