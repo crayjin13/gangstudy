@@ -108,7 +108,6 @@ public class AdminServiceImpl implements AdminService {
 			// 서버 무반응 문자 전송
 			String text = "[* 갱스터디 *] 서버 소켓 에러 !";
 			MMSCall(text);
-				
 		} catch (IOException e) {
 			System.out.println("["+ LocalDateTime.now() +"]cornTrigger::socket IO exception msg : " + message);
 			e.printStackTrace();
