@@ -25,7 +25,6 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.jts.gangstudy.domain.RemoteLog;
-import com.jts.gangstudy.domain.SendMmsMessage;
 import com.jts.gangstudy.service.AdminService;
 
 public class AdminWebSocketHandler extends TextWebSocketHandler implements InitializingBean, DisposableBean {
@@ -91,12 +90,16 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 						adminService.MMSCall(text);
 					} else {
 						System.out.println("["+LocalDateTime.now()+"]" + "From StudyRoom : " + msg);
-						RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
-						adminService.insertRemoteLogs(log);
-						
-						// 모든 유저에게 방금 들어온 로그를 보내기.
-						for(WebSocketSession session : sessionList) {
-							session.sendMessage(new TextMessage(parseJSONLog(log).toString()));
+						if(msg.length() >= 100) {
+							System.err.println("msg length > 100 ERROR...");
+						} else {
+							RemoteLog log = new RemoteLog(msg, LocalDateTime.now(), RemoteLog.LogType.remote);
+							adminService.insertRemoteLogs(log);
+							
+							// 모든 유저에게 방금 들어온 로그를 보내기.
+							for(WebSocketSession session : sessionList) {
+								session.sendMessage(new TextMessage(parseJSONLog(log).toString()));
+							}
 						}
 					}
 				}
