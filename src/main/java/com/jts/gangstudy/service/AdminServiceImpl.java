@@ -37,6 +37,7 @@ public class AdminServiceImpl implements AdminService {
 	private final String ip = "211.201.46.200";			// studyroom ip
 	private final int port = 1200;						// studyroom port
 	InetSocketAddress isa = new InetSocketAddress(ip, port);
+	private static boolean roomSocketError = false;
 	
 	@Autowired
 	private UserDao userDao;
@@ -110,9 +111,12 @@ public class AdminServiceImpl implements AdminService {
 		} catch (SocketTimeoutException t) {
 			System.out.println("["+ LocalDateTime.now() +"]cornTrigger::socket timeout exception msg : " + message);
 			System.err.println(t);
-			// 서버 무반응 문자 전송
-			String text = "[* 갱스터디 *] 서버 소켓 에러 !";
-			MMSCall(text);
+			if(!roomSocketError) {
+				// 서버 무반응 문자 전송
+				roomSocketError = true;
+				String text = "[* 갱스터디 *] 서버 소켓 에러 !";
+				MMSCall(text);
+			}
 		} catch (IOException e) {
 			System.out.println("["+ LocalDateTime.now() +"]cornTrigger::socket IO exception msg : " + message);
 			e.printStackTrace();
