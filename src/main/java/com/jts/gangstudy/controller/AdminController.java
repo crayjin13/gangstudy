@@ -41,7 +41,7 @@ public class AdminController {
 	private BookingService bookingService;
 	    
 
-	Logger logger;
+	Logger logger;    
 	
 	
 	@RequestMapping(value = "/jts",  method = {RequestMethod.GET, RequestMethod.POST})
@@ -50,7 +50,20 @@ public class AdminController {
 		mav.setViewName("admin/adminMain");
 		return mav;
 	}
+	   
+	/*  문자 연동 수신,발신 번호만 변경    */  
+	@ResponseBody         
+	@RequestMapping(value = "/mmschange", method = RequestMethod.POST)
+	public String mmsNumberChange (@RequestParam("sender") String sender,@RequestParam("recipient") String recipient) {
+		
+	int done = adminService.mmsnumberchange(sender, recipient);
+	    
+	if(done==1) {
+		return "1";    
+	}
 	
+		return "2";
+	} 
 	
 	
 	
