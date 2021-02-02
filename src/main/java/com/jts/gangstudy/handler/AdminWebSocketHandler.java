@@ -54,6 +54,8 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
+			String text = "[* 갱스터디 *] 소켓 연결에 실패했습니다. 서버 OR 스터디룸 소켓 장치 확인 바랍니다.";   // [필수] 문자내용 - 이름(names)값이 있다면 [*이름*]가 치환되서 발송됨
+			adminService.MMSCall(text);
 		} finally {
 			
 		}
