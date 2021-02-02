@@ -31,10 +31,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="${pageContext.request.contextPath}/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
-		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />   
 		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
-		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/light.css" rel="stylesheet" type="text/css" />		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
 	<style>  @font-face {     font-family: 'Cafe24Oneprettynight';    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');    font-weight: normal;    font-style: normal;}</style>	</head>

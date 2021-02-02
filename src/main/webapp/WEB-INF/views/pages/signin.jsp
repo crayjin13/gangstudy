@@ -28,7 +28,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Global Theme Styles(used by all pages)-->
 		<link href="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath}/resources/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="${pageContext.request.contextPath}/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/brand/light.css" rel="stylesheet" type="text/css" />		<link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />  		
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
