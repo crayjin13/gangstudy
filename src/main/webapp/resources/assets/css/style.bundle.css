@@ -3613,7 +3613,7 @@ input[type="button"].btn-block {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  word-wrap: break-word;
+  word-wrap: break-word;  
   background-color: #ffffff;
   background-clip: border-box;
   border: 1px solid #EBEDF3;
@@ -40393,11 +40393,13 @@ code {
 
 .form-group .form-text {
   font-size: 0.9rem;
-  font-weight: 400; }
+  font-weight: 400; }   
 
 .form-control[readonly] {
-  background-color: #ffffff; }
-
+  background-color: #ffffff; }            
+.form-control {   
+  background-color: #ffffff; }               
+   
 .form-control.form-control-pill {
   border-radius: 1.5; }
   .form-control.form-control-pill.form-control-sm {
