@@ -96,7 +96,7 @@ img {
 
 								<div class="form-group cafe24">
 									<label> 시작 시간</label> <input class="form-control" type="text"
-										id="start-date-input" name="startDateInput" readonly
+										id="start-date-input" name="startDateInput" 
 										value=${startDate}> <select class="form-control"
 										id="start-time-input" name="startTimeInput" form="bookingForm"
 										time="${startTime}">
@@ -106,7 +106,7 @@ img {
 
 								<div class="form-group cafe24">
 									<label> 종료 시간</label> <input class="form-control" type="text"
-										id="end-date-input" name="endDateInput" readonly
+										id="end-date-input" name="endDateInput" 
 										value=${endDate}> <select class="form-control"
 										id="end-time-input" name="endTimeInput" form="bookingForm"
 										time="${endTime}">
