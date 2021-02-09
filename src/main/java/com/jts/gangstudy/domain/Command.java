@@ -1,6 +1,7 @@
 package com.jts.gangstudy.domain;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalTime;
 
@@ -9,11 +10,11 @@ public class Command {
 	private String message;
 	private LocalTime reserveTime;
 	
-	public Command(BigDecimal command_no, String message, Timestamp reserveTime) {
+	public Command(Integer command_no, String message, Time reserveTime) {
 		super();
-		this.command_no = command_no.intValue();
+		this.command_no = command_no;
 		this.message = message;
-		this.reserveTime = reserveTime.toLocalDateTime().toLocalTime();
+		this.reserveTime = reserveTime.toLocalTime();
 	}
 	
 	public Command(String message, LocalTime reserveTime) {

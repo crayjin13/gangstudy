@@ -12,12 +12,6 @@ public class KakaoUser {
 		this.kakao_id = kakao_id;
 	}
 	
-	public KakaoUser(BigDecimal user_no, String kakao_id) {
-		super();
-		this.user_no = user_no.intValue();
-		this.kakao_id = kakao_id;
-	}
-	
 	public Integer getUser_no() {
 		return user_no;
 	}
