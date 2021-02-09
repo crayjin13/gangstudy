@@ -26,15 +26,15 @@ public class Payment {
 		failed
 	}
 	
-	public Payment(BigDecimal amount, BigDecimal point, String pg_name, String tid, String pay_type, String state, BigDecimal book_no) {
+	public Payment(Integer amount, Integer point, String pg_name, String tid, String pay_type, String state, Integer book_no) {
 		super();
-		this.amount = amount.intValue();
-		this.point = point.intValue();
+		this.amount = amount;
+		this.point = point;
 		this.pg_nm = PGName.valueOf(pg_name);
 		this.tid = tid;
 		this.pay_type = pay_type;
 		this.state = State.valueOf(state);
-		this.book_no = book_no.intValue();
+		this.book_no = book_no;
 	}
 	public Payment() {
 		// TODO Auto-generated constructor stub

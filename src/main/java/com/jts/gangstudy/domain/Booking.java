@@ -29,15 +29,15 @@ public class Booking {
 	}
 	
 	// MyBatis용 생성자
-	public Booking(BigDecimal book_no, BigDecimal user_no, BigDecimal room_no, Date check_in, Date check_out, BigDecimal people,
+	public Booking(Integer book_no, Integer user_no, Integer room_no, Date check_in, Date check_out, Integer people,
 			String state, LocalDateTime request_dt) {
 		super();
-		this.book_no = book_no.intValue();
-		this.user_no = user_no.intValue();
-		this.room_no = room_no.intValue();
+		this.book_no = book_no;
+		this.user_no = user_no;
+		this.room_no = room_no;
 		this.check_in = check_in.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		this.check_out = check_out.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-		this.people = people.intValue();
+		this.people = people;
 		this.state = State.valueOf(state);
 		this.request_dt = request_dt;
 	}

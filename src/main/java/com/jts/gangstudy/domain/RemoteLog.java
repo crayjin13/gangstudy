@@ -11,9 +11,9 @@ public class RemoteLog {
 	private LocalDateTime log_dt;
 	private LogType log_type;
 	
-	public RemoteLog(BigDecimal log_no, String message, Timestamp log_dt, String log_type) {
+	public RemoteLog(Integer log_no, String message, Timestamp log_dt, String log_type) {
 		super();
-		this.log_no = log_no.intValue();
+		this.log_no = log_no;
 		this.message = message;
 		this.log_dt = log_dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		this.log_type = LogType.valueOf(log_type);
