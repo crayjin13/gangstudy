@@ -66,7 +66,7 @@ img {
 									 <select class="form-control col-md-10 select"
 										id="start-time-input" name="startTimeInput" form="bookingForm" 
 										time="${startTime}" style=" height:4.35rem; ">        
-										<option value="" title=""><i class="menu-arrow"></i> 시작시간</option>      
+										<option value="" > 시작시간</option>      
 									</select>     
 								</div>             
 
