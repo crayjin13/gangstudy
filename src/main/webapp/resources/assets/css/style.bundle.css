@@ -1680,7 +1680,7 @@ textarea.form-control {
   height: auto; }
 
 .form-group {
-  margin-bottom: 1.75rem; }
+  margin-bottom: 0.7rem; }  
 
 .form-text {
   display: block;
@@ -1970,8 +1970,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #3699FF;
-  border-color: #3699FF;
+  background-color: #2552e6;
+  border-color: #2552e6;
   box-shadow: none; }
   .btn-primary:hover {
     color: #ffffff;
@@ -3265,11 +3265,11 @@ input[type="button"].btn-block {
   margin-bottom: 0;
   list-style: none; }
 
-.nav-link {
-  display: block;
-  padding: 0.5rem 1rem; }
-  .nav-link:hover, .nav-link:focus {
-    text-decoration: none; }
+.nav-link {  
+  display: block; 
+  padding: 0rem rem; }          
+  .nav-link:hover, .nav-link:focus {  
+    text-decoration: none; } 
   .nav-link.disabled {
     color: #7E8299;
     pointer-events: none;
@@ -3609,15 +3609,15 @@ input[type="button"].btn-block {
       color: #ffffff; }
 
 .card {
-  position: relative;
-  display: flex;
+  position: fixed;
+  display: flex;  
   flex-direction: column;
   min-width: 0;
-  word-wrap: break-word;  
-  background-color: #ffffff;
-  background-clip: border-box;
-  border: 1px solid #EBEDF3;
-  border-radius: 0.42rem; }
+  word-wrap: break-word;       
+  background-color: transparents ;   
+     
+  
+  }
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3667,8 +3667,8 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 2rem 2.25rem;
-  background-color: #ffffff;
-  border-top: 1px solid #EBEDF3; }
+  background-color: transparents ;  
+  border-top: transparents; } 
   .card-footer:last-child {
     border-radius: 0 0 calc(0.42rem - 1px) calc(0.42rem - 1px); }
 
@@ -7637,7 +7637,7 @@ button.bg-white:focus {
 .pl-40,
 .px-40 {
   padding-left: 10rem !important; }
-
+ 
 .m-n1 {
   margin: -0.25rem !important; }
 
@@ -11870,7 +11870,8 @@ button.bg-white:focus {
     margin: 0 !important; }
   .mt-lg-0,
   .my-lg-0 {
-    margin-top: 0 !important; }
+    margin-top: 0 !important;
+     }
   .mr-lg-0,
   .mx-lg-0 {
     margin-right: 0 !important; }
@@ -31143,6 +31144,7 @@ i {
     .burger-icon-active span::before, .burger-icon-active span::after {
       background-color: #3699FF; }
 
+
 .card.card-custom {
   box-shadow: 0px 0px 30px 0px rgba(82, 63, 105, 0.05);
   border: 0; }
@@ -35906,9 +35908,9 @@ button {
   box-shadow: 0px 9px 16px 0px rgba(137, 80, 252, 0.3) !important; }
 
 .btn.btn-warning {
-  color: #ffffff;
-  background-color: #FFA800;
-  border-color: #FFA800; }
+  color: #000000;
+  background-color: #ffd426;
+  border-color: #ffd426; } 
   .btn.btn-warning i {
     color: #ffffff; }
   .btn.btn-warning .svg-icon svg g [fill] {
@@ -40643,6 +40645,12 @@ code {
 
 .gutter-b {
   margin-bottom: 25px; }
+  
+.center {
+	margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}    
 
 .gutter-t {
   margin-top: 25px; }
@@ -54540,8 +54548,9 @@ body.swal2-height-auto {
   .apexcharts-menu .apexcharts-menu-item {
     padding: 0.75rem 1.25rem;
     transition: all 0.15s ease; }
-    .apexcharts-menu .apexcharts-menu-item:hover {
-      background-color: #F3F6F9 !important; }
+    .apexcharts-menu .apexcharts-menu-item:hover { 
+      background-color: #ff0000!important; 
+      }         
 
 .apexcharts-tooltip.apexcharts-theme-light {
   border-radius: 0.42rem;
@@ -54671,7 +54680,7 @@ canvas {
       display: none !important; } }
 
 body {
-  background: #EEF0F8; }
+  background: #fafafa; }    
 
 @media (min-width: 992px) {
   .header-fixed .wrapper {
@@ -54687,9 +54696,9 @@ body {
   .container-sm,
   .container-md,
   .container-lg,
-  .container-xl,
-  .container-xxl {
-    padding: 0 25px; } }
+  .container-xl, 
+  .container-xxl {   
+    padding: 0 80px; } }     
 
 @media (max-width: 991.98px) {
   .header-mobile-fixed .wrapper {
@@ -56714,7 +56723,7 @@ body {
   @-webkit-keyframes animation-offcanvas-fade-in {
     from {
       opacity: 0; }
-    to {
+    to {  
       opacity: 1; } }
   @keyframes animation-offcanvas-fade-in {
     from {
@@ -56731,5 +56740,137 @@ body {
   .offcanvas-mobile {
     width: 90% !important; } }
 
+
+
+.btn-kakao {
+  color:#131313;
+  border: 1px solid transparent;
+  padding: 0.65rem 1rem ;  
+  height: 58px;    
+  margin: 0 0 0.8rem;
+  border-radius: 6px;
+   font-size: 17px;   
+  font-family: NotoSansCJKkr;
+   font-weight: bold;
+    font-stretch: normal; 
+  font-style: normal;
+   line-height: 1.47;
+  background-color: #ffd426;   
+  border-color: #ffd426;
+  box-shadow: none; }
+  
+  
+  .btn-booking {    
+  color: #ffffff;  
+   border: 1px solid transparent; 
+  padding: 0.65rem 1rem;
+  height: 58px; 
+   font-size: 17px; 
+  margin: 0 0 0.8rem;
+  font-family: NotoSansCJKkr;
+   font-weight: 500; 
+  padding: 17px 60px 17px 60px;
+  border-radius: 6px;
+  hover-color: #ffffff;
+  background-color: #2552e6;  
+  box-shadow: none; }
+  
+
+.ic_kakao {
+  width: 26px;
+  height: 24.1px;
+     margin: 0px 0px 0px 0;  
+    float: left; 
+   
+}   
+ 
+.extended {
+	color:#747474; 
+  background-color: #efefef ;  
+  }
+  
+  .footertext2 {
+  width: 437px;
+  height: 63px;
+  margin: 18px 409px 20px 0;
+  padding: 5px 318px 48px 118px;
+  font-family: NotoSansCJKkr;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.69;
+  letter-spacing: normal;
+  text-align: left;
+  color: #747474;
+}
+
+
+.img_logo_txt { 
+    
+  margin: 0 350px 3.2px 0;           
+  object-fit: contain;  
+}  
+  
+.img_logo_footer {  
+  width: 84px;
+  height: 144px;
+  margin: 12px 0 20px 40%;          
+  object-fit: contain; 
+}  
+  
+.btn_phone {
+  width: 34px;
+  height: 34px; 
+
+}  
+
+.main_text { 
+  width: 180%;     
+  height: 20%;        
+  margin: 5% 5px 0px 5%;           
+  font-family: NotoSansCJKkr;
+  font-size: 200%; 
+  font-weight: bold;    
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: left;
+  color: #171717;
+}
+
+.img_main {
+  width: 430px;
+  height: 326px; 
+  margin: 50px 480px 12px 90px;
+  object-fit: contain;
+}
+
+.select {  /* select에 화살표 없애기  */
+	-webkit- appearance:none; /* for chrome */
+
+            -moz- appearance:none; /*for firefox*/
+
+            appearance:none;      
+ font-family: NotoSansCJKkr;
+  font-size: 16px;
+   color: #c2c5ce;
+}
+
+input{
+	width: 59px;
+  height: 24px;
+  margin: 0 0 0 0px;
+  font-family: NotoSansCJKkr;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #c2c5ce;
+}
 
 /*# sourceMappingURL=style.bundle.css.map*/
