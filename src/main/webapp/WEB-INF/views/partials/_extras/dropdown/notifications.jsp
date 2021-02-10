@@ -1,17 +1,17 @@
 
 <!--begin::Header-->
-											<div class="d-flex flex-column pt-12 bg-dark-o-5 rounded-top">
+											<div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(assets/media/misc/bg-1.jpg)">
 
 												<!--begin::Title-->
-												<h4 class="d-flex flex-center">
-													<span class="text-dark">User Notifications</span>
+												<h4 class="d-flex flex-center rounded-top">
+													<span class="text-white">User Notifications</span>
 													<span class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2">23 new</span>
 												</h4>
 
 												<!--end::Title-->
 
 												<!--begin::Tabs-->
-												<ul class="nav nav-bold nav-tabs nav-tabs-line nav-tabs-line-3x nav-tabs-primary mt-3 px-8" role="tablist">
+												<ul class="nav nav-bold nav-tabs nav-tabs-line nav-tabs-line-3x nav-tabs-line-transparent-white nav-tabs-line-active-border-success mt-3 px-8" role="tablist">
 													<li class="nav-item">
 														<a class="nav-link active show" data-toggle="tab" href="#topbar_notifications_notifications">Alerts</a>
 													</li>

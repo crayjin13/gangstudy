@@ -1,52 +1,43 @@
 
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%
-	String route = request.getParameter("pageChange");
-
-	if (route == null) {
-		route = "partials/main_content.jsp";
-	}
-%> --%>
 
 <!--begin::Main-->
 
 <%@ include file="/WEB-INF/views/partials/_header-mobile.jsp"%>
-<div class="d-flex flex-column flex-root"></div>
 
-<!--begin::Page-->
-<div class="d-flex flex-row flex-column-fluid page">
 
-	<%@ include file="/WEB-INF/views/partials/_aside.jsp"%>
+<div class="d-flex flex-column flex-root">
 
-	<!--begin::Wrapper-->
-	<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+	<!--begin::Page-->
+	<div class="d-flex flex-row flex-column-fluid page">
 
-		<%@ include file="/WEB-INF/views/partials/_header.jsp"%>
+		<!--begin::Wrapper-->
+		<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 
-		<!--begin::Content-->
-		<div class="content d-flex flex-column flex-column-fluid"
-			id="kt_content">
 
-			<%@ include
-				file="/WEB-INF/views/partials/_subheader/subheader-v1.jsp"%>
-			<%-- 	<jsp:include page="<%=route%>" flush="false" /> --%>
-				
-		<%@ include file="/WEB-INF/views/partials/main_content.jsp"%> 
+
+			<%@ include file="/WEB-INF/views/partials/_header.jsp"%>       
+
+			<!--begin::Content-->
+			<div class="content d-flex flex-column flex-column-fluid"
+				id="kt_content">
+
+				<%@ include file="/WEB-INF/views/partials/main_content.jsp"%>
+			</div>
+
+			<!--end::Content-->
+
+			<!--[html-partial:include:{"file":"partials/_footer/extended.html"}]/-->
+
+			<%@ include file="/WEB-INF/views/partials/_footer/extended.jsp"%>
 		</div>
 
-		<!--end::Content-->
-
-	
-		<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>
+		<!--end::Wrapper-->
 	</div>
 
-	<!--end::Wrapper-->
-</div>
-
-<!--end::Page-->
+	<!--end::Page-->
 </div>
 
 <!--end::Main-->

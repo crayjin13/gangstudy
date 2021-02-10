@@ -69,7 +69,7 @@ $(document).ready(function() {
 		
 		people.value = people.getAttribute("people")
 	} else {
-		startDateInput.value = "시작일을 선택해주세요."
+		startDateInput.value = "이용날짜"
 		endDateInput.value = "시작일을 선택해주세요."
 	}
 })

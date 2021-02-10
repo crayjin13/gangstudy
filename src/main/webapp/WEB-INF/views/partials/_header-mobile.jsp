@@ -2,58 +2,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--begin::Header Mobile-->
-
 <div id="kt_header_mobile"
-	class="header-mobile align-items-center header-mobile-fixed">
+	class="header-mobile align-items-center header-mobile-fixed">   
+     
+			<!--begin::Logo-->
+			<a href="/">
+				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="logo-default max-h-30px" />
+			</a>  
+         
+			<!--end::Logo-->
+    
 
-	<!--begin::Logo-->
-	<a href="/"> <img alt="Logo"
-		src="${pageContext.request.contextPath}/resources/assets/media/logos/logo-g1.png" />
-	</a>
+  
+   
 
-<form name="logout" action="logout" method="POST">
-	<input type="hidden">
-</form>
-	<!--end::Logo-->
-	<%
-		// 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.    
-		if (session.getAttribute("sUserId") == null) {
-	%>
-	<button onclick="location.href='signin'"
-		class="btn btn-light-primary font-weight-bold">로그인</button>
 
-	<%
-		// 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.    
-		} else {
-	%>
-<input type="button"  id="logout"  class="btn btn-light-primary font-weight-bold" onclick="location.href='/logout.do'" value="로그아웃" />
 
-	<%
-		}
-	%>
-	<!--begin::Toolbar-->
-	<div class="d-flex align-items-center">
 
-		<!--begin::Aside Mobile Toggle-->
-		<button class="btn p-0 burger-icon burger-icon-left"
-			id="kt_aside_mobile_toggle">
-			<span></span>
-		</button>
+  
 
-		<!--end::Aside Mobile Toggle-->
-
-		<!--begin::Header Menu Mobile Toggle-->
-		<!-- 	<button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+			<!--begin::Toolbar-->     
+			<div class="d-flex align-items-center">
+				<button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
 					<span></span>
 				</button>
- -->
-		<!--end::Header Menu Mobile Toggle-->
+			<!-- 	<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3" id="kt_header_mobile_topbar_toggle">
+					<span class="svg-icon svg-icon-xl">
 
-		<!--begin::Topbar Mobile Toggle-->
-		<!-- 	<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle"> -->
-		<!-- <span class="svg-icon svg-icon-xl">
-
-						begin::Svg Icon | path:assets/media/svg/icons/General/User.svg
+						begin::Svg Icon | path:${pageContext.request.contextPath}/resources/assets/media/svg/icons/General/User.svg
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -63,21 +39,11 @@
 						</svg>
 
 						end::Svg Icon
-					</span> 
-		</button>-->
+					</span>
+				</button> -->
+			</div>
 
-		<!--end::Topbar Mobile Toggle-->
-	</div>
+			<!--end::Toolbar-->
+		</div>
 
-	<!--end::Toolbar-->
-</div>
-<script>
-	$(document).ready(function() {
-
-		document.getElementById("logout").onclick = function() {
-			document.user_logout.submit();
-
-		}
-	});
-</script>
-<!--end::Header Mobile-->
+		<!--end::Header Mobile-->

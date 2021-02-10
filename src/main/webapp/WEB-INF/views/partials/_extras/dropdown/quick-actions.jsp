@@ -1,7 +1,7 @@
 
 <!--begin:Header-->
-										<div class="d-flex flex-column flex-center py-10 bg-dark-o-5 rounded-top bg-light">
-											<h4 class="text-dark font-weight-bold">Quick Actions</h4>
+										<div class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(assets/media/misc/bg-1.jpg)">
+											<h4 class="text-white font-weight-bold">Quick Actions</h4>
 											<span class="btn btn-success btn-sm font-weight-bold font-size-sm mt-2">23 tasks pending</span>
 										</div>
 

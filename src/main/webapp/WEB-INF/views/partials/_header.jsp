@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!--begin::Header-->
 <script>
 	$(document).ready(function() {
@@ -8,161 +8,126 @@
 		document.getElementById("logout").onclick = function() {
 			document.user_logout.submit();
 
-		}
+		}   
 	});
 </script>
+
 					<div id="kt_header" class="header header-fixed">
 
 						<!--begin::Container-->
-						<div class="container-fluid d-flex align-items-stretch justify-content-between">
+						<div class="container d-flex align-center-items-stretch justify-content-center">  
 
-							<!--begin::Header Menu Wrapper-->
-							<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+							<!--begin::Left-->     
+							<div class="d-flex align-items-stretch mr-3">
+       
+								<!--begin::Header Logo-->         
+								<div class="header-logo">                                     <!-- 모바일에서는 안보이게 적용 d-none d-lg-block d-xl-none  -->  
+									<a href="/">           
+										<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="img_logo_txt max-h-200px d-none d-xl-block  d-none d-lg-block d-xl-none mt-6" /> 
+									<%-- max-h-200px d-none d-xl-block  d-none d-lg-block d-xl-none mt-6 px-12	 <img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="logo-sticky max-h-40px" />  --%>
+									</a>           
+								</div>             
+        
+								<!--end::Header Logo-->
+            
+								<!--begin::Header Menu Wrapper-->
+								<div class="header-menu-wrapper header-menu-wrapper-middle" id="kt_header_menu_wrapper">
+  
+									<!--begin::Header Menu--> 
+									<div id="kt_header_menu" class="header-menu header-menu-middle header-menu-mobile header-menu-layout-default">
 
-								
+										<!--begin::Header Nav-->
+										<ul class="menu-nav">
+											<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/"
+									class="menu-link "> 
+													<span class="menu-text ">예약하기</span>    
+													<i class="menu-arrow"></i>
+												</a>
+												
+											</li>
+												<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a
+									href="/booking/check" class="menu-link ">
+													<span class="menu-text">나의예약</span> 
+													<span class="menu-desc"></span>
+													<i class="menu-arrow"></i>
+												</a>
+												
+											</li>
+											
+											<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a
+									href="/remo-control" class="menu-link ">
+													<span class="menu-text">리모컨</span>
+													<span class="menu-desc"></span>
+													<i class="menu-arrow"></i>
+												</a>
+											
+											</li>
+											
+										<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/notice"
+									class="menu-link ">
+													<span class="menu-text">이용안내</span>
+													<span class="menu-desc"></span>
+													<i class="menu-arrow"></i>
+												</a>
+											</li>
+											
+								<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/edit-user"
+									class="menu-link ">
+													<span class="menu-text">내 정보</span>
+													<span class="menu-desc"></span> 
+													<i class="menu-arrow"></i>
+												</a>
+											</li>
+											<!-- 띄어쓰기함  -->  
+											<li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+												<a href="javascript:;" class="menu-link menu-toggle">
+													<span class="menu-text"></span>
+													<span class="menu-desc"></span> 
+													
+												</a>  
+											</li>
+					
+             
 
-								<!--end::Header Menu-->
+   
+<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/signup"
+									class="menu-link ">
+													<span class="menu-text">회원가입</span>
+													<span class="menu-desc"></span>
+													<i class="menu-arrow"></i>  
+												</a>
+											</li>
+												<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/signin"    
+									class="menu-link ">
+													<span class="menu-text">로그인</span>
+													<span class="menu-desc"></span>
+													<i class="menu-arrow"></i> 
+												</a>
+											</li>
+											
+	</ul>
+									
+
+										<!--end::Header Nav-->
+									</div>
+
+									<!--end::Header Menu-->
+								</div>
+
+								<!--end::Header Menu Wrapper-->
 							</div>
 
-							<!--end::Header Menu Wrapper-->
+							<!--end::Left-->
 
 							<!--begin::Topbar-->
-							<div class="topbar">
-
-								<!--begin::Search-->
-								<div class="dropdown" id="kt_quick_search_toggle">
-
-									<!--begin::Toggle-->
-									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
-										
-									</div>
-
-									<!--end::Toggle-->
-
-									<!--begin::Dropdown-->
-									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
-
-										<!--[html-partial:include:{"file":"partials/_extras/dropdown/search-dropdown.html"}]/-->
-									</div>
-
-									<!--end::Dropdown-->
-								</div>
-
-								<!--end::Search-->
-
-								<!--begin::Notifications-->
-								<div class="dropdown">
-
-									<!--begin::Toggle-->
-									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
-										
-									</div>
-
-									<!--end::Toggle-->
-
-									<!--begin::Dropdown-->
-									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
-										<form>
-
-											<!--[html-partial:include:{"file":"partials/_extras/dropdown/notifications.html"}]/-->
-										</form>
-									</div>
-
-									<!--end::Dropdown-->
-								</div>
-
-								<!--end::Notifications-->
-
-								<!--begin::Quick Actions-->
-								<div class="dropdown">
-
-									<!--begin::Toggle-->
-									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
-										
-									</div>
-
-									<!--end::Toggle-->
-
-									<!--begin::Dropdown-->
-									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
-
-										<!--[html-partial:include:{"file":"partials/_extras/dropdown/quick-actions.html"}]/-->
-									</div>
-
-									<!--end::Dropdown-->
-								</div>
-
-								<!--end::Quick Actions-->
-
-								<!--begin::Cart-->
-								<div class="topbar-item">
-									
-								</div>
-
-								<!--end::Cart-->
-
-								<!--begin::Quick panel-->
-								<div class="topbar-item">
-									
-								</div>
-
-								<!--end::Quick panel-->
-
-								<!--begin::Chat-->
-								<div class="topbar-item">
-									
-								</div>
-
-								<!--end::Chat-->
-
-								<!--begin::Languages-->
-								<div class="dropdown">
-
-									<!--begin::Toggle-->
-									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
-										
-									</div>
-
-									<!--end::Toggle-->
-
-									<!--begin::Dropdown-->
-									<div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
-
-										<!--[html-partial:include:{"file":"partials/_extras/dropdown/languages.html"}]/-->
-									</div>
-
-									<!--end::Dropdown-->
-								</div>
-
-								<!--end::Languages-->  
-
-								<!--begin::User-->               
-								<%
-            // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.    
-            if(session.getAttribute("sUserId")==null){ 
-        %>
-	 	<button onclick="location.href='signin'" class="btn btn-light-primary font-weight-bold">로그인</button>
-		
-		<%
-            // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
-            }else{ 
-        %>
-        
-		<input type="button"  id="logout"  class="btn btn-light-primary font-weight-bold" onclick="location.href='/logout.do'" value="로그아웃" />
-	
-		<% } %>
-								
-								<div class="topbar-item">
-									<div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
-										<span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1"></span>
-										<span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"></span>
-										<span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
-										</span>
-									</div>  
-								</div>
-
-								<!--end::User-->
-							</div>
+				 
 
 							<!--end::Topbar-->
 						</div>
