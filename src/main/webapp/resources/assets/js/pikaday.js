@@ -248,7 +248,7 @@
         yearSuffix: '',
 
         // Render the month after year in the calendar title
-        showMonthAfterYear: false,
+        showMonthAfterYear: true,
 
         // Render days of the calendar grid that fall in the next or previous month
         showDaysInNextAndPreviousMonths: false,
@@ -271,11 +271,11 @@
 
         // internationalization
         i18n: {
-            previousMonth : 'Previous Month',
-            nextMonth     : 'Next Month',
-            months        : ['January','February','March','April','May','June','July','August','September','October','November','December'],
+            previousMonth : '',
+            nextMonth     : '',
+            months        : ['01','02','03','04','05','06','07','08','09','10','11','12'],
             weekdays      : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-            weekdaysShort : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+            weekdaysShort : ['일','월','화','수','목','금','토']
         },
 
         // Theme Classname

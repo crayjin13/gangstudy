@@ -14,8 +14,36 @@
     border: 1px solid #ccc;
     border-bottom-color: #bbb;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width: calc(100vw - 25px - 4.5rem);
+	height : calc(100vw - 25px - 4.5rem);
 }
 
+@media (min-width: 768px) {
+	.pika-single {
+    	width: calc(50vw - 50px - 54px - 2.5rem);
+    	height: calc(50vw - 50px - 54px - 2.5rem);
+	}
+}
+@media (min-width: 992px) {
+  .pika-single {
+    	width: calc((960px - 160px) / 2 - 50px - 6rem);
+    	height: calc((960px - 160px) / 2 - 50px - 6rem);
+    }
+}
+
+@media (min-width: 1200px) {
+  .pika-single {
+    	width: calc((1140px - 160px) / 2 - 50px - 8rem);
+    	height: calc((1140px - 160px) / 2 - 50px - 8rem);
+    }
+}
+
+@media (min-width: 1400px) {
+  .pika-single {
+    	width: calc((1340px - 160px) / 2 - 50px - 8rem);
+		height : calc((1340px - 160px) / 2 - 50px - 8rem);
+    }
+}
 /*
 clear child float (pika-lendar), using the famous micro clearfix hack
 http://nicolasgallagher.com/micro-clearfix-hack/
@@ -38,8 +66,10 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 
 .pika-lendar {
     float: left;
-    width: 240px;
-    margin: 8px;
+    width: 95%;
+    height: 95%;
+    padding: 2rem;
+    margin: 0 1rem;
 }
 
 .pika-title {
@@ -54,7 +84,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
     overflow: hidden;
     margin: 0;
     padding: 5px 3px;
-    font-size: 14px;
+    font-size: 1.5rem;
     line-height: 20px;
     font-weight: bold;
     background-color: #fff;
@@ -77,8 +107,8 @@ http://nicolasgallagher.com/micro-clearfix-hack/
     outline: none;
     border: 0;
     padding: 0;
-    width: 20px;
-    height: 30px;
+    width: 2rem;
+    height: 3rem;
     /* hide text using text-indent trick, using width value (it's enough) */
     text-indent: 20px;
     white-space: nowrap;
@@ -119,6 +149,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 
 .pika-table {
     width: 100%;
+    height: 95%;
     border-collapse: collapse;
     border-spacing: 0;
     border: 0;
@@ -127,14 +158,15 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-table th,
 .pika-table td {
     width: 14.285714285714286%;
+    height: 30px;
     padding: 0;
 }
 
 .pika-table th {
-    color: #999;
-    font-size: 12px;
+    color: #333;
+    font-size: 1.3rem;
     line-height: 25px;
-    font-weight: bold;
+    font-weight: normal;
     text-align: center;
 }
 
@@ -147,13 +179,14 @@ http://nicolasgallagher.com/micro-clearfix-hack/
     border: 0;
     margin: 0;
     width: 100%;
+    height: 81%;
     padding: 5px;
     color: #666;
-    font-size: 12px;
+    font-size: 1.3rem;
     line-height: 15px;
-    text-align: right;
+    text-align: center;
     background: #f5f5f5;
-    height: initial;
+    border-radius: 3rem;
 }
 
 .pika-week {
@@ -162,17 +195,17 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 }
 
 .is-today .pika-button {
-    color: #33aaff;
-    font-weight: bold;
+    color: #333;
+    font-weight: normal;
 }
 
 .is-selected .pika-button,
 .has-event .pika-button {
     color: #fff;
     font-weight: bold;
-    background: #33aaff;
+    background: #7e92ee;
     box-shadow: inset 0 1px 3px #178fe5;
-    border-radius: 3px;
+    border-radius: 3rem;
 }
 
 .has-event .pika-button {
@@ -182,21 +215,21 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 
 .is-disabled .pika-button,
 .is-inrange .pika-button {
-    background: #D5E9F7;
+    background: #fff;
 }
 
 .is-startrange .pika-button {
     color: #fff;
     background: #6CB31D;
     box-shadow: none;
-    border-radius: 3px;
+    border-radius: 3rem;
 }
 
 .is-endrange .pika-button {
     color: #fff;
     background: #33aaff;
     box-shadow: none;
-    border-radius: 3px;
+    border-radius: 3rem;
 }
 
 .is-disabled .pika-button {
@@ -219,13 +252,14 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-button:hover,
 .pika-row.pick-whole-week:hover .pika-button {
     color: #fff;
-    background: #ff8000;
+    background: #999;
     box-shadow: none;
-    border-radius: 3px;
+    border-radius: 3rem;
 }
 
 /* styling for abbr */
 .pika-table abbr {
     border-bottom: none;
-    cursor: help;
+    cursor: Default;
+    text-decoration: none;
 }
