@@ -76,7 +76,7 @@
 											</li>
 											
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/edit-user"
+									data-menu-toggle="hover"><a href="/myinfo_main"
 									class="menu-link ">
 													<span class="menu-text">내 정보</span>
 													<span class="menu-desc"></span> 

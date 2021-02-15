@@ -71,10 +71,7 @@ public class HomeController {
 	public String notice() {
 		return "pages/notice";
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "views/login";
-	}
+	
 	
 	  
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
@@ -83,6 +80,8 @@ public class HomeController {
 	}
 	
 	
+	 
+	
 	
 
 	@RequestMapping(value = "/admin-signin", method = RequestMethod.GET)
@@ -90,34 +89,11 @@ public class HomeController {
 		return "pages/admin-signin";
 	}
 
-	@RequestMapping(value = "/admin-charts", method = RequestMethod.GET)
-	public String adminChart() {
-		return "pages/admin-charts";
-	}
-	@RequestMapping(value = "/admin-blackList", method = RequestMethod.GET)
-	public String adminBlackList() {
-		return "pages/admin-blackList";
-	}
-	@RequestMapping(value = "/admin-userList", method = RequestMethod.GET)
-	public String adminUserList() {
-		return "pages/admin-userList";
-	}
-	@RequestMapping(value = "/admin-bookinglist", method = RequestMethod.GET)
-	public String adminbooking() {
-		return "pages/admin-bookinglist";
-	}
-	    
-	  
+	         
+	           
 	     
 
-	@RequestMapping(value = "/html", method = RequestMethod.GET)
-	public String html() {
-		return "notyet/html";
-	}
-	  
-
-	
-
+   
 	
 	
 	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
