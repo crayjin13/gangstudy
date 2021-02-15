@@ -56896,10 +56896,10 @@ body {
 input{
 	   
   height: 24px;
-   margin-bottom: 3rem;  
+   margin-bottom: 2.3rem;  
   font-family: NotoSansCJKkr;
   font-size: 16px;
-  font-weight: normal;
+  font-weight: normal; 
   font-stretch: normal;
   font-style: normal;
   line-height: 1.5;
@@ -56945,9 +56945,9 @@ input{
       
       
       
- .form-groups {
-  margin-bottom: 1.7rem;  
-  margin-top: 0.7rem; }  
+ .form-groups {  
+  margin-bottom:2rem;
+  margin-top: 2rem; }   
  
  
  .roundi {
@@ -56980,7 +56980,7 @@ input{
 .myinfo_text { 
    width: 80%;     
   height: 20%;        
-  margin: 5% rem 0px ;        
+  margin: 10rem rem 0px ;                   
   font-family: NotoSansCJKkr; 
   font-size: 2.5rem;  
   font-weight: bold;
@@ -56990,6 +56990,23 @@ input{
   letter-spacing: normal;
   text-align: center; 
   color: #171717;
+} 
+
+.detail_text{
+	width: 30rem;
+  height: 22px;
+  margin: 6px rem ; 
+  font-family: NotoSansCJKkr;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9398a7;
+	
+	
 }
 
 .inputlabel {
@@ -57006,4 +57023,22 @@ input{
   text-align: left;
   color: #2a2a2e;
 }
+
+
+.genderbox {
+	width: 196px;
+  height: 58px;
+  margin: 6px 8px 0 0;
+  padding: 17px 83px 17px 84px;
+  border-radius: 4px;
+  border: solid 2px #2552e6;
+  background-color: #ffffff;
+}
+
+.ic_more_blue { 
+	width: 0.6rem;
+  height: 1.2rem;
+  border: solid 1px #2552e6;
+}
+
 /*# sourceMappingURL=style.bundle.css.map*/

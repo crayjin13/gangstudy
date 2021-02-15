@@ -39,24 +39,29 @@ public class UserController {
 
 	
 	
-	 // 유저정보 메인 페이지
+	 // 유저정보 메인 페이지 이동
 	@RequestMapping(value = "/myinfo_main", method = RequestMethod.GET)
 	public String myinfo_main() {       
 			return "_User/myinfo_main";           
 	}
-	// 유저정보 비밀번호 변경 페이지
+	// 유저정보 비밀번호 변경 페이지 이동
 	@RequestMapping(value = "/change_pw", method = RequestMethod.GET)
 	public String change_pw() {       
 		return "_User/change_pw";            
 	}
+	// 유저 탈퇴  페이지 이동
+	@RequestMapping(value = "/withdraw", method = RequestMethod.GET)
+	public String withdraw() {       
+		return "_User/withdraw";                
+	}
 	
 	
 	// 유저 정보 수정 페이지 (세션값으로 값 불러옴) 
-	@UserLoginCheck
-	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
-	public String edituser() {
-		return "pages/edit-user";
-	}
+	 
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modify() {
+		return "_User/modify_info";
+	} 
 	
 	@UserLoginCheck
 	@RequestMapping(value = "/remo-control", method = RequestMethod.GET)
