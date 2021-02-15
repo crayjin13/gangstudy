@@ -1679,8 +1679,9 @@ select.form-control[size], select.form-control[multiple] {
 textarea.form-control {
   height: auto; }
 
-.form-group {
-  margin-bottom: 0.7rem; }  
+.form-group {  
+  margin-bottom: 0.7rem;  
+  }  
 
 .form-text {
   display: block;
@@ -56872,5 +56873,88 @@ input{
   text-align: left;
   color: #c2c5ce;
 }
+ 
 
+.listbtn {
+  display: inline-block;
+  font-weight: normal;
+  color: #2552e6;
+  text-align: left;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #ffffff;
+  border: solid 1px #2552e6; 
+  padding:17px 22px 17px 25px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.42rem;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none; } }
+  .btn:hover { 
+    color: #0000ff;
+    text-decoration: none; }
+  .btn:focus, .btn.focus {
+    outline: 0;
+    box-shadow: none; }
+  .btn.disabled, .btn:disabled {
+    opacity: 0.6;
+    box-shadow: none; }
+  .btn:not(:disabled):not(.disabled) {
+    cursor: pointer; }
+    .btn:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active {
+      box-shadow: none; }
+      
+      
+      
+ .form-groups {
+  margin-bottom: 1.7rem;  
+  margin-top: 0.7rem; }  
+ 
+ 
+ .roundi {
+ 
+   width: 10.24rem; 
+  height: 10.24rem;   
+  float: center;  
+  margin: 5rem 73% 5rem 27%;      
+  border-radius: 70%;
+  background-color: #6675a7; 
+   text-align: center;
+    line-height: 10.47rem; 
+}     
+ .roundtext {
+  vertical-align: middle; 
+   width: 58px;
+  height: 47px;
+  font-family: NotoSansCJKkr;
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47rem;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}     
+
+
+.myinfo_text { 
+   width: 180%;     
+  height: 20%;        
+  margin: 5% rem 0px ;        
+  font-family: NotoSansCJKkr;
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: left;
+  color: #171717;
+}
 /*# sourceMappingURL=style.bundle.css.map*/
