@@ -71,10 +71,7 @@ public class HomeController {
 	public String notice() {
 		return "pages/notice";
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "views/login";
-	}
+	
 	
 	  
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
@@ -82,11 +79,7 @@ public class HomeController {
 		return "pages/send";         
 	}
 	
-	 
-	@RequestMapping(value = "/myinfo_main", method = RequestMethod.GET)
-	public String myinfo_main() {       
-		return "pages/myinfo_main";           
-	}
+	
 	 
 	
 	

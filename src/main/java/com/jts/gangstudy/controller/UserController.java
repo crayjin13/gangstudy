@@ -38,6 +38,19 @@ public class UserController {
 	Logger logger;
 
 	
+	
+	 // 유저정보 메인 페이지
+	@RequestMapping(value = "/myinfo_main", method = RequestMethod.GET)
+	public String myinfo_main() {       
+			return "_User/myinfo_main";           
+	}
+	// 유저정보 비밀번호 변경 페이지
+	@RequestMapping(value = "/change_pw", method = RequestMethod.GET)
+	public String change_pw() {       
+		return "_User/change_pw";            
+	}
+	
+	
 	// 유저 정보 수정 페이지 (세션값으로 값 불러옴) 
 	@UserLoginCheck
 	@RequestMapping(value = "/edit-user", method = RequestMethod.GET)
