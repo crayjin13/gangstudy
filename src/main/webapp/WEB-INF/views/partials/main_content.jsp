@@ -55,35 +55,31 @@ img {
 									   
 								</div>        
                          
-				<div class="form-group ">            
-									 <input class="form-control col-md-10 select" type="text"        
+								<div class="form-group ">
+									 <input class="form-control col-md-10 select booking-input ic-calendar" type="text"
 										id="start-date-input" name="startDateInput"  
-										value="${startDate}"  style=" height:4.35rem;">       
-										 
-										
+										value="${startDate}">
 								</div>
-				<div class="form-group ">
-									 <select class="form-control col-md-10 select"
+								<div class="form-group ">
+									 <select class="form-control col-md-10 select booking-input ic-time"
 										id="start-time-input" name="startTimeInput" form="bookingForm" 
-										time="${startTime}" style=" height:4.35rem; ">        
-										<option value="" > 시작시간</option>      
-									</select>     
-								</div>             
+										time="${startTime}">
+										<option value="" > 시작시간</option>
+									</select>
+								</div>
 
 								<div class="form-group ">
-								<!--  <input class="form-control" type="text"
-										id="end-date-input" name="endDateInput" 
-										value=${endDate}> --> <select class="form-control col-md-10 select"
+									 <select class="form-control col-md-10 select booking-input ic-time"
 										id="end-time-input" name="endTimeInput" form="bookingForm"
-										time="${endTime}" style="height:4.35rem; " >
-									<option value="">종료시간</option> 
+										time="${endTime}">
+										<option value=""> 종료시간</option> 
 									</select>
 								</div> 
 
 								<div class="form-group ">
-									 <select
-										class="form-control col-md-10 select" id="people-input" name="people"
-										people="${people}" style=" height:4.35rem; ">
+									 <select class="form-control col-md-10 select booking-input ic-member"
+									 	id="people-input" name="people" 
+									 	people="${people}">
 										<option value="">인원수</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
