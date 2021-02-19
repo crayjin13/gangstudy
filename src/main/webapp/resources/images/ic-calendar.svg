@@ -1,20 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="ic_calendar" width="24" height="21.333" viewBox="0 0 24 21.333">
     <defs>
         <style>
-            .cls-3{fill:#c2c5ce}.cls-2{fill:#fff}
+            .normal { fill: #c2c5ce }
+            .clicked { fill: #2552e6 }
+            .active { fill: #000 }
+	.white { fill: #fff }
+            #outline.normal { stroke: #c2c5ce }
+            #outline.clicked { stroke: #2552e6 }
+            #outline.active { stroke: #000 }
+	#outline.white { stroke: #fff }
         </style>
     </defs>
-    <g id="사각형_186" fill="#c2c5ce" stroke="#c2c5ce" transform="translate(0 1.333)">
+    <g id="outline" class="paint normal" transform="translate(0 1.333)">
         <rect width="24" height="20" stroke="none" rx="2"/>
         <rect width="23" height="19" x=".5" y=".5" fill="none" rx="1.5"/>
     </g>
-    <path id="사각형_187" d="M0 0H24V1H0z" class="cls-2" transform="translate(0 6.667)"/>
-    <rect id="사각형_188" width="1.333" height="4" class="cls-3" rx=".667" transform="translate(5.333)"/>
-    <rect id="사각형_189" width="1.333" height="4" class="cls-3" rx=".667" transform="translate(17.333)"/>
-    <path id="사각형_190" d="M0 0H2.667V2.667H0z" class="cls-2" transform="translate(5.333 10.667)"/>
-    <path id="사각형_195" d="M0 0H2.667V2.667H0z" class="cls-2" transform="translate(5.333 14.667)"/>
-    <path id="사각형_191" d="M0 0H2.667V2.667H0z" class="cls-2" transform="translate(10.667 10.667)"/>
-    <path id="사각형_194" d="M0 0H2.667V2.667H0z" class="cls-2" transform="translate(10.667 14.667)"/>
-    <path id="사각형_192" d="M0 0H2.667V2.667H0z" class="cls-2" transform="translate(16 10.667)"/>
-    <path id="사각형_193" d="M0 0H2.667V2.667H0z" class="cls-2" transform="translate(16 14.667)"/>
+    <path id="사각형_187" d="M0 0H24V1H0z" class="white" transform="translate(0 6.667)"/>
+    <rect id="사각형_188" width="1.333" height="4" class="paint normal" rx=".667" transform="translate(5.333)"/>
+    <rect id="사각형_189" width="1.333" height="4" class="paint normal" rx=".667" transform="translate(17.333)"/>
+    <path id="사각형_190" d="M0 0H2.667V2.667H0z" class="white" transform="translate(5.333 10.667)"/>
+    <path id="사각형_195" d="M0 0H2.667V2.667H0z" class="white" transform="translate(5.333 14.667)"/>
+    <path id="사각형_191" d="M0 0H2.667V2.667H0z" class="white" transform="translate(10.667 10.667)"/>
+    <path id="사각형_194" d="M0 0H2.667V2.667H0z" class="white" transform="translate(10.667 14.667)"/>
+    <path id="사각형_192" d="M0 0H2.667V2.667H0z" class="white" transform="translate(16 10.667)"/>
+    <path id="사각형_193" d="M0 0H2.667V2.667H0z" class="white" transform="translate(16 14.667)"/>
 </svg>
