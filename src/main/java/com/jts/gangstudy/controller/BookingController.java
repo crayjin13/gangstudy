@@ -1,6 +1,8 @@
 package com.jts.gangstudy.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -74,9 +76,9 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "/startTime", method = RequestMethod.GET)
 	public List<String> startTime(HttpServletRequest request, HttpSession session, 
-			@RequestParam("startDate") String startDate, @RequestParam("book_no") Integer book_no) {
-		List<Booking> books = bookingService.searchAlreadyBooked(book_no, startDate);
-		List<String> times = bookingService.getStartTimes(books, startDate);
+			@RequestParam("date") String date, @RequestParam("book_no") Integer book_no) {
+		List<Booking> books = bookingService.searchAlreadyBooked(book_no, date);
+		List<String> times = bookingService.getStartTimes(books, date);
 		return times;
 	}
 
@@ -84,12 +86,11 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "/endTime", method = RequestMethod.GET)
 	public List<String> endTime(HttpServletRequest request, HttpSession session) {
+		String date = request.getParameter("date");
 		String startTime = request.getParameter("startTime");
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
 		User user = (User)session.getAttribute("sUserId");
-		Booking nextBook = bookingService.searchNextBook(user, startDate, startTime, endDate);
-		List<String> times = bookingService.getEndTimes(nextBook, startDate, startTime, endDate);
+		Booking nextBook = bookingService.searchNextBook(user, date, startTime);
+		List<String> times = bookingService.getEndTimes(nextBook, date, startTime);
 		return times;
 	}
 	
@@ -223,24 +224,17 @@ public class BookingController {
 	// booking shop page - 결제 직전 페이지
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
-			@RequestParam(value="startDateInput", required = false) String startDate,
+			@RequestParam(value="dateInput", required = false) String date,
 			@RequestParam(value="startTimeInput", required = false) String startTime,
-			@RequestParam(value="endDateInput",	  required = false) String endDate,
 			@RequestParam(value="endTimeInput",	  required = false) String endTime,
 			@RequestParam(value="people",		  required = false) String people) {
 		ModelAndView mav = new ModelAndView("pages/makecart");
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");	// 기존 예약이 있으면 가져옴
 		
-		if(startDate != null) {	// 정상적인 요청시 예약 생성
-			book = new Booking();
-			book.setCheck_in(startDate, startTime);
-			book.setCheck_out(endDate, endTime);
-			book.setPeople(people);
-			book.setRoom_no(room_no);
-			book.setState("uncharge");
+		if(book == null) {	// 기존 예약이 없으면 생성
+			book = new Booking(date, startTime, endTime, Integer.parseInt(people), room_no, Booking.State.uncharge);
 		}
-		
 		if(user == null) {		// 로그인이 안되었을시
 			session.setAttribute("book", book);
 			mav.setViewName("redirect:/signin");
