@@ -58,7 +58,7 @@
 											
 											<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a
-									href="/remo-control" class="menu-link ">
+									href="/remo_control" class="menu-link "> 
 													<span class="menu-text">리모컨</span>
 													<span class="menu-desc"></span>
 													<i class="menu-arrow"></i>
@@ -67,8 +67,8 @@
 											</li>
 											
 										<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/notice"
-									class="menu-link ">
+									data-menu-toggle="hover"><a href="/information"
+									class="menu-link "> 
 													<span class="menu-text">이용안내</span>
 													<span class="menu-desc"></span>
 													<i class="menu-arrow"></i>
@@ -93,16 +93,21 @@
 											</li>
 					
              
-
-   
+										<%
+            // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.    
+            if(session.getAttribute("sUserId")==null){ 
+        %>
+     
 <li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/signup"
+									data-menu-toggle="hover"><a href="/signup_main"
 									class="menu-link ">
 													<span class="menu-text">회원가입</span>
 													<span class="menu-desc"></span>
 													<i class="menu-arrow"></i>  
 												</a>
 											</li>
+											
+	
 												<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/signin"    
 									class="menu-link ">
@@ -111,6 +116,19 @@
 													<i class="menu-arrow"></i> 
 												</a>
 											</li>
+											<%
+            // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
+            }else{ 
+        %>
+										<li class="menu-item menu-item-submenu" aria-haspopup="true"
+									data-menu-toggle="hover"><a href="/logout.do"    
+									class="menu-link ">
+													<span class="menu-text">로그아웃</span>
+													<span class="menu-desc"></span>
+													<i class="menu-arrow"></i> 
+												</a>
+											</li>
+											<% } %>
 											
 	</ul>
 									

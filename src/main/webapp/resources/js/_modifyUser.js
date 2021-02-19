@@ -166,14 +166,14 @@
 	};
 	/** *** */
 	/** *** */
-	// __webpack_public_path__
+	// __webpack_public_path__   
 	/** *** */
 	__webpack_require__.p = "";
 	/** *** */
-	/** *** */
+	/** *** */ 
 	/** *** */
 	// Load entry module and return exports
-	/** *** */
+	/** *** */   
 	return __webpack_require__(__webpack_require__.s = "../demo1/src/js/pages/custom/login/login-3.js");
 	/** *** */
 })
@@ -193,36 +193,46 @@
 
 				"use strict";
 
-				// Class Definition
+				// Class Definition 회원탈퇴 
 				var KTLogin = function() {
 					var _buttonSpinnerClasses = 'spinner spinner-right spinner-white pr-15';
 
 					var _handleFormSignin = function() {
-						var form = KTUtil.getById('kt_login_singin_form');
+						var form = KTUtil.getById('"delete_User"');
 						var formSubmitUrl = KTUtil.attr(form, 'action');
 						var formSubmitButton = KTUtil
-								.getById('kt_login_singin_form_submit_button');
+								.getById('deletebtn');
 
 						if (!form) {
 							return;
-						}
+						}  
 
 						FormValidation
 								.formValidation(
 										form,
 										{
 											fields : {
-												username : {
+												id : {
 													validators : {
 														notEmpty : {
-															message : 'Username is required'
+															message : '아이디를 입력해주세요.'
+														}
+													}
+												},
+												email : {
+													validators : { 
+														notEmpty : {
+															message : '이메일을 입력해주세요.'
+														},
+														emailAddress : {  
+															message : '올바른 형식의 이메일을 입력해주세요.'
 														}
 													}
 												},
 												password : {
 													validators : {
 														notEmpty : {
-															message : 'Password is required'
+															message : '비밀번호를 입력해주세요'
 														}
 													}
 												}
@@ -323,10 +333,10 @@
 					}
 
 					var _handleFormForgot = function() {
-						var form = KTUtil.getById('kt_login_forgot_form');
+						var form = KTUtil.getById('delete_User');
 						var formSubmitUrl = KTUtil.attr(form, 'action');
 						var formSubmitButton = KTUtil
-								.getById('kt_login_forgot_form_submit_button');
+								.getById('deletebtn');    
 
 						if (!form) {
 							return;
@@ -340,17 +350,24 @@
 												id : {
 													validators : {
 														notEmpty : {
-															message : 'ID is required'
+															message : '아이디를 입력해주세요.'
 														}
 													}
 												},
 												email : {
 													validators : {
 														notEmpty : {
-															message : 'Email is required'
+															message : '이메일을 입력해주세요.'
 														},
 														emailAddress : {
-															message : 'The value is not a valid email address'
+															message : '올바른 형식의 이메일을 입력해주세요.'
+														}
+													}
+												},
+												Dpw : {
+													validators : {
+														notEmpty : {
+															message : '비밀번호를 입력해주세요'
 														}
 													}
 												}
@@ -392,7 +409,7 @@
 																.btnRelease(formSubmitButton);
 													}, 2000);
 										})
-								.on(
+								.on( 
 										'core.form.invalid',
 										function() {
 											Swal
@@ -411,58 +428,18 @@
 										});
 					}
 
-					// /////////// 아이디 중복 체크 시작  //////////////
-					$(function() {
-						$('#msg1').hide();
-						$('#msg2').hide();
-
-						// 회원가입 유효성 검증
-						$('#kt_login_signup_form').validate({
-							rules : {
-								
-
-								id : {
-									required : true,
-									rangelength : [ 3, 12 ],
-									remote : {
-										url : "duplicate_check",
-										method : "GET",
-										type : "text",
-										data : {
-											id : function() {
-												return $('#id').val();
-											}
-										}
-									}
-								}
-							},
-							messages : {
-								id : {
-									
-
-									remote : "{0}는 이미 존재하는 아이디입니다.",
-								}
-							},
-							submitHandler : function() {
-								signUp_function();
-							},
-							errorClass : "error",
-							validClass : "valid"
-						});
-
-					})
-					///아이디 중복체크 끝 ///
+				
 
 					/// 가입 유효성 검사 시작 // 
 					var _handleFormSignup = function() {
 						// Base elements
 
 
-						$("#name").focus();
+						
 
-
+   
 						var wizardEl = KTUtil.getById('kt_login');
-						var form = KTUtil.getById('kt_login_signup_form');
+						var form = KTUtil.getById('kt_form');  
 						var wizardObj;
 						var validations = [];
 
@@ -483,7 +460,7 @@
 																	message : 'Address is required'
 																}
 															}
-														},
+														},  
 														postcode : {
 															validators : {
 																notEmpty : {
@@ -550,7 +527,7 @@
 																}
 															}
 														},
-
+/*
 														pw : {
 															validators : {
 																notEmpty : {
@@ -589,12 +566,9 @@
 										                        }
 																
 															}
-														},
-														id : { 
+														},*/
+														id : {
 															validators : {
-															
-															     
-																
 																notEmpty : {
 																	message : '회원 아이디를 입력해주세요.'
 																},
@@ -607,9 +581,8 @@
 																regexp : {         
 																	regexp : /^[a-zA-Z0-9_]+$/,
 																	message : '아이디는 오직 영문 대소문자, 숫자, _ 만 허용됩니다.'
-																},
-																  
-															}  
+																}
+															}
 														},
 														
 														

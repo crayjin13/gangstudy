@@ -92,34 +92,7 @@ $(function() {
 		     }
 	});
 
-	// *********** 로그인 처리 *****************
-	$("button[name=loginbtn]").click(function() {
-		var mlafArray = $('#kt_login_singin_form').serialize();
-		console.log("---- 로그인 값이 들어오는가  ---" + mlafArray);
-		$.ajax({
-			url : 'sign_in_action',
-			method : 'POST',
-			data : mlafArray,
-			dataType : 'text',
-			success : function(textData) {
-				if (textData.trim() == "true") {
 
-					location.href = '/';
-
-				} else if (textData.trim() == "false1") {
-					alert('아이디를 다시 확인해주세요');
-					id_check();
-
-				} else if (textData.trim() == "false2") {
-					alert('비밀번호를 다시 확인해주세요');
-					password_check();
-				} else if (textData.trim() == "false") {
-					alert('정보를 다시 확인해 주세요');
-  
-				}
-			}
-		});
-	});
 
 	// ******* 회원 정보 수정 ********************
 	$("#modifybtn").click(function() {
