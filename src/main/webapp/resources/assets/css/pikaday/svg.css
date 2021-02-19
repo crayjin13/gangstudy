@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+input {
+	margin: 0;
+}
+.form-group {
+	position: relative;
+}
+
+.form-control {
+	height:4.35rem;
+	padding-left: 4rem;
+}
+
+.icon {
+	position: absolute;
+	z-index: 1;
+	top: 17px;
+	left: 1.5rem;
+	pointer-events: none;
+}
+
+.select:focus {
+	color: #2552e6;
+	border: 2px solid #2552e6;
+    font-weight: bold;
+}
+
+.active {
+	color: #333;
+	border: 1px solid #333;
+}
