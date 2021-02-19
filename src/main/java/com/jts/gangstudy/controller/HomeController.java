@@ -56,7 +56,7 @@ public class HomeController {
 	
 	  
 
-	    
+	   
 	
 	@RequestMapping(value = "/pages/signup", method = RequestMethod.GET)
 	public String signup() {
@@ -91,7 +91,12 @@ public class HomeController {
 		return "informations/precautions";          
 	}     
 	
-
+	  
+	@RequestMapping(value = "/send", method = RequestMethod.POST)    
+	public String send() {       
+		return "pages/send";           
+	}    
+	       
 	
 	
 	@RequestMapping(value = "/user_bookingList", method = RequestMethod.GET)      
