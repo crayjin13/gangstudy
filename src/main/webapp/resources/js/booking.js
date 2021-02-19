@@ -40,13 +40,11 @@ function display(times, target, callback) {
 //////////////////////////////////////
 //			Validation Check		//
 //////////////////////////////////////
-function validationCheck(startDate, startTime, endDate, endTime, people, form) {
-	if(startDate == "") {
+function validationCheck(date, startTime, endTime, people, form) {
+	if(date == "") {
 		alert("시작일을 선택해주세요.")
 	} else if(startTime == "") {
 		alert("시작시간을 선택해주세요.")
-	} else if(endDate == "") {
-		alert("종료일을 선택해주세요.")
 	} else if(endTime == "") {
 		alert("종료시간을 선택해주세요.")
 	} else if(people == "") {
