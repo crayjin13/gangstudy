@@ -36,7 +36,29 @@ public class UserController {
 	 */
 
 	Logger logger;
-
+	
+	//로그인 페이지 이동
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public String signin() {
+		return "_User/signin";
+	}
+	
+	//회원가입 이용약관 페이지 이동
+	@RequestMapping(value = "/signup_main", method = RequestMethod.GET)
+	public String signup_main() {
+		return "_User/signup_main";   
+	}
+	//회원가입 페이지 이동
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup() {
+		return "_User/signup";   
+	}
+	
+	//비밀번호 찾기 페이지 이동
+	@RequestMapping(value = "/find_pw", method = RequestMethod.GET)
+	public String forgot() {
+		return "_User/find_pw";
+	}
 	
 	
 	 // 유저정보 메인 페이지 이동
@@ -67,6 +89,11 @@ public class UserController {
 	@RequestMapping(value = "/remo-control", method = RequestMethod.GET)
 	public String remo() {
 		return "pages/remo-control";
+	}
+	
+	@RequestMapping(value = "/remo_control", method = RequestMethod.GET)
+	public String remocon() {
+		return "_User/remo_control"; 
 	}
 	
 	
@@ -144,13 +171,6 @@ public class UserController {
 	
 	
 
-	// 비번찾기 페이지 이동 
-	@RequestMapping(value = "/findPw", method = { RequestMethod.GET,
-			RequestMethod.POST }, produces = "text/plain; charset=UTF-8")
-	public String findPw() throws Exception {
-		return "findPw";
-	}
-	
 
 	/* 비밀번호 찾기  */
 	@ResponseBody
@@ -293,7 +313,7 @@ public class UserController {
 		
 	}
 	
-	
+	  
 
 	/* 아이디 중복 체크 */
 	@ResponseBody
@@ -305,7 +325,7 @@ public class UserController {
 			newId = false;
 		} else {
 			newId = true;
-		}
+		} 
 		return newId + "";
 	}
 

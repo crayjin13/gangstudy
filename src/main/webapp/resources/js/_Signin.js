@@ -1,3 +1,37 @@
+$(function() {
+
+// *********** 로그인 처리 *****************
+	$("button[name=loginbtn]").click(function() {
+		var mlafArray = $('#kt_login_singin_form').serialize();
+		console.log("---- 로그인 값이 들어오는가  ---" + mlafArray);
+		$.ajax({
+			url : 'sign_in_action',
+			method : 'POST',
+			data : mlafArray,
+			dataType : 'text',
+			success : function(textData) {
+				if (textData.trim() == "true") {
+
+					location.href = '/';
+
+				} else if (textData.trim() == "false1") {
+					alert('아이디를 다시 확인해주세요');
+					id_check();
+
+				} else if (textData.trim() == "false2") {
+					alert('비밀번호를 다시 확인해주세요');
+					password_check();
+				} else if (textData.trim() == "false") {
+					alert('정보를 다시 확인해 주세요');
+  
+				}
+			}
+		});
+	});
+
+});
+
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -125,11 +159,7 @@ var KTLogin = function() {
 							validators: {
 								notEmpty: {
 									message: '비밀번호를 입력해주세요.'
-								},
-								stringLength : {
-									min : 6,
-									message : ' 6글자 이상 입력해주세요.'
-								},
+								}
 							}
 						}
 		            },
@@ -209,285 +239,7 @@ var KTLogin = function() {
 		    });
     }
 
-	var _handleFormForgot = function() {
-		var form = KTUtil.getById('kt_login_forgot_form');
-		var formSubmitUrl = KTUtil.attr(form, 'action');
-		var formSubmitButton = KTUtil.getById('kt_login_forgot_form_submit_button');
-
-		if (!form) {
-			return;
-		}
-
-		FormValidation
-		    .formValidation(
-		        form,
-		        {
-		            fields: {
-		            	   id : {
-		   		        	validators: { 
-		   		        		notEmpty: {
-		   		        			message: '가입하신 아이디를 입력해주세요.'
-		   		        		},
-		   		        		
-		   		        	}
-		   		        },
-		            	
-						email: {
-							validators: {
-								notEmpty: {
-									message: '이메일을 입력해주세요. '
-								},
-								emailAddress: {
-									message: '올바른 형식의 이메일을 입력해주세요.'
-								}
-							}
-						},
-		        phone: {
-		        	validators: { 
-		        		notEmpty: {
-		        			message: '휴대폰번호를 입력해주세요. '
-		        		},
-		        		
-		        	}
-		        },
-		        password: {  
-		        	validators: {
-		        		notEmpty: {
-		        			message: '새로운 비밀번호를 입력해주세요. '
-		        		}, 
-		        		stringLength : {
-							min : 6,
-							message : ' 6글자 이상 입력해주세요.'
-						},
-		        		
-		        	}
-		        },
-		            },
-		            plugins: {
-						trigger: new FormValidation.plugins.Trigger(),
-						submitButton: new FormValidation.plugins.SubmitButton(),
-	            		//defaultSubmit: new FormValidation.plugins.DefaultSubmit(), // Uncomment this line to enable normal button submit after form validation
-						bootstrap: new FormValidation.plugins.Bootstrap({
-						//	eleInvalidClass: '', // Repace with uncomment to hide bootstrap validation icons
-						//	eleValidClass: '',   // Repace with uncomment to hide bootstrap validation icons
-						})
-		            }
-		        }
-		    )
-		    .on('core.form.valid', function() {
-				// Show loading state on button
-				KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "Please wait");
-
-				// Simulate Ajax request
-				setTimeout(function() {
-					KTUtil.btnRelease(formSubmitButton);
-				}, 2000);     
-				
-				             
-		    })
-			.on('core.form.invalid', function() {
-				Swal.fire({
-					text: "죄송하지만 다시 시도해주세요",
-					icon: "error",
-					buttonsStyling: false,
-					confirmButtonText: "네",
-					customClass: {
-						confirmButton: "btn font-weight-bold btn-light-primary"
-					}
-				}).then(function() {
-					KTUtil.scrollTop();
-				});
-		    });
-    }
-
-	var _handleFormSignup = function() {
-		// Base elements
-		var wizardEl = KTUtil.getById('kt_login');
-		var form = KTUtil.getById('kt_login_signup_form');
-		var wizardObj;
-		var validations = [];
-
-		if (!form) {
-			return;
-		}
-
-		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		// Step 1
-		validations.push(FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					fname: {
-						validators: {
-							notEmpty: {
-								message: 'First name is required'
-							}
-						}
-					},
-					lname: {
-						validators: {
-							notEmpty: {
-								message: 'Last Name is required'
-							}
-						}
-					},
-					phone: {
-						validators: {
-							notEmpty: {
-								message: 'Phone is required'
-							}
-						}
-					},
-					email: {
-						validators: {
-							notEmpty: {
-								message: 'Email is required'
-							},
-							emailAddress: {
-								message: 'The value is not a valid email address'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-
-		// Step 2
-		validations.push(FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					address1: {
-						validators: {
-							notEmpty: {
-								message: 'Address is required'
-							}
-						}
-					},
-					postcode: {
-						validators: {
-							notEmpty: {
-								message: 'Postcode is required'
-							}
-						}
-					},
-					city: {
-						validators: {
-							notEmpty: {
-								message: 'City is required'
-							}
-						}
-					},
-					state: {
-						validators: {
-							notEmpty: {
-								message: 'State is required'
-							}
-						}
-					},
-					country: {
-						validators: {
-							notEmpty: {
-								message: 'Country is required'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-
-		// Initialize form wizard
-		wizardObj = new KTWizard(wizardEl, {
-			startStep: 1, // initial active step number
-			clickableSteps: false  // allow step clicking
-		});
-
-		// Validation before going to next page
-		wizardObj.on('change', function (wizard) {
-			if (wizard.getStep() > wizard.getNewStep()) {
-				return; // Skip if stepped back
-			}
-
-			// Validate form before change wizard step
-			var validator = validations[wizard.getStep() - 1]; // get validator for currnt step
-
-			if (validator) {
-				validator.validate().then(function (status) {
-					if (status == 'Valid') {
-						wizard.goTo(wizard.getNewStep());
-
-						KTUtil.scrollTop();
-					} else {
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn font-weight-bold btn-light"
-							}
-						}).then(function () {
-							KTUtil.scrollTop();
-						});
-					}
-				});
-			}
-
-			return false;  // Do not change wizard step, further action will be handled by he validator
-		});
-
-		// Change event
-		wizardObj.on('changed', function (wizard) {
-			KTUtil.scrollTop();
-		});
-
-		// Submit event
-		wizardObj.on('submit', function (wizard) {
-			Swal.fire({
-				text: "All is good! Please confirm the form submission.",
-				icon: "success",
-				showCancelButton: true,
-				buttonsStyling: false,
-				confirmButtonText: "Yes, submit!",
-				cancelButtonText: "No, cancel",
-				customClass: {
-					confirmButton: "btn font-weight-bold btn-primary",
-					cancelButton: "btn font-weight-bold btn-default"
-				}
-			}).then(function (result) {
-				if (result.value) {
-					form.submit(); // Submit form
-				} else if (result.dismiss === 'cancel') {
-					Swal.fire({
-						text: "Your form has not been submitted!.",
-						icon: "error",
-						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
-						customClass: {
-							confirmButton: "btn font-weight-bold btn-primary",
-						}
-					});
-				}
-			});
-		});
-    }
-
+      
     // Public Functions
     return {
         init: function() {

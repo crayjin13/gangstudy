@@ -53,57 +53,72 @@ public class HomeController {
 
 
 	
-	@RequestMapping(value = "/forgot", method = RequestMethod.GET)
-	public String forgot() {
-		return "pages/forgot";
-	}
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public String signin() {
-		return "pages/signin";
-	}
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signup() {
-		return "pages/signup";
-	}
-
-	
-	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-	public String notice() {
-		return "pages/notice";
-	}
-	
 	
 	  
-	@RequestMapping(value = "/send", method = RequestMethod.POST)
-	public String send() {       
-		return "pages/send";         
+
+	   
+	
+	@RequestMapping(value = "/pages/signup", method = RequestMethod.GET)
+	public String signup() {
+		return "pages/signup";     
 	}
 	
 	
+//	이용안내 메인메뉴 바로가기 
+	@RequestMapping(value = "/information", method = RequestMethod.GET)
+	public String information() {
+		return "informations/main"; 
+	}   
+//	 이용안내 페이지 바로가기 
+	@RequestMapping(value = "/info_of_use", method = RequestMethod.GET)      
+	public String infoOfUse() {         
+		return "informations/info_of_use";          
+	}
+	
+//	 이용안내 환불규정 페이지 바로가기 
+	@RequestMapping(value = "/refund_policy", method = RequestMethod.GET)      
+	public String refund_policy() {          
+		return "informations/refund_policy";          
+	}
+//	 이용안내 리모콘 이용방법 페이지 바로가기 
+	@RequestMapping(value = "/how_to_use", method = RequestMethod.GET)      
+	public String how_to_use() {           
+		return "informations/how_to_use";          
+	}    
+//	 이용안내 리모콘 이용방법 페이지 바로가기 
+	@RequestMapping(value = "/precautions", method = RequestMethod.GET)      
+	public String precautions() {            
+		return "informations/precautions";          
+	}     
+	
+	  
+	@RequestMapping(value = "/send", method = RequestMethod.POST)    
+	public String send() {       
+		return "pages/send";           
+	}    
+	       
+	
+	
+	@RequestMapping(value = "/user_bookingList", method = RequestMethod.GET)      
+	public String user_bookingList() {         
+		return "_User/user_bookingList";         
+	}
+	
+	
+	
+                 
+	 
 	 
 	
 	
 
-	@RequestMapping(value = "/admin-signin", method = RequestMethod.GET)
-	public String adminSingin() {
-		return "pages/admin-signin";
-	}
-
 	         
-	           
+	                
 	     
 
    
 	
 	
-	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
-	public String privacyPolicy() {
-		return "partials/privacyPolicy";
-	}
-	@RequestMapping(value = "/TermsOfService", method = RequestMethod.GET)
-	public String TermsOfService() {
-		return "partials/TermsOfService";
-	}
 
 	
 	
