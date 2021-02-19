@@ -20,7 +20,7 @@ public interface BookingService {
 	public List<Booking> searchAll();
 	
 	public List<Booking> searchAlreadyBooked(Integer book_no, String startDate);
-	public Booking searchNextBook(User user, String startDate, String startTime, String endDate);
+	public Booking searchNextBook(User user, String date, String startTime);
 	public List<Booking> searchByUser(User user); 
 	// 예약 번호로 검색
 	public Booking searchByBookNo(int book_no);
@@ -55,7 +55,7 @@ public interface BookingService {
 	// 시작시간 목록
 	public List<String> getStartTimes(List<Booking> userBooks, String startDate);
 	// 종료시간 목록
-	public List<String> getEndTimes(Booking book, String startDate, String startTime, String endDate);
+	public List<String> getEndTimes(Booking book, String date, String startTime);
 
 	// 사용시간(00시간00분)
 	public String getTimeInterval(Booking book);

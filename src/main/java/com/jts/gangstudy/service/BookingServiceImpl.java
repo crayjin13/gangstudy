@@ -133,43 +133,37 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 요청한 유저의 예약을 제외하고 종료가능한 시간 이후 존재하는 첫번째 예약
 	@Override
-	public Booking searchNextBook(User user, String startDate, String startTime, String endDate) {
+	public Booking searchNextBook(User user, String date, String startTime) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		Integer user_no = 0;
 		if(user != null) { user_no = user.getUser_no(); }
 		map.put("user_no", user_no);
-		map.put("startDateTime", LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime)).plusMinutes(minimumSize));
-		map.put("endDate", endDate);
+		map.put("startDateTime", LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(startTime)).plusMinutes(minimumSize));
+		map.put("maxDateTime", LocalDateTime.of(LocalDate.parse(date).plusDays(1), LocalTime.parse(startTime)));
+
 		return mapper.selectNextBook(map);
 	}
 	
 	// 종료시간 목록
 	@Override
-	public List<String> getEndTimes(Booking book, String startDate, String startTime, String endDate) {
+	public List<String> getEndTimes(Booking book, String date, String time) {
 	    List<String> timeList = new ArrayList<String>();
+	    LocalDateTime start_dt = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time).plusMinutes(minimumSize));
+	    LocalDateTime max_dt = null;
 	    
-		LocalDateTime start_dt = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.parse(startTime)).plusMinutes(minimumSize);
-		LocalDateTime end_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN).plusDays(1);
-		
-		if(!start_dt.toLocalDate().isEqual(LocalDate.parse(startDate)) && startDate.equals(endDate)) {
-			return null;
-		} else if(!start_dt.toLocalDate().isEqual(LocalDate.parse(endDate))) {
-			start_dt = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MIN);
-		}
-		
-		// book == null 인 경우 -> book.check_in = end_dt
-		LocalDateTime check_in = end_dt;
-		if(book != null) {
-			check_in = book.getCheck_in();
-		}
-		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-		
-		for(; !start_dt.isAfter(check_in) && start_dt.isBefore(end_dt); start_dt = start_dt.plusMinutes(minuteSize)) {
-			timeList.add(dtf.format(start_dt));
+	    
+	    // 시작시간~mdt 전까지 구하되 book이 존재하면 그 전까지만 구함.
+		if(book == null) {
+			max_dt = LocalDateTime.of(LocalDate.parse(date).plusDays(1), LocalTime.parse(time));
+		} else {
+			max_dt = book.getCheck_in();
 		}
-		
-		return timeList;
+	    
+	    for(; start_dt.isBefore(max_dt); start_dt = start_dt.plusMinutes(minuteSize)) {
+	    	timeList.add(dtf.format(start_dt));
+	    }
+	    return timeList;
 	}
 	
 	// 시간 유효성 체크
