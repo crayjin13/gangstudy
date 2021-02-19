@@ -56,20 +56,29 @@ img {
 								</div>        
                          
 								<div class="form-group ">
-									 <input class="form-control col-md-10 select booking-input ic-calendar" type="text"
-										id="start-date-input" name="startDateInput"  
-										value="${startDate}">
+									 <input class="form-control col-md-10 select booking-input" type="text"
+										id="dateInput" name="dateInput"  
+										value="${date}">
+									<span class="icon">
+									<object data="${pageContext.request.contextPath}/resources/images/ic-calendar.svg" type="image/svg+xml"></object>
+									</span>
 								</div>
 								<div class="form-group ">
-									 <select class="form-control col-md-10 select booking-input ic-time"
+									 <select class="form-control col-md-10 select booking-input"
 										id="start-time-input" name="startTimeInput" form="bookingForm" 
 										time="${startTime}">
 										<option value="" > 시작시간</option>
 									</select>
+									<span class="icon">
+										<object data="${pageContext.request.contextPath}/resources/images/ic-time.svg" type="image/svg+xml"></object>
+									</span>
 								</div>
 
 								<div class="form-group ">
-									 <select class="form-control col-md-10 select booking-input ic-time"
+									<span class="icon">
+									<object data="${pageContext.request.contextPath}/resources/images/ic-time.svg" type="image/svg+xml"></object>
+									</span>
+									 <select class="form-control col-md-10 select booking-input"
 										id="end-time-input" name="endTimeInput" form="bookingForm"
 										time="${endTime}">
 										<option value=""> 종료시간</option> 
@@ -77,7 +86,10 @@ img {
 								</div> 
 
 								<div class="form-group ">
-									 <select class="form-control col-md-10 select booking-input ic-member"
+									<span class="icon">
+									<object data="${pageContext.request.contextPath}/resources/images/ic-member.svg" type="image/svg+xml"></object>
+									</span>
+									 <select class="form-control col-md-10 select booking-input"
 									 	id="people-input" name="people" 
 									 	people="${people}">
 										<option value="">인원수</option>

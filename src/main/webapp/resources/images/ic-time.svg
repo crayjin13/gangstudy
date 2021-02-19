@@ -1,6 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
+    <defs>
+        <style>
+            .normal { fill: #c2c5ce }
+            .clicked { fill: #2552e6 }
+            .active { fill: #000 }
+        </style>
+    </defs>
     <g>
-        <g fill="#c2c5ce" stroke="#c2c5ce" transform="translate(-766 -365) translate(766 365)">
+        <g class="paint normal"  transform="translate(-766 -365) translate(766 365)">
             <circle cx="11.5" cy="11.5" r="11.5" stroke="none"/>
             <circle cx="11.5" cy="11.5" r="11" fill="none"/>
         </g>

@@ -41,9 +41,8 @@ public class HomeController {
 		Booking book = (Booking)session.getAttribute("book");
 		
 		if(book != null) {
-			mav.addObject("startDate", book.getCheck_in().toLocalDate())
+			mav.addObject("date", book.getCheck_in().toLocalDate())
 				.addObject("startTime", book.getCheck_in().toLocalTime())
-				.addObject("endDate", book.getCheck_out().toLocalDate())
 				.addObject("endTime", book.getCheck_out().toLocalTime())
 				.addObject("people", book.getPeople());
 			session.removeAttribute("book");

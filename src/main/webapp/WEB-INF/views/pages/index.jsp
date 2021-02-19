@@ -78,6 +78,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="${pageContext.request.contextPath}/resources/assets/css/themes/layout/aside/light.css"
 	rel="stylesheet" type="text/css" />
 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/svg.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/pikaday/pikaday.css">
 <!--end::Layout Themes-->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/media/logos/logo.png" />
