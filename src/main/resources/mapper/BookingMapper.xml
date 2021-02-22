@@ -4,9 +4,9 @@
 	<insert id="insertBook" parameterType="com.jts.gangstudy.domain.Booking">
 	  INSERT INTO BOOKING_TB
 	  (USER_NO, ROOM_NO, CHECK_IN, CHECK_OUT, PEOPLE, STATE, REQUEST_DT) VALUES
-	  (#{user_no}, #{room_no}, #{check_in}, #{check_out}, #{people}, #{state}, SYSDATE)
+	  (#{user_no}, #{room_no}, #{check_in}, #{check_out}, #{people}, #{state}, NOW())
 	  <selectKey keyProperty="book_no" resultType="int" order="AFTER">
-	    SELECT BOOKING_TB_SEQ.CURRVAL FROM DUAL
+	   SELECT LAST_INSERT_ID()
 	  </selectKey>
 	</insert>
 	
