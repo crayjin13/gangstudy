@@ -1284,14 +1284,15 @@ pre {
 
 .table {
   width: 100%;
+  
   margin-bottom: 1rem;
   color: #3F4254;
   background-color: transparent; }
   .table th,
   .table td {
     padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #EBEDF3; }
+    vertical-align: top; 
+   /*  border-left: 1px solid #EBEDF3; */ }
   .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #EBEDF3; }
@@ -2867,7 +2868,7 @@ input[type="button"].btn-block {
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
 .input-group-lg > .input-group-append > .btn {
-  padding: 0.825rem 1.42rem;
+  padding: 0.825rem 1.3rem;   
   font-size: 1.08rem;
   line-height: 1.5;
   border-radius: 0.42rem; }
@@ -56791,12 +56792,28 @@ body {
   hover-color: #ffffff;
   background-color: #2552e6;  
   box-shadow: none; }
-     
   
+              
+  .btn-blue_ {     
+  color: #ffffff;  
+   border: 1px solid transparent; 
+  padding: 0.65rem ;
+  height: 58px; 
+   font-size: 17px;     
+     margin: 0 0 0.8rem;   
+  font-family: NotoSansCJKkr;
+   font-weight: 500; 
+  padding: 17px 60px 17px 60px;
+  border-radius: 6px;
+  hover-color: #ffffff;
+  background-color: #2552e6;  
+  box-shadow: none; }
+        
+   
   .btn-dark{ 
    color: #ffffff;  
    border: 1px solid transparent; 
-  padding: 0 0rem 1rem;
+  padding: 0rem 0rem 1rem;
   height: 58px; 
    font-size: 17px; 
   margin: 0 0 0.8rem;
@@ -56923,6 +56940,41 @@ body {
   border: solid 1px #2552e6; 
   padding:17px 22px 17px 25px;
   font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.42rem;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none; } }
+  .btn:hover { 
+    color: #0000ff;
+    text-decoration: none; }
+  .btn:focus, .btn.focus {
+    outline: 0;
+    box-shadow: none; }
+  .btn.disabled, .btn:disabled {
+    opacity: 0.6;
+    box-shadow: none; }
+  .btn:not(:disabled):not(.disabled) {
+    cursor: pointer; }
+    .btn:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active {
+      box-shadow: none; }
+      
+.listbtn-s {
+  display: inline-block;
+  font-weight: normal;
+  color: #2552e6;
+  text-align: left;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #ffffff;
+  border: solid 1px #2552e6; 
+  padding:8px 25px 8px 25px;     
+  margin: 0 0.5rem 0 0 ;                       
+  font-size: 1rem;   
   line-height: 1.5;
   border-radius: 0.42rem;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
@@ -57169,6 +57221,66 @@ body {
   text-align: left;  
   color: #171717;
 	
+}
+
+.box3{
+	width:33.33%;    
+}
+
+
+.ic-manual_01 {
+	background: url("/resources/images/ic-manual_01.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+.ic-manual_01:focus {
+	background: url("/resources/images/ic-manual_01-blue.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+
+.ic-manual_02 {
+	background: url("/resources/images/ic-manual_02.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+.ic-manual_02:focus {
+	background: url("/resources/images/ic-manual_02-blue.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+
+.ic-manual_03 {
+	background: url("/resources/images/ic-manual_03.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+.ic-manual_03:focus {
+	background: url("/resources/images/ic-manual_03-blue.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+
+.ic-manual_04 {
+	background: url("/resources/images/ic-manual_04.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}
+.ic-manual_04:focus {
+	background: url("/resources/images/ic-manual_04-blue.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem; 
+}
+
+.ic-manual_05 {    
+	background: url("/resources/images/ic-manual_05.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
+}   
+.ic-manual_05:focus {  
+	background: url("/resources/images/ic-manual_05-blue.svg") no-repeat;
+	background-position: 1.5rem center;
+	padding-left: 4rem;
 }
 
 /*# sourceMappingURL=style.bundle.css.map*/

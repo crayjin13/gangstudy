@@ -85,11 +85,7 @@ public class UserController {
 		return "_User/modify_info";
 	} 
 	
-	@UserLoginCheck
-	@RequestMapping(value = "/remo-control", method = RequestMethod.GET)
-	public String remo() {
-		return "pages/remo-control";
-	}
+  
 	
 	@RequestMapping(value = "/remo_control", method = RequestMethod.GET)
 	public String remocon() {
