@@ -80,7 +80,7 @@ public class HomeController {
 	public String refund_policy() {          
 		return "informations/refund_policy";          
 	}
-//	 이용안내 리모콘 이용방법 페이지 바로가기 
+//	 이용안내 리모콘 이용방법 페이지 바로가기  
 	@RequestMapping(value = "/how_to_use", method = RequestMethod.GET)      
 	public String how_to_use() {           
 		return "informations/how_to_use";          
@@ -90,6 +90,17 @@ public class HomeController {
 	public String precautions() {            
 		return "informations/precautions";          
 	}     
+	
+//	 결제페이지 
+	@RequestMapping(value = "/payment", method = RequestMethod.GET)      
+	public String payment() {            
+		return "booking/payment";          
+	}     
+//	 결제(old)페이지 
+	@RequestMapping(value = "/makecart", method = RequestMethod.GET)      
+	public String makecart() {            
+		return "pages/makecart";            
+	}       
 	
 	  
 	@RequestMapping(value = "/send", method = RequestMethod.POST)    
