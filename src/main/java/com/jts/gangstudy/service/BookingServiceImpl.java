@@ -23,7 +23,7 @@ public class BookingServiceImpl implements BookingService{
 	private final int dateSize = 7;			// 예약 신청이 가능한 기간
 	private final int minimumSize = 120;	// 에약 신청 최소 단위
 	private final int minuteSize = 30;		// 에약 신청 시간 단위
-	private final int amount = 500;			// 예약 신청 시간 당 필요 요금
+	private final int amount = 25;			// 예약 신청 시간 당 필요 요금
 
 	/*						*/
 	/*		데이터베이스 기능	*/
