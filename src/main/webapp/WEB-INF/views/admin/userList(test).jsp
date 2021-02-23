@@ -117,105 +117,34 @@ License: You must have a valid license purchased only from themeforest(the above
 				<!--begin::Wrapper-->
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 					<!--begin::Header-->
-					<div id="kt_header" class="header header-fixed">
-						<!--begin::Container-->
-						<div class="container-fluid d-flex align-items-stretch justify-content-between">
-							<!--begin::Header Menu Wrapper-->
-							<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-								<!--begin::Header Menu-->
-								<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
-									<!--begin::Header Nav-->
-	
-									<!--end::Header Nav-->
-								</div>
-								<!--end::Header Menu-->
-							</div>
-							<!--end::Header Menu Wrapper-->
-							<!--begin::Topbar-->							  							
-							<!--end::Topbar-->
-					
-						</div>
-						<!--end::Container-->
-					</div>
+					    
 					<!--end::Header-->
 					<!--begin::Content-->
-					<div class="content d-flex flex-column flex-column-fluid cafe24" id="kt_content">
+					<div class="content d-flex flex-column flex-column-fluid cafe24" id="kt_content">															  				  	    <div class="form-group form-group-last">										<div class="alert-text" style="text-align: center">											<p class="myinfo_text" style="width:80%;">											나의 예약내역<br>   <br>           											</p>										</div>									</div>  	    					    
 						<!--begin::Subheader-->
-						<div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
-							<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-								<!--begin::Info-->
-								<div class="d-flex align-items-center flex-wrap mr-1">
-									<!--begin::Page Heading-->
-									<div class="d-flex align-items-baseline flex-wrap mr-5">
-										<!--begin::Page Title-->
-										<h5 class="text-dark font-weight-bold my-1 mr-5"> 회원 내역</h5>
-										<!--end::Page Title-->
-										<!--begin::Breadcrumb-->
-										<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-											<li class="breadcrumb-item">
-												<a href="" class="text-muted"> </a>
-											</li>
-											<li class="breadcrumb-item">
-												<a href="" class="text-muted"></a>
-											</li>
-											<li class="breadcrumb-item">
-												<a href="" class="text-muted"></a>
-											</li>
-											<li class="breadcrumb-item">
-												<a href="" class="text-muted"></a>
-											</li>
-										</ul>
-										<!--end::Breadcrumb-->
-									</div>
-									<!--end::Page Heading-->
-								</div>
-								<!--end::Info-->
-								<!--begin::Toolbar-->  
-			
-								<!--end::Toolbar-->
-							</div>
-						</div>
+	  	    	    
 						<!--end::Subheader-->
 						<!--begin::Entry-->
-						<div class="d-flex flex-column-fluid">
+						<div class="d-flex flex-column-fluid">																													
 							<!--begin::Container-->
-							<div class="container">
+							<div class="container">																					
 								<!--begin::Card-->
 								<div class="card card-custom">
-									<div class="card-header">
-										<div class="card-title">
-											<span class="card-icon">
-												<i class="flaticon-notepad text-primary"></i>
-											</span>
-											<h3 class="card-label">회원목록</h3>
-										</div>
-										<div class="card-toolbar">
-											<!--begin::Dropdown-->
-											<div class="dropdown dropdown-inline mr-2">
-											<!-- 버튼 혹시필요할떄 쓰기 																							<button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												Export</button> -->
-												<!--begin::Dropdown Menu-->
-									     
-												<!--end::Dropdown Menu-->
-											</div>
-											<!--end::Dropdown-->
-											
-										</div>
-									</div>
+									      
 									<div class="card-body">
 										<!--begin: Datatable-->
 										<table class="table tabletable-hover table-striped" id="kt_datatable" style="margin-top: 13px !important">
 											<thead>   
-												<tr> 
-													<th>유저번호</th>
-													<th>아이디</th>
-													<th>이름</th>
-													<th>전화번호</th>
-													<th>이메일</th>
-													<th>생일</th>
-													<th>성별</th>
+												<tr style="border-top: 2px solid #2a2a2e; border-bottom: 0.5px solid #2a2a2e;">    												
+													<th>예약번호</th>
+													<th>이용날짜</th>   
+													<th>이용시간</th>
+													<th>인원 수</th>
+													<th>포인트 차감</th>
+													<th>결제금액</th>
+													<th>예약상태</th>
 													<th>포인트</th>
-													<th>평점</th>													<th>비고</th>													<th>수정</th>
+													<th>평점</th>													<th>비고</th>													<th>action</th>
 												</tr>
 											</thead>     
 										</table>   
@@ -227,7 +156,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--end::Container-->
 						</div>
 						<!--end::Entry-->
-					</div>
+					</div>					
 					<!--end::Content-->
 					<!--begin::Footer-->
 					<div>	<%@ include file="/WEB-INF/views/partials/_footer.jsp"%>	</div>

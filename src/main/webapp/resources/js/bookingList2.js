@@ -220,12 +220,12 @@
 									<a href="javascript:modify('
 																+ data.book_no
 																+ ');" class="btn btn-sm btn-clean btn-icon mr-1" title="Edit details">\
-																<button class=" btn-xs listbtn-xs-blue">수정 </button></i>\
+										<i class="la la-edit"></i>\
 									</a>\
 									<a href="javascript:cancel('
 																+ data.book_no
 																+ ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
-																<button class=" btn-xs listbtn-xs-red">삭제 </button>\
+										<i class="la la-trash"></i>\
 									</a>\
 								</div>\
 							';
