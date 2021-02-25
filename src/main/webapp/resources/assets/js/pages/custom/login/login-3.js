@@ -447,8 +447,8 @@
 								signUp_function();
 							},
 							errorClass : "error",
-							validClass : "valid"
-						});
+							validClass : "core.form.invalid"          
+						});        
 
 					})
 					///아이디 중복체크 끝 ///
@@ -590,7 +590,7 @@
 																
 															}
 														},
-														id : { 
+														id : {     
 															validators : {
 															
 															     
@@ -770,7 +770,7 @@
 										function(wizard) {
 
 											if ($('#c1').prop('checked') == false
-													|| $('#c2').prop('checked') == false) {
+													) {   
 
 												Swal
 														.fire(
@@ -853,7 +853,7 @@
 									// for
 									// currnt
 									// step    
-
+  
 									if (validator) {
 										validator.validate().then(
 												function(status) {         
