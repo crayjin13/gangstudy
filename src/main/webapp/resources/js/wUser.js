@@ -1,4 +1,23 @@
 $(function() {
+	
+	// radio   
+	
+	function hasClass(target, className) {
+		if( (' ' + target.className + ' ').replace(/[\n\t]/g, ' ').indexOf(' ' + className + ' ') > -1 ) return true;
+		return false;
+	}
+	function removeClass(target, className){
+	    var elClass = ' ' + target.className + ' ';
+	    while(elClass.indexOf(' ' + className + ' ') !== -1){
+	         elClass = elClass.replace(' ' + className + ' ', '');
+	    }
+	    target.className = elClass;
+	}
+	function addClass(target, className){
+	    target.className += ' ' + className;   
+	}
+	  
+
 
 	// 비밀번호 찾기
 	$("button[name=forgotbtn]").click(function() {
@@ -175,8 +194,10 @@ $(function() {
 			$("email").focus();
 			return false;
 		}
-
-		      
+		  
+		
+		
+		
 		var userArray = $('#kt_login_signup_form').serialize();
 		
 		
@@ -202,11 +223,21 @@ $(function() {
 					kt_login_signup_form.email.value = textData.email;
 					kt_login_signup_form.bod.value = textData.bod;
 					kt_login_signup_form.gender.value = textData.gender;
-					alert("갱스터디 회원이 되신걸 축하합니다.");
+					      
+					Swal.fire({
+						text: "갱스터디 회원이 되신걸 축하합니다. !",
+						icon: "success",
+						buttonsStyling: false,
+						confirmButtonText: "로그인하러가기",
+						customClass: {
+							confirmButton: "btn font-weight-bold btn-primary",
+							cancelButton: "btn font-weight-bold btn-default"
+						}
+					});
 					location.href = '/signin';
-					
+   
 				}else {
-					alert("죄송합니다. 입력하신 값이 올바르지 않습니다.(입력한 글 사이즈가 너무 크거나 작을경우)  ");    
+					alert("죄송합니다. 입력하신 값이 올바르지 않습니다.  ");    
 				}
 
 			},

@@ -139,11 +139,11 @@ a {
   text-decoration: none; 
   background-color: transparent; }
   a:hover {
-    color: #0073e9;
+    color: #2552e6;   
     text-decoration: underline; }
 
 a:not([href]):not([class]) {
-  color: inherit;
+  color: inherit;  
   text-decoration: none; }
   a:not([href]):not([class]):hover {
     color: inherit;
@@ -186,10 +186,7 @@ caption {
 th {
   text-align: inherit; }
 
-label {
-  display: inline-block;
-  margin-bottom: 0.5rem; }
-
+  
 button {
   border-radius: 0; }
 
@@ -30022,8 +30019,8 @@ a.text-hover-white,
   .hoverable:hover .text-hover-white .svg-icon svg:hover g [fill] {
     transition: fill 0.3s ease; }
 
-.text-primary {
-  color: #3699FF !important; }
+.text-primary {   
+  color: #2552e6 !important; }
 
 .text-inverse-primary {
   color: #FFFFFF !important; }
@@ -52162,8 +52159,8 @@ code {
   color: #B5B5C3; }
 
 .fc-unthemed .fc-list-item-title > a[href]:hover {
-  color: #3699FF;
-  text-decoration: none; }
+  color: #0000ff;
+  text-decoration: none; } 
 
 .fc-unthemed .fc-more {
   color: #B5B5C3; }
@@ -57080,9 +57077,9 @@ body {
    margin: 2rem  rem 1rem rem;    
    background-color:#ffffff; 
    border-radius: 5%;  
-   height: 6rem; !important;      
-         
-     
+   height: 7rem; !important;      
+                 
+       
  }
  .form-group-info {
    margin: rem  rem 1rem rem;    
@@ -57207,10 +57204,7 @@ body {
   }
 
 .remo_txt{
-	   
-  height: 3rem;        
-   vertical-align: middle;  
-    
+  vertical-align: middle;      
   font-family: NotoSansCJKkr;    
   font-size: 1.2rem;      
   font-weight: bold;   
@@ -57352,7 +57346,7 @@ body {
     color: #0000ff;
     text-decoration: none; }
   .btn:focus, .btn.focus {
-    outline: 0;
+    outline: 0;   
     box-shadow: none; }
   .btn.disabled, .btn:disabled {
     opacity: 0.6;
@@ -57361,4 +57355,132 @@ body {
     cursor: pointer; }
     .btn:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active {
       box-shadow: none; }
+      
+      
+  
+
+ input[type="radio"] {
+	display:none; margin:10px;  
+}          
+
+input[type="radio"] + label {
+	display:inline-block;
+	margin: -2px;    
+	padding: 8px 19px;
+	background-color: #ffffff;    
+	border: 1px solid #ccc;
+	font-size: 13px !important;
+	width: 110px;
+	text-align: center;    
+	color: #c2c5ce;    
+
+	}
+
+ input[type="radio"]:checked + label {
+ background-image: none;
+ background-color:#ffffff;
+ color:#0000ff;      
+ border: 1px solid #0000ff;
+         
+ }         
+      
+      
+
+      
+      
+      input[type="radio"]:after {
+  content: '';
+  position: relative;
+  left: 40%;
+  top: 20%;
+  width: 15%;
+  height: 40%;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+input[type="radio"]:checked:after {
+  display: block;
+}   
+
+
+
+
+
+
+/* radio 버튼  */
+   
+@mixin ie8 {
+    .ie8 {
+        @content;
+    }
+}
+　
+/* reset */
+*{margin: 0; padding: 0}
+body {padding: 20px;}
+　
+  
+.only-sr {
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;   
+}
+.radio-items {
+     
+    width: 100%;
+   
+    border-radius: 4px;
+    box-sizing: border-box;      
+}        
+    > div {
+     
+         
+        height: 4rem;      
+        line-height: 49px;
+        border-left: 1px solid #454a60;
+        text-align: center;
+    }
+    > div:first-child {
+        border-left: none;
+        width: auto !important;
+    }
+   input[type="radio"] + label {
+     
+        display: block;   
+        width: 196px;
+  height: 58px;
+  margin: 6px 2rem 0 4px;  
+  padding: 17px 80px 17px 80px;     
+  border-radius: 4px;  
+  border: solid 1px #d9dbe1;  
+  background-color: #ffffff;  
+        vertical-align: middle;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    input[type="radio"]:checked + label{
+        width: 196px;
+  height: 58px;
+  margin: 6px 2rem 0 4px;   
+  padding: 17px 80px 17px 80px;  
+  border-radius: 4px;   
+  border: solid 2px #2552e6;
+  background-color: #ffffff;
+        
+    }
+}
+@include ie8 {
+    // ie8 에서는 :checked 미지원하기 때문에 class로 대체, 추가적인 스크립트가 필요합니다.
+    // 조건부 주석을 이용하여 html에 ie8이라는 클래스를 추가합시다.
+    .radio-items {
+        input[type="radio"].checked + label {
+            background-color: #454a60;
+            color: #fff;
+        }
+    }
+}
 /*# sourceMappingURL=style.bundle.css.map*/
