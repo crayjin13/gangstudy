@@ -1,5 +1,46 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.jts.gangstudy.mapper.BookingMapper">
+	<!-- 날짜+시간으로 조회 -->
+	<select id="selectByDateTime" parameterType="java.time.LocalDateTime" resultType="com.jts.gangstudy.domain.Booking">
+	  <![CDATA[
+		SELECT *
+		FROM BOOKING_TB
+		WHERE (CHECK_IN >= #{dateTime} AND CHECK_IN < DATE_ADD(#{dateTime}, INTERVAL 1 DAY) OR
+      		  CHECK_OUT >= #{dateTime} AND CHECK_OUT < DATE_ADD(#{dateTime}, INTERVAL 1 DAY)) AND
+	  		  STATE='uncharge' OR STATE='wait' OR STATE='use'
+	  ]]>
+	</select>
+	
+	<!-- 요청한 유저의 예약을 제외하고 uncharge, wait 상태인 예약
+		 요청한 유저가 예약할 수 있는 종료 시간 -->
+	<select id="selectNextBook" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT *
+	  FROM BOOKING_TB
+	  <![CDATA[
+	  WHERE CHECK_IN >= #{dateTime} AND CHECK_IN < DATE_ADD(#{dateTime}, INTERVAL 1 DAY) AND
+	  		(STATE='uncharge' OR STATE='wait') AND
+	  		NOT(USER_NO = #{user_no} AND STATE='uncharge')
+      ORDER BY CHECK_IN
+	  LIMIT 1
+	  ]]>
+	</select>
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- 예약 추가 -->
 	<insert id="insertBook" parameterType="com.jts.gangstudy.domain.Booking">
 	  INSERT INTO BOOKING_TB
@@ -43,25 +84,10 @@
 	<select id="selectAlreadyBooked" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
 	  SELECT *
 	  FROM BOOKING_TB
-	  WHERE CHECK_IN  BETWEEN STR_TO_DATE(#{date}, '%Y-%m-%d') AND STR_TO_DATE(#{date}, '%Y-%m-%d') + 0.99999 AND
-	  		CHECK_OUT BETWEEN STR_TO_DATE(#{date}, '%Y-%m-%d') AND STR_TO_DATE(#{date}, '%Y-%m-%d') + 0.99999 AND
+	  WHERE CHECK_IN  BETWEEN STR_TO_DATE(#{date}, '%Y-%m-%d') AND STR_TO_DATE(#{date}, '%Y-%m-%d') + 1 AND
+	  		CHECK_OUT BETWEEN STR_TO_DATE(#{date}, '%Y-%m-%d') AND STR_TO_DATE(#{date}, '%Y-%m-%d') + 1 AND
 	  		BOOK_NO != #{book_no} AND
 	  		(STATE='uncharge' OR STATE='wait' OR STATE='use')
-	</select>
-	
-	<!-- 요청한 유저의 예약을 제외하고 uncharge, wait 상태인 예약
-		 요청한 유저가 예약할 수 있는 종료 시간 -->
-	<select id="selectNextBook" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT *
-	  FROM BOOKING_TB
-	  <![CDATA[
-	  WHERE CHECK_IN >= #{startDateTime} AND
-	  		CHECK_IN < #{maxDateTime} AND
-	  		USER_NO != #{user_no} AND
-	  		(STATE='uncharge' OR STATE='wait')
-      ORDER BY CHECK_IN
-	  LIMIT 1
-	  ]]>
 	</select>
 	
 	<!-- 예약 번호로 조회 -->
@@ -72,8 +98,8 @@
 	</select>
 	
 	<!-- 예약시간 중복 확인-->
-	<select id="selectDuplicate" parameterType="hashmap" resultType="int">
-	  SELECT count(*) cnt
+	<select id="selectDuplicate" parameterType="hashmap" resultType="com.jts.gangstudy.domain.Booking">
+	  SELECT *
 	  FROM BOOKING_TB
 	  <![CDATA[
 	  WHERE CHECK_IN < #{check_out} AND
@@ -87,13 +113,6 @@
 	  SELECT *
 	  FROM BOOKING_TB
 	  WHERE USER_NO = CAST(#{user_no} as signed) AND STATE = #{state}
-	</select>
-	
-	<!-- 날짜+시간으로 조회 -->
-	<select id="selectByDateTime" parameterType="java.time.LocalDateTime" resultType="com.jts.gangstudy.domain.Booking">
-	  SELECT *
-	  FROM BOOKING_TB
-	  WHERE CHECK_IN = #{dateTime} OR CHECK_OUT = #{dateTime}
 	</select>
 	
 	<!--  상태로 조회 -->
