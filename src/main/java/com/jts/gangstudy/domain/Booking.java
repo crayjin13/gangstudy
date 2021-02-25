@@ -14,12 +14,24 @@ public class Booking {
 	private State state;
 	
 	public enum State {
-		uncharge,
-		wait,
-		use,
-		clear,
-		cancel,
-		error;
+		uncharge("uncharge", "미결제"),
+		wait("wait", "확정"),
+		use("use", "사용중"),
+		clear("clear", "완료"),
+		cancel("cancel", "취소"),
+		error("error", "오류");
+		
+		private String DBValue;
+		private String UIValue;
+		
+		State(String DBValue, String UIValue) {
+			this.DBValue = DBValue;
+			this.UIValue = UIValue;
+		}
+		
+		public String getUIValue() {
+			return UIValue;
+		}
 	}
 	
 	private LocalDateTime request_dt;
@@ -139,8 +151,8 @@ public class Booking {
 		return people;
 	}
 
-	public String getState() {
-		return state.toString();
+	public State getState() {
+		return state;
 	}
 
 	public LocalDateTime getRequest_dt() {

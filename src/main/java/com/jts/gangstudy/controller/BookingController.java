@@ -39,60 +39,123 @@ public class BookingController {
 	private BookingService bookingService;
 	@Autowired
 	private PaymentService paymentService;
-	
-	// 30분 간격으로 예약 시간이 되면 상태 변경
-	@Scheduled(cron="0 */30 * * * *" )
-	public void bookTrigger() {
-		LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
-		
-		// 사용하는 예약의 상태변경
-		List<Booking> usingList = bookingService.searchByDateTime(now);
-		for(Booking book : usingList) {
-			if(now.isEqual(book.getCheck_in()) && book.getState().equals("wait")) {			// 예약시간이 되면 use로 변경
-				bookingService.changeState(book, Booking.State.use);
-				User user = userService.getUser(book.getUser_no());
-				Integer amount = paymentService.selectPayment(book).getAmount();
-				
-				userService.plusPoints(user, (amount/100) * 5);
-			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals("use")) {	// 예약이 종료되면 clear로 변경
-				bookingService.changeState(book, Booking.State.clear);
-			}
-		}
-		
-		
-		// 결제 미완료 등으로 남겨진 에약의 제거
-		List<Booking> unchargeList = bookingService.searchByState("uncharge");
-		for(Booking book : unchargeList) {
-			LocalDateTime requestDateTime = book.getRequest_dt().plusHours(9);
-			if(book.getCheck_in().isBefore(now)) {											// 지금보다 이전의 예약 제거
-				bookingService.removeBook(book);
-			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
-				bookingService.removeBook(book);
-			}
-		}
-	}
-	
+
 	// 예약가능한 시작시간
 	@ResponseBody
 	@RequestMapping(value = "/startTime", method = RequestMethod.GET)
-	public List<String> startTime(HttpServletRequest request, HttpSession session, 
-			@RequestParam("date") String date, @RequestParam("book_no") Integer book_no) {
-		List<Booking> books = bookingService.searchAlreadyBooked(book_no, date);
-		List<String> times = bookingService.getStartTimes(books, date);
+	public List<String> startTime(HttpServletRequest request, HttpSession session, @RequestParam("date") String dateParam, @RequestParam("book_no") Integer book_no) {
+		LocalDate date = LocalDate.parse(dateParam);
+		// 요청한 날짜를 KST로 변환
+		LocalDateTime ldt = LocalDateTime.of(date, LocalTime.MIN).minusHours(9);
+		// 해당일에 존재하는 예약목록
+		List<Booking> books = bookingService.selectByDateTime(ldt);
+		// 요청한 book_no가 있었다면 리스트에서 제거
+		if(book_no != null) { books.removeIf(obj -> obj.getBook_no() == book_no); }
+		// 예약된 시간을 제외한 시간목록 생성
+		List<String> times = bookingService.getStartTimes(date, books);
 		return times;
 	}
 
 	// 예약가능한 종료시간
 	@ResponseBody
 	@RequestMapping(value = "/endTime", method = RequestMethod.GET)
-	public List<String> endTime(HttpServletRequest request, HttpSession session) {
-		String date = request.getParameter("date");
-		String startTime = request.getParameter("startTime");
+	public List<String> endTime(HttpServletRequest request, HttpSession session, @RequestParam("date") String dateParam, @RequestParam("startTime") String timeParam) {
 		User user = (User)session.getAttribute("sUserId");
-		Booking nextBook = bookingService.searchNextBook(user, date, startTime);
-		List<String> times = bookingService.getEndTimes(nextBook, date, startTime);
+		LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(dateParam), LocalTime.parse(timeParam));
+		// 유저의 uncharge를 제외한 해당일에 존재하는 다음 예약
+		Booking nextBook = bookingService.searchNextBook(dateTime, user);
+		// 최대로 선택가능한 시간목록 생성
+		List<String> times = bookingService.getEndTimes(dateTime, nextBook);
 		return times;
 	}
+	
+	// 홈페이지에서 예약일, 인원 선택 후 결제 전에 보여주는 페이지.
+	@RequestMapping(value = "/make", method = RequestMethod.GET)
+	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
+			@RequestParam(value="dateInput", 	required = false) String date, 		@RequestParam(value="startTimeInput",	required = false) String startTime,
+			@RequestParam(value="endTimeInput",	required = false) String endTime, 	@RequestParam(value="people",			required = false) String people) {
+		ModelAndView mav = new ModelAndView("pages/makecart");
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = (Booking)session.getAttribute("book");	// 기존 예약이 있으면 가져옴
+		
+		if(book == null) {	// 기존 예약이 없으면 생성
+			book = new Booking(date, startTime, endTime, Integer.parseInt(people), room_no, Booking.State.uncharge);
+		}
+		if(user == null) {		// 로그인이 안되었을시
+			session.setAttribute("book", book);
+			mav.setViewName("redirect:/signin");
+			return mav;
+		} else {
+			book.setUser_no(user.getUser_no());
+		}
+		
+		// mav add
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M월 d일 H시 mm분");
+		String startDateTime = book.getCheck_in().format(formatter);
+		String endDateTime = book.getCheck_out().format(formatter);
+		String timeInterval = bookingService.getTimeInterval(book);
+		int chargePerPeople = bookingService.getAmount(book) / book.getPeople();
+		
+		mav.addObject("startDateTime", startDateTime)
+		.addObject("endDateTime", endDateTime)
+		.addObject("timeInterval", timeInterval)
+		.addObject("chargePerPeople", chargePerPeople)
+		.addObject("people", book.getPeople())
+		.addObject("point", user.getPoints())
+		.addObject("charge", chargePerPeople*book.getPeople());
+		
+		// session registry
+		session.setAttribute("book", book);
+		return mav;
+	}
+	
+	// 유저의 예약 목록을 보여주는 페이지
+	@UserLoginCheck
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	public ModelAndView bookCheck(HttpServletRequest request, HttpSession session) {
+		ModelAndView mav = new ModelAndView("_User/user_bookingList");
+		
+		User user = (User)session.getAttribute("sUserId");
+		List<Booking> books = bookingService.searchByUser(user);
+		
+		JSONArray array = new JSONArray();
+		for(Booking book : books) {
+			int point = 0;
+			int amount = 0;
+			if(!book.getState().equals(Booking.State.uncharge)) {
+				Payment payment = paymentService.selectPayment(book);
+				point = payment.getPoint();
+				amount = payment.getAmount();
+			}
+			
+			array.put(
+					new JSONArray()
+					.put(book.getBook_no())
+					.put(book.getCheck_in().toLocalDate().toString())
+					.put(book.getCheck_in().toLocalTime().toString() + " - " + book.getCheck_out().toLocalTime().toString() + "<br>"
+					 + "(" + bookingService.getTimeInterval(book) + ")")
+					.put(book.getPeople() + "명")
+					.put(point)
+					.put(String.format("%,d", amount))
+					.put(book.getState().getUIValue())
+					.put(new JSONObject()
+							.put("book_no", book.getBook_no())
+							.put("state", book.getState()))
+					);
+		}
+
+		mav.addObject("books", array);
+		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// makeBook 요청 시 요청한 user의 uncharge 상태 예약 모두 제거
 	@ResponseBody
@@ -143,46 +206,6 @@ public class BookingController {
 	}
 	
 
-	// bookingList page - 예약 목록
-	@UserLoginCheck
-	@RequestMapping(value = "/check", method = RequestMethod.GET)
-	public ModelAndView bookCheck(HttpServletRequest request, HttpSession session) {
-		ModelAndView mav = new ModelAndView("booking/bookingList");
-		
-		User user = (User)session.getAttribute("sUserId");
-		List<Booking> books = bookingService.searchByUser(user);
-		
-		JSONArray array = new JSONArray();
-		for(Booking book : books) {
-			int point = 0;
-			int amount = 0;
-			if(!book.getState().equals("uncharge")) {
-				Payment payment = paymentService.selectPayment(book);
-				point = payment.getPoint();
-				amount = payment.getAmount();
-			}
-			
-			array.put(
-					new JSONArray()
-					.put(book.getBook_no())
-					.put(book.getCheck_in().toLocalDate().toString() + " " +
-						book.getCheck_in().toLocalTime().toString())
-					.put(book.getCheck_out().toLocalDate().toString() + " " +
-						book.getCheck_out().toLocalTime().toString())
-					.put(bookingService.getTimeInterval(book))
-					.put(book.getPeople() + "명")
-					.put(book.getState())
-					.put(point)
-					.put(amount)
-					.put(new JSONObject()
-							.put("book_no", book.getBook_no())
-							.put("state", book.getState()))
-					);
-		}
-
-		mav.addObject("books", array);
-		return mav;
-	}
 	
 	// booking modify page - 결제 수정 페이지
 	@UserLoginCheck
@@ -221,47 +244,7 @@ public class BookingController {
 		return mav;
 	}
 	
-	// booking shop page - 결제 직전 페이지
-	@RequestMapping(value = "/make", method = RequestMethod.GET)
-	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
-			@RequestParam(value="dateInput", required = false) String date,
-			@RequestParam(value="startTimeInput", required = false) String startTime,
-			@RequestParam(value="endTimeInput",	  required = false) String endTime,
-			@RequestParam(value="people",		  required = false) String people) {
-		ModelAndView mav = new ModelAndView("pages/makecart");
-		User user = (User)session.getAttribute("sUserId");
-		Booking book = (Booking)session.getAttribute("book");	// 기존 예약이 있으면 가져옴
-		
-		if(book == null) {	// 기존 예약이 없으면 생성
-			book = new Booking(date, startTime, endTime, Integer.parseInt(people), room_no, Booking.State.uncharge);
-		}
-		if(user == null) {		// 로그인이 안되었을시
-			session.setAttribute("book", book);
-			mav.setViewName("redirect:/signin");
-			return mav;
-		} else {
-			book.setUser_no(user.getUser_no());
-		}
-		
-		// mav add
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M월 d일 H시 mm분");
-		String startDateTime = book.getCheck_in().format(formatter);
-		String endDateTime = book.getCheck_out().format(formatter);
-		String timeInterval = bookingService.getTimeInterval(book);
-		int chargePerPeople = bookingService.getAmount(book) / book.getPeople();
-		
-		mav.addObject("startDateTime", startDateTime)
-		.addObject("endDateTime", endDateTime)
-		.addObject("timeInterval", timeInterval)
-		.addObject("chargePerPeople", chargePerPeople)
-		.addObject("people", book.getPeople())
-		.addObject("point", user.getPoints())
-		.addObject("charge", chargePerPeople*book.getPeople());
-		
-		// session registry
-		session.setAttribute("book", book);
-		return mav;
-	}
+
 
 	// booking shop page - 결제 요청 시
 	@UserLoginCheck
@@ -522,5 +505,35 @@ public class BookingController {
 	}
 	
 
-	
+	// 30분 간격으로 예약 시간이 되면 상태 변경
+	@Scheduled(cron="0 */30 * * * *" )
+	public void bookTrigger() {
+		LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
+		
+		// 사용하는 예약의 상태변경
+		List<Booking> usingList = bookingService.selectByDateTime(now);
+		for(Booking book : usingList) {
+			if(now.isEqual(book.getCheck_in()) && book.getState().equals("wait")) {			// 예약시간이 되면 use로 변경
+				bookingService.changeState(book, Booking.State.use);
+				User user = userService.getUser(book.getUser_no());
+				Integer amount = paymentService.selectPayment(book).getAmount();
+				
+				userService.plusPoints(user, (amount/100) * 5);
+			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals("use")) {	// 예약이 종료되면 clear로 변경
+				bookingService.changeState(book, Booking.State.clear);
+			}
+		}
+		
+		
+		// 결제 미완료 등으로 남겨진 에약의 제거
+		List<Booking> unchargeList = bookingService.searchByState("uncharge");
+		for(Booking book : unchargeList) {
+			LocalDateTime requestDateTime = book.getRequest_dt().plusHours(9);
+			if(book.getCheck_in().isBefore(now)) {											// 지금보다 이전의 예약 제거
+				bookingService.removeBook(book);
+			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
+				bookingService.removeBook(book);
+			}
+		}
+	}
 }
