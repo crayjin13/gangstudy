@@ -25,14 +25,11 @@ function requestTimes(url, data, target, callback) {
 }
 
 function display(times, target, callback) {
-	if(times.length == 0) {
-		addOption(target, "해당일에 예약할 수 있는 시간이 없습니다.", "")
-	} else {
-		addOption(target, "시간을 선택해주세요.", "")
-		for(var i = 0; i < times.length; i++) {
-			addOption(target, times[i], times[i])
-		}
+	addOption(target, "시간을 선택해주세요.", "")
+	for(var i = 0; i < times.length; i++) {
+		addOption(target, times[i], times[i])
 	}
+	
 	target.value = target.getAttribute("time")
 	if(callback!=null) { callback() }
 }

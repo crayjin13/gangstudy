@@ -201,42 +201,60 @@
 
 					var initTable1 = function() {
 						var table = $('#kt_datatable');
-
+						
+						
 						// begin first table
-						table
-								.DataTable({
+						table.DataTable({
+									language: {
+									    "lengthMenu":	'<select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">'+
+															'<option value="10">10개씩</option>'+
+															'<option value="25">25개씩</option>'+
+															'<option value="50">50개씩</option>'+
+															'<option value="100">100개씩</option>'+
+														'</select>',
+   										"search":		"_INPUT_",
+										"paginate": {
+											"previous":	"<",
+									    	"next":		">"
+									    }
+									},
+									lengthMenu: {
+								        "className": 'form-control form-control-sm'
+								    },
+									info: false,
 									responsive : true,
+									dom: "<'row' <'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f> > <'row'rt> p",
 									data : dataJSONArray,
 									columnDefs : [
-											{
-												targets : -1,
-												title : 'Actions',
-												orderable : false,
-												render : function(data, type,
-														full, meta) {
-													if (data.state == 'wait') {
-														return '\
-								<div class="d-flex align-items-center">\
-									<a href="javascript:modify('
-																+ data.book_no
-																+ ');" class="btn btn-sm btn-clean btn-icon mr-1" title="Edit details">\
-																<button class=" btn-xs listbtn-xs-blue">수정 </button></i>\
-									</a>\
-									<a href="javascript:cancel('
-																+ data.book_no
-																+ ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+										
+										{
+										targets : -1,
+										title : 'Actions',
+										orderable : false,
+										render : function(data, type, full, meta) {
+												if (data.state == 'wait') {
+													return '\
+														<div class="row">\
+															<a href="javascript:cancel('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
 																<button class=" btn-xs listbtn-xs-red">삭제 </button>\
-									</a>\
-								</div>\
-							';
-													} else {
-														return '\
-								<div class="d-flex align-items-center">-\
-								</div>\
-							';
-													}
-												},
-											}, ],
+															</a>\
+														</div>\
+														<div class="row">\
+															<a href="javascript:modify('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
+																<button class=" btn-xs listbtn-xs-blue">수정 </button></i>\
+															</a>\
+														</div>\
+													';
+												} else {
+													return '<div class="d-flex align-items-center"> - </div>';
+												}
+											}
+										},
+										{ 
+											orderable: false, targets: [0,1,2,3,4,5,6]
+										}
+									],
+									order: []
 								});
 					};
 
@@ -253,6 +271,7 @@
 
 				jQuery(document).ready(function() {
 					KTDatatablesDataSourceHtml.init();
+					$('.custom-select').removeClass('custom-select custom-select-sm')
 				});
 
 				/***/
