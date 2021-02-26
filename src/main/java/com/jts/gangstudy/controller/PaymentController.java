@@ -57,7 +57,7 @@ public class PaymentController {
 		Booking book = bookingService.searchByBookNo(book_no);
 		if (book == null) {
 			return "해당하는 예약이 없습니다.";
-		} else if (!book.getState().equals("wait")) {
+		} else if (!book.getState().equals(Booking.State.wait)) {
 			return "취소 불가능한 예약입니다.";
 		} else if (book.getUser_no() != user.getUser_no()) {
 			return "잘못된 예약 요청입니다.";

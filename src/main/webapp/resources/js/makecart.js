@@ -1,10 +1,5 @@
 
-const totalAmount = document.getElementById("totalAmount");
 const people = document.getElementById("touchspin");
-const chargePerPeople = document.getElementById("chargePerPeople");
-const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
-const pointMax = document.getElementById("pointMax");
-const pointUse = document.getElementById("kt_touchspin");
 
 //
 //
@@ -21,7 +16,7 @@ $(document).ready(function() {
 document.getElementById("payments").addEventListener("click", function() {
 	$.post("/booking/make", {
         people : people.value,
-        point : pointUse.value,
+        point : "0",
 		pg_name : "KakaoPay"
 	},function(jqXHR) {
 		// always
@@ -35,6 +30,12 @@ document.getElementById("payments").addEventListener("click", function() {
 	});
 });
 
+/*
+const totalAmount = document.getElementById("totalAmount");
+const chargePerPeople = document.getElementById("chargePerPeople");
+const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
+const pointMax = document.getElementById("pointMax");
+const pointUse = document.getElementById("kt_touchspin");
 pointMaxUseBtn.addEventListener("click", function() {
 	if(parseInt(pointMax.textContent) > parseInt(totalAmount.textContent)) {
 		pointUse.value = totalAmount.textContent;
@@ -52,7 +53,6 @@ pointMaxUseBtn.addEventListener("touchend", function() {
 	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 });
 
-
 pointUse.addEventListener("change", function() {
 	if(parseInt(pointUse.value) > parseInt(pointMax.textContent)) {
 		pointUse.value = pointMax.textContent;
@@ -65,6 +65,7 @@ pointUse.addEventListener("change", function() {
 	}
 	totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 });
+*/
 
 people.addEventListener("change", function() {
 	if(people.value > 6){
@@ -84,13 +85,13 @@ window.addEventListener('load', function(){
 
             min: 1,
             max: 6,
-            step: 1,  
+            step: 1,
            // decimals: 2, 소수점 몇자리
             boostat: 5,
             maxboostedstep: 10000000,
             
         });
-
+	/*
 	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("click", function() {
 		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 	});
@@ -104,6 +105,7 @@ window.addEventListener('load', function(){
 	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("touchend", function() {
 		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
 	});
+	*/
 });
 
 function isInt(value) {

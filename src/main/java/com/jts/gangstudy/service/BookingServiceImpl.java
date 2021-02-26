@@ -129,7 +129,7 @@ public class BookingServiceImpl implements BookingService{
 		DecimalFormat df = new DecimalFormat("#.#");
 		Duration duration = Duration.between(book.getCheck_in(), book.getCheck_out());
 		float hour = (float) duration.toMinutes() / 60;
-		return df.format(hour) + "시간 ";
+		return df.format(hour) + "시간";
 	}
 
 	

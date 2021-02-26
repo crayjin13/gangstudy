@@ -69,17 +69,25 @@ public class BookingController {
 		return times;
 	}
 	
-	// 홈페이지에서 예약일, 인원 선택 후 결제 전에 보여주는 페이지.
+	@ResponseBody
+	@RequestMapping(value = "/submitBook", method = RequestMethod.GET)
+	public String submitBook(HttpServletRequest request, HttpSession session,
+			@RequestParam("date") String dateParam, @RequestParam("startTime") String startTime, @RequestParam("endTime") String endTime) {
+		
+		return null;
+	}
+	
+	// 홈페이지에서 예약일, 인원 선택 후 결제 전에 보여주는 페이지
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
-			@RequestParam(value="dateInput", 	required = false) String date, 		@RequestParam(value="startTimeInput",	required = false) String startTime,
+			@RequestParam(value="dateInput", 	required = false) String dateParam, 		@RequestParam(value="startTimeInput",	required = false) String startTime,
 			@RequestParam(value="endTimeInput",	required = false) String endTime, 	@RequestParam(value="people",			required = false) String people) {
-		ModelAndView mav = new ModelAndView("pages/makecart");
+		ModelAndView mav = new ModelAndView("booking/payment");
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");	// 기존 예약이 있으면 가져옴
 		
 		if(book == null) {	// 기존 예약이 없으면 생성
-			book = new Booking(date, startTime, endTime, Integer.parseInt(people), room_no, Booking.State.uncharge);
+			book = new Booking(dateParam, startTime, endTime, Integer.parseInt(people), room_no, Booking.State.uncharge);
 		}
 		if(user == null) {		// 로그인이 안되었을시
 			session.setAttribute("book", book);
@@ -90,19 +98,14 @@ public class BookingController {
 		}
 		
 		// mav add
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M월 d일 H시 mm분");
-		String startDateTime = book.getCheck_in().format(formatter);
-		String endDateTime = book.getCheck_out().format(formatter);
-		String timeInterval = bookingService.getTimeInterval(book);
-		int chargePerPeople = bookingService.getAmount(book) / book.getPeople();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY년 M월 d일");
+		String date = book.getCheck_in().format(formatter);
+		String timeInterval = book.getCheck_in().toLocalTime() + " - " + book.getCheck_out().toLocalTime() + " (총" + bookingService.getTimeInterval(book) + ")";
 		
-		mav.addObject("startDateTime", startDateTime)
-		.addObject("endDateTime", endDateTime)
+		mav.addObject("date", date)
 		.addObject("timeInterval", timeInterval)
-		.addObject("chargePerPeople", chargePerPeople)
 		.addObject("people", book.getPeople())
-		.addObject("point", user.getPoints())
-		.addObject("charge", chargePerPeople*book.getPeople());
+		.addObject("point", user.getPoints());
 		
 		// session registry
 		session.setAttribute("book", book);
@@ -122,7 +125,7 @@ public class BookingController {
 		for(Booking book : books) {
 			int point = 0;
 			int amount = 0;
-			if(!book.getState().equals(Booking.State.uncharge)) {
+			if(!book.getState().equals(Booking.State.uncharge) && !book.getState().equals(Booking.State.error)) {
 				Payment payment = paymentService.selectPayment(book);
 				point = payment.getPoint();
 				amount = payment.getAmount();
@@ -189,7 +192,6 @@ public class BookingController {
 		}
 	}    
 
-    
 	@ResponseBody
 	@RequestMapping(value = "danalCheck", method = RequestMethod.GET)
 	public String danalCheck(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
@@ -204,9 +206,7 @@ public class BookingController {
 		}
 		
 	}
-	
 
-	
 	// booking modify page - 결제 수정 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -218,7 +218,7 @@ public class BookingController {
 		if(book == null || book.getUser_no() != user.getUser_no()) {
 			mav.setViewName("redirect:" + "/");
 			mav.addObject("msg", "잘못된 접근입니다.");
-		} else if(!book.getState().equals("wait")) {
+		} else if(!book.getState().equals(Booking.State.wait)) {
 			mav.setViewName("redirect:" + "/");
 			mav.addObject("msg", "수정이 불가능한 예약입니다.");
 		} else {
@@ -244,8 +244,6 @@ public class BookingController {
 		return mav;
 	}
 	
-
-
 	// booking shop page - 결제 요청 시
 	@UserLoginCheck
 	@ResponseBody
@@ -329,10 +327,7 @@ public class BookingController {
 			return "redirect:" + "/?booking=fail";
 		}
 	}
-	 
 
-	
-	
 	// booking modify page - 결제 직전 페이지
 	@UserLoginCheck
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
@@ -382,8 +377,6 @@ public class BookingController {
 		.addObject("repayAmount", cancelAmount+addedAmount);
 		return mav;
 	}
-	
-	
 	
 	// booking modify bridge - 예약 변경 시 처리 브릿지
 	@UserLoginCheck
@@ -503,7 +496,6 @@ public class BookingController {
 		// 변경 결과 페이지
 		return "redirect:/booking/check";
 	}
-	
 
 	// 30분 간격으로 예약 시간이 되면 상태 변경
 	@Scheduled(cron="0 */30 * * * *" )
@@ -513,13 +505,13 @@ public class BookingController {
 		// 사용하는 예약의 상태변경
 		List<Booking> usingList = bookingService.selectByDateTime(now);
 		for(Booking book : usingList) {
-			if(now.isEqual(book.getCheck_in()) && book.getState().equals("wait")) {			// 예약시간이 되면 use로 변경
+			if(now.isEqual(book.getCheck_in()) && book.getState().equals(Booking.State.wait)) {			// 예약시간이 되면 use로 변경
 				bookingService.changeState(book, Booking.State.use);
 				User user = userService.getUser(book.getUser_no());
 				Integer amount = paymentService.selectPayment(book).getAmount();
 				
 				userService.plusPoints(user, (amount/100) * 5);
-			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals("use")) {	// 예약이 종료되면 clear로 변경
+			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals(Booking.State.use)) {	// 예약이 종료되면 clear로 변경
 				bookingService.changeState(book, Booking.State.clear);
 			}
 		}

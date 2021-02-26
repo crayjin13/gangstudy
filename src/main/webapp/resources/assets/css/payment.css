@@ -1,0 +1,57 @@
+.card.card-custom {
+	background-color: #fafafa;
+	box-shadow: none;
+}
+
+.alert-text .myinfo_text {
+	max-width: 100%;
+}
+
+.table-div {
+	background-color: #fff;
+	height: 10rem;
+}
+
+.table {
+	margin: auto;
+}
+.table td {
+	padding: 0.25rem 0.75rem;
+}
+.table tbody tr:first-child {
+	color: #B8BCC6;
+}
+.table tbody tr:last-child {
+	font-size: 18px;
+}
+
+.table tbody td:not(:first-child) {
+	border-left: 1px solid #EBEDF3;
+}
+
+@media (min-width: 577px) {
+	.card-body .container {
+		margin-top: 5rem;
+		padding: 0 22rem;
+	}
+	.card-footer .container {
+		padding: 0 22rem;
+	}
+}
+.input-lg {
+	height: 4.5rem;
+}
+#touchspin {
+	height: 4.5rem;
+	text-align: center;
+}
+
+.card-footer .container .btn{
+	width: 100%;
+}
+@media (max-width: 576px) {
+	.card-footer .container .px-4 {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+}
