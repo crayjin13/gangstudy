@@ -12,7 +12,7 @@
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
-/******/ 			l: false,
+/******/ 			l: false,  
 /******/ 			exports: {}
 /******/ 		};
 /******/
@@ -112,18 +112,21 @@ var KTBootstrapDatepicker = function () {
     
     // Private functions
     var demos = function () {
-    	
-    	
+    	   
+    	 
         // minimum setup 회원 가입 생년월일 
         $('#kt_datepicker_1, #kt_datepicker_1_validate').datepicker({   
             rtl: KTUtil.isRTL(),
-            endDate: '-5y',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+            endDate: '-7y',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
             autoclose : true,  //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
-            todayHighlight: true,
-            language : "ko",     
-            orientation: "bottom left",
+            todayHighlight: true,    
+            language : "kr",             
+            orientation: "bottom auto",   
             templates: arrows,               
-            todayHighlight : true ,        
+            todayHighlight : true ,   
+            daysOfWeekHighlighted: "0,6", 
+            maxViewMode: 2,   
+          
             templates : {
 		        leftArrow: '&laquo;',
 		        rightArrow: '&raquo;'

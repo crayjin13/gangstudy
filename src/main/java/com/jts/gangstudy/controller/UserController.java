@@ -62,6 +62,7 @@ public class UserController {
 	
 	
 	 // 유저정보 메인 페이지 이동
+	@UserLoginCheck
 	@RequestMapping(value = "/myinfo_main", method = RequestMethod.GET)
 	public String myinfo_main() {       
 			return "_User/myinfo_main";           
@@ -86,7 +87,8 @@ public class UserController {
 	} 
 	
   
-	
+	//리모컨 페이지로 이동 
+	@UserLoginCheck  
 	@RequestMapping(value = "/remo_control", method = RequestMethod.GET)
 	public String remocon() {
 		return "_User/remo_control"; 
