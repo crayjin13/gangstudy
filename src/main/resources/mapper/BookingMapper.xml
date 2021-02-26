@@ -7,7 +7,7 @@
 		FROM BOOKING_TB
 		WHERE (CHECK_IN >= #{dateTime} AND CHECK_IN < DATE_ADD(#{dateTime}, INTERVAL 1 DAY) OR
       		  CHECK_OUT >= #{dateTime} AND CHECK_OUT < DATE_ADD(#{dateTime}, INTERVAL 1 DAY)) AND
-	  		  STATE='uncharge' OR STATE='wait' OR STATE='use'
+	  		  (STATE='uncharge' OR STATE='wait' OR STATE='use')
 	  ]]>
 	</select>
 	
