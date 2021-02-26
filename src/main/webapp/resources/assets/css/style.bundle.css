@@ -50598,16 +50598,23 @@ code {
         color: #c0c0c0; }  
       .datepicker tbody tr > td.day.new {
         color: #c0c0c0; }       
-        
+ /* 주말, 토요일 ,일요일 색상 변경  */
        .datepicker table tr td.highlighted {
     color: #ff0000;  
     background-color: #ffffff;
     border-color: #ff0000;  
     border-radius: 0;
 }
+	.datepicker tbody tr > td.day:hover {
+	    background: #3699FF;  
+	    color: #ffffff;  
+	    border-radius: 1rem;   
+	}
+
+/* 다음달 주말, 토요일 ,일요일 색상 변경  */
        .datepicker table tr td.highlighted.disabled, .datepicker table tr td.highlighted.disabled:active {
     background: #ffffff;
-    color: #ff0000;  
+    color: #ffb5b5;  
 } 
         
       .datepicker tbody tr > td.day.selected, .datepicker tbody tr > td.day.selected:hover, .datepicker tbody tr > td.day.active, .datepicker tbody tr > td.day.active:hover {

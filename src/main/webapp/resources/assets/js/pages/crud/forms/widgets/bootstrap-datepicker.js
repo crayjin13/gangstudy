@@ -112,8 +112,8 @@ var KTBootstrapDatepicker = function () {
     
     // Private functions
     var demos = function () {
-    	
-    	
+    	   
+    	 
         // minimum setup 회원 가입 생년월일 
         $('#kt_datepicker_1, #kt_datepicker_1_validate').datepicker({   
             rtl: KTUtil.isRTL(),
@@ -124,7 +124,9 @@ var KTBootstrapDatepicker = function () {
             orientation: "bottom auto",   
             templates: arrows,               
             todayHighlight : true ,   
-            daysOfWeekHighlighted: "0,6",   
+            daysOfWeekHighlighted: "0,6", 
+            maxViewMode: 2,   
+          
             templates : {
 		        leftArrow: '&laquo;',
 		        rightArrow: '&raquo;'

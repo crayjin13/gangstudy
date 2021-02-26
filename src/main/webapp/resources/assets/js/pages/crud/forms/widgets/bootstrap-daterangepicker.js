@@ -99,6 +99,20 @@ var KTBootstrapDaterangepicker = function () {
 
     // Private functions
     var demos = function () {
+    	
+    	//메뉴얼로 내맛으로 만든것
+    	$('#kt_daterangepicker_0').datepicker({
+    	    format: "yyyy-mm-dd",  
+    	    maxViewMode: 2,
+    	    clearBtn: true,
+    	    language: "ko",
+    	    orientation: "bottom auto",
+    	    daysOfWeekHighlighted: "0,6",
+    	    todayHighlight: true
+    	});
+    	
+    	
+    	
         // minimum setup
         $('#kt_daterangepicker_1, #kt_daterangepicker_1_modal').daterangepicker({
             buttonClasses: ' btn',
