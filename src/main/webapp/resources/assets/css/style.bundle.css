@@ -50555,8 +50555,8 @@ code {
       margin-right: 1.25rem; }
 
 .datepicker {
-  width: 265px;
-  padding: 10px;
+  width: 26rem;   
+  padding: 2.5rem;  
   border-radius: 0.42rem; }
   .datepicker.datepicker-orient-top {
     margin-top: 8px; }

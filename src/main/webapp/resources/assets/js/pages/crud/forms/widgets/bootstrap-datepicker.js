@@ -209,7 +209,15 @@ var KTBootstrapDatepicker = function () {
         $('#kt_datepicker_5').datepicker({
             rtl: KTUtil.isRTL(),
             todayHighlight: true,
-            templates: arrows
+            templates: arrows,
+            format: "yyyy-mm-dd",
+            weekStart: 0,
+            startDate: "-7d",
+            endDate: +7,
+            maxViewMode: 1,
+            language: "ko",
+            daysOfWeekHighlighted: "0,6",
+            todayHighlight: true
         });
 
          // inline picker
