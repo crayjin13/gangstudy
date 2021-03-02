@@ -1,5 +1,8 @@
 
 const people = document.getElementById("touchspin");
+const peopleDisplay = document.getElementById("peopleDisplay");
+const totalAmount = document.getElementById("totalAmount");
+const singlePrice = document.getElementById("singlePrice");
 
 //
 //
@@ -31,8 +34,6 @@ document.getElementById("payments").addEventListener("click", function() {
 });
 
 /*
-const totalAmount = document.getElementById("totalAmount");
-const chargePerPeople = document.getElementById("chargePerPeople");
 const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
 const pointMax = document.getElementById("pointMax");
 const pointUse = document.getElementById("kt_touchspin");
@@ -67,6 +68,10 @@ pointUse.addEventListener("change", function() {
 });
 */
 
+function displayUpdate() {
+	totalAmount.value = singlePrice.textContent * people.value;
+	peopleDisplay.textContent = people.value + "명";
+}
 people.addEventListener("change", function() {
 	if(people.value > 6){
 		people.value = 6;
@@ -74,8 +79,7 @@ people.addEventListener("change", function() {
 	if(people.value < 1) {
 		people.value = 1;
 	}
-	
-	totalAmount.textContent = chargePerPeople.textContent * people.value;
+	displayUpdate();
 });
 
 window.addEventListener('load', function(){
@@ -91,22 +95,21 @@ window.addEventListener('load', function(){
             maxboostedstep: 10000000,
             
         });
-	/*
 	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("click", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
+		displayUpdate();
 	});
-	
 	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("click", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
+		displayUpdate();
 	});
 	document.getElementsByClassName("bootstrap-touchspin-up")[0].addEventListener("touchend", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
+		displayUpdate();
 	});
 	document.getElementsByClassName("bootstrap-touchspin-down")[0].addEventListener("touchend", function() {
-		totalAmount.textContent = (chargePerPeople.textContent * people.value - pointUse.value);
+		displayUpdate();
 	});
-	*/
+	displayUpdate();
 });
+
 
 function isInt(value) {
 	var regex = /^-?[0-9]+$/;
