@@ -80,7 +80,7 @@ public class BookingController {
 	// 홈페이지에서 예약일, 인원 선택 후 결제 전에 보여주는 페이지
 	@RequestMapping(value = "/make", method = RequestMethod.GET)
 	public ModelAndView makeBook(HttpServletRequest request, HttpSession session,
-			@RequestParam(value="dateInput", 	required = false) String dateParam, 		@RequestParam(value="startTimeInput",	required = false) String startTime,
+			@RequestParam(value="dateInput", 	required = false) String dateParam, @RequestParam(value="startTimeInput",	required = false) String startTime,
 			@RequestParam(value="endTimeInput",	required = false) String endTime, 	@RequestParam(value="people",			required = false) String people) {
 		ModelAndView mav = new ModelAndView("booking/payment");
 		User user = (User)session.getAttribute("sUserId");
@@ -105,7 +105,8 @@ public class BookingController {
 		mav.addObject("date", date)
 		.addObject("timeInterval", timeInterval)
 		.addObject("people", book.getPeople())
-		.addObject("point", user.getPoints());
+		.addObject("point", user.getPoints())
+		.addObject("singlePrice", bookingService.getAmount(book) / book.getPeople());
 		
 		// session registry
 		session.setAttribute("book", book);
