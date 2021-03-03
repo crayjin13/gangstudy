@@ -8,7 +8,7 @@ $(function() {
 
 		$.post("/booking/make", {
 			people : people.value,
-			/*point : pointUse.value,*/ 
+			point : "0",
 			pg_name : "Danal"
 		}, function(jqXHR) {
 			// always
