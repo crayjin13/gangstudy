@@ -24,7 +24,7 @@ $(function() {
 				pay_method : 'card',
 				merchant_uid : merchant_uid /* + new Date().getTime() */,
 				name : '갱스터디',
-				amount : document.getElementById("singlePrice").textContent,
+				amount : document.getElementById("totalAmount").value,
 				buyer_email : '',
 				buyer_name : document.getElementById("name").textContent,
 				buyer_tel : '',
