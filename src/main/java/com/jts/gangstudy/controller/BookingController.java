@@ -251,7 +251,7 @@ public class BookingController {
 	@RequestMapping(value = "/make", method = RequestMethod.POST)
 	public String makeSubmit(HttpServletRequest request, HttpSession session,
 			@RequestParam("people") String peoples,
-			/* @RequestParam("point") String point, */
+			@RequestParam("point") String point,
 			@RequestParam("pg_name") String pg_name) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");
@@ -277,7 +277,6 @@ public class BookingController {
 			}
 		}
 		
-	/*	
 		int usePoint = Integer.parseInt(point);
 		int charge = bookingService.getAmount(book);
 		if(usePoint > user.getPoints() || usePoint < 0) {
@@ -297,7 +296,6 @@ public class BookingController {
 		// session registry
 		session.setAttribute("amount", charge);
 		session.setAttribute("usePoint", usePoint);
-		*/
 		   
 		// 결제 페이지(선택페이지)로 이동
 		if(pg_name.equals(Payment.PGName.KakaoPay.toString())) {
