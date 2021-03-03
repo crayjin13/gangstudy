@@ -3,12 +3,12 @@ $(function() {
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp20137588'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		var msg;
-		const pointUse = document.getElementById("kt_touchspin");
-		const people = document.getElementById("touchspin");
+		/*const pointUse = document.getElementById("kt_touchspin");*/
+		const people = document.getElementById("touchspin");      
 
 		$.post("/booking/make", {
 			people : people.value,
-			point : pointUse.value,
+			/*point : pointUse.value,*/ 
 			pg_name : "Danal"
 		}, function(jqXHR) {
 			// always
@@ -19,12 +19,12 @@ $(function() {
 			console.log(data);
 
 			// begin: IMP.request_pay 다날 결제화면으로 넘어가는 부분
-			IMP.request_pay({
+			IMP.request_pay({             
 				pg : 'Danal',
 				pay_method : 'card',
 				merchant_uid : merchant_uid /* + new Date().getTime() */,
 				name : '갱스터디',
-				amount : document.getElementById("totalAmount").textContent,
+				amount : document.getElementById("singlePrice").textContent,
 				buyer_email : '',
 				buyer_name : document.getElementById("name").textContent,
 				buyer_tel : '',
