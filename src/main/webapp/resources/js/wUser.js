@@ -21,14 +21,11 @@ $(function() {
 
 	// 비밀번호 찾기
 	$("button[name=forgotbtn]").click(function() {
-		if (!$('#kt_login_forgot_form [name="password"]').val()) {
-
-			alert("비밀번호를 입력해주세요");
-			return false;
-		}
+	 
+		
 		var fpwArray = $('#kt_login_forgot_form').serialize();
 		console.log("r값이들어오는가--->" + fpwArray);
-		$.ajax({
+		$.ajax({    
 			url : 'findPw_action',
 			method : 'POST',
 			data : fpwArray,
@@ -39,7 +36,24 @@ $(function() {
 					window.location.href = "/";
 
 				} else if (textData.trim() == "false") {
-					alert("잘못된정보입니다.");
+					  
+					Swal
+					.fire(
+							{    
+								text : "올바른 값을 입력해주세요.",    
+								icon : "error",
+								buttonsStyling : false,
+								confirmButtonText : "다시 확인하기",
+								customClass : {
+									confirmButton : "btn font-weight-bold btn-light"
+								}  
+							})
+					.then(function() {
+						KTUtil.scrollTop();
+					});
+			return false;        
+					
+					
 				} else {
 					alert(" 비밀번호 변경에 실패하였습니다.");
 				}

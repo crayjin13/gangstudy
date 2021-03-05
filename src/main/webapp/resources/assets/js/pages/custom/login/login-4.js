@@ -243,12 +243,19 @@ var KTLogin = function() {
 							}
 						},
 		        phone: {
-		        	validators: { 
-		        		notEmpty: {
-		        			message: '휴대폰번호를 입력해주세요. '
-		        		},
-		        		
-		        	}
+		        	validators : {
+						notEmpty : {
+							message : '핸드폰 번호를 입력해주세요.'
+						},
+						stringLength : {
+							min : 9,
+							message : '핸드폰 번호는 최소 9숫자 이상입니다. '
+						},
+						regexp : {
+							regexp : /^[0-9]+$/,
+							message : '  - 을 제외한 숫자만 입력해주세요.'
+						}
+					}    
 		        },
 		        password: {  
 		        	validators: {
