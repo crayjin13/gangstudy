@@ -17,9 +17,9 @@
 								</p>         
 								       
 								<div class="col-md-4" style="margin: 1rem 0rem 2rem 0rem; padding-left:1.5em;text-indent:-1.5em;">                    
-								<a href="tel:07080989365" target="_blank" class="nav-link pl-0 " style="font-size:24px; color:#2552e6; font-weight:500; margin: 0 0 0 0;">
-									070-8098-9365 <img src="${pageContext.request.contextPath}/resources/images/btn-phone.svg" style="float:right; margin: 0px 0rem 0 rem;"/> </a> 
-									</div>        
+								<a href="tel:01021367733" target="_blank" class="nav-link pl-0 " style="font-size:24px; color:#2552e6; font-weight:500; margin: 0 0 0 0;">
+									010-2136-7733 <img src="${pageContext.request.contextPath}/resources/images/btn-phone.svg" style="float:right; margin: 0px 0rem 0 rem;"/> </a> 
+									</div>            
 									<p class="m-0 text-black opacity-45" style="font-size:15px;">              
 											모임공간 운영시간 안내 : 365일 24시간 이용 가능 <br/>           
 											</p>        
