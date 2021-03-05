@@ -60,6 +60,9 @@
 	.card.card-custom > .card-body {
 		padding: 1.5rem;
 	}
+	.dtr-details .btn .btn-xs {
+		font-size: 1rem;
+	}
 }
 .dataTables_wrapper .child .dtr-details > li .dtr-title {
     padding: 0.5rem 0px;
@@ -73,4 +76,16 @@
 .dataTables_wrapper .child .dtr-details > li .dtr-data .row {
     float: left;
     margin-left: 1rem;
+}
+
+input, textarea, button {
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+}
+input, textarea, button, select {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
 }
