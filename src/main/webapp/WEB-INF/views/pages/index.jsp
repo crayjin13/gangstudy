@@ -86,7 +86,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!--end::Head-->
 <script src="/js/cbpHorizontalMenu.min.js"></script>
-
 		<!-- Global site tag (gtag.js) - Google Analytics 구글 -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166780031-1"></script>
 		<script>
@@ -103,38 +102,16 @@ License: You must have a valid license purchased only from themeforest(the above
 			if(window.wcs) {
 			  wcs_do();
 			}
-
 		</script>
-
-
 <!--begin::Body-->
 
-
-<body id="kt_body"
-	class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed  page-loading">
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed  page-loading">
   
-
-
-
-
 	<jsp:include page="/WEB-INF/views/layout.jsp" flush="true" />
-
-
-	<jsp:include
-		page="/WEB-INF/views/partials/_extras/offcanvas/quick-user.jsp"
-		flush="true" />
-
-	
-
-
-	<jsp:include page="/WEB-INF/views/partials/_extras/chat.jsp"
-		flush="true" />
 
 	<jsp:include page="/WEB-INF/views/partials/_extras/scrolltop.jsp"
 		flush="true" />
 	
-
-  
 	<script>  
 		var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
 	</script>
