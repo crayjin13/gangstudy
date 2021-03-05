@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+@media (max-width: 576px) {
+	.myinfo_text {
+		font-size: 1.8rem;
+	}
+}
