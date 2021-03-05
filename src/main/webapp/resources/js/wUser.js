@@ -74,8 +74,25 @@ $(function() {
 			}
 		});
 	});
+	
 	// ************** 비번 업뎃  *************     
 	$("#updatePw").click(function() {
+		
+		if(! $('#changePw [name="newPw"]').val()){
+			alert("새 비밀번호를 입력해주세요.");   
+			$("newPw").focus();
+			return false;
+		}
+		  
+		if(!$('#changePw [name="newPw2"]').val()){
+			alert("새 비밀번호 확인을 입력해주세요.");
+			$("newPw2").focus();
+			return false;         
+		}       
+		  
+		
+		
+		
 		var pws = $('#changePw').serialize();
 		console.log("값들어오는지 확인 " + pws);
 	
