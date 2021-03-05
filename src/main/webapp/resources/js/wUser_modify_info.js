@@ -1,67 +1,8 @@
 $(function() {
 	
-	// radio   
-	
-	function hasClass(target, className) {
-		if( (' ' + target.className + ' ').replace(/[\n\t]/g, ' ').indexOf(' ' + className + ' ') > -1 ) return true;
-		return false;
-	}
-	function removeClass(target, className){
-	    var elClass = ' ' + target.className + ' ';
-	    while(elClass.indexOf(' ' + className + ' ') !== -1){
-	         elClass = elClass.replace(' ' + className + ' ', '');
-	    }
-	    target.className = elClass;
-	}
-	function addClass(target, className){
-	    target.className += ' ' + className;   
-	}
 	  
 
 
-	// 비밀번호 찾기
-	$("button[name=forgotbtn]").click(function() {
-	 
-		
-		var fpwArray = $('#kt_login_forgot_form').serialize();
-		console.log("r값이들어오는가--->" + fpwArray);
-		$.ajax({    
-			url : 'findPw_action',
-			method : 'POST',
-			data : fpwArray,
-			dataType : 'text',
-			success : function(textData) {
-				if (textData.trim() == "good") {
-					alert(" 새로운 비밀번호로 다시 로그인해주세요.");
-					window.location.href = "/";
-
-				} else if (textData.trim() == "false") {
-					  
-					Swal
-					.fire(
-							{    
-								text : "입력하신 정보를 다시 확인해주세요.",    
-								icon : "error",
-								buttonsStyling : false,
-								confirmButtonText : "다시 확인하기",
-								customClass : {
-									confirmButton : "btn font-weight-bold btn-light"
-								}  
-							})
-					.then(function() {
-						KTUtil.scrollTop();
-					});
-			return false;        
-					
-					
-				} else {
-					alert(" 비밀번호 변경에 실패하였습니다.");
-				}
-			}
-		});
-
-	});
-	
 	
 	// **************회원 탈퇴 *************
 	$("#deletebtn").click(function() {
