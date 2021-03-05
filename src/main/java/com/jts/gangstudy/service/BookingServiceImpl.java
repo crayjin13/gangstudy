@@ -25,7 +25,7 @@ public class BookingServiceImpl implements BookingService{
 	private final int minimumSize = 120;	// 에약 신청 최소 단위
 	private final int minuteSize = 30;		// 에약 신청 시간 단위
 	private final int amount = 500;			// 예약 신청 시간 당 필요 요금
-
+	
 	
 	/*		데이터베이스 연결	*/
 	
@@ -34,7 +34,7 @@ public class BookingServiceImpl implements BookingService{
 	public List<Booking> selectByDateTime(LocalDateTime dateTime) {
 		return mapper.selectByDateTime(dateTime);
 	}
-
+	
 	// 유저의 uncharge를 제외한 해당일에 존재하는 다음 예약
 	@Override
 	public Booking searchNextBook(LocalDateTime dateTime, User user) {
@@ -45,10 +45,10 @@ public class BookingServiceImpl implements BookingService{
 		return mapper.selectNextBook(map);
 	}
 	
-
 	
 	
-
+	
+	
 	/*		컨트롤러 연결	*/
 	
 	// 시작시간 목록
@@ -99,7 +99,7 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return timeList;
 	}
-
+	
 	// 종료시간 목록
 	@Override
 	public List<String> getEndTimes(LocalDateTime dateTime, Booking book) {
@@ -122,7 +122,7 @@ public class BookingServiceImpl implements BookingService{
 	    }
 	    return timeList;
 	}
-
+	
 	// 사용시간(00시간00분)
 	@Override
 	public String getTimeInterval(Booking book) {
@@ -131,7 +131,7 @@ public class BookingServiceImpl implements BookingService{
 		float hour = (float) duration.toMinutes() / 60;
 		return df.format(hour) + "시간";
 	}
-
+	
 	
 	
 	
