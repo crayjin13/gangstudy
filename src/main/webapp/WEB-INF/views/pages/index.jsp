@@ -126,9 +126,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	
 
-	<jsp:include
-		page="/WEB-INF/views/partials/_extras/offcanvas/quick-panel.jsp"
-		flush="true" />
 
 	<jsp:include page="/WEB-INF/views/partials/_extras/chat.jsp"
 		flush="true" />

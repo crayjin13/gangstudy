@@ -247,10 +247,8 @@ public class PaymentController {
 		Booking book = (Booking)session.getAttribute("book");
 		bookingService.removeBook(book);
 		ModelAndView mav = new ModelAndView("redirect:" + "/booking/make");
-		System.out.println("test : " + book.getCheck_in().toLocalDate());
-		mav.addObject("startDateInput", book.getCheck_in().toLocalDate().toString());
+		mav.addObject("dateInput", book.getCheck_in().toLocalDate().toString());
 		mav.addObject("startTimeInput", book.getCheck_in().toLocalTime().toString());
-		mav.addObject("endDateInput", book.getCheck_out().toLocalDate().toString());
 		mav.addObject("endTimeInput", book.getCheck_out().toLocalTime().toString());
 		mav.addObject("people", book.getPeople());
 		mav.addObject("msg", "결제가 취소되었습니다.");
