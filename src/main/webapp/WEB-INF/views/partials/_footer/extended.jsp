@@ -21,11 +21,12 @@
 									010-2136-7733 <img src="${pageContext.request.contextPath}/resources/images/btn-phone.svg" style="float:right; margin: 0px 0rem 0 rem;"/> </a> 
 									</div>            
 									<p class="m-0 text-black opacity-45" style="font-size:15px;">              
-											모임공간 운영시간 안내 : 365일 24시간 이용 가능 <br/>           
+											 운영시간 안내 : 365일 24시간 이용 가능 <br/> 
+											 이용시간 안내 : 1시간 1천원          
 											</p>        
 											<p class="m-0 text-black opacity-45" style="font-size:13px;">       
 										<br />사업자명 : 갱스터디         대표이사 : 김정훈 
-										<br />주소 : 경기도 용인시 처인구 명지로 24, 205호 (역북동, 용인역북 더럭스 나인 상가)
+										<br />주소 : 경기도 용인시 처인구 명지로 24, 205호 <br/> (역북동, 용인역북 더럭스 나인 상가)
 										<br />사업자등록번호 : 783-17-01344<br/> 
 										<br/> <U>개인정보 처리방침 </U></p>
 									  
