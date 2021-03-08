@@ -11,7 +11,6 @@
 		}   
 	});
 </script>
-
 					<div id="kt_header" class="header header-fixed">
 
 						<!--begin::Container-->
@@ -21,8 +20,8 @@
 							<div class="d-flex align-items-stretch mr-3">
        
 								<!--begin::Header Logo-->         
-								<div class="header-logo">                                     <!-- 모바일에서는 안보이게 적용 d-none d-lg-block d-xl-none  -->  
-									<a href="/">           
+								<div class="header-logo">	<!-- 모바일에서는 안보이게 적용 d-none d-lg-block d-xl-none  -->  
+									<a href="/">
 										<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="img_logo_txt max-h-200px d-none d-xl-block  d-none d-lg-block d-xl-none mt-6" /> 
 									<%-- max-h-200px d-none d-xl-block  d-none d-lg-block d-xl-none mt-6 px-12	 <img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="logo-sticky max-h-40px" />  --%>
 									</a>           
