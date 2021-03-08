@@ -107,7 +107,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed  page-loading">
   
+
 	<jsp:include page="/WEB-INF/views/layout.jsp" flush="true" />
+
 
 	<jsp:include page="/WEB-INF/views/partials/_extras/scrolltop.jsp"
 		flush="true" />
