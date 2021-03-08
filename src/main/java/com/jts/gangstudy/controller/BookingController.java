@@ -46,7 +46,7 @@ public class BookingController {
 	public List<String> startTime(HttpServletRequest request, HttpSession session, @RequestParam("date") String dateParam, @RequestParam("book_no") Integer book_no) {
 		LocalDate date = LocalDate.parse(dateParam);
 		// 요청한 날짜를 KST로 변환
-		LocalDateTime ldt = LocalDateTime.of(date, LocalTime.MIN).minusHours(9);
+		LocalDateTime ldt = LocalDateTime.of(date, LocalTime.MIN);
 		// 해당일에 존재하는 예약목록
 		List<Booking> books = bookingService.selectByDateTime(ldt);
 		// 요청한 book_no가 있었다면 리스트에서 제거
