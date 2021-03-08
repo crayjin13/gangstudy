@@ -56897,11 +56897,11 @@ body {
 
 .main_text { 
       
-  height: 20%;        
-  margin: 5% 5px 0px 5%;           
-  font-family: NotoSansCJKkr;
-  font-size: 2rem; 
-  font-weight: bold;    
+  height: auto;         
+  margin: 0.1rem 5px 0px 6%;               
+  font-family: NotoSansCJKkr;  
+  font-size: 2.3rem;       
+  font-weight: bold;                
   font-stretch: normal;
   font-style: normal;
   line-height: 1.47;
@@ -56910,6 +56910,22 @@ body {
   color: #171717;
   
 }
+.mobile_main_text { 
+      
+  height: auto;         
+  margin: 0.1rem 5px 0px 6%;               
+  font-family: NotoSansCJKkr;  
+  font-size: 1.8rem;         
+  font-weight: bold;                
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: left;
+  color: #171717;
+  
+}
+
 
 .img_main {
   width: 430px;

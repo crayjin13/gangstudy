@@ -28,11 +28,14 @@ img {
 			<div class="col-md-6">
 				<!--begin::Form-->
 				<form class="form" id="bookingForm" action="/booking/make">   
-				       
-						<p class = "main_text ">갱스터디에서 공부하고<br/>   공부깡패 되자!</p>
-					         
+				       <!-- 데스크탑에서만 보임 -->
+						<p class = "main_text d-none d-xl-block">갱스터디에서 공부하고<br/>   공부깡패 되자!</p>
+						<!-- 데스크탑에서만 숨김 -->
+						<p class = "mobile_main_text d-xl-none">갱스터디에서  공부하고<br/>   공부깡패 되자!</p>
+						   
+					                      
 					<div class="card-footer">                 
-						<div class="form-group form-group-last">
+						<div class="form-group form-group-last">    
 							<div class="alert-text" style ="text-align: center ">
 							</div>   
 						</div>
@@ -81,13 +84,16 @@ img {
 							</select>
 						</div>
 						<div class="form-group ">
-							<button type="button" class="btn btn-kakao btn-lg text-dark col-md-5" onclick="location.href='http://pf.kakao.com/_xbgCJxb'">                 
-								<img src="${pageContext.request.contextPath}/resources/images/ic-kakao.svg" class="ic_kakao" >카카오톡 문의하기
-							</button>
 							<button type="button" class="btn btn-booking btn-lg col-md-5" id="bookingButton">
 								예약하기
 							</button>
+						
+							<button type="button" class="btn btn-kakao btn-lg text-dark col-md-5" onclick="location.href='http://pf.kakao.com/_xbgCJxb'">                 
+								<img src="${pageContext.request.contextPath}/resources/images/ic-kakao.svg" class="ic_kakao" >카카오톡 문의하기
+							</button>
+							
 						</div>
+						
 			
 						<!--begin: Code-->  
 						<div class="example-code mt-10">
@@ -98,7 +104,7 @@ img {
 				</form>
 				<!--end::Form-->
 			</div>
-		   
+		    
 			<div class="col-md-4 d-none d-xl-block " >
 				<img src="${pageContext.request.contextPath}/resources/images/img-main.svg" class="img_main ">
 			</div>
