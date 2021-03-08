@@ -37,7 +37,7 @@ img {
 							</div>   
 						</div>
 						<div class="form-group ">
-							 <input class="form-control col-md-10 select booking-input" type="text"
+							 <input class="form-control col-md-10 select booking-input" type="text" readOnly
 								id="dateInput" name="dateInput"  
 								value="${date}">
 							<span class="icon">
