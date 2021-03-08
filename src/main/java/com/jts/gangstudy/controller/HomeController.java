@@ -37,7 +37,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session, Model model) {
-		ModelAndView mav = new ModelAndView("pages/index");
+		ModelAndView mav = new ModelAndView("index");
 		Booking book = (Booking)session.getAttribute("book");
 		
 		if(book != null) {
