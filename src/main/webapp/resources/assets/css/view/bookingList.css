@@ -78,7 +78,7 @@
     margin-left: 1rem;
 }
 
-input, textarea, button {
+input, textarea, button, select {
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	appearance:none;
