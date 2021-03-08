@@ -18,14 +18,14 @@ img {
 </style>
 
 <!--begin::Entry-->
-
+  
 
 <!--begin::Container-->
 <div class="container">   
 	<!--begin::Content-->
 	<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 		<div class="row">      
-			<div class="col-md-6">
+			<div class="col-lg-6">
 				<!--begin::Form-->
 				<form class="form" id="bookingForm" action="/booking/make">   
 				       <!-- 데스크탑에서만 보임 -->
@@ -33,7 +33,7 @@ img {
 						<!-- 데스크탑에서만 숨김 -->
 						<p class = "mobile_main_text d-xl-none">갱스터디에서  공부하고<br/>   공부깡패 되자!</p>
 						   
-					                      
+					                       
 					<div class="card-footer">                 
 						<div class="form-group form-group-last">    
 							<div class="alert-text" style ="text-align: center ">
@@ -86,11 +86,11 @@ img {
 						<div class="form-group ">
 							<button type="button" class="btn btn-booking btn-lg col-md-5" id="bookingButton">
 								예약하기
-							</button>
+							</button>  
 						
 							<button type="button" class="btn btn-kakao btn-lg text-dark col-md-5" onclick="location.href='http://pf.kakao.com/_xbgCJxb'">                 
 								<img src="${pageContext.request.contextPath}/resources/images/ic-kakao.svg" class="ic_kakao" >카카오톡 문의하기
-							</button>
+							</button>    
 							
 						</div>
 						
