@@ -21,17 +21,17 @@ img {
 
 
 <!--begin::Container-->
-<div class="container">
+<div class="container">   
 	<!--begin::Content-->
 	<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 		<div class="row">      
 			<div class="col-md-6">
 				<!--begin::Form-->
 				<form class="form" id="bookingForm" action="/booking/make">   
-				    <div class = "col-md-4">
-						<p class = "main_text">갱스터디에서 공부하고<br/>   공부깡패 되자!</p>
-					</div>
-					<div class="card-footer">        
+				       
+						<p class = "main_text ">갱스터디에서 공부하고<br/>   공부깡패 되자!</p>
+					         
+					<div class="card-footer">                 
 						<div class="form-group form-group-last">
 							<div class="alert-text" style ="text-align: center ">
 							</div>   
@@ -98,8 +98,8 @@ img {
 				</form>
 				<!--end::Form-->
 			</div>
-		 
-			<div class="col-md-4 d-none d-xl-block ">
+		   
+			<div class="col-md-4 d-none d-xl-block " >
 				<img src="${pageContext.request.contextPath}/resources/images/img-main.svg" class="img_main ">
 			</div>
 		</div>

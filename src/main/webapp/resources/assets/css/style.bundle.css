@@ -56896,11 +56896,11 @@ body {
 }  
 
 .main_text { 
-  width: 180%;     
+      
   height: 20%;        
   margin: 5% 5px 0px 5%;           
   font-family: NotoSansCJKkr;
-  font-size: 200%; 
+  font-size: 2rem; 
   font-weight: bold;    
   font-stretch: normal;
   font-style: normal;
@@ -56908,13 +56908,15 @@ body {
   letter-spacing: normal;
   text-align: left;
   color: #171717;
+  
 }
 
 .img_main {
   width: 430px;
-  height: 326px; 
-  margin: 50px 480px 12px 90px;
+  height: 326px;   
+  margin: 50px 0px 12px 90px;
   object-fit: contain;
+    
 }
 
 .select {  /* select에 화살표 없애기  */
