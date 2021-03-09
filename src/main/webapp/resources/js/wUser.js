@@ -56,45 +56,72 @@ $(function() {
 
 	
 	$("#kt_login_signup_form_submit_button").click(function() {
-		if(!$('#kt_login_signup_form [name="name"]').val()){
+		 
+		if(!$('#kt_login_signup_form [name="name"]').val()){  
 			$("name").focus();
-			alert("이름을 입력해주세요");
+			alert("실명을 입력해주세요"); 
 			return false;
 		}
-		if(!$('#kt_login_signup_form [name="phone"]').val()){      
+		var emailPattern = /[a-z0-9A-Z]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
+		if(!$('#kt_login_signup_form [name="email"]').val() || !emailPattern.test($('#kt_login_signup_form [name="email"]').val() ) ){
+			alert("올바른 이메일주소를 입력해주세요");
+			$("email").focus();  
+			return false;
+		}    
+		
+		 var isPhoneNum = /([09]{9})/;     
+		
+		if(!$('#kt_login_signup_form [name="phone"]').val() || !isPhoneNum.test($('#kt_login_signup_form [name="phone"]').val() )){      
 			$("phone").focus();
-			alert("휴대전화번호를 입력해주세요");
+			alert("핸드폰 번호를 입력해주세요(9자리이상)");    
 			return false;
 		}     
 		
-		if(! $('#kt_login_signup_form [name="id"]').val()){     
-			$("id").focus();
-			alert("아이디를 입력해주세요");
-			return false;
+		var min = /[a-zA-Z0-9_]{3,}/;   
+		
+		if(! $('#kt_login_signup_form [name="id"]').val() || !min.test($('#kt_login_signup_form [name="id"]').val() )){     
+			$("id").focus();    
+			alert("아이디를 입력해주세요(3글자이상)");  
+			return false;  
 		}
-		if(! $('#kt_login_signup_form [name="pw"]').val()){
-			alert("비밀번호를 입력해주세요");   
+		
+		 var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{6,40}/;
+		
+		if(! $('#kt_login_signup_form [name="pw"]').val() || !pwPattern.test( $('#kt_login_signup_form [name="pw"]').val()) ){
+			alert("비밀번호를 입력해주세요(6자리 이상)");   
 			$("pw").focus();
 			return false;
 		}
+	
 		if(! $('#kt_login_signup_form [name="pw2"]').val()){
 			alert("비밀번호 재확인을 입력해주세요");   
 			$("pw2").focus();
 			return false;
 		}
-		  
-		if(!$('#kt_login_signup_form [name="email"]').val()){
-			alert("이메일을 입력해주세요");
-			$("email").focus();
+		 
+		if( $('#kt_login_signup_form [name="pw2"]').val() !== $('#kt_login_signup_form [name="pw"]').val() ){
+			alert("비밀번호가 일치하지않습니다. ");   
+			$("pw2").focus();       
 			return false;
-		}
+		}  
+		
+		
+		
+		if(! $('#kt_login_signup_form [name="bod"]').val()){
+			alert("생년월일을 입력해주세요");   
+			$("bod").focus();
+			return false;  
+		}  
+		
+		 
+		
 		  
 		
 		
 		
 		var userArray = $('#kt_login_signup_form').serialize();
 		
-		
+		    
 		
 		console.log("#값이 오는지 확인 ---" + userArray);
 		// select option 으로 가져올때 이 문법으로 보내려면
