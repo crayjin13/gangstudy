@@ -543,11 +543,7 @@
 																notEmpty : {
 																	message : '이름을 입력해주세요. '
 																},
-																stringLength : {
-																	min : 2,
-																	max : 10,
-																	message : '이름은 최소 2글자 이상 10글자 이내로 입력해주세요.'
-																}
+																  
 															}
 														},
 

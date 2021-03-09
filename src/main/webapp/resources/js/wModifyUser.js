@@ -1,3 +1,111 @@
+
+$(function() {
+
+// ******* 회원 정보 수정 ********************
+	$("#modifybtn").click(function() {
+		
+		
+		
+		if (!$('#kt_form [name="name"]').val()) {
+			alert("실명을 입력해주세요.");
+			$("name").focus();
+			return false;
+		}
+		var emailPattern = /[a-z0-9A-Z]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
+		if (!$('#kt_form [name="email"]').val() || !emailPattern.test(!$('#kt_form [name="email"]').val() )) { 
+			alert("이메일을 입력해주세요.");
+			$("email").focus();
+			return false;
+		}
+		         
+		if (!$('#kt_form [name="phone"]').val()) {
+			alert("핸드폰번호를 입력해주세요.");
+			$("phone").focus(); 
+			return false;
+		}
+		 var isPhoneNum = /([09]{9})/;     
+		
+		if (!isPhoneNum.test($('#kt_form [name="phone"]').val())) {
+			alert(" - 을 제외한 번호를 입력해주세요(9자리이상) ");
+			$("phone").focus();         
+			return false;          
+		}             
+		  
+		  
+		
+		
+		 var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{6,40}/;
+		if (!$('#kt_form [name="pw"]').val() || !pwPattern.test($('#kt_form [name="pw"]').val() )) {
+			alert("비밀번호를 입력해주세요(6자리이상).");
+			$("pw").focus();    
+			return false;  
+		}
+		
+		
+		if (!$('#kt_form [name="bod"]').val()) {
+			alert("생년월일을 입력해주세요.");
+			$("bod").focus();
+			return false;
+		}
+		
+		
+		
+		
+		
+		var asArray = $('#kt_form').serialize();  
+		
+		
+		
+	                
+		var pw = $('#kt_form [name="pw"]').val();    
+	            if(pw){         
+		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
+
+			$.ajax({    
+				url : 'modifyInfo',   
+				method : 'POST',
+				data : asArray,
+				dataType : 'text',  
+				success : function(textData) {              
+					console.log(textData);  
+					if(textData.trim() == "null"){      
+						
+						alert("기존 비밀번호를 입력해 주세요");
+					}else if(textData.trim() == "signin"){
+						console.log("정보수정 성공했음 ");   
+						alert('수정 되었습니다. 다시 로그인 해주세요');
+						location.href = '/signin';
+						
+					}else if(textData.trim() == "pwfalse") {
+						
+						alert(" 비밀번호가 일치하지 않습니다. ");
+					}else {
+						
+						alert(" 수정에 실패하였습니다. ");  
+					}
+					
+					        
+					
+					
+				}     
+			});
+		
+	            }else {
+	            	alert("비밀번호를 입력해주세요.");
+	            }
+			
+		});
+
+
+
+});   
+
+
+
+
+
+
+
 /** *** */
 (function(modules) { // webpackBootstrap
 	/** *** */
@@ -11,8 +119,8 @@
 	function __webpack_require__(moduleId) {
 		/** *** */
 		/** *** */
-		// Check if module is in cache
-		/** *** */
+		// Check if module is in cache   
+		/** *** */   
 		if (installedModules[moduleId]) {
 			/** *** */
 			return installedModules[moduleId].exports;
@@ -518,14 +626,10 @@
 														name : {
 															validators : {
 																notEmpty : {
-																	message : '이름을 입력해주세요. '
+																	message : '실명을 입력해주세요. '
 																},
-																stringLength : {
-																	min : 2,
-																	max : 10,
-																	message : '이름은 최소 2글자 이상 10글자 이내로 입력해주세요.'
-																}
-															}
+															  
+															}  
 														},
 /*
 														pw : {

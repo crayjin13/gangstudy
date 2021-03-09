@@ -19,48 +19,6 @@ $(function() {
 	  
 
 
-	// 비밀번호 찾기
-	$("button[name=forgotbtn]").click(function() {
-	 
-		
-		var fpwArray = $('#kt_login_forgot_form').serialize();
-		console.log("r값이들어오는가--->" + fpwArray);
-		$.ajax({    
-			url : 'findPw_action',
-			method : 'POST',
-			data : fpwArray,
-			dataType : 'text',
-			success : function(textData) {
-				if (textData.trim() == "good") {
-					alert(" 새로운 비밀번호로 다시 로그인해주세요.");
-					window.location.href = "/";
-
-				} else if (textData.trim() == "false") {
-					  
-					Swal
-					.fire(
-							{    
-								text : "입력하신 정보를 다시 확인해주세요.",    
-								icon : "error",
-								buttonsStyling : false,
-								confirmButtonText : "다시 확인하기",
-								customClass : {
-									confirmButton : "btn font-weight-bold btn-light"
-								}  
-							})
-					.then(function() {
-						KTUtil.scrollTop();
-					});
-			return false;        
-					
-					
-				} else {
-					alert(" 비밀번호 변경에 실패하였습니다.");
-				}
-			}
-		});
-
-	});
 	
 	
 	// **************회원 탈퇴 *************
@@ -89,149 +47,81 @@ $(function() {
 		});
 	});
 	
-	// ************** 비번 업뎃  *************     
-	$("#updatePw").click(function() {
-		
-		if(! $('#changePw [name="newPw"]').val()){
-			alert("새 비밀번호를 입력해주세요.");   
-			$("newPw").focus();
-			return false;
-		}
-		  
-		if(!$('#changePw [name="newPw2"]').val()){
-			alert("새 비밀번호 확인을 입력해주세요.");
-			$("newPw2").focus();
-			return false;         
-		}       
-		  
-		
-		
-		
-		var pws = $('#changePw').serialize();
-		console.log("값들어오는지 확인 " + pws);
-	
-		var newPw = $('#changePw [name="newPw"]').val();
-		var newPw2 = $('#changePw [name="newPw2"]').val();         
-
-		     
-		if(newPw == newPw2){
-	$.ajax({          
-			url : 'updatePw',
-			method : 'POST',              
-			data : pws,                     
-			dataType : 'text',             
-			success : function(textData) {
-				console.log(textData);
-				if (textData.trim() == "done") {
-					console.log("성공");
-					alert('비밀번호변경 성공');
-					location.href="/";
-					
-				} else if(textData.trim() == "pwUnmatch") {
-					console.log("비번변경실패 ");
-					alert('기존 비밀번호가 일치하지않습니다.');   
-				    
-				}else {
-					alert(' 변경에 실패하였습니다.')  
-				} 
-				
-			}
-		});
-		     }else {  
-		    	 alert('새 비밀번호가 서로 일치하는지 확인 해주세요.');
-		     }
-	});
 
 
-
-	// ******* 회원 정보 수정 ********************
-	$("#modifybtn").click(function() {
-		var asArray = $('#kt_form').serialize();  
-	                
-		var pw = $('#kt_form [name="pw"]').val();    
-	            if(pw){         
-		console.log("*****회원정보수정 값들어오는지 체크  " + asArray);
-
-			$.ajax({    
-				url : 'modifyInfo',   
-				method : 'POST',
-				data : asArray,
-				dataType : 'text',  
-				success : function(textData) {              
-					console.log(textData);  
-					if(textData.trim() == "null"){      
-						
-						alert("기존 비밀번호를 입력해 주세요");
-					}else if(textData.trim() == "signin"){
-						console.log("정보수정 성공했음 ");   
-						alert('수정 되었습니다. 다시 로그인 해주세요');
-						location.href = '/signin';
-						
-					}else if(textData.trim() == "pwfalse") {
-						
-						alert(" 비밀번호가 일치하지 않습니다. ");
-					}else {
-						
-						alert(" 수정에 실패하였습니다. ");  
-					}
-					
-					        
-					
-					
-				}     
-			});
-		
-	            }else {
-	            	alert("비밀번호를 입력해주세요.");
-	            }
-			
-		});
-
+ 
 	 
 	      
 	// ***** 회원가입 ************
 
 	
 	$("#kt_login_signup_form_submit_button").click(function() {
-		if(!$('#kt_login_signup_form [name="name"]').val()){
+		 
+		if(!$('#kt_login_signup_form [name="name"]').val()){  
 			$("name").focus();
-			alert("이름을 입력해주세요");
+			alert("실명을 입력해주세요"); 
 			return false;
 		}
-		if(!$('#kt_login_signup_form [name="phone"]').val()){      
+		var emailPattern = /[a-z0-9A-Z]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
+		if(!$('#kt_login_signup_form [name="email"]').val() || !emailPattern.test($('#kt_login_signup_form [name="email"]').val() ) ){
+			alert("올바른 이메일주소를 입력해주세요");
+			$("email").focus();  
+			return false;
+		}    
+		
+		 var isPhoneNum = /([09]{9})/;     
+		
+		if(!$('#kt_login_signup_form [name="phone"]').val() || !isPhoneNum.test($('#kt_login_signup_form [name="phone"]').val() )){      
 			$("phone").focus();
-			alert("휴대전화번호를 입력해주세요");
+			alert("핸드폰 번호를 입력해주세요(9자리이상)");    
 			return false;
 		}     
 		
-		if(! $('#kt_login_signup_form [name="id"]').val()){     
-			$("id").focus();
-			alert("아이디를 입력해주세요");
-			return false;
+		var min = /[a-zA-Z0-9_]{3,}/;   
+		
+		if(! $('#kt_login_signup_form [name="id"]').val() || !min.test($('#kt_login_signup_form [name="id"]').val() )){     
+			$("id").focus();    
+			alert("아이디를 입력해주세요(3글자이상)");  
+			return false;  
 		}
-		if(! $('#kt_login_signup_form [name="pw"]').val()){
-			alert("비밀번호를 입력해주세요");   
+		
+		 var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{6,40}/;
+		
+		if(! $('#kt_login_signup_form [name="pw"]').val() || !pwPattern.test( $('#kt_login_signup_form [name="pw"]').val()) ){
+			alert("비밀번호를 입력해주세요(6자리 이상)");   
 			$("pw").focus();
 			return false;
 		}
+	
 		if(! $('#kt_login_signup_form [name="pw2"]').val()){
 			alert("비밀번호 재확인을 입력해주세요");   
 			$("pw2").focus();
 			return false;
 		}
-		  
-		if(!$('#kt_login_signup_form [name="email"]').val()){
-			alert("이메일을 입력해주세요");
-			$("email").focus();
+		 
+		if( $('#kt_login_signup_form [name="pw2"]').val() !== $('#kt_login_signup_form [name="pw"]').val() ){
+			alert("비밀번호가 일치하지않습니다. ");   
+			$("pw2").focus();       
 			return false;
-		}
+		}  
+		
+		
+		
+		if(! $('#kt_login_signup_form [name="bod"]').val()){
+			alert("생년월일을 입력해주세요");   
+			$("bod").focus();
+			return false;  
+		}  
+		
+		 
+		
 		  
 		
 		
 		
 		var userArray = $('#kt_login_signup_form').serialize();
 		
-		
+		    
 		
 		console.log("#값이 오는지 확인 ---" + userArray);
 		// select option 으로 가져올때 이 문법으로 보내려면
@@ -255,17 +145,8 @@ $(function() {
 					kt_login_signup_form.bod.value = textData.bod;
 					kt_login_signup_form.gender.value = textData.gender;
 					      
-					Swal.fire({
-						text: "갱스터디 회원이 되신걸 축하합니다. !",
-						icon: "success",
-						buttonsStyling: false,
-						confirmButtonText: "로그인하러가기",
-						customClass: {
-							confirmButton: "btn font-weight-bold btn-primary",
-							cancelButton: "btn font-weight-bold btn-default"
-						}
-					});
-					location.href = '/signin';
+				alert("회원가입이 완료되었습니다.");     
+					location.href = '/signin';    
    
 				}else {
 					alert("죄송합니다. 입력하신 값이 올바르지 않습니다.  ");    
