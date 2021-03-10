@@ -24,7 +24,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="${pageContext.request.contextPath}/resources/assets/css/pikaday/pikaday.css" rel="stylesheet" type="text/css">
 	<!--end::Custom Styles-->
 	<!--begin::Custom Scripts(used by this page)-->
-	<script src="/js/cbpHorizontalMenu.min.js"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics 구글 -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166780031-1"></script>
 	<script>

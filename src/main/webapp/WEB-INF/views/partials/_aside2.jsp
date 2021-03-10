@@ -26,12 +26,6 @@
 
 
 </script>
-	<script src="/js/cbpHorizontalMenu.min.js"></script>
-
-
-
-
-
 	<!--begin::Aside-->
 	<div
 		class="aside aside-left aside-fixed d-flex flex-column flex-row-auto"
