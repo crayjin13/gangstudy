@@ -28,11 +28,7 @@ var clientWebSocket = {
 	handleMessage : function (data) {
 		// 메시지 처리
 		if(data != null){
-			console.log(data);
-			$("#serverMessage").val(data);
 			writeToScreen(data);
-		} else {
-			console.log("수신된 데이터 없음.");
 		}
 	}
 }

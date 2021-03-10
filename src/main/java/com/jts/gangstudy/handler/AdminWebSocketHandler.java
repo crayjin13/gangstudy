@@ -129,7 +129,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		log.info("["+LocalDateTime.now()+"]"+"["+session.getId()+"]: " + message.getPayload());
-        session.sendMessage(new TextMessage("[echo]: " + message.getPayload()));
+//        session.sendMessage(new TextMessage("[echo]: " + message.getPayload()));
 		
 		// 오늘 날짜의 로그 요청시.
 		List<RemoteLog> logs = adminService.selectRemoteLogsByDate(LocalDate.now());
