@@ -11,8 +11,10 @@
 	<select id="selectByDate" resultType="com.jts.gangstudy.domain.RemoteLog">
 	  SELECT *
 	  FROM REMOTELOG_TB
-	  WHERE LOG_DT BETWEEN #{date} AND #{date} + 0.99999
+	  <![CDATA[
+	  WHERE LOG_DT >= #{date} AND LOG_DT < DATE_ADD(#{date}, INTERVAL 1 DAY)
 	  ORDER BY LOG_DT
+	  ]]>
 	</select>
 	
 	<!-- 로그 추가 -->
