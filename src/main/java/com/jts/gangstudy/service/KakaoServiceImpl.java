@@ -189,7 +189,7 @@ public class KakaoServiceImpl implements KakaoService {
 
 	// 가입된 카카오 계정이 있는지 중복확인
 	@Override
-	public boolean isDuplicate(String kakao_id) {
+	public boolean isKakaoID(String kakao_id) {
 		List<KakaoUser> users = mapper.selectKakaoUser(kakao_id);
 		if(users.size() == 1) {
 			return true;
@@ -198,15 +198,16 @@ public class KakaoServiceImpl implements KakaoService {
 	}
 
 	@Override
-	public Integer selectUserNo(String id) {
-		List<KakaoUser> users = mapper.selectKakaoUser(id);
+	public Integer selectUserNo(String kakao_id) {
+		List<KakaoUser> users = mapper.selectKakaoUser(kakao_id);
 		if(users.size() == 1) {
 			return users.get(0).getUser_no();
 		}
 		return null;
 	}
 
-	public void deleteUser(String id) {
-		
+	@Override
+	public void deleteUser(String kakao_id) {
+		mapper.deleteUser(kakao_id);
 	}
 }
