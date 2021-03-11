@@ -44,6 +44,7 @@ public class KakaoServiceImpl implements KakaoService {
     @Value("${kakao.restapi_key}")
 	private String client_id;			// 앱 생성 시 발급 받은 REST API 키
 
+    // 카카오 로그인 URL 생성
 	@Override
 	public String getLoginUrl() {
 		URI uri;
@@ -62,6 +63,7 @@ public class KakaoServiceImpl implements KakaoService {
 		return null;
 	}
 	
+	// 인가된 카카오 계정 접근토큰(access_token) 생성
 	@Override
 	public String getAccessToken(String code) {
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -69,7 +71,7 @@ public class KakaoServiceImpl implements KakaoService {
 			uri = new URIBuilder(uri)
 			        .addParameter("grant_type", "authorization_code")					// authorization_code로 고정
 			        .addParameter("client_id", client_id)								// 앱 생성 시 발급 받은 REST API
-			        .addParameter("redirect_uri", domain+"/kakao/oauth")								// 인가 코드가 리다이렉트된 URI
+			        .addParameter("redirect_uri", domain+"/kakao/oauth")				// 인가 코드가 리다이렉트된 URI
 			        .addParameter("code", code)											// 인가 코드 받기 요청으로 얻은 인가 코드	
 			        .build();
 			
@@ -104,7 +106,7 @@ public class KakaoServiceImpl implements KakaoService {
 		return null;
 	}
 
-    // access_token을 통해 카카오 유저 정보를 얻는다.
+    // 접근토큰(access_token)을 통해 카카오 유저 정보를 얻는다.
 	@Override
 	public User getProfile(String access_token) {
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -136,6 +138,7 @@ public class KakaoServiceImpl implements KakaoService {
 		mapper.insertKakaoUser(kakaoUser);
 	}
 	
+	// 카카오 계정의 프로파일 JSON 을 파싱하여 유저 정보로 반환
 	public User parseProfile(JSONObject object) {
 		// id
 		Long long_id = object.getLong("id");
@@ -184,8 +187,9 @@ public class KakaoServiceImpl implements KakaoService {
 		return new User(name, phone_number, id, "#", "", new Date(date.getTime()), gender);
 	}
 
+	// 가입된 카카오 계정이 있는지 중복확인
 	@Override
-	public boolean isDuplicate(String kakao_id) {
+	public boolean isKakaoID(String kakao_id) {
 		List<KakaoUser> users = mapper.selectKakaoUser(kakao_id);
 		if(users.size() == 1) {
 			return true;
@@ -194,11 +198,16 @@ public class KakaoServiceImpl implements KakaoService {
 	}
 
 	@Override
-	public Integer selectUserNo(String id) {
-		List<KakaoUser> users = mapper.selectKakaoUser(id);
+	public Integer selectUserNo(String kakao_id) {
+		List<KakaoUser> users = mapper.selectKakaoUser(kakao_id);
 		if(users.size() == 1) {
 			return users.get(0).getUser_no();
 		}
 		return null;
+	}
+
+	@Override
+	public void deleteUser(String kakao_id) {
+		mapper.deleteUser(kakao_id);
 	}
 }

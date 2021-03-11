@@ -8,4 +8,6 @@ public interface KakaoMapper {
 	public void insertKakaoUser(KakaoUser kakaoUser);
 
 	public List<KakaoUser> selectKakaoUser(String kakao_id);
+
+	public void deleteUser(String kakao_id);
 }

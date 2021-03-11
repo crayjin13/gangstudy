@@ -40,9 +40,7 @@ public class KakaoController {
 	        User profile = kakaoService.getProfile(access_token);
 	        String user_id = profile.getId();
 	        
-	        System.out.println("[debug] user_id : " + user_id);
-	        
-			boolean isdup = kakaoService.isDuplicate(user_id);
+			boolean isdup = kakaoService.isKakaoID(user_id);
 			// signup
 			if(isdup == false) {
 				userService.insertUser(profile);

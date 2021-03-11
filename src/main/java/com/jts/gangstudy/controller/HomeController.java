@@ -1,26 +1,17 @@
 package com.jts.gangstudy.controller;
 
-import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.Booking;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jts.gangstudy.service.KakaoService;
 
 /**
  * Handles requests for the application home page.
@@ -28,8 +19,6 @@ import com.jts.gangstudy.service.KakaoService;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	KakaoService kakaoService;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**

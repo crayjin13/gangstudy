@@ -133,6 +133,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 		
 		// 오늘 날짜의 로그 요청시.
 		List<RemoteLog> logs = adminService.selectRemoteLogsByDate(LocalDate.now());
+		System.out.println("debug : " + LocalDate.now());
 		if(message.getPayload().equals("request today info")) {
 			for(RemoteLog log : logs) {
 				session.sendMessage(new TextMessage(parseJSONLog(log).toString()));

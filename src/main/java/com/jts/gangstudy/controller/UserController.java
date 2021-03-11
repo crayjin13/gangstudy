@@ -22,6 +22,7 @@ import com.jts.gangstudy.controller.UserLoginCheck;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
+import com.jts.gangstudy.service.KakaoService;
 import com.jts.gangstudy.service.UserService;
 
 @Controller
@@ -31,6 +32,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private KakaoService kakaoService;
 	/*
 	 * @RequestMapping(value = "/") public String index() { return ""; }
 	 */
@@ -211,7 +215,10 @@ public class UserController {
 
 		if (passwordEncoder.matches(Dpw, user.getPw())) {
 			System.out.println("탈퇴전 비번 매치 확인됨 ");
-
+			
+			if(kakaoService.isKakaoID(id)) {
+				kakaoService.deleteUser(id);
+			}
 			boolean delete = userService.deleteUser(id, email);
 			System.out.println(delete);
 			if (delete) {

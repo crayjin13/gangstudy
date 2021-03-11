@@ -13,7 +13,9 @@ public interface KakaoService {
 
 	public void insertKakaoUser(KakaoUser kakaoUser);
 
-	public boolean isDuplicate(String user_id);
+	public boolean isKakaoID(String user_id);
 
 	public Integer selectUserNo(String id);
+	
+	public void deleteUser(String id);
 }
