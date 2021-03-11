@@ -12,4 +12,10 @@
 	<select  id="selectKakaoUser" parameterType="String" resultType="com.jts.gangstudy.domain.KakaoUser">
 	  SELECT USER_NO, KAKAO_ID FROM KAKAOUSER_TB WHERE KAKAO_ID = #{kakao_id}
 	</select>
+	
+	<update id="deleteUser" parameterType="String">
+	  UPDATE FROM KAKAOUSER_TB
+	  SET KAKAO_ID = '#'
+	  WHERE KAKAO_ID = #{kakao_id}
+	</update>
 </mapper>
