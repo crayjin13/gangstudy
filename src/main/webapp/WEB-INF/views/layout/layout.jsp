@@ -23,7 +23,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--end::Custom Styles-->
 </head>
 
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed page-loading">
+<body class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed page-loading" id="kt_body">
 	<!--begin::Main-->
 	<!--end::Main-->
 	

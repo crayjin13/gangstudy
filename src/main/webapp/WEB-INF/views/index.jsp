@@ -44,7 +44,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--end::Custom Scripts-->
 </head>
 
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed  page-loading">
+<body class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed  page-loading" id="kt_body">
 	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
