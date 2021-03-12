@@ -52,9 +52,12 @@
 }
 
 #kt_datatable_paginate .pagination {
-  justify-content: center;
+	justify-content: center;
 }
 
+tbody > tr .row .btn .btn-xs {
+	font-size: 1rem;
+}
 
 @media (max-width: 576px) {
 	.card.card-custom > .card-body {
