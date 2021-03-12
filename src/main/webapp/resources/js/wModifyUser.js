@@ -11,11 +11,12 @@ $(function() {
 			$("name").focus();
 			return false;
 		}
-		var emailPattern = /[a-z0-9A-Z]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
-		if (!$('#kt_form [name="email"]').val() || !emailPattern.test(!$('#kt_form [name="email"]').val() )) { 
-			alert("이메일을 입력해주세요.");
-			$("email").focus();
-			return false;
+		
+		var emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;  
+		if (!$('#kt_form [name="email"]').val() || !emailPattern.test($('#kt_form [name="email"]').val() )) { 
+			alert("올바른 이메일을 입력해주세요.");   
+			$("email").focus();    
+			return false;    
 		}
 		         
 		if (!$('#kt_form [name="phone"]').val()) {

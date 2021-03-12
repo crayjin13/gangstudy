@@ -81,16 +81,16 @@ $(function() {
 		
 		if(! $('#kt_login_signup_form [name="id"]').val() || !min.test($('#kt_login_signup_form [name="id"]').val() )){     
 			$("id").focus();    
-			alert("아이디를 입력해주세요(3글자이상)");  
+			alert("형식에 맞는 아이디를 입력해주세요(3글자이상)");  
 			return false;  
 		}
 		
 		 var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{6,40}/;
 		
 		if(! $('#kt_login_signup_form [name="pw"]').val() || !pwPattern.test( $('#kt_login_signup_form [name="pw"]').val()) ){
-			alert("비밀번호를 입력해주세요(6자리 이상)");   
+			alert("올바른 비밀번호를 입력해주세요(6자리 이상)");   
 			$("pw").focus();
-			return false;
+			return false; 
 		}
 	
 		if(! $('#kt_login_signup_form [name="pw2"]').val()){
