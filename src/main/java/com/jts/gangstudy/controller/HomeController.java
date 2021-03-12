@@ -84,6 +84,7 @@ public class HomeController {
 	public String payment() {            
 		return "booking/payment";          
 	}     
+	
 //	 결제(old)페이지 
 	@RequestMapping(value = "/makecart", method = RequestMethod.GET)      
 	public String makecart() {            
@@ -103,6 +104,11 @@ public class HomeController {
 		return "_User/user_bookingList";         
 	}
 	
+	@RequestMapping(value = "/change_booking", method = RequestMethod.GET)      
+	public String change_booking() {         
+		return "booking/change_booking";         
+	}
+	   
 	
 	
                  
