@@ -412,45 +412,7 @@
 					}
 
 					// /////////// 아이디 중복 체크 시작  //////////////
-					$(function() {
-						$('#msg1').hide();
-						$('#msg2').hide();
-
-						// 회원가입 유효성 검증
-						$('#kt_login_signup_form').validate({
-							rules : {
-								
-
-								id : {
-									required : true,
-									rangelength : [ 3, 12 ],
-									remote : {
-										url : "duplicate_check",
-										method : "GET",
-										type : "text",
-										data : {
-											id : function() {
-												return $('#id').val();
-											}
-										}
-									}
-								}
-							},
-							messages : {
-								id : {
-									
-
-									remote : "{0}는 이미 존재하는 아이디입니다.",
-								}
-							},
-							submitHandler : function() {
-								signUp_function();
-							},
-							errorClass : "error",
-							validClass : "core.form.invalid"          
-						});        
-
-					})
+					    
 					///아이디 중복체크 끝 ///
 
 					/// 가입 유효성 검사 시작 // 
