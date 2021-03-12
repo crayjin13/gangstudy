@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--begin::Footer-->
-					<div class="footer extended kt-grid__item bgi-position-center-center bgi-size-cover bgi-no-cover" id="kt_footer" style="background-image: url('assets/media/bg/bg-2.jpg');">
+					<div class="footer extended kt-grid__item bgi-position-center-center bgi-size-cover bgi-no-cover" id="kt_footer">
 
 						<!--begin::Container-->
 						<div class="container py-lg-18 py-8 " > 
