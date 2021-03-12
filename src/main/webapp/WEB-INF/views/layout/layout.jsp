@@ -25,6 +25,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <body class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed page-loading" id="kt_body">
 	<!--begin::Main-->
+				<!--end::Content--><%@ include file="/WEB-INF/views/layout/footer-include.jsp"%><!--end::Wrapper-->
 	<!--end::Main-->
 	
 	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>

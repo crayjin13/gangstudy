@@ -19,8 +19,8 @@ License: You must have a valid license purchased only from themeforest(the above
 	<meta name="description" content="Remote studyroom system" />
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 	
-	<!--begin::Custom Styles(used by this page)-->
-	<!--end::Custom Styles-->
+	<!--begin::Page Vendors Styles(used by this page)-->
+	<!--end::Page Vendors Styles-->
 </head>
 
 <body class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed page-loading" id="kt_body">
@@ -87,6 +87,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 				</div>
 				<!--end::Content-->
+				<%@ include file="/WEB-INF/views/layout/footer-include.jsp"%>
 			</div>
 			<!--end::Wrapper-->
 		</div>
