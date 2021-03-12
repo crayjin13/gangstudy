@@ -327,14 +327,16 @@ public class UserController {
 		boolean newId = userService.idDuplicateCheck(id);
 		if (newId) {
 			System.out.println("중복된 아이디 입니다.");
-			newId = false;
-		} else {
-			newId = true;
+		 
+			return "false";  
+		} else {     
+			 
+			return "true";         
 		} 
-		return newId + "";
+		
 	}
 
-	
+	    
 	
 	 
 	/*
