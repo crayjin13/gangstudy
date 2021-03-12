@@ -19,10 +19,11 @@ License: You must have a valid license purchased only from themeforest(the above
 	<meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 	
-	<!--begin::Custom Styles(used by this page)-->
+	<!--begin::Page Vendors Styles(used by this page)-->
 	<link href="${pageContext.request.contextPath}/resources/assets/css/svg.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/resources/assets/css/pikaday/pikaday.css" rel="stylesheet" type="text/css">
-	<!--end::Custom Styles-->
+	<link href="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+	<!--end::Page Vendors Styles-->
 	<!--begin::Custom Scripts(used by this page)-->
 	<!-- Global site tag (gtag.js) - Google Analytics 구글 -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166780031-1"></script>
@@ -43,7 +44,12 @@ License: You must have a valid license purchased only from themeforest(the above
 	</script>
 	<!--end::Custom Scripts-->
 </head>
-
+<style>
+img {
+	display: block;
+	margin: auto;
+}
+</style>
 <body class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed  page-loading" id="kt_body">
 	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
@@ -144,6 +150,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--end::Container-->
 				</div>
 				<!--end::Content-->
+				<%@ include file="/WEB-INF/views/layout/footer-include.jsp"%>
 			</div>
 			<!--end::Wrapper-->
 		</div>

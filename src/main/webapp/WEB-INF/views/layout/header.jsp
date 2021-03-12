@@ -1,7 +1,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no" />
 
-
 <style>
 @font-face { 
     font-family: 'Cafe24Oneprettynight';
@@ -11,17 +10,7 @@
 }
 </style>
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-
-<!--end::Fonts-->
-
-<!--begin::Page Vendors Styles(used by this page)-->
-<link
-	href="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css"
-	rel="stylesheet" type="text/css" />
-
-<!--end::Page Vendors Styles-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
 <!--begin::Global Theme Styles(used by all pages)-->
 <link href="${pageContext.request.contextPath}/resources/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />

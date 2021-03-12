@@ -1,7 +1,3 @@
-<%@ include file="/WEB-INF/views/partials/_header.jsp"%>
-<%@ include file="/WEB-INF/views/partials/_header-mobile.jsp"%>
-<%@ include file="/WEB-INF/views/partials/_footer/extended.jsp"%>
-<jsp:include page="/WEB-INF/views/partials/_extras/scrolltop.jsp" flush="true" />
 <script> var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview"; </script>
 <!--begin::Global Config(global config for global JS scripts)-->
 <script>

@@ -245,6 +245,20 @@
 															</a>\
 														</div>\
 													';
+												} 
+												else if (data.state == 'uncharge') {
+													return '\
+														<div class="row">\
+															<a href="javascript:delete('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+																<button class=" btn-xs listbtn-xs-red">삭제 </button>\
+															</a>\
+														</div>\
+														<div class="row">\
+															<a href="javascript:payment('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
+																<button class=" btn-xs listbtn-xs-blue">결제 </button></i>\
+															</a>\
+														</div>\
+													';
 												} else {
 													return '<div class="d-flex align-items-center"> - </div>';
 												}
@@ -309,25 +323,14 @@ function modify(book_no) {
 
 function cancel(book_no) {
 	if(confirm('예약을 취소하시겠습니까?')) {
-		$.get("/booking/cancelCheck", {
+		$.get("/payment/cancel", {
 			book_no : book_no
 		},function(jqXHR) {
 			// always
 		},'text' /* xml, text, script, html */)
-		.done(function(response) {    
-			if(response=="ok") {
-				$.get("/payment/cancel/", {
-					book_no : book_no
-				},function(jqXHR) {
-					// always
-				},'text' /* xml, text, script, html */)
-				.done(function(message) {    
-					alert(message);    
-					location.href = '/booking/check';
-				})
-			} else if(response=="late"){
-				alert('24시간 이내에는 예약을 취소할 수 없습니다.')
-			}
+		.done(function(message) {   
+			alert(message);
+			location.href = '/booking/check';
 		})
 		.fail(function(jqXHR) {
 		})
