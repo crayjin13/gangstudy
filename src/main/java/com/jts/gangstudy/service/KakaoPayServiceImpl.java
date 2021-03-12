@@ -175,7 +175,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	}
 
 	@Override
-	public HashMap<String, String> cancel(String tid, String amount) {
+	public String cancel(String tid, String amount) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			URI uri = new URI(cancel);
@@ -203,7 +203,13 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		        map.put("tid", cancelTid);
 		        map.put("status", status);
 		        map.put("pay_type", payment_method_type.toLowerCase());
-		        return map;
+//		        return map;
+		        if (status.equals("PART_CANCEL_PAYMENT") || status.equals("CANCEL_PAYMENT")) {
+			        return status;
+		        } else {
+					System.err.println("at KakaoPayService.cancel Fail Status : " + status);
+		        	return null;
+		        }
 			} catch (org.json.JSONException e){
 				System.err.println("at KakaoPayService.cancel JSONException : " + e);
 				System.err.println("at KakaoPayService.cancel api response msg : " + jsonObject.getString("msg"));
@@ -217,7 +223,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return map;
+		return null;
 	}
 
 }

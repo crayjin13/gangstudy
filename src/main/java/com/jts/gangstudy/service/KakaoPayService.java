@@ -9,5 +9,5 @@ public interface KakaoPayService {
 
 	public HashMap<String, String> getPayInfo(String tid, String pg_token);
 	
-	public HashMap<String, String> cancel(String tid, String amount);
+	public String cancel(String tid, String amount);
 }

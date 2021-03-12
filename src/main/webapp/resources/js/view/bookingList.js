@@ -249,7 +249,7 @@
 												else if (data.state == 'uncharge') {
 													return '\
 														<div class="row">\
-															<a href="javascript:delete('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+															<a href="javascript:cancel('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
 																<button class=" btn-xs listbtn-xs-red">삭제 </button>\
 															</a>\
 														</div>\
@@ -319,7 +319,6 @@ function modify(book_no) {
 
 	}
 }
-
 
 function cancel(book_no) {
 	if(confirm('예약을 취소하시겠습니까?')) {
