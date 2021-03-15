@@ -1,0 +1,88 @@
+ @media (max-width: 1200.98px){
+ 
+ 
+     
+ 
+ 
+ 
+ 
+ /* radio 버튼  */
+   
+@mixin ie8 {
+    .ie8 {
+        @content;
+    }
+}
+　
+/* reset */
+*{margin: 0; padding: 0}
+body {padding: 20px;}
+　
+  
+.only-sr {
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;   
+}
+.radio-items {
+     
+  
+   
+    border-radius: 4px;
+    box-sizing: border-box;      
+}        
+    > div {
+          
+          width: 100%;  
+        height: 4rem;      
+        line-height: 49px;
+        border-left: 1px solid #454a60;
+        text-align: center;
+    }
+    > div:first-child {
+        border-left: none;
+        width: auto !important;
+    }
+   input[type="radio"] + label {
+     
+        display: block;   
+        width: 100%;
+  height: 58px;
+  margin: 6px 1rem 0 4px;   
+  padding: 1.7rem 4rem 1.7rem 4rem;           
+  border-radius: 4px;  
+  border: solid 1px #d9dbe1;  
+  background-color: #ffffff;     
+        vertical-align: middle; 
+        box-sizing: border-box; 
+        cursor: pointer;   
+    }
+    input[type="radio"]:checked + label{
+        width: 100%;             
+  height: 58px;
+  margin: 6px 1rem 0 4px;   
+  padding: 17px 4rem 17px 4rem;    
+  border-radius: 4px;   
+  border: solid 2px #2552e6;
+  background-color: #ffffff;
+        
+    }
+}
+@include ie8 {
+    // ie8 에서는 :checked 미지원하기 때문에 class로 대체, 추가적인 스크립트가 필요합니다.
+    // 조건부 주석을 이용하여 html에 ie8이라는 클래스를 추가합시다.
+    .radio-items {
+        input[type="radio"].checked + label {
+            background-color: #454a60;
+            color: #fff;
+        }
+    }
+}
+ 
+ 
+ 
+ 
+ 
+ }

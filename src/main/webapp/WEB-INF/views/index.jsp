@@ -62,7 +62,7 @@ img {
 					<!--begin::Container-->
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-xxl-6">   
 								<!--begin::Form-->
 								<form class="form" id="bookingForm" action="/booking/make">   
 								       <!-- 데스크탑에서만 보임 -->
