@@ -7,12 +7,12 @@
      
 			<!--begin::Logo-->
 			<a href="/">
-				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="logo-default max-h-30px" />
+				<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="logo-default max-h-30px " />
 			</a>  
-         
+           
 			<!--end::Logo-->
-    
-
+            
+           
   
    
 

@@ -18,14 +18,14 @@
 
 							<!--begin::Left-->     
 							<div class="d-flex align-items-stretch mr-3">
-       
-								<!--begin::Header Logo-->         
-								<div class="header-logo">	<!-- 모바일에서는 안보이게 적용 d-none d-lg-block d-xl-none  -->  
-									<a href="/">
-										<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="img_logo_txt max-h-200px d-none d-xl-block  d-none d-lg-block d-xl-none mt-6" /> 
+           
+								<!--begin::Header Logo-->          
+								<div class="header-logo">	<!-- 모바일에서는 안보이게 적용 d-none d-lg-block d-xl-none  -->      
+									<a href="/">   
+										<img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="img_logo_txt max-h-200px d-none d-xxl-block mt-6" /> 
 									<%-- max-h-200px d-none d-xl-block  d-none d-lg-block d-xl-none mt-6 px-12	 <img alt="Logo" src="${pageContext.request.contextPath}/resources/assets/media/logos/gang-logo-txt.svg" class="logo-sticky max-h-40px" />  --%>
-									</a>           
-								</div>             
+									</a>                        
+								</div>                 
         
 								<!--end::Header Logo-->
             
