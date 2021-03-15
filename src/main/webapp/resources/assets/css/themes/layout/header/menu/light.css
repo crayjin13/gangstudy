@@ -1,4 +1,4 @@
-@media (min-width: 1600px) {      
+@media (min-width: 922px) {      
   .header-menu .menu-nav > .menu-item > .menu-link {     
     background-color: none; }
     .header-menu .menu-nav > .menu-item > .menu-link .menu-icon.svg-icon svg g [fill] {
@@ -197,7 +197,7 @@
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow {
         color: #3699FF; } }
      
-@media (max-width: 1599.98px) {      
+@media (max-width: 921.98px) {            
   .header-menu-mobile {
     background-color: #ffffff ; } 
     .header-menu-mobile .menu-nav > .menu-item > .menu-heading .menu-text,
