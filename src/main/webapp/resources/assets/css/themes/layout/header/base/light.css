@@ -1,4 +1,4 @@
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .header {
     background-color: #ffffff; }
     .header-fixed .header {
@@ -32,7 +32,7 @@
       .header .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon, .header .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon {
         color: #3699FF; }}
 
-@media (max-width: 991.98px) {
+@media (max-width: 1399.98px) {  
   .topbar {
     background-color: #ffffff;
     box-shadow: none; }

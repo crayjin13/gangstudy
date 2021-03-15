@@ -54702,7 +54702,7 @@ canvas {
 body {
   background: #fafafa; }    
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .header-fixed .wrapper {
     padding-top: 65px; }
   .header-fixed.subheader-fixed.subheader-enabled .wrapper {
@@ -54719,8 +54719,8 @@ body {
   .container-xl, 
   .container-xxl {   
     padding: 0 80px; } }     
-
-@media (max-width: 991.98px) {
+  
+@media (max-width: 1399.98px) {
   .header-mobile-fixed .wrapper {
     padding-top: 55px; }
   .header-mobile-fixed.subheader-mobile-fixed.subheader-enabled .wrapper {
@@ -54734,8 +54734,8 @@ body {
   .container-xxl {
     max-width: none;
     padding: 0 15px; } }
-
-@media (min-width: 992px) {
+ 
+@media (min-width: 1400px) {
   .header {
     display: flex;
     justify-content: space-between;
@@ -54757,7 +54757,7 @@ body {
     .header-fixed.subheader-fixed .header {
       box-shadow: none !important; } }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) { 
   .header-menu {
     display: flex;
     align-items: stretch;
@@ -55286,7 +55286,7 @@ body {
   to {
     margin-top: 0; } }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1399.98px) { 
   .header-menu-mobile .menu-nav {
     margin: 0;
     list-style: none;
@@ -55607,7 +55607,7 @@ body {
         .header-menu-mobile .menu-nav > .menu-item > .menu-submenu .menu-subnav > .menu-item > .menu-submenu .menu-subnav > .menu-item > .menu-submenu .menu-subnav > .menu-section {
           padding-left: 75px; } }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1399.98px) { 
   .header-menu-wrapper {
     z-index: 1001;
     position: fixed;
@@ -55623,7 +55623,7 @@ body {
     .header-menu-wrapper {
       transition: none !important; } }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1399.98px) {
   .header-menu-wrapper.header-menu-wrapper-right {
     right: -295px;
     left: auto; }
@@ -55660,14 +55660,15 @@ body {
 @media (max-width: 325px) {
   .header-menu-wrapper {
     width: 90% !important; } }
-
-@media (min-width: 992px) {
+    
+ /* 모바일 헤더안에 메뉴 css  */
+@media (min-width: 1400px) {
   .header-menu-wrapper {
     align-items: stretch; }
     body:not(.aside-enabled) .header-menu-wrapper {
       display: flex;
       flex-direction: row; }
-      body:not(.aside-enabled) .header-menu-wrapper .header-logo {
+      body:not(.aside-enabled) .header-menu-wrapper .header-logo  {
         padding: 0;
         display: flex;
         align-items: center;
@@ -55699,8 +55700,8 @@ body {
         background-color: transparent !important;
         border-bottom: 1px solid #3699FF !important; } }
 
-@media (max-width: 991.98px) {
-  .header-menu-wrapper {
+@media (max-width: 1399.98px) {
+  .header-menu-wrapper { 
     overflow: auto; }
     .header-menu-wrapper .header-logo {
       display: none; } }
@@ -55745,12 +55746,13 @@ body {
   .topbar .topbar-item .btn.btn-icon {
     height: 35px;
     width: 35px; } }
-
-@media (min-width: 992px) {
-  .header-mobile {
+    
+/* 로고 중복문제  */ 
+@media (min-width: 1400px) {
+  .header-mobile {    
     display: none; } }
-
-@media (max-width: 991.98px) {
+ 
+@media (max-width: 1399.98px) { 
   .header-mobile {
     display: flex;
     justify-content: space-between;
@@ -55775,8 +55777,8 @@ body {
   width: 265px; }
   .aside .aside-menu.ps > .ps__rail-y {
     right: 4px; }
-
-@media (min-width: 992px) {
+  
+@media (min-width: 1400px) {
   .aside-fixed .aside {
     position: fixed;
     top: 0;
@@ -56128,7 +56130,7 @@ body {
       .aside-menu .menu-nav > .menu-item > .menu-submenu .menu-subnav > .menu-item > .menu-submenu .menu-subnav > .menu-item > .menu-submenu .menu-subnav > .menu-section {
         padding-left: 70px; }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {  
   .aside-minimize .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]) > .menu-link > .menu-arrow:before,
   .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]) > .menu-link > .menu-arrow:before {
     transform: translateZ(0);
@@ -56163,13 +56165,13 @@ body {
         bottom: -10px;
         -webkit-animation: aside-menu-submenu-fade-in 0.3s ease 1, aside-menu-submenu-move-down 0.3s ease-out 1;
                 animation: aside-menu-submenu-fade-in 0.3s ease 1, aside-menu-submenu-move-down 0.3s ease-out 1; } }
-      @media screen and (min-width: 992px) and (-ms-high-contrast: active), (min-width: 992px) and (-ms-high-contrast: none) {
+      @media screen and (min-width: 1400px) and (-ms-high-contrast: active), (min-width: 1400px) and (-ms-high-contrast: none) {
         .aside-minimize .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu.menu-submenu-up,
         .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu.menu-submenu-up {
           -webkit-animation: none;
                   animation: none; } }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
       .aside-minimize .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav,
       .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav {
         padding: 20px 0; }
@@ -56379,7 +56381,7 @@ body {
   to {
     margin-bottom: 0; } }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .aside-minimize .aside-menu .menu-nav {
     padding: 15px 0; }
     .aside-minimize .aside-menu .menu-nav > .menu-item > .menu-link .menu-icon {
@@ -56448,7 +56450,7 @@ body {
         align-items: center;
         padding: 0; } }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1399.98px) {
   .aside {
     z-index: 1001;
     position: fixed;
@@ -56516,8 +56518,8 @@ body {
       display: none; }
   .brand .brand-toggle .svg-icon svg {
     transition: all 0.15s ease; }
-
-@media (min-width: 992px) {
+  
+@media (min-width: 1400px) {
   .header-fixed.aside-static .brand {
     position: fixed;
     top: 0;
@@ -56578,8 +56580,8 @@ body {
     padding-top: 0; }
   .subheader-enabled:not(.subheader-fixed) .subheader.subheader-solid {
     margin-bottom: 25px; } }
-
-@media (max-width: 991.98px) {
+ 
+@media (max-width: 1399.98px) {
   .header-mobile-fixed.subheader-mobile-fixed .subheader {
     position: fixed;
     height: 65px;
