@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jts.gangstudy.domain.Booking;
-import com.jts.gangstudy.domain.Payment.State;
+import com.jts.gangstudy.domain.Booking.State;
 import com.jts.gangstudy.domain.User;
 import com.jts.gangstudy.mapper.BookingMapper;
 
@@ -152,6 +152,7 @@ public class BookingServiceImpl implements BookingService{
 	public synchronized String insertBook(Booking book) {
 		int result = searchDuplicate(book);
 		if(result == 0) {
+			book.setRequest_dt(LocalDateTime.now());
 			mapper.insertBook(book);
 			return "done";
 		} else if(result > 1){
@@ -170,7 +171,7 @@ public class BookingServiceImpl implements BookingService{
 
 	// 상태 변경
 	@Override
-	public int changeState(Booking book, Booking.State state) {
+	public int changeState(Booking book, State state) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("book_no", Integer.toString(book.getBook_no()));
 		map.put("state", state.toString());
@@ -233,8 +234,8 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 상태로 검색
 	@Override
-	public List<Booking> searchByState(String state) {
-		return mapper.selectByState(state);
+	public List<Booking> searchByState(State state) {
+		return mapper.selectByState(state.toString());
 	}
 
 	// 유저의 특정 상태로 검색

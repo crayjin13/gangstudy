@@ -30,8 +30,10 @@ window.onpageshow = function() {
 	// info recovery
 	if(dateInput.value!="") {
 		requestTimes(startURL, getStartData(), startTimeInput, function() {
+			startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
 			if(startTimeInput.value!="") {
 				requestTimes(endURL, getEndData(), endTimeInput)
+				endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
 			}
 		})
 		
@@ -81,6 +83,7 @@ dateInput.addEventListener("change", function() {
 	
 	// start time select option
 	requestTimes(startURL, getStartData(), startTimeInput)
+	startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
 })
 
 startTimeInput.addEventListener("change", function() {
@@ -89,6 +92,7 @@ startTimeInput.addEventListener("change", function() {
 		return
 	} else {
 		requestTimes(endURL, getEndData(), endTimeInput)
+		endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
 	}
 });
 

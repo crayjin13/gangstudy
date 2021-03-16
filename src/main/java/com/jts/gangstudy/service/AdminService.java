@@ -1,6 +1,6 @@
 package com.jts.gangstudy.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.jts.gangstudy.domain.Command;
@@ -23,7 +23,7 @@ public interface AdminService {
 	
 	public List<User> blackList();
 
-	public List<RemoteLog> selectRemoteLogsByDate(LocalDate now);
+	public List<RemoteLog> selectRemoteLogsByDate(LocalDateTime date);
 	
 	public void MMSCall(String msg);
 

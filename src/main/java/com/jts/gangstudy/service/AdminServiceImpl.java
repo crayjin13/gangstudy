@@ -197,8 +197,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<RemoteLog> selectRemoteLogsByDate(LocalDate date) {
-		return remoteLogMapper.selectByDate(date);
+	public List<RemoteLog> selectRemoteLogsByDate(LocalDateTime date) {
+		return remoteLogMapper.selectByDateTime(date);
 	}
 
 	@Override

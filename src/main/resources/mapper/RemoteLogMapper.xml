@@ -8,7 +8,7 @@
 	</select>
 	
 	<!-- 지정된 날짜 조회 -->
-	<select id="selectByDate" resultType="com.jts.gangstudy.domain.RemoteLog">
+	<select id="selectByDateTime" resultType="com.jts.gangstudy.domain.RemoteLog">
 	  SELECT *
 	  FROM REMOTELOG_TB
 	  <![CDATA[

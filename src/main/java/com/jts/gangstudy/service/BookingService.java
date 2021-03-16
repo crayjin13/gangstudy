@@ -47,7 +47,7 @@ public interface BookingService {
 	// 예약 제거
 	public int removeBook(Booking book);
 	// 상태 변경
-	public int changeState(Booking book, Booking.State cancel);
+	public int changeState(Booking book, State cancel);
 
 	// 모든 예약 검색
 	public List<Booking> searchAll();
@@ -67,7 +67,7 @@ public interface BookingService {
 	
 	
 	// 상태로 검색
-	public List<Booking> searchByState(String state);
+	public List<Booking> searchByState(State state);
 	// 유저의 특정 상태로 검색
 	public List<Booking> searchByUserState(User user, String state);
 	// 유저의 대기중인 예약

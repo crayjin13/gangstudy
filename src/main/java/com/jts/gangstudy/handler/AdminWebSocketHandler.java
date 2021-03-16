@@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,8 +133,7 @@ public class AdminWebSocketHandler extends TextWebSocketHandler implements Initi
 //        session.sendMessage(new TextMessage("[echo]: " + message.getPayload()));
 		
 		// 오늘 날짜의 로그 요청시.
-		List<RemoteLog> logs = adminService.selectRemoteLogsByDate(LocalDate.now());
-		System.out.println("debug : " + LocalDate.now());
+		List<RemoteLog> logs = adminService.selectRemoteLogsByDate(LocalDateTime.of(LocalDate.now(), LocalTime.MIN));
 		if(message.getPayload().equals("request today info")) {
 			for(RemoteLog log : logs) {
 				session.sendMessage(new TextMessage(parseJSONLog(log).toString()));

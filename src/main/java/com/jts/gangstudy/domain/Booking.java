@@ -1,7 +1,5 @@
 package com.jts.gangstudy.domain;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.time.*;
 
 public class Booking {
@@ -12,6 +10,7 @@ public class Booking {
 	private LocalDateTime check_out;
 	private int people;
 	private State state;
+	private LocalDateTime request_dt;
 	
 	public enum State {
 		uncharge("uncharge", "미결제"),
@@ -33,22 +32,20 @@ public class Booking {
 			return UIValue;
 		}
 	}
-	
-	private LocalDateTime request_dt;
 
 	public Booking() {
 		super();
 	}
 	
 	// MyBatis용 생성자
-	public Booking(Integer book_no, Integer user_no, Integer room_no, Date check_in, Date check_out, Integer people,
+	public Booking(Integer book_no, Integer user_no, Integer room_no, LocalDateTime check_in, LocalDateTime check_out, Integer people,
 			String state, LocalDateTime request_dt) {
 		super();
 		this.book_no = book_no;
 		this.user_no = user_no;
 		this.room_no = room_no;
-		this.check_in = check_in.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-		this.check_out = check_out.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		this.check_in = check_in;
+		this.check_out = check_out;
 		this.people = people;
 		this.state = State.valueOf(state);
 		this.request_dt = request_dt;
@@ -106,6 +103,10 @@ public class Booking {
 
 	public void setCheck_out(LocalDateTime check_out) {
 		this.check_out = check_out;
+	}
+
+	public void setRequest_dt(LocalDateTime request_dt) {
+		this.request_dt = request_dt;
 	}
 	
 	public void setCheck_in(String startDate, String startTime) {
