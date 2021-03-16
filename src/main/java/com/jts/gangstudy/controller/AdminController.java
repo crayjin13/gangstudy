@@ -163,7 +163,8 @@ public class AdminController {
 						book.getCheck_out().toLocalTime().toString())
 					.put(book.getPeople() + "명")
 					.put(book.getState())
-					.put(book.getRequest_dt().minusHours(9))
+					.put(book.getRequest_dt().toLocalDate().toString() + " " +
+							book.getRequest_dt().toLocalTime().toString())
 					);
 		}
 
