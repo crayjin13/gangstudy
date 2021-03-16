@@ -229,7 +229,7 @@
 										
 										{
 										targets : -1,
-										title : 'Actions',
+										title : '예약변경',
 										orderable : false,
 										render : function(data, type, full, meta) {
 												if (data.state == 'wait') {
@@ -241,7 +241,7 @@
 														</div>\
 														<div class="row">\
 															<a href="javascript:modify('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
-																<button class=" btn-xs listbtn-xs-blue">수정 </button></i>\
+																<button class=" btn-xs listbtn-xs-blue">예약수정 </button></i>\
 															</a>\
 														</div>\
 													';
@@ -250,12 +250,12 @@
 													return '\
 														<div class="row">\
 															<a href="javascript:delete('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
-																<button class=" btn-xs listbtn-xs-red">삭제 </button>\
+																<button class=" btn-xs listbtn-xs-red">예약취소 </button>\
 															</a>\
 														</div>\
 														<div class="row">\
 															<a href="javascript:payment('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
-																<button class=" btn-xs listbtn-xs-blue">결제 </button></i>\
+																<button class=" btn-xs listbtn-xs-blue">예약결제 </button></i>\
 															</a>\
 														</div>\
 													';
