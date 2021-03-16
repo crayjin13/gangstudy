@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.domain.Booking.State;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.PaymentService;
 import com.jts.gangstudy.service.UserService;
@@ -501,30 +502,28 @@ public class BookingController {
 		return "redirect:/booking/check";
 	}
 
-	// 30분 간격으로 예약 시간이 되면 상태 변경
-	@Scheduled(cron="0 */30 * * * *" )
+	// 1분 간격으로 예약 시간이 되면 상태 변경
+	@Scheduled(cron="0 */1 * * * *" )
 	public void bookTrigger() {
 		LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
-		
 		// 사용하는 예약의 상태변경
 		List<Booking> usingList = bookingService.selectByDateTime(now);
 		for(Booking book : usingList) {
-			if(now.isEqual(book.getCheck_in()) && book.getState().equals(Booking.State.wait)) {			// 예약시간이 되면 use로 변경
-				bookingService.changeState(book, Booking.State.use);
+			if(now.isEqual(book.getCheck_in()) && book.getState().equals(State.wait)) {			// 예약시간이 되면 use로 변경
+				bookingService.changeState(book, State.use);
 				User user = userService.getUser(book.getUser_no());
 				Integer amount = paymentService.selectPayment(book).getAmount();
 				
 				userService.plusPoints(user, (amount/100) * 5);
-			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals(Booking.State.use)) {	// 예약이 종료되면 clear로 변경
-				bookingService.changeState(book, Booking.State.clear);
+			} else if(now.isEqual(book.getCheck_out()) && book.getState().equals(State.use)) {	// 예약이 종료되면 clear로 변경
+				bookingService.changeState(book, State.clear);
 			}
 		}
 		
-		
 		// 결제 미완료 등으로 남겨진 에약의 제거
-		List<Booking> unchargeList = bookingService.searchByState("uncharge");
+		List<Booking> unchargeList = bookingService.searchByState(State.uncharge);
 		for(Booking book : unchargeList) {
-			LocalDateTime requestDateTime = book.getRequest_dt().plusHours(9);
+			LocalDateTime requestDateTime = book.getRequest_dt();
 			if(book.getCheck_in().isBefore(now)) {											// 지금보다 이전의 예약 제거
 				bookingService.removeBook(book);
 			} else if(requestDateTime.plusMinutes(10).isBefore(now)) {						// 요청한지 오래된 예약 제거
