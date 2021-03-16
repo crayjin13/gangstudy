@@ -25,7 +25,6 @@ function requestTimes(url, data, target, callback) {
 }
 
 function display(times, target, callback) {
-	addOption(target, "시간을 선택해주세요.", "")
 	for(var i = 0; i < times.length; i++) {
 		addOption(target, times[i], times[i])
 	}
