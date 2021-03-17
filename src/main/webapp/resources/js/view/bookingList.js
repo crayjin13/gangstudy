@@ -249,7 +249,7 @@
 												else if (data.state == 'uncharge') {
 													return '\
 														<div class="row">\
-															<a href="javascript:delete('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+															<a href="javascript:remove('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
 																<button class=" btn-xs listbtn-xs-red">예약취소 </button>\
 															</a>\
 														</div>\
@@ -319,11 +319,27 @@ function modify(book_no) {
 
 	}
 }
-
-
 function cancel(book_no) {
 	if(confirm('예약을 취소하시겠습니까?')) {
 		$.get("/payment/cancel", {
+			book_no : book_no
+		},function(jqXHR) {
+			// always
+		},'text' /* xml, text, script, html */)
+		.done(function(message) {   
+			alert(message);
+			location.href = '/booking/check';
+		})
+		.fail(function(jqXHR) {
+		})
+		.always(function(jqXHR) {
+		});
+	}
+}
+
+function remove(book_no) {
+	if(confirm('예약을 삭제하시겠습니까?')) {
+		$.get("/booking/cancel", {
 			book_no : book_no
 		},function(jqXHR) {
 			// always

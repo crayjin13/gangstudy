@@ -162,6 +162,8 @@ public class BookingController {
 	
 	
 	
+	
+	
 	// makeBook 요청 시 요청한 user의 uncharge 상태 예약 모두 제거
 	@ResponseBody
 	@RequestMapping(value="/remove_uncharge", method = RequestMethod.GET)
@@ -179,18 +181,17 @@ public class BookingController {
 		}
 	}
 	
-	// 예약 취소가 가능한 조건인지 확인
+	// 미결제 예약 취소
 	@ResponseBody
-	@RequestMapping(value = "/cancelCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	public String canCheck(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = bookingService.searchByBookNo(book_no);
-		
-		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());
-		if(!canCancel) {
-			return "late";
+		if(book.getUser_no() == user.getUser_no()) {
+			bookingService.removeBook(book);
+			return  "예약이 삭제되었습니다.";
 		} else {
-			return "ok";
+			return "잘못된 요청입니다.";
 		}
 	}    
 
@@ -502,6 +503,11 @@ public class BookingController {
 		return "redirect:/booking/check";
 	}
 
+	
+	
+	
+	
+	
 	// 1분 간격으로 예약 시간이 되면 상태 변경
 	@Scheduled(cron="0 */1 * * * *" )
 	public void bookTrigger() {
