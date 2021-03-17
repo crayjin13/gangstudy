@@ -3608,13 +3608,13 @@ input[type="button"].btn-block {
       color: #ffffff; }
 
 .card {
-  position: fixed;
-  display: flex;  
+  position: relative;  
+  display: flex;   
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;       
   background-color: #ffffff ;    
-     
+  background-clip: border-box;      
   
   }
   .card > hr {

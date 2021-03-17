@@ -124,16 +124,10 @@
 	%>
 	
 								<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/admin-signin"
-									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
-										<span
-										class="menu-text  font-weight-boldest font-size-h3 cafe24">로그인 
-										</span></a></li>
-								<li class="menu-item menu-item-submenu" aria-haspopup="true"
 									data-menu-toggle="hover"><a href="/admin/jts"
 									class="menu-link "> <i class="menu-bullet menu-bullet-line"><span></span></i>
 										<span
-										class="menu-text  font-weight-boldest font-size-h3 cafe24">관리자 메인 
+										class="menu-text  font-weight-boldest font-size-h3 cafe24">관리툴 
 										</span></a></li>
 										
 										
