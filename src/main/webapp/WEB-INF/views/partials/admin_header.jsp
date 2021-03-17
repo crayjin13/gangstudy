@@ -97,24 +97,7 @@
             if(session.getAttribute("sUserId")==null){ 
         %>
      
-<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/signup_main"
-									class="menu-link ">
-													<span class="menu-text">회원가입</span>
-													<span class="menu-desc"></span>
-													<i class="menu-arrow"></i>  
-												</a>
-											</li>
-											
-	
-												<li class="menu-item menu-item-submenu" aria-haspopup="true"
-									data-menu-toggle="hover"><a href="/signin"    
-									class="menu-link ">
-													<span class="menu-text">로그인</span>
-													<span class="menu-desc"></span>
-													<i class="menu-arrow"></i> 
-												</a>
-											</li>
+  
 											<%
             // 로그인 되었을 경우 - 로그아웃, 내정보 버튼을 보여준다.
             }else{ 
