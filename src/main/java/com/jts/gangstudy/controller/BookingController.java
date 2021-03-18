@@ -142,19 +142,50 @@ public class BookingController {
 					.put(book.getPeople() + "명")
 					.put(point)
 					.put(String.format("%,d", amount))
-					.put(book.getState().getUIValue())
+					.put(new JSONObject()
+							.put("state", book.getState())
+							.put("UI", book.getState().getUIValue())
+							.put("req_dt", book.getRequest_dt().plusMinutes(11).withSecond(0).toString())
+							)
 					.put(new JSONObject()
 							.put("book_no", book.getBook_no())
-							.put("state", book.getState()))
+							.put("state", book.getState())
+							)
 					);
 		}
 
 		mav.addObject("books", array);
 		return mav;
 	}
-	
-	
-	
+
+	// 미결제 예약 취소
+	@ResponseBody
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = bookingService.searchByBookNo(book_no);
+		if(book.getUser_no() == user.getUser_no()) {
+			bookingService.removeBook(book);
+			return  "예약이 삭제되었습니다.";
+		} else {
+			return "잘못된 요청입니다.";
+		}
+	}    
+
+	// 미결제 예약 결제하기
+	@UserLoginCheck
+	@RequestMapping(value = "/uncharge", method = RequestMethod.GET)
+	public String uncharge(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = bookingService.searchByBookNo(book_no);
+		if(book.getUser_no() == user.getUser_no()) {
+			session.removeAttribute("book");
+			session.setAttribute("book", book);
+			return "redirect:" + "/booking/make";
+		} else {
+			return "redirect:" + "?msg=error";
+		}
+	}
 	
 	
 	
@@ -181,19 +212,6 @@ public class BookingController {
 		}
 	}
 	
-	// 미결제 예약 취소
-	@ResponseBody
-	@RequestMapping(value = "/cancel", method = RequestMethod.GET, produces = "application/text; charset=utf8")
-	public String canCheck(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-		User user = (User)session.getAttribute("sUserId");
-		Booking book = bookingService.searchByBookNo(book_no);
-		if(book.getUser_no() == user.getUser_no()) {
-			bookingService.removeBook(book);
-			return  "예약이 삭제되었습니다.";
-		} else {
-			return "잘못된 요청입니다.";
-		}
-	}    
 
 	@ResponseBody
 	@RequestMapping(value = "danalCheck", method = RequestMethod.GET)
@@ -263,14 +281,16 @@ public class BookingController {
 		if(people < 1 || people > 6) {
 			return "?error=people";
 		}
+
 		
 		// 뒤로가기 등으로 세션에서 예약이 제거된 경우
 		if(book == null) {
 			return "?error=bookIsNull";
+		} else if(bookingService.isTimeLegal(book) == false) {
+			return "?error=date";
+		} else if(book.getRequest_dt() != null) {
+			// 미결제 예약 재결제
 		} else {
-			if(bookingService.allowsBooking(book) == false) {
-				return "?error=date";
-			}
 			// insert DB
 			book.setPeople(people);
 			String result = bookingService.insertBook(book);
