@@ -226,12 +226,32 @@
 									dom: "<'row' <'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f> > <'row'rt> p",
 									data : dataJSONArray,
 									columnDefs : [
-										
 										{
-										targets : -1,
-										title : '예약변경',
-										orderable : false,
-										render : function(data, type, full, meta) {
+											targets : 6,
+											title : '예약상태',
+											orderable : false,
+											render : function(data, type, full, meta) {
+												if(data.state == 'uncharge'){
+													return '\
+													<div>\
+														' + data.UI + '\
+													</div>\
+													<div class="request" style="display:none;">\
+														' + data.req_dt + '\
+													</div>\
+													<div class="timeLabel">\
+													</div>\
+													';
+												} else {
+													return data.UI
+												}
+											}
+										},
+										{
+											targets : 7,
+											title : '예약변경',
+											orderable : false,
+											render : function(data, type, full, meta) {
 												if (data.state == 'wait') {
 													return '\
 														<div class="row">\
@@ -249,12 +269,12 @@
 												else if (data.state == 'uncharge') {
 													return '\
 														<div class="row">\
-															<a href="javascript:delete('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+															<a href="javascript:remove('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
 																<button class=" btn-xs listbtn-xs-red">예약취소 </button>\
 															</a>\
 														</div>\
 														<div class="row">\
-															<a href="javascript:payment('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
+															<a href="/booking/uncharge?book_no='+ data.book_no + '" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
 																<button class=" btn-xs listbtn-xs-blue">예약결제 </button></i>\
 															</a>\
 														</div>\
@@ -264,8 +284,8 @@
 												}
 											}
 										},
-										{ 
-											orderable: false, targets: [0,1,2,3,4,5,6]
+										{
+											orderable: false, targets: [0,1,2,3,4,5]
 										}
 									],
 									order: []
@@ -319,8 +339,6 @@ function modify(book_no) {
 
 	}
 }
-
-
 function cancel(book_no) {
 	if(confirm('예약을 취소하시겠습니까?')) {
 		$.get("/payment/cancel", {
@@ -338,3 +356,69 @@ function cancel(book_no) {
 		});
 	}
 }
+
+function remove(book_no) {
+	if(confirm('예약을 삭제하시겠습니까?')) {
+		$.get("/booking/cancel", {
+			book_no : book_no
+		},function(jqXHR) {
+			// always
+		},'text' /* xml, text, script, html */)
+		.done(function(message) {   
+			alert(message);
+			location.href = '/booking/check';
+		})
+		.fail(function(jqXHR) {
+		})
+		.always(function(jqXHR) {
+		});
+	}
+}
+function payment(book_no) {
+	$.get("/booking/cancel", {
+		book_no : book_no
+	},function(jqXHR) {
+		// always
+	},'text' /* xml, text, script, html */)
+	.done(function(message) {   
+		alert(message);
+		location.href = '/booking/check';
+	})
+	.fail(function(jqXHR) {
+	})
+	.always(function(jqXHR) {
+	});
+}
+
+const countDownTimer = function (target, date) {
+	var _vDate = new Date(date); // 전달 받은 일자
+	var _second = 1000;
+	var _minute = _second * 60;
+	var timer;
+	
+	function showRemaining()
+	{
+		var now = new Date();
+		var distDt = _vDate - now;
+		if (distDt < 0) {
+			clearInterval(timer);
+			location.reload();
+			return;
+		}
+		var minutes = Math.floor(distDt / _minute);
+		var seconds = Math.floor((distDt % _minute) / _second);
+		//document.getElementById(target).textContent = date.toLocaleString() + "까지 : ";
+		target.textContent = minutes + '분 ';
+		target.textContent += seconds + '초';
+	}
+	
+	timer = setInterval(showRemaining, 1000);
+}
+
+window.onload = function() {
+	var requests = document.getElementsByClassName("request");
+	var labels = document.getElementsByClassName("timeLabel");
+	for(i = 0; i < requests.length; i++) {
+		countDownTimer(labels[i], requests[i].textContent.trim());
+	}
+}	

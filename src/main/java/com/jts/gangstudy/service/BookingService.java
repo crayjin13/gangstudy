@@ -84,7 +84,7 @@ public interface BookingService {
 
 	
 	// 시간 유효성 체크
-	public boolean allowsBooking(Booking book);
+	public boolean isTimeLegal(Booking book);
 	
 	
 }

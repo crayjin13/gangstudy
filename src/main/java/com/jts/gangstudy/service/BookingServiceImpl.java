@@ -220,7 +220,7 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 시간 유효성 체크
 	@Override
-	public boolean allowsBooking(Booking book) {
+	public boolean isTimeLegal(Booking book) {
 		LocalDateTime CIDT = book.getCheck_in();
 		LocalDateTime CODT = book.getCheck_out();
 		LocalDateTime now = LocalDateTime.now();
