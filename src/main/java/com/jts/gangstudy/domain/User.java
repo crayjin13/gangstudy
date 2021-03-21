@@ -1,6 +1,6 @@
 package com.jts.gangstudy.domain;
 
-import java.sql.Date;
+import java.sql.Date; 
 
 public class User {
 	private Integer user_no;
@@ -15,7 +15,7 @@ public class User {
 	private Float points;
 	private String note;
 	private String retired;
-	
+	private Date join_dt;
 	private Booking booking;
 	
 	
@@ -48,6 +48,42 @@ public class User {
 	}
 
 
+	
+	
+	
+
+	//관리자 입장 목록
+	public User(Integer user_no, String name, String phone, String id, String email, Date bod, String gender,
+			Float rate, Float points, String note, Date join_dt) {
+		super();
+		this.user_no = user_no;
+		this.name = name;
+		this.phone = phone;
+		this.id = id;
+		this.email = email;
+		this.bod = bod;
+		this.gender = gender;
+		this.rate = rate;
+		this.points = points;
+		this.note = note;
+		this.join_dt = join_dt;
+	}
+
+
+
+
+	public Date getJoin_dt() {
+		return join_dt;
+	}
+
+
+
+
+	public void setJoin_dt(Date join_dt) {
+		this.join_dt = join_dt;
+	}
+
+
 
 
 	public User(String name, Float rate, Booking booking) {
@@ -77,6 +113,27 @@ public class User {
 				+ ", email=" + email + ", bod=" + bod + ", gender=" + gender + ", rate=" + rate + ", points=" + points
 				+ ", note=" + note + "]";
 	}
+
+
+	//회원가입  
+	public User(Integer user_no, String name, String phone, String id, String pw, String email, Date bod, String gender,
+			Float rate, Float points, String note, Date join_dt) {
+		super();
+		this.user_no = user_no;
+		this.name = name;
+		this.phone = phone;
+		this.id = id;
+		this.pw = pw;
+		this.email = email;
+		this.bod = bod;
+		this.gender = gender;
+		this.rate = rate;
+		this.points = points;
+		this.note = note;
+	
+		this.join_dt = join_dt;
+	}
+ 
 
 
 

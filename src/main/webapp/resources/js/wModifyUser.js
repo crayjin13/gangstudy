@@ -24,7 +24,7 @@ $(function() {
 			$("phone").focus(); 
 			return false;
 		}
-		 var isPhoneNum = /([09]{9})/;     
+		 var isPhoneNum = /([0-9]{9})/;     
 		
 		if (!isPhoneNum.test($('#kt_form [name="phone"]').val())) {
 			alert(" - 을 제외한 번호를 입력해주세요(9자리이상) ");
