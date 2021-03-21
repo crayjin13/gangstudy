@@ -318,8 +318,8 @@ $(function() {
 			return false;
 			$('#kt_login_signup_form [name="email"]').focus();    
 		}    
-		
-		 var isPhoneNum = /([09]{9})/;        
+		  
+		 var isPhoneNum = /([0-9]{9})/;        
 		
 		if(!$('#kt_login_signup_form [name="phone"]').val() || !isPhoneNum.test($('#kt_login_signup_form [name="phone"]').val() )){      
 			alert("핸드폰 번호를 입력해주세요(10자리이상)");    
