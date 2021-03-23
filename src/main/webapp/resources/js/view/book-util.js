@@ -102,3 +102,7 @@ function setDateRange(target, minDate, offset) {
 	target.setMinDate(minDate)
 	target.setMaxDate(maxDate)
 }
+function isInt(value) {
+	var regex = /^-?[0-9]+$/;
+	return regex.test(value);
+}

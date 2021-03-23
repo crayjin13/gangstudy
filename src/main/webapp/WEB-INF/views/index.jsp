@@ -164,7 +164,7 @@ img {
 	<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/pikaday.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/booking.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/view/book-util.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/view/index.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/inappBridge.js"></script>
 	<!--end::Page Vendors-->
