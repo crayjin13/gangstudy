@@ -24,7 +24,7 @@ $(document).ready(function() {
 	setDateRange(datePicker, new Date(), 7)
 	
 	// error message
-	if(msg != "") { alert(msg); }
+	if(msg != "") { alert(msg) }
 })
 window.onpageshow = function() {
 	// info recovery
