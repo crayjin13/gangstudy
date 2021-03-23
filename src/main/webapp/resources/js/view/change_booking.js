@@ -1,19 +1,71 @@
 /**
  * 
  */
-const cancelAmount = document.getElementById("cancelAmount");
-const addedAmount = document.getElementById("addedAmount");
-const repayAmount = document.getElementById("repayAmount");
-const amount = parseInt(addedAmount.textContent);
+const cancelAmount = document.getElementById("cancelAmount")
+const addedAmount = document.getElementById("addedAmount")
+const repayAmount = document.getElementById("repayAmount")
+//const amount = parseInt(addedAmount.textContent)
+const dateInput = document.getElementById("dateInput")
+const startTimeInput = document.getElementById("start-time-input")
+const endTimeInput = document.getElementById("end-time-input")
 
-const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
-const pointMax = document.getElementById("pointMax");
-
-const pointUse = document.getElementById("kt_touchspin");
+const datePicker = getPikaday(dateInput)
+var startURL = "/booking/startTime"
+var endURL = "/booking/endTime"
 
 document.getElementById("payments").addEventListener("click", function() {
-	requestChange();
+	requestChange()
+})
+
+$(document).ready(function() {
+	// init calendar
+	setDateRange(datePicker, new Date(), 7)
+	
+	// error message
+	if(msg != "") { alert(msg) }
+})
+window.onpageshow = function() {
+	// info recovery
+	if(dateInput.value!="") {
+		requestTimes(startURL, getStartData(), startTimeInput, function() {
+			startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
+			if(startTimeInput.value!="") {
+				requestTimes(endURL, getEndData(), endTimeInput)
+				endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
+			}
+		})
+		
+		peopleInput.value = peopleInput.getAttribute("people")
+	} else {
+		dateInput.value = "이용날짜"
+	}
+}
+
+// input change
+dateInput.addEventListener("change", function() {
+	removeOptions(startTimeInput)
+	removeOptions(endTimeInput)
+	
+	// start time select option
+	requestTimes(startURL, getStartData(), startTimeInput)
+	startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
+})
+
+startTimeInput.addEventListener("change", function() {
+	if(startTimeInput.value == "") {
+		removeOptions(endTimeInput)
+		return
+	} else {
+		requestTimes(endURL, getEndData(), endTimeInput)
+		endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
+	}
 });
+
+
+/*
+const pointMaxUseBtn = document.getElementById("pointMaxUseBtn");
+const pointMax = document.getElementById("pointMax");
+const pointUse = document.getElementById("kt_touchspin");
 
 pointMaxUseBtn.addEventListener("click", function() {
 	pointMaxUseBtnEvent();
@@ -40,12 +92,6 @@ pointUse.addEventListener("change", function() {
 	addedAmount.textContent = amount - pointUse.value;
 	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 });
-
-function isInt(value) {
-	var regex = /^-?[0-9]+$/;
-	return regex.test(value);
-}
-
 function pointMaxUseBtnEvent() {
 	if(amount < 0) {
 		pointUse.value = 0;
@@ -57,6 +103,7 @@ function pointMaxUseBtnEvent() {
 	addedAmount.textContent = amount - pointUse.value;
 	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 }
+*/
 
 function requestChange() {
 	$.ajax({
