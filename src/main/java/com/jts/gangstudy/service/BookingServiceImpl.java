@@ -37,10 +37,10 @@ public class BookingServiceImpl implements BookingService{
 	
 	// 유저의 uncharge를 제외한 해당일에 존재하는 다음 예약
 	@Override
-	public Booking searchNextBook(LocalDateTime dateTime, User user) {
+	public Booking searchNextBook(LocalDateTime dateTime, Integer book_no) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		Integer user_no = user == null ? 0 : user.getUser_no();
-		map.put("user_no", user_no);
+		if(book_no == null) book_no = 0;
+		map.put("user_no", book_no);
 		map.put("dateTime", dateTime);
 		return mapper.selectNextBook(map);
 	}
@@ -110,7 +110,7 @@ public class BookingServiceImpl implements BookingService{
 	    
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 	    
-	    // 시작시간~mdt 전까지 구하되 book이 존재하면 그 전까지만 구함.
+	    // 시작시간 ~ mdt 전까지 구하되 book이 존재하면 그 전까지만 구함.
 		if(book == null) {
 			max_dt = dateTime.plusDays(1);
 		} else {

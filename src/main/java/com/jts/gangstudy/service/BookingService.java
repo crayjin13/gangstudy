@@ -16,7 +16,7 @@ public interface BookingService {
 	// datetime으로 검색
 	public List<Booking> selectByDateTime(LocalDateTime now);
 	// 유저의 uncharge를 제외한 해당일에 존재하는 다음 예약
-	public Booking searchNextBook(LocalDateTime dateTime, User user);
+	public Booking searchNextBook(LocalDateTime dateTime, Integer book_no);
 
 	
 	

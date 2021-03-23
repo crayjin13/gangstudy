@@ -44,7 +44,8 @@ public class BookingController {
 	// 예약가능한 시작시간
 	@ResponseBody
 	@RequestMapping(value = "/startTime", method = RequestMethod.GET)
-	public List<String> startTime(HttpServletRequest request, HttpSession session, @RequestParam("date") String dateParam, @RequestParam("book_no") Integer book_no) {
+	public List<String> startTime(HttpServletRequest request, HttpSession session,
+								@RequestParam("book_no") Integer book_no, @RequestParam("date") String dateParam) {
 		LocalDate date = LocalDate.parse(dateParam);
 		// 요청한 날짜를 KST로 변환
 		LocalDateTime ldt = LocalDateTime.of(date, LocalTime.MIN);
@@ -60,11 +61,11 @@ public class BookingController {
 	// 예약가능한 종료시간
 	@ResponseBody
 	@RequestMapping(value = "/endTime", method = RequestMethod.GET)
-	public List<String> endTime(HttpServletRequest request, HttpSession session, @RequestParam("date") String dateParam, @RequestParam("startTime") String timeParam) {
-		User user = (User)session.getAttribute("sUserId");
+	public List<String> endTime(HttpServletRequest request, HttpSession session,
+							@RequestParam("book_no") Integer book_no, @RequestParam("date") String dateParam, @RequestParam("startTime") String timeParam) {
 		LocalDateTime dateTime = LocalDateTime.of(LocalDate.parse(dateParam), LocalTime.parse(timeParam));
-		// 유저의 uncharge를 제외한 해당일에 존재하는 다음 예약
-		Booking nextBook = bookingService.searchNextBook(dateTime, user);
+		// book_no를 제외한 해당일에 존재하는 다음 예약
+		Booking nextBook = bookingService.searchNextBook(dateTime, book_no);
 		// 최대로 선택가능한 시간목록 생성
 		List<String> times = bookingService.getEndTimes(dateTime, nextBook);
 		return times;
@@ -191,6 +192,43 @@ public class BookingController {
 	
 	
 	
+	// booking modify page - 결제 수정 페이지
+	@UserLoginCheck
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public ModelAndView editBook(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
+		ModelAndView mav = new ModelAndView("booking/change_booking");
+		User user = (User)session.getAttribute("sUserId");
+		Booking book = bookingService.searchByBookNo(book_no);
+		
+		if(book == null || book.getUser_no() != user.getUser_no()) {
+			mav.setViewName("redirect:" + "/");
+			mav.addObject("msg", "잘못된 접근입니다.");
+		} else if(!book.getState().equals(Booking.State.wait)) {
+			mav.setViewName("redirect:" + "/");
+			mav.addObject("msg", "수정이 불가능한 예약입니다.");
+		} else {
+			Payment payment = paymentService.selectPayment(book);
+			
+			int charge = bookingService.getAmount(book);
+			int usedPoint = payment.getPoint();
+
+			// mav add
+			String timeInterval = bookingService.getTimeInterval(book);
+			
+			mav.addObject("date", book.getCheck_in().toLocalDate())
+			.addObject("startTime", book.getCheck_in().toLocalTime())
+			.addObject("endTime", book.getCheck_out().toLocalTime())
+			.addObject("people", book.getPeople())
+			.addObject("timeInterval", timeInterval)
+			.addObject("charge", charge)
+			.addObject("usedPoint", usedPoint)
+			.addObject("book_no", book_no);
+		}
+		
+		return mav;
+	}
+	
+	
 	
 	
 	
@@ -228,42 +266,7 @@ public class BookingController {
 		
 	}
 
-	// booking modify page - 결제 수정 페이지
-	@UserLoginCheck
-	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public ModelAndView editBook(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
-		ModelAndView mav = new ModelAndView("pages/modify");
-		User user = (User)session.getAttribute("sUserId");
-		Booking book = bookingService.searchByBookNo(book_no);
-		
-		if(book == null || book.getUser_no() != user.getUser_no()) {
-			mav.setViewName("redirect:" + "/");
-			mav.addObject("msg", "잘못된 접근입니다.");
-		} else if(!book.getState().equals(Booking.State.wait)) {
-			mav.setViewName("redirect:" + "/");
-			mav.addObject("msg", "수정이 불가능한 예약입니다.");
-		} else {
-			Payment payment = paymentService.selectPayment(book);
-			
-			int charge = bookingService.getAmount(book);
-			int usedPoint = payment.getPoint();
 
-			// mav add
-			String timeInterval = bookingService.getTimeInterval(book);
-			
-			mav.addObject("startDate", book.getCheck_in().toLocalDate())
-			.addObject("startTime", book.getCheck_in().toLocalTime())
-			.addObject("endDate", book.getCheck_out().toLocalDate())
-			.addObject("endTime", book.getCheck_out().toLocalTime())
-			.addObject("people", book.getPeople())
-			.addObject("timeInterval", timeInterval)
-			.addObject("charge", charge)
-			.addObject("usedPoint", usedPoint)
-			.addObject("book_no", book_no);
-		}
-		
-		return mav;
-	}
 	
 	// booking shop page - 결제 요청 시
 	@UserLoginCheck
