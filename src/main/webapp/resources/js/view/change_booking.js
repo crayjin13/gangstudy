@@ -1,65 +1,63 @@
-/**
- * 
- */
-const cancelAmount = document.getElementById("cancelAmount")
-const addedAmount = document.getElementById("addedAmount")
-const repayAmount = document.getElementById("repayAmount")
+
+const bookingForm = document.getElementById("bookingForm")
+
+const amountPaid = document.getElementById("amountPaid")
+const amountToBeCharge = document.getElementById("amountToBeCharge")
+const amountPerHour = document.getElementById("amountPerHour")
 //const amount = parseInt(addedAmount.textContent)
-const dateInput = document.getElementById("dateInput")
-const startTimeInput = document.getElementById("start-time-input")
-const endTimeInput = document.getElementById("end-time-input")
 
-const datePicker = getPikaday(dateInput)
-var startURL = "/booking/startTime"
-var endURL = "/booking/endTime"
+const dInput = document.getElementById("dateInput")
+const sInput = document.getElementById("start-time-input")
+const eInput = document.getElementById("end-time-input")
+const pInput = document.getElementById("people-input")
+const sURL = "/booking/startTime"
+const eURL = "/booking/endTime"
 
-document.getElementById("payments").addEventListener("click", function() {
-	requestChange()
-})
+//
+//
+
+var msg = getParam("msg")
+var book_no = getParam("book_no")
 
 $(document).ready(function() {
-	// init calendar
-	setDateRange(datePicker, new Date(), 7)
-	
 	// error message
 	if(msg != "") { alert(msg) }
 })
-window.onpageshow = function() {
-	// info recovery
-	if(dateInput.value!="") {
-		requestTimes(startURL, getStartData(), startTimeInput, function() {
-			startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
-			if(startTimeInput.value!="") {
-				requestTimes(endURL, getEndData(), endTimeInput)
-				endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
-			}
-		})
-		
-		peopleInput.value = peopleInput.getAttribute("people")
-	} else {
-		dateInput.value = "이용날짜"
-	}
-}
 
-// input change
-dateInput.addEventListener("change", function() {
-	removeOptions(startTimeInput)
-	removeOptions(endTimeInput)
+var bf = new BookForm({
+	book_no: book_no,
+	dInput: dInput,
+	sInput: sInput,
+	eInput: eInput,
+	pInput: pInput,
+	sURL: sURL,
+	eURL: eURL
+})
+window.onpageshow = function() { bf.onPagesShow() }
+
+document.getElementById("payments").addEventListener("click", function() {
+	if(amountToBeCharge.value == "") {
+		alert('시간이 변경되지 않았습니다.')
+		return
+	}
 	
-	// start time select option
-	requestTimes(startURL, getStartData(), startTimeInput)
-	startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
+	if(amountPaid.value == amountToBeCharge.value) {
+		alert('추가된 금액이 없어 결제없이 변경됩니다.')
+	} else {
+		alert(amountPaid.value + '원 취소 후 ' + amountToBeCharge.value + '원 결제하기')
+	}
+	bookingForm.submit()
 })
 
-startTimeInput.addEventListener("change", function() {
-	if(startTimeInput.value == "") {
-		removeOptions(endTimeInput)
-		return
-	} else {
-		requestTimes(endURL, getEndData(), endTimeInput)
-		endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
+document.getElementById("bookingForm").addEventListener("change", function() {
+	if(bf.validation()) {
+		amountToBeCharge.value = bf.getInterval() * amountPerHour.textContent
 	}
-});
+})
+
+
+
+
 
 
 /*
@@ -104,27 +102,3 @@ function pointMaxUseBtnEvent() {
 	repayAmount.textContent = parseInt(cancelAmount.textContent) + parseInt(addedAmount.textContent);
 }
 */
-
-function requestChange() {
-	$.ajax({
-		url : "/booking/change",
-		type : "POST",
-		data :	{
-			        point : pointUse.value
-				},
-		success : function(url) {
-			if(url == '/booking/check') {
-				alert('추가된 금액이 없어 결제없이 변경됩니다.')
-			} else if(url == '/payment/cancelAndBooking') {
-				alert('추가 결제하기')
-			} else if(url == '/payment/cancelAndChange') {
-				alert(cancelAmount.textContent + '원 취소 후 ' + repayAmount.textContent + '원 결제하기')
-			}
-			window.location.href = url;
-		},
-		error:function(request,status,error){
-//	    	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			alert("modify error")
-		}
-	});
-}
