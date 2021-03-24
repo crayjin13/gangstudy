@@ -71,23 +71,17 @@ img {
 										<p class = "mobile_main_text d-xl-none">갱스터디에서  공부하고<br/>   공부깡패 되자!</p>
 										   
 									                       
-									<div class="card-footer">                 
-										<div class="form-group form-group-last">    
-											<div class="alert-text" style ="text-align: center ">
-											</div>   
-										</div>
+									<div class="card-footer">
 										<div class="form-group ">
 											 <input class="form-control col-md-10 select booking-input" type="text" readOnly
-												id="dateInput" name="dateInput"  
-												value="${date}">
+												id="dateInput" name="dateInput" value="${date}">
 											<span class="icon">
 											<object data="${pageContext.request.contextPath}/resources/images/ic-calendar.svg" type="image/svg+xml"></object>
 											</span>
 										</div>
 										<div class="form-group ">
 											 <select class="form-control col-md-10 select booking-input"
-												id="start-time-input" name="startTimeInput" form="bookingForm" 
-												time="${startTime}">
+												id="start-time-input" name="startTimeInput" form="bookingForm" value="${startTime}">
 												<option value="" > 시작시간</option>
 											</select>
 											<span class="icon">
@@ -95,22 +89,16 @@ img {
 											</span>
 										</div>
 										<div class="form-group ">
-											<span class="icon">
-											<object data="${pageContext.request.contextPath}/resources/images/ic-time.svg" type="image/svg+xml"></object>
-											</span>
 											 <select class="form-control col-md-10 select booking-input"
-												id="end-time-input" name="endTimeInput" form="bookingForm"
-												time="${endTime}">
+												id="end-time-input" name="endTimeInput" form="bookingForm" value="${endTime}">
 												<option value=""> 종료시간</option> 
 											</select>
+											<span class="icon">
+												<object data="${pageContext.request.contextPath}/resources/images/ic-time.svg" type="image/svg+xml"></object>
+											</span>
 										</div> 
 										<div class="form-group ">
-											<span class="icon">
-											<object data="${pageContext.request.contextPath}/resources/images/ic-member.svg" type="image/svg+xml"></object>
-											</span>
-											 <select class="form-control col-md-10 select booking-input"
-											 	id="people-input" name="people" 
-											 	people="${people}">
+											 <select class="form-control col-md-10 select booking-input" id="people-input" name="people" people="${people}">
 												<option value="">인원수</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
@@ -119,6 +107,9 @@ img {
 												<option value="5">5</option>
 												<option value="6">6</option>
 											</select>
+											<span class="icon">
+												<object data="${pageContext.request.contextPath}/resources/images/ic-member.svg" type="image/svg+xml"></object>
+											</span>
 										</div>
 										<div class="form-group ">
 											<button type="button" class="btn btn-booking btn-lg col-md-5" id="bookingButton">
@@ -163,9 +154,11 @@ img {
 	<script src="${pageContext.request.contextPath}/resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<script>function getContextPath(){ return "${pageContext.request.contextPath}"; };</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/pikaday.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/view/book-util.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/view/index.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/inappBridge.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/pikaday.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/view/book-module.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/view/index.js"></script>
+	<!--
+	<script src="${pageContext.request.contextPath}/resources/js/view/book-util.js"></script>-->
 	<!--end::Page Vendors-->
 </body>
