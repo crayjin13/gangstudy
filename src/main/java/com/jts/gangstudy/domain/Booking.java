@@ -62,7 +62,21 @@ public class Booking {
 		this.state = State.valueOf(state);
 	}
 
-	public Booking(String date, String startTime, String endTime, Integer people, int room_no, State state) {
+	public Booking(int user_no, String date, String startTime, String endTime, Integer people, State state, int room_no) {
+		LocalDateTime start_dt = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(startTime));
+		LocalDateTime end_dt = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(endTime));
+		if(start_dt.toLocalTime().isAfter(end_dt.toLocalTime())) {
+			end_dt = end_dt.plusDays(1);
+		}
+		this.user_no = user_no;
+		this.check_in = start_dt;
+		this.check_out = end_dt;
+		this.people = people;
+		this.state = state;
+		this.room_no = room_no;
+	}
+	
+	public Booking(String date, String startTime, String endTime, Integer people, State state, int room_no) {
 		LocalDateTime start_dt = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(startTime));
 		LocalDateTime end_dt = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(endTime));
 		if(start_dt.toLocalTime().isAfter(end_dt.toLocalTime())) {
@@ -72,10 +86,10 @@ public class Booking {
 		this.check_in = start_dt;
 		this.check_out = end_dt;
 		this.people = people;
-		this.room_no = room_no;
 		this.state = state;
+		this.room_no = room_no;
 	}
-
+	
 	public String toString() {
 		return "{" + '\n' +
 				"\tbook_no\t\t:\t"		+	this.book_no	+ "," + '\n' +
