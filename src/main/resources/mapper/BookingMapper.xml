@@ -19,7 +19,7 @@
 	  <![CDATA[
 	  WHERE CHECK_IN >= #{dateTime} AND CHECK_IN < DATE_ADD(#{dateTime}, INTERVAL 1 DAY) AND
 	  		(STATE='uncharge' OR STATE='wait') AND
-	  		NOT(USER_NO = #{user_no} AND STATE='uncharge')
+	  		NOT(BOOK_NO = #{book_no})
       ORDER BY CHECK_IN
 	  LIMIT 1
 	  ]]>

@@ -1,14 +1,14 @@
 
 const bookingForm = document.getElementById("bookingForm")
-const inputs = document.getElementsByClassName("form-control")
-
-const dateInput = document.getElementById("dateInput")
-const startTimeInput = document.getElementById("start-time-input")
-const endTimeInput = document.getElementById("end-time-input")
-const peopleInput = document.getElementById("people-input")
 const bookingButton = document.getElementById("bookingButton")
 
-const datePicker = getPikaday(dateInput)
+const dInput = document.getElementById("dateInput")
+const sInput = document.getElementById("start-time-input")
+const eInput = document.getElementById("end-time-input")
+const pInput = document.getElementById("people-input")
+const sURL = "/booking/startTime"
+const eURL = "/booking/endTime"
+
 
 //
 //
@@ -16,47 +16,21 @@ const datePicker = getPikaday(dateInput)
 var msg = getParam("msg")
 var book_no = getParam("book_no")
 
-var startURL = "/booking/startTime"
-var endURL = "/booking/endTime"
-
 $(document).ready(function() {
-	// init calendar
-	setDateRange(datePicker, new Date(), 7)
-	
 	// error message
-	if(msg != "") { alert(msg); }
+	if(msg != "") { alert(msg) }
 })
-window.onpageshow = function() {
-	// info recovery
-	if(dateInput.value!="") {
-		requestTimes(startURL, getStartData(), startTimeInput, function() {
-			startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
-			if(startTimeInput.value!="") {
-				requestTimes(endURL, getEndData(), endTimeInput)
-				endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
-			}
-		})
-		
-		peopleInput.value = peopleInput.getAttribute("people")
-	} else {
-		dateInput.value = "이용날짜"
-	}
-}
 
-function getStartData() {
-	return {
-		"date" : dateInput.value,
-		"book_no" : book_no
-	}
-}
-
-function getEndData() {
-	return {
-		"date" : dateInput.value,
-		"startTime" : startTimeInput.value,
-		"book_no" : book_no
-	}
-}
+var bf = new BookForm({
+	book_no: book_no,
+	dInput: dInput,
+	sInput: sInput,
+	eInput: eInput,
+	pInput: pInput,
+	sURL: sURL,
+	eURL: eURL
+})
+window.onpageshow = function() { bf.onPagesShow() }
 
 // submit
 bookingButton.addEventListener("click", function() {
@@ -70,98 +44,15 @@ bookingButton.addEventListener("click", function() {
 			console.log("ajax(remove_uncharge) error")
 		}
 	})
-	validationCheck(dateInput.value, startTimeInput.value, endTimeInput.value, peopleInput.value, bookingForm)
-})
-
-
-
-
-// input change
-dateInput.addEventListener("change", function() {
-	removeOptions(startTimeInput)
-	removeOptions(endTimeInput)
-	
-	// start time select option
-	requestTimes(startURL, getStartData(), startTimeInput)
-	startTimeInput.options[0] = new Option("시작시간을 선택해주세요.", "")
-})
-
-startTimeInput.addEventListener("change", function() {
-	if(startTimeInput.value == "") {
-		removeOptions(endTimeInput)
-		return
+	if(dInput.value == "") {
+		alert("시작일을 선택해주세요.")
+	} else if(sInput.value == "") {
+		alert("시작시간을 선택해주세요.")
+	} else if(eInput.value == "") {
+		alert("종료시간을 선택해주세요.")
+	} else if(pInput.value == "") {
+		alert("사용인원을 선택해주세요.")
 	} else {
-		requestTimes(endURL, getEndData(), endTimeInput)
-		endTimeInput.options[0] = new Option("종료시간을 선택해주세요.", "")
+		bookingForm.submit()
 	}
-});
-
-
-
-// input focus
-var onFocued = function(i) {
-	var icon = document.getElementsByClassName("icon")
-	var o = icon[i].children[0].contentDocument
-	var s = o.getElementsByTagName("svg")[0]
-
-	var items = s.getElementsByClassName("paint")
-	for(var i = 0; i < items.length; i++) {
-		var item = items[i]
-		if(item.classList.contains("normal")) {
-			item.classList.remove("normal")
-		}
-		if(item.classList.contains("active")) {
-			item.classList.remove("active")
-		}
-		item.classList.add("clicked")
-	}
-	
-}
-dateInput.addEventListener("focus", function() {
-	onFocued(0)
-	dateInput.classList.add("active")
-})
-startTimeInput.addEventListener("focus",  function() {
-	onFocued(1)
-	startTimeInput.classList.add("active")
-})
-endTimeInput.addEventListener("focus",  function() {
-	onFocued(2)
-	endTimeInput.classList.add("active")
-})
-peopleInput.addEventListener("focus",  function() {
-	onFocued(3)
-	peopleInput.classList.add("active")
-})
-
-
-// input blur
-var onBlur = function(i) {
-	var icon = document.getElementsByClassName("icon")
-	var o = icon[i].children[0].contentDocument
-	var s = o.getElementsByTagName("svg")[0]
-	
-	var items = s.getElementsByClassName("paint")
-	for(var i = 0; i < items.length; i++) {
-		var item = items[i]
-		if(item.classList.contains("normal")) {
-			item.classList.remove("normal")
-		}
-		if(item.classList.contains("clicked")) {
-			item.classList.remove("clicked")
-		}
-		item.classList.add("active")
-	}
-}
-dateInput.addEventListener("blur", function() {
-	onBlur(0)
-})
-startTimeInput.addEventListener("blur",  function() {
-	onBlur(1)
-})
-endTimeInput.addEventListener("blur", function() {
-	onBlur(2)
-})
-peopleInput.addEventListener("blur", function() {
-	onBlur(3)
 })
