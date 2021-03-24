@@ -305,6 +305,15 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 
-
-
+	// 예약 시간이 같은지 확인
+	@Override
+	public boolean isSameOptions(Booking a, Booking b) {
+		if(a.getCheck_in().isEqual(b.getCheck_in()) &&
+			a.getCheck_out().isEqual(b.getCheck_out()) &&
+			a.getPeople() == b.getPeople()) {
+			return true;
+		}
+		
+		return false;
+	}
 }
