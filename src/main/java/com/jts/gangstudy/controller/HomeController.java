@@ -40,7 +40,11 @@ public class HomeController {
 	}      
 
 
-	
+	// extra work
+	@RequestMapping(value = "/map", method = RequestMethod.GET)
+	public String map() {
+		return "/extra/map";     
+	}
 	
 	  
 
