@@ -31,7 +31,7 @@ import com.jts.gangstudy.repository.UserDao;
 public class AdminServiceImpl implements AdminService {
 	
 	static String senders = "01021367733";
-	 static String recipients = "01093705565";
+	 static String recipients = "01093705565||01058093031";
 	
 	
 	private final String ip = "211.201.46.200";			// studyroom ip

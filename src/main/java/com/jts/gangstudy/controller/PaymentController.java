@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.domain.User;
+import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
 import com.jts.gangstudy.service.IamportService;
 
@@ -34,6 +35,9 @@ import com.jts.gangstudy.service.UserService;
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
+	
+	@Autowired
+	private AdminService adminService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -221,9 +225,11 @@ public class PaymentController {
 		        
 		//// 예약 번호로 된 결제가 있는지 확인한다.
 		Payment payment1 = paymentService.selectPayment(book);
-		if(payment1 != null) {
+		if(payment1 != null) { 
 			// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
-			bookingService.changeState(book, Booking.State.wait);
+			bookingService.changeState(book, Booking.State.wait); 
+			String msg = user.getName() +"님이"+ book.getCheck_in()+" ~ "+book.getCheck_out() +"예약했습니다.";
+			adminService.MMSCall(msg); 
 			session.removeAttribute("book");
 			
 			System.out.println("2+3차 페이매소드 ");
