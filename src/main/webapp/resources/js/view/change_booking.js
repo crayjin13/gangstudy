@@ -52,6 +52,8 @@ document.getElementById("payments").addEventListener("click", function() {
 document.getElementById("bookingForm").addEventListener("change", function() {
 	if(bf.validation()) {
 		amountToBeCharge.value = bf.getInterval() * amountPerHour.textContent
+	} else {
+		amountToBeCharge.value = ""
 	}
 })
 
