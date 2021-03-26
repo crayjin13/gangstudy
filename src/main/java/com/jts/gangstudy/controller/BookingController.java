@@ -318,8 +318,7 @@ public class BookingController {
 		if(payment != null && payment.getState() == Payment.State.paid) {
 			String msg = user.getName() +"님이"+ book.getCheck_in()+" ~ "+book.getCheck_out() +"예약했습니다.";
 			adminService.MMSCall(msg); 
-		adminService.MMSCall(msg);
-			return "redirect:" + "/booking/check";
+		return "redirect:" + "/booking/check";
 		} else {
 			return "redirect:" + "/?booking=fail";
 		}
