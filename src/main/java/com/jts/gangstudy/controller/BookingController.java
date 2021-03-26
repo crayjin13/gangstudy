@@ -88,7 +88,7 @@ public class BookingController {
 		User user = (User)session.getAttribute("sUserId");
 		Booking book = (Booking)session.getAttribute("book");	// 기존 예약이 있으면 가져옴
 		
-		if(book == null) {	// 기존 예약이 없으면 생성
+		if(dateParam != null) {	// 기존 예약이 없으면 생성
 			book = new Booking(dateParam, startTime, endTime, Integer.parseInt(people), Booking.State.uncharge, room_no);
 		}
 		if(user == null) {		// 로그인이 안되었을시
