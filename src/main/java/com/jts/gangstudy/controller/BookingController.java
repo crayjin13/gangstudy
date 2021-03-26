@@ -316,11 +316,13 @@ public class BookingController {
 		session.removeAttribute("book");
 		// 결제가 있을 경우 해당 예약을 완료 상태로 놓는다.
 		if(payment != null && payment.getState() == Payment.State.paid) {
+			bookingService.changeState(book, Booking.State.wait);
 			String msg = user.getName() +"님이"+ book.getCheck_in()+" ~ "+book.getCheck_out() +"예약했습니다.";
 			adminService.MMSCall(msg); 
 		return "redirect:" + "/booking/check";
 		} else {
 			return "redirect:" + "/?booking=fail";
+			// 예시로 추가되는 테스트 코드
 		}
 	}
 	
