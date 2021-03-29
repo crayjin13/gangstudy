@@ -28,6 +28,8 @@ public interface AdminService {
 	public void MMSCall(String msg);
 
 	public  int mmsnumberchange(String sender, String recipient) ;
+
+	boolean isAdmin(String id);
 	
 	
 	
