@@ -104,9 +104,46 @@ var KTDatatablesDataSourceHtml = function() {
 
 		// begin first table
 		table.DataTable({
-			responsive: true,
+			language: {
+			    "lengthMenu":	'<select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">'+
+									'<option value="10">10개씩</option>'+
+									'<option value="25">25개씩</option>'+
+									'<option value="50">50개씩</option>'+
+									'<option value="100">100개씩</option>'+
+								'</select>',
+				"search":		"_INPUT_",
+				"paginate": {
+					"previous":	"<",
+			    	"next":		">"
+			    }
+			},
+			lengthMenu: {
+		        "className": 'form-control form-control-sm'
+		    },
+			info: false,
+			responsive : true,
+			dom: "<'row' <'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 d-flex flex-row-reverse'f> > <'row'rt> p",
 			data: dataJSONArray,
-			
+			columnDefs : [
+				{
+					targets : 8,
+					title : '예약변경',
+					orderable : false,
+					render : function(data, type, full, meta) {
+						if (data.state == 'wait') {
+							return '\
+								<div class="row">\
+									<a href="javascript:cancel('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+										<button class=" btn-xs listbtn-xs-red">삭제 </button>\
+									</a>\
+								</div>\
+							';
+						} else {
+							return '<div> - </div>';
+						}
+					}
+				}
+			]
 		});
 	};
 
@@ -130,3 +167,21 @@ jQuery(document).ready(function() {
 
 /******/ });
 //# sourceMappingURL=javascript.js.map
+
+function cancel(book_no) {
+	if(confirm('예약을 취소하시겠습니까?')) {
+		$.get("/payment/cancel", {
+			book_no : book_no
+		},function(jqXHR) {
+			// always
+		},'text' /* xml, text, script, html */)
+		.done(function(message) {   
+			alert(message);
+			location.href = '/booking/check';
+		})
+		.fail(function(jqXHR) {
+		})
+		.always(function(jqXHR) {
+		});
+	}
+}

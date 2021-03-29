@@ -55,6 +55,8 @@ public class PaymentController {
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	public String cancel(HttpServletRequest request, HttpSession session, @RequestParam("book_no") int book_no) {
 		User user = (User) session.getAttribute("sUserId");
+		String id = (String) session.getAttribute("id");
+		
 		final String cancelMessage = "예약이 취소되었습니다.";
 		
 		// 잘못된 경로로 요청된 예약에 대한 예외처리
@@ -63,7 +65,7 @@ public class PaymentController {
 			return "해당하는 예약이 없습니다.";
 		} else if (!book.getState().equals(Booking.State.wait)) {
 			return "취소 불가능한 예약입니다.";
-		} else if (book.getUser_no() != user.getUser_no()) {
+		} else if (book.getUser_no() != user.getUser_no() || !adminService.isAdmin(id)) {
 			return "잘못된 예약 요청입니다.";
 		}
 		boolean canCancel = LocalDateTime.now().plusDays(1).isBefore(book.getCheck_in());

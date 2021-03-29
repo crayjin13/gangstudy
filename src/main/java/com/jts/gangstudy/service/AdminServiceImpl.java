@@ -125,7 +125,13 @@ public class AdminServiceImpl implements AdminService {
 		}
 	}
 	
-	
+	@Override
+	public boolean isAdmin(String id) {
+		if(id == null) return false;
+		if(userDao.selectAdmin(id) == null) return false;
+
+		return true;
+	}
 	
 
 	

@@ -6,6 +6,12 @@
 	  (AMOUNT, POINT, PG_NM, TID, PAY_TYPE, STATE, BOOK_NO) VALUES
 	  (#{amount}, #{point}, #{pg_name}, #{tid}, #{pay_type}, #{state}, #{book_no})
 	</insert>
+	
+	<!-- 모든 예약 찾기 -->
+	<select id="selectAll" resultType="com.jts.gangstudy.domain.Payment">
+	  SELECT *
+	  FROM PAYMENT_TB
+	</select>
 
 	<!-- 예약 번호로 결제 찾기 -->
 	<select id="selectPayment" parameterType="int" resultType="com.jts.gangstudy.domain.Payment">
@@ -15,11 +21,11 @@
 	</select>
 	
 	<!-- 결제 상태 변경 -->
-	<select id="updateState" parameterType="hashmap">
+	<update id="updateState" parameterType="hashmap">
 	  UPDATE PAYMENT_TB
 	  SET STATE = #{state}
 	  WHERE PAY_NO = #{pay_no}
-	</select>
+	</update>
 	
 	
 	<!-- PG 다날 체크  -->
