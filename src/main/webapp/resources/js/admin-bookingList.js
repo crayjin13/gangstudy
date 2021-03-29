@@ -175,9 +175,9 @@ function cancel(book_no) {
 		},function(jqXHR) {
 			// always
 		},'text' /* xml, text, script, html */)
-		.done(function(message) {   
+		.done(function(message) {
 			alert(message);
-			location.href = '/booking/check';
+			location.href = '/admin/books';
 		})
 		.fail(function(jqXHR) {
 		})
