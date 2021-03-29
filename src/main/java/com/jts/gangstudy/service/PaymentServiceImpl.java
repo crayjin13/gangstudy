@@ -1,6 +1,7 @@
 package com.jts.gangstudy.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +26,12 @@ public class PaymentServiceImpl implements PaymentService {
 		mapper.insertPayment(payment);
 		
 	}
-	
+
+	@Override
+	public List<Payment> selectAll() {
+		return mapper.selectAll();
+	}
+
 	@Override
 	public Payment selectPayment(Booking book) {
 		return mapper.selectPayment(book.getBook_no());
@@ -77,5 +83,18 @@ public class PaymentServiceImpl implements PaymentService {
 	public void cancelByPoint(Booking book, Payment payment) {
 		changeState(payment, Payment.State.cancelled);
 		
+	}
+
+
+	
+	
+	@Override
+	public Payment findByBookNo(List<Payment> payments, Integer book_no) {
+		for(Payment payment : payments) {
+			if(payment.getBook_no() == book_no) {
+				return payment;
+			}
+		}
+		return null;
 	}
 }

@@ -24,9 +24,11 @@ import com.jts.gangstudy.exception.PasswordMismatchException;
 import com.jts.gangstudy.exception.UserNotFoundException;
 import com.jts.gangstudy.domain.Booking;
 import com.jts.gangstudy.domain.Command;
+import com.jts.gangstudy.domain.Payment;
 import com.jts.gangstudy.service.UserService;
 import com.jts.gangstudy.service.AdminService;
 import com.jts.gangstudy.service.BookingService;
+import com.jts.gangstudy.service.PaymentService;
 
 @Controller
 @RequestMapping("/admin")
@@ -39,7 +41,9 @@ public class AdminController {
 	private UserService userService;
 	@Autowired
 	private BookingService bookingService;
-	    
+	@Autowired
+	private PaymentService paymentService;
+
 
 	Logger logger;    
 	
@@ -149,22 +153,29 @@ public class AdminController {
 	public ModelAndView showBooks() {
 		ModelAndView mav = new ModelAndView("admin/bookingList");
 		List<Booking> books = bookingService.searchAll();
-		
+		List<Payment> payments = paymentService.selectAll();
 		JSONArray array = new JSONArray();
 		for(Booking book : books) {
 			String name = userService.getUser(book.getUser_no()).getName();
+			Payment payment = paymentService.findByBookNo(payments, book.getBook_no());
+			int amount = 0;
+			if(payment != null) amount = payment.getAmount();
 			array.put(
 					new JSONArray()
 					.put(book.getBook_no())
 					.put(name)
-					.put(book.getCheck_in().toLocalDate().toString() + " " +
-						book.getCheck_in().toLocalTime().toString())
-					.put(book.getCheck_out().toLocalDate().toString() + " " +
-						book.getCheck_out().toLocalTime().toString())
+					.put(book.getCheck_in().toLocalDate().toString())
+					.put(book.getCheck_in().toLocalTime().toString() + " - " + book.getCheck_out().toLocalTime().toString() + "<br>"
+					 + "(" + bookingService.getTimeInterval(book) + ")")
 					.put(book.getPeople() + "명")
-					.put(book.getState())
+					.put(String.format("%,d", amount))
 					.put(book.getRequest_dt().toLocalDate().toString() + " " +
 							book.getRequest_dt().toLocalTime().toString())
+					.put(book.getState().getUIValue())
+					.put(new JSONObject()
+							.put("book_no", book.getBook_no())
+							.put("state", book.getState())
+							)
 					);
 		}
 
