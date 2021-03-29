@@ -177,142 +177,138 @@
 	return __webpack_require__(__webpack_require__.s = "../demo1/src/js/pages/crud/datatables/data-sources/javascript.js");
 	/** *** */
 })
-		/** ********************************************************************* */
-		/** *** */
-		({
+/** ********************************************************************* */
+/** *** */
+({
+/***/
+"../demo1/src/js/pages/crud/datatables/data-sources/javascript.js" :
+/*******************************************************************
+ * !************************************************************************!*\
+ * !***
+ * ../demo1/src/js/pages/crud/datatables/data-sources/javascript.js
+ * ***! \
+ ******************************************************************/
+/* ! no static exports found */
+/***/
+(function(module, exports, __webpack_require__) {
+	"use strict";
+	var KTDatatablesDataSourceHtml = function() {
+		
+		var dataJSONArray = JSON.parse(books)
+		
+		var initTable1 = function() {
+			var table = $('#kt_datatable');
+			
+			// begin first table
+			table.DataTable({
+				language: {
+				    "lengthMenu":	'<select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">'+
+										'<option value="10">10개씩</option>'+
+										'<option value="25">25개씩</option>'+
+										'<option value="50">50개씩</option>'+
+										'<option value="100">100개씩</option>'+
+									'</select>',
+					"search":		"_INPUT_",
+					"paginate": {
+						"previous":	"<",
+				    	"next":		">"
+				    }
+				},
+				lengthMenu: {
+			        "className": 'form-control form-control-sm'
+			    },
+				info: false,
+				responsive : true,
+				dom: "<'row' <'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 d-flex flex-row-reverse'f> > <'row'rt> p",
+				data : dataJSONArray,
+				columnDefs : [
+					{
+						targets : 6,
+						title : '예약상태',
+						orderable : false,
+						render : function(data, type, full, meta) {
+							if(data.state == 'uncharge'){
+								return '\
+								<div>\
+									' + data.UI + '\
+								</div>\
+								<div class="request" style="display:none;">\
+									' + data.req_dt + '\
+								</div>\
+								<div class="timeLabel">\
+								</div>\
+								';
+							} else {
+								return data.UI
+							}
+						}
+					},
+					{
+						targets : 7,
+						title : '예약변경',
+						orderable : false,
+						render : function(data, type, full, meta) {
+							if (data.state == 'wait') {
+								return '\
+									<div class="row">\
+										<a href="javascript:cancel('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+											<button class=" btn-xs listbtn-xs-red">삭제 </button>\
+										</a>\
+									</div>\
+									<div class="row">\
+										<a href="javascript:modify('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
+											<button class=" btn-xs listbtn-xs-blue">예약수정 </button></i>\
+										</a>\
+									</div>\
+								';
+							} 
+							else if (data.state == 'uncharge') {
+								return '\
+									<div class="row">\
+										<a href="javascript:remove('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+											<button class=" btn-xs listbtn-xs-red">예약취소 </button>\
+										</a>\
+									</div>\
+									<div class="row">\
+										<a href="/booking/uncharge?book_no='+ data.book_no + '" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
+											<button class=" btn-xs listbtn-xs-blue">예약결제 </button></i>\
+										</a>\
+									</div>\
+								';
+							} else {
+								return '<div class="d-flex align-items-center"> - </div>';
+							}
+						}
+					},
+					{
+						orderable: false, targets: [0,1,2,3,4,5]
+					}
+				],
+				order: []
+			});
+		};
 
-			/***/
-			"../demo1/src/js/pages/crud/datatables/data-sources/javascript.js" :
-			/*******************************************************************
-			 * !************************************************************************!*\
-			 * !***
-			 * ../demo1/src/js/pages/crud/datatables/data-sources/javascript.js
-			 * ***! \
-			 ******************************************************************/
-			/* ! no static exports found */
-			/***/
-			(function(module, exports, __webpack_require__) {
+		return {
 
-				"use strict";
+			// main function to initiate the module
+			init : function() {
+				initTable1();
+			},
 
-				var KTDatatablesDataSourceHtml = function() {
+		};
 
-					var dataJSONArray = JSON.parse(books)
+	}();
 
-					var initTable1 = function() {
-						var table = $('#kt_datatable');
-						
-						
-						// begin first table
-						table.DataTable({
-									language: {
-									    "lengthMenu":	'<select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">'+
-															'<option value="10">10개씩</option>'+
-															'<option value="25">25개씩</option>'+
-															'<option value="50">50개씩</option>'+
-															'<option value="100">100개씩</option>'+
-														'</select>',
-   										"search":		"_INPUT_",
-										"paginate": {
-											"previous":	"<",
-									    	"next":		">"
-									    }
-									},
-									lengthMenu: {
-								        "className": 'form-control form-control-sm'
-								    },
-									info: false,
-									responsive : true,
-									dom: "<'row' <'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f> > <'row'rt> p",
-									data : dataJSONArray,
-									columnDefs : [
-										{
-											targets : 6,
-											title : '예약상태',
-											orderable : false,
-											render : function(data, type, full, meta) {
-												if(data.state == 'uncharge'){
-													return '\
-													<div>\
-														' + data.UI + '\
-													</div>\
-													<div class="request" style="display:none;">\
-														' + data.req_dt + '\
-													</div>\
-													<div class="timeLabel">\
-													</div>\
-													';
-												} else {
-													return data.UI
-												}
-											}
-										},
-										{
-											targets : 7,
-											title : '예약변경',
-											orderable : false,
-											render : function(data, type, full, meta) {
-												if (data.state == 'wait') {
-													return '\
-														<div class="row">\
-															<a href="javascript:cancel('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
-																<button class=" btn-xs listbtn-xs-red">삭제 </button>\
-															</a>\
-														</div>\
-														<div class="row">\
-															<a href="javascript:modify('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
-																<button class=" btn-xs listbtn-xs-blue">예약수정 </button></i>\
-															</a>\
-														</div>\
-													';
-												} 
-												else if (data.state == 'uncharge') {
-													return '\
-														<div class="row">\
-															<a href="javascript:remove('+ data.book_no + ');" class="btn btn-sm btn-clean btn-icon" title="Delete">\
-																<button class=" btn-xs listbtn-xs-red">예약취소 </button>\
-															</a>\
-														</div>\
-														<div class="row">\
-															<a href="/booking/uncharge?book_no='+ data.book_no + '" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
-																<button class=" btn-xs listbtn-xs-blue">예약결제 </button></i>\
-															</a>\
-														</div>\
-													';
-												} else {
-													return '<div class="d-flex align-items-center"> - </div>';
-												}
-											}
-										},
-										{
-											orderable: false, targets: [0,1,2,3,4,5]
-										}
-									],
-									order: []
-								});
-					};
+	jQuery(document).ready(function() {
+		KTDatatablesDataSourceHtml.init();
+		$('.custom-select').removeClass('custom-select custom-select-sm')
+	});
 
-					return {
+	/***/
+})
 
-						// main function to initiate the module
-						init : function() {
-							initTable1();
-						},
-
-					};
-
-				}();
-
-				jQuery(document).ready(function() {
-					KTDatatablesDataSourceHtml.init();
-					$('.custom-select').removeClass('custom-select custom-select-sm')
-				});
-
-				/***/
-			})
-
-		/** *** */
-		});
+/** *** */
+});
 // # sourceMappingURL=javascript.js.map
 
 function modify(book_no) {
